@@ -1,0 +1,610 @@
+-- VHDL structural description generated from `key_select`
+--		date : Sat Sep  1 20:53:04 2001
+
+
+-- Entity Declaration
+
+ENTITY key_select IS
+  PORT (
+  e1 : in BIT_VECTOR (15 DOWNTO 0);	-- e1
+  e2 : in BIT_VECTOR (15 DOWNTO 0);	-- e2
+  e3 : in BIT_VECTOR (15 DOWNTO 0);	-- e3
+  e4 : in BIT_VECTOR (15 DOWNTO 0);	-- e4
+  e5 : in BIT_VECTOR (15 DOWNTO 0);	-- e5
+  e6 : in BIT_VECTOR (15 DOWNTO 0);	-- e6
+  e7 : in BIT_VECTOR (15 DOWNTO 0);	-- e7
+  e8 : in BIT_VECTOR (15 DOWNTO 0);	-- e8
+  e9 : in BIT_VECTOR (15 DOWNTO 0);	-- e9
+  e10 : in BIT_VECTOR (15 DOWNTO 0);	-- e10
+  e11 : in BIT_VECTOR (15 DOWNTO 0);	-- e11
+  e12 : in BIT_VECTOR (15 DOWNTO 0);	-- e12
+  e13 : in BIT_VECTOR (15 DOWNTO 0);	-- e13
+  e14 : in BIT_VECTOR (15 DOWNTO 0);	-- e14
+  e15 : in BIT_VECTOR (15 DOWNTO 0);	-- e15
+  e16 : in BIT_VECTOR (15 DOWNTO 0);	-- e16
+  e17 : in BIT_VECTOR (15 DOWNTO 0);	-- e17
+  e18 : in BIT_VECTOR (15 DOWNTO 0);	-- e18
+  e19 : in BIT_VECTOR (15 DOWNTO 0);	-- e19
+  e20 : in BIT_VECTOR (15 DOWNTO 0);	-- e20
+  e21 : in BIT_VECTOR (15 DOWNTO 0);	-- e21
+  e22 : in BIT_VECTOR (15 DOWNTO 0);	-- e22
+  e23 : in BIT_VECTOR (15 DOWNTO 0);	-- e23
+  e24 : in BIT_VECTOR (15 DOWNTO 0);	-- e24
+  e25 : in BIT_VECTOR (15 DOWNTO 0);	-- e25
+  e26 : in BIT_VECTOR (15 DOWNTO 0);	-- e26
+  e27 : in BIT_VECTOR (15 DOWNTO 0);	-- e27
+  e28 : in BIT_VECTOR (15 DOWNTO 0);	-- e28
+  e29 : in BIT_VECTOR (15 DOWNTO 0);	-- e29
+  e30 : in BIT_VECTOR (15 DOWNTO 0);	-- e30
+  e31 : in BIT_VECTOR (15 DOWNTO 0);	-- e31
+  e32 : in BIT_VECTOR (15 DOWNTO 0);	-- e32
+  e33 : in BIT_VECTOR (15 DOWNTO 0);	-- e33
+  e34 : in BIT_VECTOR (15 DOWNTO 0);	-- e34
+  e35 : in BIT_VECTOR (15 DOWNTO 0);	-- e35
+  e36 : in BIT_VECTOR (15 DOWNTO 0);	-- e36
+  e37 : in BIT_VECTOR (15 DOWNTO 0);	-- e37
+  e38 : in BIT_VECTOR (15 DOWNTO 0);	-- e38
+  e39 : in BIT_VECTOR (15 DOWNTO 0);	-- e39
+  e40 : in BIT_VECTOR (15 DOWNTO 0);	-- e40
+  e41 : in BIT_VECTOR (15 DOWNTO 0);	-- e41
+  e42 : in BIT_VECTOR (15 DOWNTO 0);	-- e42
+  e43 : in BIT_VECTOR (15 DOWNTO 0);	-- e43
+  e44 : in BIT_VECTOR (15 DOWNTO 0);	-- e44
+  e45 : in BIT_VECTOR (15 DOWNTO 0);	-- e45
+  e46 : in BIT_VECTOR (15 DOWNTO 0);	-- e46
+  e47 : in BIT_VECTOR (15 DOWNTO 0);	-- e47
+  e48 : in BIT_VECTOR (15 DOWNTO 0);	-- e48
+  e49 : in BIT_VECTOR (15 DOWNTO 0);	-- e49
+  e50 : in BIT_VECTOR (15 DOWNTO 0);	-- e50
+  e51 : in BIT_VECTOR (15 DOWNTO 0);	-- e51
+  e52 : in BIT_VECTOR (15 DOWNTO 0);	-- e52
+  d1 : in BIT_VECTOR (15 DOWNTO 0);	-- d1
+  d2 : in BIT_VECTOR (15 DOWNTO 0);	-- d2
+  d3 : in BIT_VECTOR (15 DOWNTO 0);	-- d3
+  d4 : in BIT_VECTOR (15 DOWNTO 0);	-- d4
+  d5 : in BIT_VECTOR (15 DOWNTO 0);	-- d5
+  d6 : in BIT_VECTOR (15 DOWNTO 0);	-- d6
+  d7 : in BIT_VECTOR (15 DOWNTO 0);	-- d7
+  d8 : in BIT_VECTOR (15 DOWNTO 0);	-- d8
+  d9 : in BIT_VECTOR (15 DOWNTO 0);	-- d9
+  d10 : in BIT_VECTOR (15 DOWNTO 0);	-- d10
+  d11 : in BIT_VECTOR (15 DOWNTO 0);	-- d11
+  d12 : in BIT_VECTOR (15 DOWNTO 0);	-- d12
+  d13 : in BIT_VECTOR (15 DOWNTO 0);	-- d13
+  d14 : in BIT_VECTOR (15 DOWNTO 0);	-- d14
+  d15 : in BIT_VECTOR (15 DOWNTO 0);	-- d15
+  d16 : in BIT_VECTOR (15 DOWNTO 0);	-- d16
+  d17 : in BIT_VECTOR (15 DOWNTO 0);	-- d17
+  d18 : in BIT_VECTOR (15 DOWNTO 0);	-- d18
+  d19 : in BIT_VECTOR (15 DOWNTO 0);	-- d19
+  d20 : in BIT_VECTOR (15 DOWNTO 0);	-- d20
+  d21 : in BIT_VECTOR (15 DOWNTO 0);	-- d21
+  d22 : in BIT_VECTOR (15 DOWNTO 0);	-- d22
+  d23 : in BIT_VECTOR (15 DOWNTO 0);	-- d23
+  d24 : in BIT_VECTOR (15 DOWNTO 0);	-- d24
+  d25 : in BIT_VECTOR (15 DOWNTO 0);	-- d25
+  d26 : in BIT_VECTOR (15 DOWNTO 0);	-- d26
+  d27 : in BIT_VECTOR (15 DOWNTO 0);	-- d27
+  d28 : in BIT_VECTOR (15 DOWNTO 0);	-- d28
+  d29 : in BIT_VECTOR (15 DOWNTO 0);	-- d29
+  d30 : in BIT_VECTOR (15 DOWNTO 0);	-- d30
+  d31 : in BIT_VECTOR (15 DOWNTO 0);	-- d31
+  d32 : in BIT_VECTOR (15 DOWNTO 0);	-- d32
+  d33 : in BIT_VECTOR (15 DOWNTO 0);	-- d33
+  d34 : in BIT_VECTOR (15 DOWNTO 0);	-- d34
+  d35 : in BIT_VECTOR (15 DOWNTO 0);	-- d35
+  d36 : in BIT_VECTOR (15 DOWNTO 0);	-- d36
+  d37 : in BIT_VECTOR (15 DOWNTO 0);	-- d37
+  d38 : in BIT_VECTOR (15 DOWNTO 0);	-- d38
+  d39 : in BIT_VECTOR (15 DOWNTO 0);	-- d39
+  d40 : in BIT_VECTOR (15 DOWNTO 0);	-- d40
+  d41 : in BIT_VECTOR (15 DOWNTO 0);	-- d41
+  d42 : in BIT_VECTOR (15 DOWNTO 0);	-- d42
+  d43 : in BIT_VECTOR (15 DOWNTO 0);	-- d43
+  d44 : in BIT_VECTOR (15 DOWNTO 0);	-- d44
+  d45 : in BIT_VECTOR (15 DOWNTO 0);	-- d45
+  d46 : in BIT_VECTOR (15 DOWNTO 0);	-- d46
+  d47 : in BIT_VECTOR (15 DOWNTO 0);	-- d47
+  d48 : in BIT_VECTOR (15 DOWNTO 0);	-- d48
+  d49 : in BIT_VECTOR (15 DOWNTO 0);	-- d49
+  d50 : in BIT_VECTOR (15 DOWNTO 0);	-- d50
+  d51 : in BIT_VECTOR (15 DOWNTO 0);	-- d51
+  d52 : in BIT_VECTOR (15 DOWNTO 0);	-- d52
+  e : in BIT;	-- e
+  en : in BIT;	-- en
+  clr : in BIT;	-- clr
+  cke : in BIT;	-- cke
+  round : in BIT_VECTOR (2 DOWNTO 0);	-- round
+  z1 : out BIT_VECTOR (15 DOWNTO 0);	-- z1
+  z2 : out BIT_VECTOR (15 DOWNTO 0);	-- z2
+  z3 : out BIT_VECTOR (15 DOWNTO 0);	-- z3
+  z4 : out BIT_VECTOR (15 DOWNTO 0);	-- z4
+  z5 : out BIT_VECTOR (15 DOWNTO 0);	-- z5
+  z6 : out BIT_VECTOR (15 DOWNTO 0);	-- z6
+  z91 : out BIT_VECTOR (15 DOWNTO 0);	-- z91
+  z92 : out BIT_VECTOR (15 DOWNTO 0);	-- z92
+  z93 : out BIT_VECTOR (15 DOWNTO 0);	-- z93
+  z94 : out BIT_VECTOR (15 DOWNTO 0);	-- z94
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END key_select;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF key_select IS
+  COMPONENT mux48to6
+    port (
+    i1 : in BIT_VECTOR(15 DOWNTO 0);	-- i1
+    i2 : in BIT_VECTOR(15 DOWNTO 0);	-- i2
+    i3 : in BIT_VECTOR(15 DOWNTO 0);	-- i3
+    i4 : in BIT_VECTOR(15 DOWNTO 0);	-- i4
+    i5 : in BIT_VECTOR(15 DOWNTO 0);	-- i5
+    i6 : in BIT_VECTOR(15 DOWNTO 0);	-- i6
+    i7 : in BIT_VECTOR(15 DOWNTO 0);	-- i7
+    i8 : in BIT_VECTOR(15 DOWNTO 0);	-- i8
+    i9 : in BIT_VECTOR(15 DOWNTO 0);	-- i9
+    i10 : in BIT_VECTOR(15 DOWNTO 0);	-- i10
+    i11 : in BIT_VECTOR(15 DOWNTO 0);	-- i11
+    i12 : in BIT_VECTOR(15 DOWNTO 0);	-- i12
+    i13 : in BIT_VECTOR(15 DOWNTO 0);	-- i13
+    i14 : in BIT_VECTOR(15 DOWNTO 0);	-- i14
+    i15 : in BIT_VECTOR(15 DOWNTO 0);	-- i15
+    i16 : in BIT_VECTOR(15 DOWNTO 0);	-- i16
+    i17 : in BIT_VECTOR(15 DOWNTO 0);	-- i17
+    i18 : in BIT_VECTOR(15 DOWNTO 0);	-- i18
+    i19 : in BIT_VECTOR(15 DOWNTO 0);	-- i19
+    i20 : in BIT_VECTOR(15 DOWNTO 0);	-- i20
+    i21 : in BIT_VECTOR(15 DOWNTO 0);	-- i21
+    i22 : in BIT_VECTOR(15 DOWNTO 0);	-- i22
+    i23 : in BIT_VECTOR(15 DOWNTO 0);	-- i23
+    i24 : in BIT_VECTOR(15 DOWNTO 0);	-- i24
+    i25 : in BIT_VECTOR(15 DOWNTO 0);	-- i25
+    i26 : in BIT_VECTOR(15 DOWNTO 0);	-- i26
+    i27 : in BIT_VECTOR(15 DOWNTO 0);	-- i27
+    i28 : in BIT_VECTOR(15 DOWNTO 0);	-- i28
+    i29 : in BIT_VECTOR(15 DOWNTO 0);	-- i29
+    i30 : in BIT_VECTOR(15 DOWNTO 0);	-- i30
+    i31 : in BIT_VECTOR(15 DOWNTO 0);	-- i31
+    i32 : in BIT_VECTOR(15 DOWNTO 0);	-- i32
+    i33 : in BIT_VECTOR(15 DOWNTO 0);	-- i33
+    i34 : in BIT_VECTOR(15 DOWNTO 0);	-- i34
+    i35 : in BIT_VECTOR(15 DOWNTO 0);	-- i35
+    i36 : in BIT_VECTOR(15 DOWNTO 0);	-- i36
+    i37 : in BIT_VECTOR(15 DOWNTO 0);	-- i37
+    i38 : in BIT_VECTOR(15 DOWNTO 0);	-- i38
+    i39 : in BIT_VECTOR(15 DOWNTO 0);	-- i39
+    i40 : in BIT_VECTOR(15 DOWNTO 0);	-- i40
+    i41 : in BIT_VECTOR(15 DOWNTO 0);	-- i41
+    i42 : in BIT_VECTOR(15 DOWNTO 0);	-- i42
+    i43 : in BIT_VECTOR(15 DOWNTO 0);	-- i43
+    i44 : in BIT_VECTOR(15 DOWNTO 0);	-- i44
+    i45 : in BIT_VECTOR(15 DOWNTO 0);	-- i45
+    i46 : in BIT_VECTOR(15 DOWNTO 0);	-- i46
+    i47 : in BIT_VECTOR(15 DOWNTO 0);	-- i47
+    i48 : in BIT_VECTOR(15 DOWNTO 0);	-- i48
+    sel : in BIT_VECTOR(2 DOWNTO 0);	-- sel
+    o1 : out BIT_VECTOR(15 DOWNTO 0);	-- o1
+    o2 : out BIT_VECTOR(15 DOWNTO 0);	-- o2
+    o3 : out BIT_VECTOR(15 DOWNTO 0);	-- o3
+    o4 : out BIT_VECTOR(15 DOWNTO 0);	-- o4
+    o5 : out BIT_VECTOR(15 DOWNTO 0);	-- o5
+    o6 : out BIT_VECTOR(15 DOWNTO 0);	-- o6
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT mux12to6_latch
+    port (
+    i1 : in BIT_VECTOR(15 DOWNTO 0);	-- i1
+    i2 : in BIT_VECTOR(15 DOWNTO 0);	-- i2
+    i3 : in BIT_VECTOR(15 DOWNTO 0);	-- i3
+    i4 : in BIT_VECTOR(15 DOWNTO 0);	-- i4
+    i5 : in BIT_VECTOR(15 DOWNTO 0);	-- i5
+    i6 : in BIT_VECTOR(15 DOWNTO 0);	-- i6
+    i7 : in BIT_VECTOR(15 DOWNTO 0);	-- i7
+    i8 : in BIT_VECTOR(15 DOWNTO 0);	-- i8
+    i9 : in BIT_VECTOR(15 DOWNTO 0);	-- i9
+    i10 : in BIT_VECTOR(15 DOWNTO 0);	-- i10
+    i11 : in BIT_VECTOR(15 DOWNTO 0);	-- i11
+    i12 : in BIT_VECTOR(15 DOWNTO 0);	-- i12
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    sel : in BIT;	-- sel
+    cke : in BIT;	-- cke
+    o1 : inout BIT_VECTOR(15 DOWNTO 0);	-- o1
+    o2 : inout BIT_VECTOR(15 DOWNTO 0);	-- o2
+    o3 : inout BIT_VECTOR(15 DOWNTO 0);	-- o3
+    o4 : inout BIT_VECTOR(15 DOWNTO 0);	-- o4
+    o5 : inout BIT_VECTOR(15 DOWNTO 0);	-- o5
+    o6 : inout BIT_VECTOR(15 DOWNTO 0);	-- o6
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT mux8to4_latch
+    port (
+    i1 : in BIT_VECTOR(15 DOWNTO 0);	-- i1
+    i2 : in BIT_VECTOR(15 DOWNTO 0);	-- i2
+    i3 : in BIT_VECTOR(15 DOWNTO 0);	-- i3
+    i4 : in BIT_VECTOR(15 DOWNTO 0);	-- i4
+    i5 : in BIT_VECTOR(15 DOWNTO 0);	-- i5
+    i6 : in BIT_VECTOR(15 DOWNTO 0);	-- i6
+    i7 : in BIT_VECTOR(15 DOWNTO 0);	-- i7
+    i8 : in BIT_VECTOR(15 DOWNTO 0);	-- i8
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    sel : in BIT;	-- sel
+    cke : in BIT;	-- cke
+    o1 : inout BIT_VECTOR(15 DOWNTO 0);	-- o1
+    o2 : inout BIT_VECTOR(15 DOWNTO 0);	-- o2
+    o3 : inout BIT_VECTOR(15 DOWNTO 0);	-- o3
+    o4 : inout BIT_VECTOR(15 DOWNTO 0);	-- o4
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL od1_0 : BIT;	-- od1 0
+  SIGNAL od1_1 : BIT;	-- od1 1
+  SIGNAL od1_2 : BIT;	-- od1 2
+  SIGNAL od1_3 : BIT;	-- od1 3
+  SIGNAL od1_4 : BIT;	-- od1 4
+  SIGNAL od1_5 : BIT;	-- od1 5
+  SIGNAL od1_6 : BIT;	-- od1 6
+  SIGNAL od1_7 : BIT;	-- od1 7
+  SIGNAL od1_8 : BIT;	-- od1 8
+  SIGNAL od1_9 : BIT;	-- od1 9
+  SIGNAL od1_10 : BIT;	-- od1 10
+  SIGNAL od1_11 : BIT;	-- od1 11
+  SIGNAL od1_12 : BIT;	-- od1 12
+  SIGNAL od1_13 : BIT;	-- od1 13
+  SIGNAL od1_14 : BIT;	-- od1 14
+  SIGNAL od1_15 : BIT;	-- od1 15
+  SIGNAL od2_0 : BIT;	-- od2 0
+  SIGNAL od2_1 : BIT;	-- od2 1
+  SIGNAL od2_2 : BIT;	-- od2 2
+  SIGNAL od2_3 : BIT;	-- od2 3
+  SIGNAL od2_4 : BIT;	-- od2 4
+  SIGNAL od2_5 : BIT;	-- od2 5
+  SIGNAL od2_6 : BIT;	-- od2 6
+  SIGNAL od2_7 : BIT;	-- od2 7
+  SIGNAL od2_8 : BIT;	-- od2 8
+  SIGNAL od2_9 : BIT;	-- od2 9
+  SIGNAL od2_10 : BIT;	-- od2 10
+  SIGNAL od2_11 : BIT;	-- od2 11
+  SIGNAL od2_12 : BIT;	-- od2 12
+  SIGNAL od2_13 : BIT;	-- od2 13
+  SIGNAL od2_14 : BIT;	-- od2 14
+  SIGNAL od2_15 : BIT;	-- od2 15
+  SIGNAL od3_0 : BIT;	-- od3 0
+  SIGNAL od3_1 : BIT;	-- od3 1
+  SIGNAL od3_2 : BIT;	-- od3 2
+  SIGNAL od3_3 : BIT;	-- od3 3
+  SIGNAL od3_4 : BIT;	-- od3 4
+  SIGNAL od3_5 : BIT;	-- od3 5
+  SIGNAL od3_6 : BIT;	-- od3 6
+  SIGNAL od3_7 : BIT;	-- od3 7
+  SIGNAL od3_8 : BIT;	-- od3 8
+  SIGNAL od3_9 : BIT;	-- od3 9
+  SIGNAL od3_10 : BIT;	-- od3 10
+  SIGNAL od3_11 : BIT;	-- od3 11
+  SIGNAL od3_12 : BIT;	-- od3 12
+  SIGNAL od3_13 : BIT;	-- od3 13
+  SIGNAL od3_14 : BIT;	-- od3 14
+  SIGNAL od3_15 : BIT;	-- od3 15
+  SIGNAL od4_0 : BIT;	-- od4 0
+  SIGNAL od4_1 : BIT;	-- od4 1
+  SIGNAL od4_2 : BIT;	-- od4 2
+  SIGNAL od4_3 : BIT;	-- od4 3
+  SIGNAL od4_4 : BIT;	-- od4 4
+  SIGNAL od4_5 : BIT;	-- od4 5
+  SIGNAL od4_6 : BIT;	-- od4 6
+  SIGNAL od4_7 : BIT;	-- od4 7
+  SIGNAL od4_8 : BIT;	-- od4 8
+  SIGNAL od4_9 : BIT;	-- od4 9
+  SIGNAL od4_10 : BIT;	-- od4 10
+  SIGNAL od4_11 : BIT;	-- od4 11
+  SIGNAL od4_12 : BIT;	-- od4 12
+  SIGNAL od4_13 : BIT;	-- od4 13
+  SIGNAL od4_14 : BIT;	-- od4 14
+  SIGNAL od4_15 : BIT;	-- od4 15
+  SIGNAL od5_0 : BIT;	-- od5 0
+  SIGNAL od5_1 : BIT;	-- od5 1
+  SIGNAL od5_2 : BIT;	-- od5 2
+  SIGNAL od5_3 : BIT;	-- od5 3
+  SIGNAL od5_4 : BIT;	-- od5 4
+  SIGNAL od5_5 : BIT;	-- od5 5
+  SIGNAL od5_6 : BIT;	-- od5 6
+  SIGNAL od5_7 : BIT;	-- od5 7
+  SIGNAL od5_8 : BIT;	-- od5 8
+  SIGNAL od5_9 : BIT;	-- od5 9
+  SIGNAL od5_10 : BIT;	-- od5 10
+  SIGNAL od5_11 : BIT;	-- od5 11
+  SIGNAL od5_12 : BIT;	-- od5 12
+  SIGNAL od5_13 : BIT;	-- od5 13
+  SIGNAL od5_14 : BIT;	-- od5 14
+  SIGNAL od5_15 : BIT;	-- od5 15
+  SIGNAL od6_0 : BIT;	-- od6 0
+  SIGNAL od6_1 : BIT;	-- od6 1
+  SIGNAL od6_2 : BIT;	-- od6 2
+  SIGNAL od6_3 : BIT;	-- od6 3
+  SIGNAL od6_4 : BIT;	-- od6 4
+  SIGNAL od6_5 : BIT;	-- od6 5
+  SIGNAL od6_6 : BIT;	-- od6 6
+  SIGNAL od6_7 : BIT;	-- od6 7
+  SIGNAL od6_8 : BIT;	-- od6 8
+  SIGNAL od6_9 : BIT;	-- od6 9
+  SIGNAL od6_10 : BIT;	-- od6 10
+  SIGNAL od6_11 : BIT;	-- od6 11
+  SIGNAL od6_12 : BIT;	-- od6 12
+  SIGNAL od6_13 : BIT;	-- od6 13
+  SIGNAL od6_14 : BIT;	-- od6 14
+  SIGNAL od6_15 : BIT;	-- od6 15
+  SIGNAL oe1_0 : BIT;	-- oe1 0
+  SIGNAL oe1_1 : BIT;	-- oe1 1
+  SIGNAL oe1_2 : BIT;	-- oe1 2
+  SIGNAL oe1_3 : BIT;	-- oe1 3
+  SIGNAL oe1_4 : BIT;	-- oe1 4
+  SIGNAL oe1_5 : BIT;	-- oe1 5
+  SIGNAL oe1_6 : BIT;	-- oe1 6
+  SIGNAL oe1_7 : BIT;	-- oe1 7
+  SIGNAL oe1_8 : BIT;	-- oe1 8
+  SIGNAL oe1_9 : BIT;	-- oe1 9
+  SIGNAL oe1_10 : BIT;	-- oe1 10
+  SIGNAL oe1_11 : BIT;	-- oe1 11
+  SIGNAL oe1_12 : BIT;	-- oe1 12
+  SIGNAL oe1_13 : BIT;	-- oe1 13
+  SIGNAL oe1_14 : BIT;	-- oe1 14
+  SIGNAL oe1_15 : BIT;	-- oe1 15
+  SIGNAL oe2_0 : BIT;	-- oe2 0
+  SIGNAL oe2_1 : BIT;	-- oe2 1
+  SIGNAL oe2_2 : BIT;	-- oe2 2
+  SIGNAL oe2_3 : BIT;	-- oe2 3
+  SIGNAL oe2_4 : BIT;	-- oe2 4
+  SIGNAL oe2_5 : BIT;	-- oe2 5
+  SIGNAL oe2_6 : BIT;	-- oe2 6
+  SIGNAL oe2_7 : BIT;	-- oe2 7
+  SIGNAL oe2_8 : BIT;	-- oe2 8
+  SIGNAL oe2_9 : BIT;	-- oe2 9
+  SIGNAL oe2_10 : BIT;	-- oe2 10
+  SIGNAL oe2_11 : BIT;	-- oe2 11
+  SIGNAL oe2_12 : BIT;	-- oe2 12
+  SIGNAL oe2_13 : BIT;	-- oe2 13
+  SIGNAL oe2_14 : BIT;	-- oe2 14
+  SIGNAL oe2_15 : BIT;	-- oe2 15
+  SIGNAL oe3_0 : BIT;	-- oe3 0
+  SIGNAL oe3_1 : BIT;	-- oe3 1
+  SIGNAL oe3_2 : BIT;	-- oe3 2
+  SIGNAL oe3_3 : BIT;	-- oe3 3
+  SIGNAL oe3_4 : BIT;	-- oe3 4
+  SIGNAL oe3_5 : BIT;	-- oe3 5
+  SIGNAL oe3_6 : BIT;	-- oe3 6
+  SIGNAL oe3_7 : BIT;	-- oe3 7
+  SIGNAL oe3_8 : BIT;	-- oe3 8
+  SIGNAL oe3_9 : BIT;	-- oe3 9
+  SIGNAL oe3_10 : BIT;	-- oe3 10
+  SIGNAL oe3_11 : BIT;	-- oe3 11
+  SIGNAL oe3_12 : BIT;	-- oe3 12
+  SIGNAL oe3_13 : BIT;	-- oe3 13
+  SIGNAL oe3_14 : BIT;	-- oe3 14
+  SIGNAL oe3_15 : BIT;	-- oe3 15
+  SIGNAL oe4_0 : BIT;	-- oe4 0
+  SIGNAL oe4_1 : BIT;	-- oe4 1
+  SIGNAL oe4_2 : BIT;	-- oe4 2
+  SIGNAL oe4_3 : BIT;	-- oe4 3
+  SIGNAL oe4_4 : BIT;	-- oe4 4
+  SIGNAL oe4_5 : BIT;	-- oe4 5
+  SIGNAL oe4_6 : BIT;	-- oe4 6
+  SIGNAL oe4_7 : BIT;	-- oe4 7
+  SIGNAL oe4_8 : BIT;	-- oe4 8
+  SIGNAL oe4_9 : BIT;	-- oe4 9
+  SIGNAL oe4_10 : BIT;	-- oe4 10
+  SIGNAL oe4_11 : BIT;	-- oe4 11
+  SIGNAL oe4_12 : BIT;	-- oe4 12
+  SIGNAL oe4_13 : BIT;	-- oe4 13
+  SIGNAL oe4_14 : BIT;	-- oe4 14
+  SIGNAL oe4_15 : BIT;	-- oe4 15
+  SIGNAL oe5_0 : BIT;	-- oe5 0
+  SIGNAL oe5_1 : BIT;	-- oe5 1
+  SIGNAL oe5_2 : BIT;	-- oe5 2
+  SIGNAL oe5_3 : BIT;	-- oe5 3
+  SIGNAL oe5_4 : BIT;	-- oe5 4
+  SIGNAL oe5_5 : BIT;	-- oe5 5
+  SIGNAL oe5_6 : BIT;	-- oe5 6
+  SIGNAL oe5_7 : BIT;	-- oe5 7
+  SIGNAL oe5_8 : BIT;	-- oe5 8
+  SIGNAL oe5_9 : BIT;	-- oe5 9
+  SIGNAL oe5_10 : BIT;	-- oe5 10
+  SIGNAL oe5_11 : BIT;	-- oe5 11
+  SIGNAL oe5_12 : BIT;	-- oe5 12
+  SIGNAL oe5_13 : BIT;	-- oe5 13
+  SIGNAL oe5_14 : BIT;	-- oe5 14
+  SIGNAL oe5_15 : BIT;	-- oe5 15
+  SIGNAL oe6_0 : BIT;	-- oe6 0
+  SIGNAL oe6_1 : BIT;	-- oe6 1
+  SIGNAL oe6_2 : BIT;	-- oe6 2
+  SIGNAL oe6_3 : BIT;	-- oe6 3
+  SIGNAL oe6_4 : BIT;	-- oe6 4
+  SIGNAL oe6_5 : BIT;	-- oe6 5
+  SIGNAL oe6_6 : BIT;	-- oe6 6
+  SIGNAL oe6_7 : BIT;	-- oe6 7
+  SIGNAL oe6_8 : BIT;	-- oe6 8
+  SIGNAL oe6_9 : BIT;	-- oe6 9
+  SIGNAL oe6_10 : BIT;	-- oe6 10
+  SIGNAL oe6_11 : BIT;	-- oe6 11
+  SIGNAL oe6_12 : BIT;	-- oe6 12
+  SIGNAL oe6_13 : BIT;	-- oe6 13
+  SIGNAL oe6_14 : BIT;	-- oe6 14
+  SIGNAL oe6_15 : BIT;	-- oe6 15
+
+BEGIN
+
+  mux_en_key : mux48to6
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o6 => oe6_15& oe6_14& oe6_13& oe6_12& oe6_11& oe6_10& oe6_9& oe6_8& oe6_7& oe6_6& oe6_5& oe6_4& oe6_3& oe6_2& oe6_1& oe6_0,
+    o5 => oe5_15& oe5_14& oe5_13& oe5_12& oe5_11& oe5_10& oe5_9& oe5_8& oe5_7& oe5_6& oe5_5& oe5_4& oe5_3& oe5_2& oe5_1& oe5_0,
+    o4 => oe4_15& oe4_14& oe4_13& oe4_12& oe4_11& oe4_10& oe4_9& oe4_8& oe4_7& oe4_6& oe4_5& oe4_4& oe4_3& oe4_2& oe4_1& oe4_0,
+    o3 => oe3_15& oe3_14& oe3_13& oe3_12& oe3_11& oe3_10& oe3_9& oe3_8& oe3_7& oe3_6& oe3_5& oe3_4& oe3_3& oe3_2& oe3_1& oe3_0,
+    o2 => oe2_15& oe2_14& oe2_13& oe2_12& oe2_11& oe2_10& oe2_9& oe2_8& oe2_7& oe2_6& oe2_5& oe2_4& oe2_3& oe2_2& oe2_1& oe2_0,
+    o1 => oe1_15& oe1_14& oe1_13& oe1_12& oe1_11& oe1_10& oe1_9& oe1_8& oe1_7& oe1_6& oe1_5& oe1_4& oe1_3& oe1_2& oe1_1& oe1_0,
+    sel => round(2)& round(1)& round(0),
+    i48 => e48(15)& e48(14)& e48(13)& e48(12)& e48(11)& e48(10)& e48(9)& e48(8)& e48(7)& e48(6)& e48(5)& e48(4)& e48(3)& e48(2)& e48(1)& e48(0),
+    i47 => e47(15)& e47(14)& e47(13)& e47(12)& e47(11)& e47(10)& e47(9)& e47(8)& e47(7)& e47(6)& e47(5)& e47(4)& e47(3)& e47(2)& e47(1)& e47(0),
+    i46 => e46(15)& e46(14)& e46(13)& e46(12)& e46(11)& e46(10)& e46(9)& e46(8)& e46(7)& e46(6)& e46(5)& e46(4)& e46(3)& e46(2)& e46(1)& e46(0),
+    i45 => e45(15)& e45(14)& e45(13)& e45(12)& e45(11)& e45(10)& e45(9)& e45(8)& e45(7)& e45(6)& e45(5)& e45(4)& e45(3)& e45(2)& e45(1)& e45(0),
+    i44 => e44(15)& e44(14)& e44(13)& e44(12)& e44(11)& e44(10)& e44(9)& e44(8)& e44(7)& e44(6)& e44(5)& e44(4)& e44(3)& e44(2)& e44(1)& e44(0),
+    i43 => e43(15)& e43(14)& e43(13)& e43(12)& e43(11)& e43(10)& e43(9)& e43(8)& e43(7)& e43(6)& e43(5)& e43(4)& e43(3)& e43(2)& e43(1)& e43(0),
+    i42 => e42(15)& e42(14)& e42(13)& e42(12)& e42(11)& e42(10)& e42(9)& e42(8)& e42(7)& e42(6)& e42(5)& e42(4)& e42(3)& e42(2)& e42(1)& e42(0),
+    i41 => e41(15)& e41(14)& e41(13)& e41(12)& e41(11)& e41(10)& e41(9)& e41(8)& e41(7)& e41(6)& e41(5)& e41(4)& e41(3)& e41(2)& e41(1)& e41(0),
+    i40 => e40(15)& e40(14)& e40(13)& e40(12)& e40(11)& e40(10)& e40(9)& e40(8)& e40(7)& e40(6)& e40(5)& e40(4)& e40(3)& e40(2)& e40(1)& e40(0),
+    i39 => e39(15)& e39(14)& e39(13)& e39(12)& e39(11)& e39(10)& e39(9)& e39(8)& e39(7)& e39(6)& e39(5)& e39(4)& e39(3)& e39(2)& e39(1)& e39(0),
+    i38 => e38(15)& e38(14)& e38(13)& e38(12)& e38(11)& e38(10)& e38(9)& e38(8)& e38(7)& e38(6)& e38(5)& e38(4)& e38(3)& e38(2)& e38(1)& e38(0),
+    i37 => e37(15)& e37(14)& e37(13)& e37(12)& e37(11)& e37(10)& e37(9)& e37(8)& e37(7)& e37(6)& e37(5)& e37(4)& e37(3)& e37(2)& e37(1)& e37(0),
+    i36 => e36(15)& e36(14)& e36(13)& e36(12)& e36(11)& e36(10)& e36(9)& e36(8)& e36(7)& e36(6)& e36(5)& e36(4)& e36(3)& e36(2)& e36(1)& e36(0),
+    i35 => e35(15)& e35(14)& e35(13)& e35(12)& e35(11)& e35(10)& e35(9)& e35(8)& e35(7)& e35(6)& e35(5)& e35(4)& e35(3)& e35(2)& e35(1)& e35(0),
+    i34 => e34(15)& e34(14)& e34(13)& e34(12)& e34(11)& e34(10)& e34(9)& e34(8)& e34(7)& e34(6)& e34(5)& e34(4)& e34(3)& e34(2)& e34(1)& e34(0),
+    i33 => e33(15)& e33(14)& e33(13)& e33(12)& e33(11)& e33(10)& e33(9)& e33(8)& e33(7)& e33(6)& e33(5)& e33(4)& e33(3)& e33(2)& e33(1)& e33(0),
+    i32 => e32(15)& e32(14)& e32(13)& e32(12)& e32(11)& e32(10)& e32(9)& e32(8)& e32(7)& e32(6)& e32(5)& e32(4)& e32(3)& e32(2)& e32(1)& e32(0),
+    i31 => e31(15)& e31(14)& e31(13)& e31(12)& e31(11)& e31(10)& e31(9)& e31(8)& e31(7)& e31(6)& e31(5)& e31(4)& e31(3)& e31(2)& e31(1)& e31(0),
+    i30 => e30(15)& e30(14)& e30(13)& e30(12)& e30(11)& e30(10)& e30(9)& e30(8)& e30(7)& e30(6)& e30(5)& e30(4)& e30(3)& e30(2)& e30(1)& e30(0),
+    i29 => e29(15)& e29(14)& e29(13)& e29(12)& e29(11)& e29(10)& e29(9)& e29(8)& e29(7)& e29(6)& e29(5)& e29(4)& e29(3)& e29(2)& e29(1)& e29(0),
+    i28 => e28(15)& e28(14)& e28(13)& e28(12)& e28(11)& e28(10)& e28(9)& e28(8)& e28(7)& e28(6)& e28(5)& e28(4)& e28(3)& e28(2)& e28(1)& e28(0),
+    i27 => e27(15)& e27(14)& e27(13)& e27(12)& e27(11)& e27(10)& e27(9)& e27(8)& e27(7)& e27(6)& e27(5)& e27(4)& e27(3)& e27(2)& e27(1)& e27(0),
+    i26 => e26(15)& e26(14)& e26(13)& e26(12)& e26(11)& e26(10)& e26(9)& e26(8)& e26(7)& e26(6)& e26(5)& e26(4)& e26(3)& e26(2)& e26(1)& e26(0),
+    i25 => e25(15)& e25(14)& e25(13)& e25(12)& e25(11)& e25(10)& e25(9)& e25(8)& e25(7)& e25(6)& e25(5)& e25(4)& e25(3)& e25(2)& e25(1)& e25(0),
+    i24 => e24(15)& e24(14)& e24(13)& e24(12)& e24(11)& e24(10)& e24(9)& e24(8)& e24(7)& e24(6)& e24(5)& e24(4)& e24(3)& e24(2)& e24(1)& e24(0),
+    i23 => e23(15)& e23(14)& e23(13)& e23(12)& e23(11)& e23(10)& e23(9)& e23(8)& e23(7)& e23(6)& e23(5)& e23(4)& e23(3)& e23(2)& e23(1)& e23(0),
+    i22 => e22(15)& e22(14)& e22(13)& e22(12)& e22(11)& e22(10)& e22(9)& e22(8)& e22(7)& e22(6)& e22(5)& e22(4)& e22(3)& e22(2)& e22(1)& e22(0),
+    i21 => e21(15)& e21(14)& e21(13)& e21(12)& e21(11)& e21(10)& e21(9)& e21(8)& e21(7)& e21(6)& e21(5)& e21(4)& e21(3)& e21(2)& e21(1)& e21(0),
+    i20 => e20(15)& e20(14)& e20(13)& e20(12)& e20(11)& e20(10)& e20(9)& e20(8)& e20(7)& e20(6)& e20(5)& e20(4)& e20(3)& e20(2)& e20(1)& e20(0),
+    i19 => e19(15)& e19(14)& e19(13)& e19(12)& e19(11)& e19(10)& e19(9)& e19(8)& e19(7)& e19(6)& e19(5)& e19(4)& e19(3)& e19(2)& e19(1)& e19(0),
+    i18 => e18(15)& e18(14)& e18(13)& e18(12)& e18(11)& e18(10)& e18(9)& e18(8)& e18(7)& e18(6)& e18(5)& e18(4)& e18(3)& e18(2)& e18(1)& e18(0),
+    i17 => e17(15)& e17(14)& e17(13)& e17(12)& e17(11)& e17(10)& e17(9)& e17(8)& e17(7)& e17(6)& e17(5)& e17(4)& e17(3)& e17(2)& e17(1)& e17(0),
+    i16 => e16(15)& e16(14)& e16(13)& e16(12)& e16(11)& e16(10)& e16(9)& e16(8)& e16(7)& e16(6)& e16(5)& e16(4)& e16(3)& e16(2)& e16(1)& e16(0),
+    i15 => e15(15)& e15(14)& e15(13)& e15(12)& e15(11)& e15(10)& e15(9)& e15(8)& e15(7)& e15(6)& e15(5)& e15(4)& e15(3)& e15(2)& e15(1)& e15(0),
+    i14 => e14(15)& e14(14)& e14(13)& e14(12)& e14(11)& e14(10)& e14(9)& e14(8)& e14(7)& e14(6)& e14(5)& e14(4)& e14(3)& e14(2)& e14(1)& e14(0),
+    i13 => e13(15)& e13(14)& e13(13)& e13(12)& e13(11)& e13(10)& e13(9)& e13(8)& e13(7)& e13(6)& e13(5)& e13(4)& e13(3)& e13(2)& e13(1)& e13(0),
+    i12 => e12(15)& e12(14)& e12(13)& e12(12)& e12(11)& e12(10)& e12(9)& e12(8)& e12(7)& e12(6)& e12(5)& e12(4)& e12(3)& e12(2)& e12(1)& e12(0),
+    i11 => e11(15)& e11(14)& e11(13)& e11(12)& e11(11)& e11(10)& e11(9)& e11(8)& e11(7)& e11(6)& e11(5)& e11(4)& e11(3)& e11(2)& e11(1)& e11(0),
+    i10 => e10(15)& e10(14)& e10(13)& e10(12)& e10(11)& e10(10)& e10(9)& e10(8)& e10(7)& e10(6)& e10(5)& e10(4)& e10(3)& e10(2)& e10(1)& e10(0),
+    i9 => e9(15)& e9(14)& e9(13)& e9(12)& e9(11)& e9(10)& e9(9)& e9(8)& e9(7)& e9(6)& e9(5)& e9(4)& e9(3)& e9(2)& e9(1)& e9(0),
+    i8 => e8(15)& e8(14)& e8(13)& e8(12)& e8(11)& e8(10)& e8(9)& e8(8)& e8(7)& e8(6)& e8(5)& e8(4)& e8(3)& e8(2)& e8(1)& e8(0),
+    i7 => e7(15)& e7(14)& e7(13)& e7(12)& e7(11)& e7(10)& e7(9)& e7(8)& e7(7)& e7(6)& e7(5)& e7(4)& e7(3)& e7(2)& e7(1)& e7(0),
+    i6 => e6(15)& e6(14)& e6(13)& e6(12)& e6(11)& e6(10)& e6(9)& e6(8)& e6(7)& e6(6)& e6(5)& e6(4)& e6(3)& e6(2)& e6(1)& e6(0),
+    i5 => e5(15)& e5(14)& e5(13)& e5(12)& e5(11)& e5(10)& e5(9)& e5(8)& e5(7)& e5(6)& e5(5)& e5(4)& e5(3)& e5(2)& e5(1)& e5(0),
+    i4 => e4(15)& e4(14)& e4(13)& e4(12)& e4(11)& e4(10)& e4(9)& e4(8)& e4(7)& e4(6)& e4(5)& e4(4)& e4(3)& e4(2)& e4(1)& e4(0),
+    i3 => e3(15)& e3(14)& e3(13)& e3(12)& e3(11)& e3(10)& e3(9)& e3(8)& e3(7)& e3(6)& e3(5)& e3(4)& e3(3)& e3(2)& e3(1)& e3(0),
+    i2 => e2(15)& e2(14)& e2(13)& e2(12)& e2(11)& e2(10)& e2(9)& e2(8)& e2(7)& e2(6)& e2(5)& e2(4)& e2(3)& e2(2)& e2(1)& e2(0),
+    i1 => e1(15)& e1(14)& e1(13)& e1(12)& e1(11)& e1(10)& e1(9)& e1(8)& e1(7)& e1(6)& e1(5)& e1(4)& e1(3)& e1(2)& e1(1)& e1(0));
+  mux_de_key : mux48to6
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o6 => od6_15& od6_14& od6_13& od6_12& od6_11& od6_10& od6_9& od6_8& od6_7& od6_6& od6_5& od6_4& od6_3& od6_2& od6_1& od6_0,
+    o5 => od5_15& od5_14& od5_13& od5_12& od5_11& od5_10& od5_9& od5_8& od5_7& od5_6& od5_5& od5_4& od5_3& od5_2& od5_1& od5_0,
+    o4 => od4_15& od4_14& od4_13& od4_12& od4_11& od4_10& od4_9& od4_8& od4_7& od4_6& od4_5& od4_4& od4_3& od4_2& od4_1& od4_0,
+    o3 => od3_15& od3_14& od3_13& od3_12& od3_11& od3_10& od3_9& od3_8& od3_7& od3_6& od3_5& od3_4& od3_3& od3_2& od3_1& od3_0,
+    o2 => od2_15& od2_14& od2_13& od2_12& od2_11& od2_10& od2_9& od2_8& od2_7& od2_6& od2_5& od2_4& od2_3& od2_2& od2_1& od2_0,
+    o1 => od1_15& od1_14& od1_13& od1_12& od1_11& od1_10& od1_9& od1_8& od1_7& od1_6& od1_5& od1_4& od1_3& od1_2& od1_1& od1_0,
+    sel => round(2)& round(1)& round(0),
+    i48 => d48(15)& d48(14)& d48(13)& d48(12)& d48(11)& d48(10)& d48(9)& d48(8)& d48(7)& d48(6)& d48(5)& d48(4)& d48(3)& d48(2)& d48(1)& d48(0),
+    i47 => d47(15)& d47(14)& d47(13)& d47(12)& d47(11)& d47(10)& d47(9)& d47(8)& d47(7)& d47(6)& d47(5)& d47(4)& d47(3)& d47(2)& d47(1)& d47(0),
+    i46 => d46(15)& d46(14)& d46(13)& d46(12)& d46(11)& d46(10)& d46(9)& d46(8)& d46(7)& d46(6)& d46(5)& d46(4)& d46(3)& d46(2)& d46(1)& d46(0),
+    i45 => d45(15)& d45(14)& d45(13)& d45(12)& d45(11)& d45(10)& d45(9)& d45(8)& d45(7)& d45(6)& d45(5)& d45(4)& d45(3)& d45(2)& d45(1)& d45(0),
+    i44 => d44(15)& d44(14)& d44(13)& d44(12)& d44(11)& d44(10)& d44(9)& d44(8)& d44(7)& d44(6)& d44(5)& d44(4)& d44(3)& d44(2)& d44(1)& d44(0),
+    i43 => d43(15)& d43(14)& d43(13)& d43(12)& d43(11)& d43(10)& d43(9)& d43(8)& d43(7)& d43(6)& d43(5)& d43(4)& d43(3)& d43(2)& d43(1)& d43(0),
+    i42 => d42(15)& d42(14)& d42(13)& d42(12)& d42(11)& d42(10)& d42(9)& d42(8)& d42(7)& d42(6)& d42(5)& d42(4)& d42(3)& d42(2)& d42(1)& d42(0),
+    i41 => d41(15)& d41(14)& d41(13)& d41(12)& d41(11)& d41(10)& d41(9)& d41(8)& d41(7)& d41(6)& d41(5)& d41(4)& d41(3)& d41(2)& d41(1)& d41(0),
+    i40 => d40(15)& d40(14)& d40(13)& d40(12)& d40(11)& d40(10)& d40(9)& d40(8)& d40(7)& d40(6)& d40(5)& d40(4)& d40(3)& d40(2)& d40(1)& d40(0),
+    i39 => d39(15)& d39(14)& d39(13)& d39(12)& d39(11)& d39(10)& d39(9)& d39(8)& d39(7)& d39(6)& d39(5)& d39(4)& d39(3)& d39(2)& d39(1)& d39(0),
+    i38 => d38(15)& d38(14)& d38(13)& d38(12)& d38(11)& d38(10)& d38(9)& d38(8)& d38(7)& d38(6)& d38(5)& d38(4)& d38(3)& d38(2)& d38(1)& d38(0),
+    i37 => d37(15)& d37(14)& d37(13)& d37(12)& d37(11)& d37(10)& d37(9)& d37(8)& d37(7)& d37(6)& d37(5)& d37(4)& d37(3)& d37(2)& d37(1)& d37(0),
+    i36 => d36(15)& d36(14)& d36(13)& d36(12)& d36(11)& d36(10)& d36(9)& d36(8)& d36(7)& d36(6)& d36(5)& d36(4)& d36(3)& d36(2)& d36(1)& d36(0),
+    i35 => d35(15)& d35(14)& d35(13)& d35(12)& d35(11)& d35(10)& d35(9)& d35(8)& d35(7)& d35(6)& d35(5)& d35(4)& d35(3)& d35(2)& d35(1)& d35(0),
+    i34 => d34(15)& d34(14)& d34(13)& d34(12)& d34(11)& d34(10)& d34(9)& d34(8)& d34(7)& d34(6)& d34(5)& d34(4)& d34(3)& d34(2)& d34(1)& d34(0),
+    i33 => d33(15)& d33(14)& d33(13)& d33(12)& d33(11)& d33(10)& d33(9)& d33(8)& d33(7)& d33(6)& d33(5)& d33(4)& d33(3)& d33(2)& d33(1)& d33(0),
+    i32 => d32(15)& d32(14)& d32(13)& d32(12)& d32(11)& d32(10)& d32(9)& d32(8)& d32(7)& d32(6)& d32(5)& d32(4)& d32(3)& d32(2)& d32(1)& d32(0),
+    i31 => d31(15)& d31(14)& d31(13)& d31(12)& d31(11)& d31(10)& d31(9)& d31(8)& d31(7)& d31(6)& d31(5)& d31(4)& d31(3)& d31(2)& d31(1)& d31(0),
+    i30 => d30(15)& d30(14)& d30(13)& d30(12)& d30(11)& d30(10)& d30(9)& d30(8)& d30(7)& d30(6)& d30(5)& d30(4)& d30(3)& d30(2)& d30(1)& d30(0),
+    i29 => d29(15)& d29(14)& d29(13)& d29(12)& d29(11)& d29(10)& d29(9)& d29(8)& d29(7)& d29(6)& d29(5)& d29(4)& d29(3)& d29(2)& d29(1)& d29(0),
+    i28 => d28(15)& d28(14)& d28(13)& d28(12)& d28(11)& d28(10)& d28(9)& d28(8)& d28(7)& d28(6)& d28(5)& d28(4)& d28(3)& d28(2)& d28(1)& d28(0),
+    i27 => d27(15)& d27(14)& d27(13)& d27(12)& d27(11)& d27(10)& d27(9)& d27(8)& d27(7)& d27(6)& d27(5)& d27(4)& d27(3)& d27(2)& d27(1)& d27(0),
+    i26 => d26(15)& d26(14)& d26(13)& d26(12)& d26(11)& d26(10)& d26(9)& d26(8)& d26(7)& d26(6)& d26(5)& d26(4)& d26(3)& d26(2)& d26(1)& d26(0),
+    i25 => d25(15)& d25(14)& d25(13)& d25(12)& d25(11)& d25(10)& d25(9)& d25(8)& d25(7)& d25(6)& d25(5)& d25(4)& d25(3)& d25(2)& d25(1)& d25(0),
+    i24 => d24(15)& d24(14)& d24(13)& d24(12)& d24(11)& d24(10)& d24(9)& d24(8)& d24(7)& d24(6)& d24(5)& d24(4)& d24(3)& d24(2)& d24(1)& d24(0),
+    i23 => d23(15)& d23(14)& d23(13)& d23(12)& d23(11)& d23(10)& d23(9)& d23(8)& d23(7)& d23(6)& d23(5)& d23(4)& d23(3)& d23(2)& d23(1)& d23(0),
+    i22 => d22(15)& d22(14)& d22(13)& d22(12)& d22(11)& d22(10)& d22(9)& d22(8)& d22(7)& d22(6)& d22(5)& d22(4)& d22(3)& d22(2)& d22(1)& d22(0),
+    i21 => d21(15)& d21(14)& d21(13)& d21(12)& d21(11)& d21(10)& d21(9)& d21(8)& d21(7)& d21(6)& d21(5)& d21(4)& d21(3)& d21(2)& d21(1)& d21(0),
+    i20 => d20(15)& d20(14)& d20(13)& d20(12)& d20(11)& d20(10)& d20(9)& d20(8)& d20(7)& d20(6)& d20(5)& d20(4)& d20(3)& d20(2)& d20(1)& d20(0),
+    i19 => d19(15)& d19(14)& d19(13)& d19(12)& d19(11)& d19(10)& d19(9)& d19(8)& d19(7)& d19(6)& d19(5)& d19(4)& d19(3)& d19(2)& d19(1)& d19(0),
+    i18 => d18(15)& d18(14)& d18(13)& d18(12)& d18(11)& d18(10)& d18(9)& d18(8)& d18(7)& d18(6)& d18(5)& d18(4)& d18(3)& d18(2)& d18(1)& d18(0),
+    i17 => d17(15)& d17(14)& d17(13)& d17(12)& d17(11)& d17(10)& d17(9)& d17(8)& d17(7)& d17(6)& d17(5)& d17(4)& d17(3)& d17(2)& d17(1)& d17(0),
+    i16 => d16(15)& d16(14)& d16(13)& d16(12)& d16(11)& d16(10)& d16(9)& d16(8)& d16(7)& d16(6)& d16(5)& d16(4)& d16(3)& d16(2)& d16(1)& d16(0),
+    i15 => d15(15)& d15(14)& d15(13)& d15(12)& d15(11)& d15(10)& d15(9)& d15(8)& d15(7)& d15(6)& d15(5)& d15(4)& d15(3)& d15(2)& d15(1)& d15(0),
+    i14 => d14(15)& d14(14)& d14(13)& d14(12)& d14(11)& d14(10)& d14(9)& d14(8)& d14(7)& d14(6)& d14(5)& d14(4)& d14(3)& d14(2)& d14(1)& d14(0),
+    i13 => d13(15)& d13(14)& d13(13)& d13(12)& d13(11)& d13(10)& d13(9)& d13(8)& d13(7)& d13(6)& d13(5)& d13(4)& d13(3)& d13(2)& d13(1)& d13(0),
+    i12 => d12(15)& d12(14)& d12(13)& d12(12)& d12(11)& d12(10)& d12(9)& d12(8)& d12(7)& d12(6)& d12(5)& d12(4)& d12(3)& d12(2)& d12(1)& d12(0),
+    i11 => d11(15)& d11(14)& d11(13)& d11(12)& d11(11)& d11(10)& d11(9)& d11(8)& d11(7)& d11(6)& d11(5)& d11(4)& d11(3)& d11(2)& d11(1)& d11(0),
+    i10 => d10(15)& d10(14)& d10(13)& d10(12)& d10(11)& d10(10)& d10(9)& d10(8)& d10(7)& d10(6)& d10(5)& d10(4)& d10(3)& d10(2)& d10(1)& d10(0),
+    i9 => d9(15)& d9(14)& d9(13)& d9(12)& d9(11)& d9(10)& d9(9)& d9(8)& d9(7)& d9(6)& d9(5)& d9(4)& d9(3)& d9(2)& d9(1)& d9(0),
+    i8 => d8(15)& d8(14)& d8(13)& d8(12)& d8(11)& d8(10)& d8(9)& d8(8)& d8(7)& d8(6)& d8(5)& d8(4)& d8(3)& d8(2)& d8(1)& d8(0),
+    i7 => d7(15)& d7(14)& d7(13)& d7(12)& d7(11)& d7(10)& d7(9)& d7(8)& d7(7)& d7(6)& d7(5)& d7(4)& d7(3)& d7(2)& d7(1)& d7(0),
+    i6 => d6(15)& d6(14)& d6(13)& d6(12)& d6(11)& d6(10)& d6(9)& d6(8)& d6(7)& d6(6)& d6(5)& d6(4)& d6(3)& d6(2)& d6(1)& d6(0),
+    i5 => d5(15)& d5(14)& d5(13)& d5(12)& d5(11)& d5(10)& d5(9)& d5(8)& d5(7)& d5(6)& d5(5)& d5(4)& d5(3)& d5(2)& d5(1)& d5(0),
+    i4 => d4(15)& d4(14)& d4(13)& d4(12)& d4(11)& d4(10)& d4(9)& d4(8)& d4(7)& d4(6)& d4(5)& d4(4)& d4(3)& d4(2)& d4(1)& d4(0),
+    i3 => d3(15)& d3(14)& d3(13)& d3(12)& d3(11)& d3(10)& d3(9)& d3(8)& d3(7)& d3(6)& d3(5)& d3(4)& d3(3)& d3(2)& d3(1)& d3(0),
+    i2 => d2(15)& d2(14)& d2(13)& d2(12)& d2(11)& d2(10)& d2(9)& d2(8)& d2(7)& d2(6)& d2(5)& d2(4)& d2(3)& d2(2)& d2(1)& d2(0),
+    i1 => d1(15)& d1(14)& d1(13)& d1(12)& d1(11)& d1(10)& d1(9)& d1(8)& d1(7)& d1(6)& d1(5)& d1(4)& d1(3)& d1(2)& d1(1)& d1(0));
+  mux_e_d1 : mux12to6_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o6 => z6(15)& z6(14)& z6(13)& z6(12)& z6(11)& z6(10)& z6(9)& z6(8)& z6(7)& z6(6)& z6(5)& z6(4)& z6(3)& z6(2)& z6(1)& z6(0),
+    o5 => z5(15)& z5(14)& z5(13)& z5(12)& z5(11)& z5(10)& z5(9)& z5(8)& z5(7)& z5(6)& z5(5)& z5(4)& z5(3)& z5(2)& z5(1)& z5(0),
+    o4 => z4(15)& z4(14)& z4(13)& z4(12)& z4(11)& z4(10)& z4(9)& z4(8)& z4(7)& z4(6)& z4(5)& z4(4)& z4(3)& z4(2)& z4(1)& z4(0),
+    o3 => z3(15)& z3(14)& z3(13)& z3(12)& z3(11)& z3(10)& z3(9)& z3(8)& z3(7)& z3(6)& z3(5)& z3(4)& z3(3)& z3(2)& z3(1)& z3(0),
+    o2 => z2(15)& z2(14)& z2(13)& z2(12)& z2(11)& z2(10)& z2(9)& z2(8)& z2(7)& z2(6)& z2(5)& z2(4)& z2(3)& z2(2)& z2(1)& z2(0),
+    o1 => z1(15)& z1(14)& z1(13)& z1(12)& z1(11)& z1(10)& z1(9)& z1(8)& z1(7)& z1(6)& z1(5)& z1(4)& z1(3)& z1(2)& z1(1)& z1(0),
+    cke => cke,
+    sel => e,
+    clr => clr,
+    en => en,
+    i12 => od6_15& od6_14& od6_13& od6_12& od6_11& od6_10& od6_9& od6_8& od6_7& od6_6& od6_5& od6_4& od6_3& od6_2& od6_1& od6_0,
+    i11 => od5_15& od5_14& od5_13& od5_12& od5_11& od5_10& od5_9& od5_8& od5_7& od5_6& od5_5& od5_4& od5_3& od5_2& od5_1& od5_0,
+    i10 => od4_15& od4_14& od4_13& od4_12& od4_11& od4_10& od4_9& od4_8& od4_7& od4_6& od4_5& od4_4& od4_3& od4_2& od4_1& od4_0,
+    i9 => od3_15& od3_14& od3_13& od3_12& od3_11& od3_10& od3_9& od3_8& od3_7& od3_6& od3_5& od3_4& od3_3& od3_2& od3_1& od3_0,
+    i8 => od2_15& od2_14& od2_13& od2_12& od2_11& od2_10& od2_9& od2_8& od2_7& od2_6& od2_5& od2_4& od2_3& od2_2& od2_1& od2_0,
+    i7 => od1_15& od1_14& od1_13& od1_12& od1_11& od1_10& od1_9& od1_8& od1_7& od1_6& od1_5& od1_4& od1_3& od1_2& od1_1& od1_0,
+    i6 => oe6_15& oe6_14& oe6_13& oe6_12& oe6_11& oe6_10& oe6_9& oe6_8& oe6_7& oe6_6& oe6_5& oe6_4& oe6_3& oe6_2& oe6_1& oe6_0,
+    i5 => oe5_15& oe5_14& oe5_13& oe5_12& oe5_11& oe5_10& oe5_9& oe5_8& oe5_7& oe5_6& oe5_5& oe5_4& oe5_3& oe5_2& oe5_1& oe5_0,
+    i4 => oe4_15& oe4_14& oe4_13& oe4_12& oe4_11& oe4_10& oe4_9& oe4_8& oe4_7& oe4_6& oe4_5& oe4_4& oe4_3& oe4_2& oe4_1& oe4_0,
+    i3 => oe3_15& oe3_14& oe3_13& oe3_12& oe3_11& oe3_10& oe3_9& oe3_8& oe3_7& oe3_6& oe3_5& oe3_4& oe3_3& oe3_2& oe3_1& oe3_0,
+    i2 => oe2_15& oe2_14& oe2_13& oe2_12& oe2_11& oe2_10& oe2_9& oe2_8& oe2_7& oe2_6& oe2_5& oe2_4& oe2_3& oe2_2& oe2_1& oe2_0,
+    i1 => oe1_15& oe1_14& oe1_13& oe1_12& oe1_11& oe1_10& oe1_9& oe1_8& oe1_7& oe1_6& oe1_5& oe1_4& oe1_3& oe1_2& oe1_1& oe1_0);
+  mux_e_d2 : mux8to4_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o4 => z94(15)& z94(14)& z94(13)& z94(12)& z94(11)& z94(10)& z94(9)& z94(8)& z94(7)& z94(6)& z94(5)& z94(4)& z94(3)& z94(2)& z94(1)& z94(0),
+    o3 => z93(15)& z93(14)& z93(13)& z93(12)& z93(11)& z93(10)& z93(9)& z93(8)& z93(7)& z93(6)& z93(5)& z93(4)& z93(3)& z93(2)& z93(1)& z93(0),
+    o2 => z92(15)& z92(14)& z92(13)& z92(12)& z92(11)& z92(10)& z92(9)& z92(8)& z92(7)& z92(6)& z92(5)& z92(4)& z92(3)& z92(2)& z92(1)& z92(0),
+    o1 => z91(15)& z91(14)& z91(13)& z91(12)& z91(11)& z91(10)& z91(9)& z91(8)& z91(7)& z91(6)& z91(5)& z91(4)& z91(3)& z91(2)& z91(1)& z91(0),
+    cke => cke,
+    sel => e,
+    clr => clr,
+    en => en,
+    i8 => d52(15)& d52(14)& d52(13)& d52(12)& d52(11)& d52(10)& d52(9)& d52(8)& d52(7)& d52(6)& d52(5)& d52(4)& d52(3)& d52(2)& d52(1)& d52(0),
+    i7 => d51(15)& d51(14)& d51(13)& d51(12)& d51(11)& d51(10)& d51(9)& d51(8)& d51(7)& d51(6)& d51(5)& d51(4)& d51(3)& d51(2)& d51(1)& d51(0),
+    i6 => d50(15)& d50(14)& d50(13)& d50(12)& d50(11)& d50(10)& d50(9)& d50(8)& d50(7)& d50(6)& d50(5)& d50(4)& d50(3)& d50(2)& d50(1)& d50(0),
+    i5 => d49(15)& d49(14)& d49(13)& d49(12)& d49(11)& d49(10)& d49(9)& d49(8)& d49(7)& d49(6)& d49(5)& d49(4)& d49(3)& d49(2)& d49(1)& d49(0),
+    i4 => e52(15)& e52(14)& e52(13)& e52(12)& e52(11)& e52(10)& e52(9)& e52(8)& e52(7)& e52(6)& e52(5)& e52(4)& e52(3)& e52(2)& e52(1)& e52(0),
+    i3 => e51(15)& e51(14)& e51(13)& e51(12)& e51(11)& e51(10)& e51(9)& e51(8)& e51(7)& e51(6)& e51(5)& e51(4)& e51(3)& e51(2)& e51(1)& e51(0),
+    i2 => e50(15)& e50(14)& e50(13)& e50(12)& e50(11)& e50(10)& e50(9)& e50(8)& e50(7)& e50(6)& e50(5)& e50(4)& e50(3)& e50(2)& e50(1)& e50(0),
+    i1 => e49(15)& e49(14)& e49(13)& e49(12)& e49(11)& e49(10)& e49(9)& e49(8)& e49(7)& e49(6)& e49(5)& e49(4)& e49(3)& e49(2)& e49(1)& e49(0));
+
+end VST;

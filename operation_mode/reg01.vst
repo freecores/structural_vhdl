@@ -1,0 +1,104 @@
+-- VHDL structural description generated from `reg01`
+--		date : Sat Sep  1 20:29:58 2001
+
+
+-- Entity Declaration
+
+ENTITY reg01 IS
+  PORT (
+  a : in BIT;	-- a
+  rst : in BIT;	-- rst
+  en : in BIT;	-- en
+  b : inout BIT;	-- b
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END reg01;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF reg01 IS
+  COMPONENT no2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT inv_x1
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT no3_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL a1 : BIT;	-- a1
+  SIGNAL a2 : BIT;	-- a2
+  SIGNAL c : BIT;	-- c
+  SIGNAL nota : BIT;	-- nota
+
+BEGIN
+
+  and1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => a1,
+    i1 => a,
+    i0 => en);
+  nor1 : no2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => c,
+    i1 => b,
+    i0 => a1);
+  inv1 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nota,
+    i => a);
+  and2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => a2,
+    i1 => nota,
+    i0 => en);
+  nor2 : no3_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => b,
+    i2 => rst,
+    i1 => c,
+    i0 => a2);
+
+end VST;

@@ -1,0 +1,1724 @@
+-- VHDL structural description generated from `mul17`
+--		date : Sat Sep  8 04:03:58 2001
+
+
+-- Entity Declaration
+
+ENTITY mul17 IS
+  PORT (
+  a : in BIT_VECTOR (16 DOWNTO 0);	-- a
+  b : in BIT_VECTOR (16 DOWNTO 0);	-- b
+  sum : out BIT_VECTOR (31 DOWNTO 0);	-- sum
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END mul17;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF mul17 IS
+  COMPONENT leftshifter_glopg
+    port (
+    p : in BIT_VECTOR(16 DOWNTO 0);	-- p
+    q : in BIT_VECTOR(15 DOWNTO 0);	-- q
+    r0 : out BIT_VECTOR(31 DOWNTO 0);	-- r0
+    r1 : out BIT_VECTOR(31 DOWNTO 0);	-- r1
+    r2 : out BIT_VECTOR(31 DOWNTO 0);	-- r2
+    r3 : out BIT_VECTOR(31 DOWNTO 0);	-- r3
+    r4 : out BIT_VECTOR(31 DOWNTO 0);	-- r4
+    r5 : out BIT_VECTOR(31 DOWNTO 0);	-- r5
+    r6 : out BIT_VECTOR(31 DOWNTO 0);	-- r6
+    r7 : out BIT_VECTOR(31 DOWNTO 0);	-- r7
+    r8 : out BIT_VECTOR(31 DOWNTO 0);	-- r8
+    r9 : out BIT_VECTOR(31 DOWNTO 0);	-- r9
+    r10 : out BIT_VECTOR(31 DOWNTO 0);	-- r10
+    r11 : out BIT_VECTOR(31 DOWNTO 0);	-- r11
+    r12 : out BIT_VECTOR(31 DOWNTO 0);	-- r12
+    r13 : out BIT_VECTOR(31 DOWNTO 0);	-- r13
+    r14 : out BIT_VECTOR(31 DOWNTO 0);	-- r14
+    r15 : out BIT_VECTOR(31 DOWNTO 0);	-- r15
+    r16 : out BIT_VECTOR(31 DOWNTO 0);	-- r16
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT m32adder_glopg
+    port (
+    a : in BIT_VECTOR(31 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(31 DOWNTO 0);	-- b
+    sum : out BIT_VECTOR(31 DOWNTO 0);	-- sum
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT o2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL o_zero_0 : BIT;	-- o_zero 0
+  SIGNAL o_zero_1 : BIT;	-- o_zero 1
+  SIGNAL o_zero_2 : BIT;	-- o_zero 2
+  SIGNAL o_zero_3 : BIT;	-- o_zero 3
+  SIGNAL o_zero_4 : BIT;	-- o_zero 4
+  SIGNAL o_zero_5 : BIT;	-- o_zero 5
+  SIGNAL o_zero_6 : BIT;	-- o_zero 6
+  SIGNAL o_zero_7 : BIT;	-- o_zero 7
+  SIGNAL o_zero_8 : BIT;	-- o_zero 8
+  SIGNAL o_zero_9 : BIT;	-- o_zero 9
+  SIGNAL o_zero_10 : BIT;	-- o_zero 10
+  SIGNAL o_zero_11 : BIT;	-- o_zero 11
+  SIGNAL o_zero_12 : BIT;	-- o_zero 12
+  SIGNAL o_zero_13 : BIT;	-- o_zero 13
+  SIGNAL o_zero_14 : BIT;	-- o_zero 14
+  SIGNAL o_zero_15 : BIT;	-- o_zero 15
+  SIGNAL o_zero_16 : BIT;	-- o_zero 16
+  SIGNAL o_zero_17 : BIT;	-- o_zero 17
+  SIGNAL o_zero_18 : BIT;	-- o_zero 18
+  SIGNAL o_zero_19 : BIT;	-- o_zero 19
+  SIGNAL o_zero_20 : BIT;	-- o_zero 20
+  SIGNAL o_zero_21 : BIT;	-- o_zero 21
+  SIGNAL o_zero_22 : BIT;	-- o_zero 22
+  SIGNAL o_zero_23 : BIT;	-- o_zero 23
+  SIGNAL o_zero_24 : BIT;	-- o_zero 24
+  SIGNAL o_zero_25 : BIT;	-- o_zero 25
+  SIGNAL o_zero_26 : BIT;	-- o_zero 26
+  SIGNAL o_zero_27 : BIT;	-- o_zero 27
+  SIGNAL o_zero_28 : BIT;	-- o_zero 28
+  SIGNAL o_zero_29 : BIT;	-- o_zero 29
+  SIGNAL o_zero_30 : BIT;	-- o_zero 30
+  SIGNAL o_zero_31 : BIT;	-- o_zero 31
+  SIGNAL r0_0 : BIT;	-- r0 0
+  SIGNAL r0_1 : BIT;	-- r0 1
+  SIGNAL r0_2 : BIT;	-- r0 2
+  SIGNAL r0_3 : BIT;	-- r0 3
+  SIGNAL r0_4 : BIT;	-- r0 4
+  SIGNAL r0_5 : BIT;	-- r0 5
+  SIGNAL r0_6 : BIT;	-- r0 6
+  SIGNAL r0_7 : BIT;	-- r0 7
+  SIGNAL r0_8 : BIT;	-- r0 8
+  SIGNAL r0_9 : BIT;	-- r0 9
+  SIGNAL r0_10 : BIT;	-- r0 10
+  SIGNAL r0_11 : BIT;	-- r0 11
+  SIGNAL r0_12 : BIT;	-- r0 12
+  SIGNAL r0_13 : BIT;	-- r0 13
+  SIGNAL r0_14 : BIT;	-- r0 14
+  SIGNAL r0_15 : BIT;	-- r0 15
+  SIGNAL r0_16 : BIT;	-- r0 16
+  SIGNAL r0_17 : BIT;	-- r0 17
+  SIGNAL r0_18 : BIT;	-- r0 18
+  SIGNAL r0_19 : BIT;	-- r0 19
+  SIGNAL r0_20 : BIT;	-- r0 20
+  SIGNAL r0_21 : BIT;	-- r0 21
+  SIGNAL r0_22 : BIT;	-- r0 22
+  SIGNAL r0_23 : BIT;	-- r0 23
+  SIGNAL r0_24 : BIT;	-- r0 24
+  SIGNAL r0_25 : BIT;	-- r0 25
+  SIGNAL r0_26 : BIT;	-- r0 26
+  SIGNAL r0_27 : BIT;	-- r0 27
+  SIGNAL r0_28 : BIT;	-- r0 28
+  SIGNAL r0_29 : BIT;	-- r0 29
+  SIGNAL r0_30 : BIT;	-- r0 30
+  SIGNAL r0_31 : BIT;	-- r0 31
+  SIGNAL r1_0 : BIT;	-- r1 0
+  SIGNAL r1_1 : BIT;	-- r1 1
+  SIGNAL r1_2 : BIT;	-- r1 2
+  SIGNAL r1_3 : BIT;	-- r1 3
+  SIGNAL r1_4 : BIT;	-- r1 4
+  SIGNAL r1_5 : BIT;	-- r1 5
+  SIGNAL r1_6 : BIT;	-- r1 6
+  SIGNAL r1_7 : BIT;	-- r1 7
+  SIGNAL r1_8 : BIT;	-- r1 8
+  SIGNAL r1_9 : BIT;	-- r1 9
+  SIGNAL r1_10 : BIT;	-- r1 10
+  SIGNAL r1_11 : BIT;	-- r1 11
+  SIGNAL r1_12 : BIT;	-- r1 12
+  SIGNAL r1_13 : BIT;	-- r1 13
+  SIGNAL r1_14 : BIT;	-- r1 14
+  SIGNAL r1_15 : BIT;	-- r1 15
+  SIGNAL r1_16 : BIT;	-- r1 16
+  SIGNAL r1_17 : BIT;	-- r1 17
+  SIGNAL r1_18 : BIT;	-- r1 18
+  SIGNAL r1_19 : BIT;	-- r1 19
+  SIGNAL r1_20 : BIT;	-- r1 20
+  SIGNAL r1_21 : BIT;	-- r1 21
+  SIGNAL r1_22 : BIT;	-- r1 22
+  SIGNAL r1_23 : BIT;	-- r1 23
+  SIGNAL r1_24 : BIT;	-- r1 24
+  SIGNAL r1_25 : BIT;	-- r1 25
+  SIGNAL r1_26 : BIT;	-- r1 26
+  SIGNAL r1_27 : BIT;	-- r1 27
+  SIGNAL r1_28 : BIT;	-- r1 28
+  SIGNAL r1_29 : BIT;	-- r1 29
+  SIGNAL r1_30 : BIT;	-- r1 30
+  SIGNAL r1_31 : BIT;	-- r1 31
+  SIGNAL r10_0 : BIT;	-- r10 0
+  SIGNAL r10_1 : BIT;	-- r10 1
+  SIGNAL r10_2 : BIT;	-- r10 2
+  SIGNAL r10_3 : BIT;	-- r10 3
+  SIGNAL r10_4 : BIT;	-- r10 4
+  SIGNAL r10_5 : BIT;	-- r10 5
+  SIGNAL r10_6 : BIT;	-- r10 6
+  SIGNAL r10_7 : BIT;	-- r10 7
+  SIGNAL r10_8 : BIT;	-- r10 8
+  SIGNAL r10_9 : BIT;	-- r10 9
+  SIGNAL r10_10 : BIT;	-- r10 10
+  SIGNAL r10_11 : BIT;	-- r10 11
+  SIGNAL r10_12 : BIT;	-- r10 12
+  SIGNAL r10_13 : BIT;	-- r10 13
+  SIGNAL r10_14 : BIT;	-- r10 14
+  SIGNAL r10_15 : BIT;	-- r10 15
+  SIGNAL r10_16 : BIT;	-- r10 16
+  SIGNAL r10_17 : BIT;	-- r10 17
+  SIGNAL r10_18 : BIT;	-- r10 18
+  SIGNAL r10_19 : BIT;	-- r10 19
+  SIGNAL r10_20 : BIT;	-- r10 20
+  SIGNAL r10_21 : BIT;	-- r10 21
+  SIGNAL r10_22 : BIT;	-- r10 22
+  SIGNAL r10_23 : BIT;	-- r10 23
+  SIGNAL r10_24 : BIT;	-- r10 24
+  SIGNAL r10_25 : BIT;	-- r10 25
+  SIGNAL r10_26 : BIT;	-- r10 26
+  SIGNAL r10_27 : BIT;	-- r10 27
+  SIGNAL r10_28 : BIT;	-- r10 28
+  SIGNAL r10_29 : BIT;	-- r10 29
+  SIGNAL r10_30 : BIT;	-- r10 30
+  SIGNAL r10_31 : BIT;	-- r10 31
+  SIGNAL r11_0 : BIT;	-- r11 0
+  SIGNAL r11_1 : BIT;	-- r11 1
+  SIGNAL r11_2 : BIT;	-- r11 2
+  SIGNAL r11_3 : BIT;	-- r11 3
+  SIGNAL r11_4 : BIT;	-- r11 4
+  SIGNAL r11_5 : BIT;	-- r11 5
+  SIGNAL r11_6 : BIT;	-- r11 6
+  SIGNAL r11_7 : BIT;	-- r11 7
+  SIGNAL r11_8 : BIT;	-- r11 8
+  SIGNAL r11_9 : BIT;	-- r11 9
+  SIGNAL r11_10 : BIT;	-- r11 10
+  SIGNAL r11_11 : BIT;	-- r11 11
+  SIGNAL r11_12 : BIT;	-- r11 12
+  SIGNAL r11_13 : BIT;	-- r11 13
+  SIGNAL r11_14 : BIT;	-- r11 14
+  SIGNAL r11_15 : BIT;	-- r11 15
+  SIGNAL r11_16 : BIT;	-- r11 16
+  SIGNAL r11_17 : BIT;	-- r11 17
+  SIGNAL r11_18 : BIT;	-- r11 18
+  SIGNAL r11_19 : BIT;	-- r11 19
+  SIGNAL r11_20 : BIT;	-- r11 20
+  SIGNAL r11_21 : BIT;	-- r11 21
+  SIGNAL r11_22 : BIT;	-- r11 22
+  SIGNAL r11_23 : BIT;	-- r11 23
+  SIGNAL r11_24 : BIT;	-- r11 24
+  SIGNAL r11_25 : BIT;	-- r11 25
+  SIGNAL r11_26 : BIT;	-- r11 26
+  SIGNAL r11_27 : BIT;	-- r11 27
+  SIGNAL r11_28 : BIT;	-- r11 28
+  SIGNAL r11_29 : BIT;	-- r11 29
+  SIGNAL r11_30 : BIT;	-- r11 30
+  SIGNAL r11_31 : BIT;	-- r11 31
+  SIGNAL r12_0 : BIT;	-- r12 0
+  SIGNAL r12_1 : BIT;	-- r12 1
+  SIGNAL r12_2 : BIT;	-- r12 2
+  SIGNAL r12_3 : BIT;	-- r12 3
+  SIGNAL r12_4 : BIT;	-- r12 4
+  SIGNAL r12_5 : BIT;	-- r12 5
+  SIGNAL r12_6 : BIT;	-- r12 6
+  SIGNAL r12_7 : BIT;	-- r12 7
+  SIGNAL r12_8 : BIT;	-- r12 8
+  SIGNAL r12_9 : BIT;	-- r12 9
+  SIGNAL r12_10 : BIT;	-- r12 10
+  SIGNAL r12_11 : BIT;	-- r12 11
+  SIGNAL r12_12 : BIT;	-- r12 12
+  SIGNAL r12_13 : BIT;	-- r12 13
+  SIGNAL r12_14 : BIT;	-- r12 14
+  SIGNAL r12_15 : BIT;	-- r12 15
+  SIGNAL r12_16 : BIT;	-- r12 16
+  SIGNAL r12_17 : BIT;	-- r12 17
+  SIGNAL r12_18 : BIT;	-- r12 18
+  SIGNAL r12_19 : BIT;	-- r12 19
+  SIGNAL r12_20 : BIT;	-- r12 20
+  SIGNAL r12_21 : BIT;	-- r12 21
+  SIGNAL r12_22 : BIT;	-- r12 22
+  SIGNAL r12_23 : BIT;	-- r12 23
+  SIGNAL r12_24 : BIT;	-- r12 24
+  SIGNAL r12_25 : BIT;	-- r12 25
+  SIGNAL r12_26 : BIT;	-- r12 26
+  SIGNAL r12_27 : BIT;	-- r12 27
+  SIGNAL r12_28 : BIT;	-- r12 28
+  SIGNAL r12_29 : BIT;	-- r12 29
+  SIGNAL r12_30 : BIT;	-- r12 30
+  SIGNAL r12_31 : BIT;	-- r12 31
+  SIGNAL r13_0 : BIT;	-- r13 0
+  SIGNAL r13_1 : BIT;	-- r13 1
+  SIGNAL r13_2 : BIT;	-- r13 2
+  SIGNAL r13_3 : BIT;	-- r13 3
+  SIGNAL r13_4 : BIT;	-- r13 4
+  SIGNAL r13_5 : BIT;	-- r13 5
+  SIGNAL r13_6 : BIT;	-- r13 6
+  SIGNAL r13_7 : BIT;	-- r13 7
+  SIGNAL r13_8 : BIT;	-- r13 8
+  SIGNAL r13_9 : BIT;	-- r13 9
+  SIGNAL r13_10 : BIT;	-- r13 10
+  SIGNAL r13_11 : BIT;	-- r13 11
+  SIGNAL r13_12 : BIT;	-- r13 12
+  SIGNAL r13_13 : BIT;	-- r13 13
+  SIGNAL r13_14 : BIT;	-- r13 14
+  SIGNAL r13_15 : BIT;	-- r13 15
+  SIGNAL r13_16 : BIT;	-- r13 16
+  SIGNAL r13_17 : BIT;	-- r13 17
+  SIGNAL r13_18 : BIT;	-- r13 18
+  SIGNAL r13_19 : BIT;	-- r13 19
+  SIGNAL r13_20 : BIT;	-- r13 20
+  SIGNAL r13_21 : BIT;	-- r13 21
+  SIGNAL r13_22 : BIT;	-- r13 22
+  SIGNAL r13_23 : BIT;	-- r13 23
+  SIGNAL r13_24 : BIT;	-- r13 24
+  SIGNAL r13_25 : BIT;	-- r13 25
+  SIGNAL r13_26 : BIT;	-- r13 26
+  SIGNAL r13_27 : BIT;	-- r13 27
+  SIGNAL r13_28 : BIT;	-- r13 28
+  SIGNAL r13_29 : BIT;	-- r13 29
+  SIGNAL r13_30 : BIT;	-- r13 30
+  SIGNAL r13_31 : BIT;	-- r13 31
+  SIGNAL r14_0 : BIT;	-- r14 0
+  SIGNAL r14_1 : BIT;	-- r14 1
+  SIGNAL r14_2 : BIT;	-- r14 2
+  SIGNAL r14_3 : BIT;	-- r14 3
+  SIGNAL r14_4 : BIT;	-- r14 4
+  SIGNAL r14_5 : BIT;	-- r14 5
+  SIGNAL r14_6 : BIT;	-- r14 6
+  SIGNAL r14_7 : BIT;	-- r14 7
+  SIGNAL r14_8 : BIT;	-- r14 8
+  SIGNAL r14_9 : BIT;	-- r14 9
+  SIGNAL r14_10 : BIT;	-- r14 10
+  SIGNAL r14_11 : BIT;	-- r14 11
+  SIGNAL r14_12 : BIT;	-- r14 12
+  SIGNAL r14_13 : BIT;	-- r14 13
+  SIGNAL r14_14 : BIT;	-- r14 14
+  SIGNAL r14_15 : BIT;	-- r14 15
+  SIGNAL r14_16 : BIT;	-- r14 16
+  SIGNAL r14_17 : BIT;	-- r14 17
+  SIGNAL r14_18 : BIT;	-- r14 18
+  SIGNAL r14_19 : BIT;	-- r14 19
+  SIGNAL r14_20 : BIT;	-- r14 20
+  SIGNAL r14_21 : BIT;	-- r14 21
+  SIGNAL r14_22 : BIT;	-- r14 22
+  SIGNAL r14_23 : BIT;	-- r14 23
+  SIGNAL r14_24 : BIT;	-- r14 24
+  SIGNAL r14_25 : BIT;	-- r14 25
+  SIGNAL r14_26 : BIT;	-- r14 26
+  SIGNAL r14_27 : BIT;	-- r14 27
+  SIGNAL r14_28 : BIT;	-- r14 28
+  SIGNAL r14_29 : BIT;	-- r14 29
+  SIGNAL r14_30 : BIT;	-- r14 30
+  SIGNAL r14_31 : BIT;	-- r14 31
+  SIGNAL r15_0 : BIT;	-- r15 0
+  SIGNAL r15_1 : BIT;	-- r15 1
+  SIGNAL r15_2 : BIT;	-- r15 2
+  SIGNAL r15_3 : BIT;	-- r15 3
+  SIGNAL r15_4 : BIT;	-- r15 4
+  SIGNAL r15_5 : BIT;	-- r15 5
+  SIGNAL r15_6 : BIT;	-- r15 6
+  SIGNAL r15_7 : BIT;	-- r15 7
+  SIGNAL r15_8 : BIT;	-- r15 8
+  SIGNAL r15_9 : BIT;	-- r15 9
+  SIGNAL r15_10 : BIT;	-- r15 10
+  SIGNAL r15_11 : BIT;	-- r15 11
+  SIGNAL r15_12 : BIT;	-- r15 12
+  SIGNAL r15_13 : BIT;	-- r15 13
+  SIGNAL r15_14 : BIT;	-- r15 14
+  SIGNAL r15_15 : BIT;	-- r15 15
+  SIGNAL r15_16 : BIT;	-- r15 16
+  SIGNAL r15_17 : BIT;	-- r15 17
+  SIGNAL r15_18 : BIT;	-- r15 18
+  SIGNAL r15_19 : BIT;	-- r15 19
+  SIGNAL r15_20 : BIT;	-- r15 20
+  SIGNAL r15_21 : BIT;	-- r15 21
+  SIGNAL r15_22 : BIT;	-- r15 22
+  SIGNAL r15_23 : BIT;	-- r15 23
+  SIGNAL r15_24 : BIT;	-- r15 24
+  SIGNAL r15_25 : BIT;	-- r15 25
+  SIGNAL r15_26 : BIT;	-- r15 26
+  SIGNAL r15_27 : BIT;	-- r15 27
+  SIGNAL r15_28 : BIT;	-- r15 28
+  SIGNAL r15_29 : BIT;	-- r15 29
+  SIGNAL r15_30 : BIT;	-- r15 30
+  SIGNAL r15_31 : BIT;	-- r15 31
+  SIGNAL r16_0 : BIT;	-- r16 0
+  SIGNAL r16_1 : BIT;	-- r16 1
+  SIGNAL r16_2 : BIT;	-- r16 2
+  SIGNAL r16_3 : BIT;	-- r16 3
+  SIGNAL r16_4 : BIT;	-- r16 4
+  SIGNAL r16_5 : BIT;	-- r16 5
+  SIGNAL r16_6 : BIT;	-- r16 6
+  SIGNAL r16_7 : BIT;	-- r16 7
+  SIGNAL r16_8 : BIT;	-- r16 8
+  SIGNAL r16_9 : BIT;	-- r16 9
+  SIGNAL r16_10 : BIT;	-- r16 10
+  SIGNAL r16_11 : BIT;	-- r16 11
+  SIGNAL r16_12 : BIT;	-- r16 12
+  SIGNAL r16_13 : BIT;	-- r16 13
+  SIGNAL r16_14 : BIT;	-- r16 14
+  SIGNAL r16_15 : BIT;	-- r16 15
+  SIGNAL r16_16 : BIT;	-- r16 16
+  SIGNAL r16_17 : BIT;	-- r16 17
+  SIGNAL r16_18 : BIT;	-- r16 18
+  SIGNAL r16_19 : BIT;	-- r16 19
+  SIGNAL r16_20 : BIT;	-- r16 20
+  SIGNAL r16_21 : BIT;	-- r16 21
+  SIGNAL r16_22 : BIT;	-- r16 22
+  SIGNAL r16_23 : BIT;	-- r16 23
+  SIGNAL r16_24 : BIT;	-- r16 24
+  SIGNAL r16_25 : BIT;	-- r16 25
+  SIGNAL r16_26 : BIT;	-- r16 26
+  SIGNAL r16_27 : BIT;	-- r16 27
+  SIGNAL r16_28 : BIT;	-- r16 28
+  SIGNAL r16_29 : BIT;	-- r16 29
+  SIGNAL r16_30 : BIT;	-- r16 30
+  SIGNAL r16_31 : BIT;	-- r16 31
+  SIGNAL r2_0 : BIT;	-- r2 0
+  SIGNAL r2_1 : BIT;	-- r2 1
+  SIGNAL r2_2 : BIT;	-- r2 2
+  SIGNAL r2_3 : BIT;	-- r2 3
+  SIGNAL r2_4 : BIT;	-- r2 4
+  SIGNAL r2_5 : BIT;	-- r2 5
+  SIGNAL r2_6 : BIT;	-- r2 6
+  SIGNAL r2_7 : BIT;	-- r2 7
+  SIGNAL r2_8 : BIT;	-- r2 8
+  SIGNAL r2_9 : BIT;	-- r2 9
+  SIGNAL r2_10 : BIT;	-- r2 10
+  SIGNAL r2_11 : BIT;	-- r2 11
+  SIGNAL r2_12 : BIT;	-- r2 12
+  SIGNAL r2_13 : BIT;	-- r2 13
+  SIGNAL r2_14 : BIT;	-- r2 14
+  SIGNAL r2_15 : BIT;	-- r2 15
+  SIGNAL r2_16 : BIT;	-- r2 16
+  SIGNAL r2_17 : BIT;	-- r2 17
+  SIGNAL r2_18 : BIT;	-- r2 18
+  SIGNAL r2_19 : BIT;	-- r2 19
+  SIGNAL r2_20 : BIT;	-- r2 20
+  SIGNAL r2_21 : BIT;	-- r2 21
+  SIGNAL r2_22 : BIT;	-- r2 22
+  SIGNAL r2_23 : BIT;	-- r2 23
+  SIGNAL r2_24 : BIT;	-- r2 24
+  SIGNAL r2_25 : BIT;	-- r2 25
+  SIGNAL r2_26 : BIT;	-- r2 26
+  SIGNAL r2_27 : BIT;	-- r2 27
+  SIGNAL r2_28 : BIT;	-- r2 28
+  SIGNAL r2_29 : BIT;	-- r2 29
+  SIGNAL r2_30 : BIT;	-- r2 30
+  SIGNAL r2_31 : BIT;	-- r2 31
+  SIGNAL r3_0 : BIT;	-- r3 0
+  SIGNAL r3_1 : BIT;	-- r3 1
+  SIGNAL r3_2 : BIT;	-- r3 2
+  SIGNAL r3_3 : BIT;	-- r3 3
+  SIGNAL r3_4 : BIT;	-- r3 4
+  SIGNAL r3_5 : BIT;	-- r3 5
+  SIGNAL r3_6 : BIT;	-- r3 6
+  SIGNAL r3_7 : BIT;	-- r3 7
+  SIGNAL r3_8 : BIT;	-- r3 8
+  SIGNAL r3_9 : BIT;	-- r3 9
+  SIGNAL r3_10 : BIT;	-- r3 10
+  SIGNAL r3_11 : BIT;	-- r3 11
+  SIGNAL r3_12 : BIT;	-- r3 12
+  SIGNAL r3_13 : BIT;	-- r3 13
+  SIGNAL r3_14 : BIT;	-- r3 14
+  SIGNAL r3_15 : BIT;	-- r3 15
+  SIGNAL r3_16 : BIT;	-- r3 16
+  SIGNAL r3_17 : BIT;	-- r3 17
+  SIGNAL r3_18 : BIT;	-- r3 18
+  SIGNAL r3_19 : BIT;	-- r3 19
+  SIGNAL r3_20 : BIT;	-- r3 20
+  SIGNAL r3_21 : BIT;	-- r3 21
+  SIGNAL r3_22 : BIT;	-- r3 22
+  SIGNAL r3_23 : BIT;	-- r3 23
+  SIGNAL r3_24 : BIT;	-- r3 24
+  SIGNAL r3_25 : BIT;	-- r3 25
+  SIGNAL r3_26 : BIT;	-- r3 26
+  SIGNAL r3_27 : BIT;	-- r3 27
+  SIGNAL r3_28 : BIT;	-- r3 28
+  SIGNAL r3_29 : BIT;	-- r3 29
+  SIGNAL r3_30 : BIT;	-- r3 30
+  SIGNAL r3_31 : BIT;	-- r3 31
+  SIGNAL r4_0 : BIT;	-- r4 0
+  SIGNAL r4_1 : BIT;	-- r4 1
+  SIGNAL r4_2 : BIT;	-- r4 2
+  SIGNAL r4_3 : BIT;	-- r4 3
+  SIGNAL r4_4 : BIT;	-- r4 4
+  SIGNAL r4_5 : BIT;	-- r4 5
+  SIGNAL r4_6 : BIT;	-- r4 6
+  SIGNAL r4_7 : BIT;	-- r4 7
+  SIGNAL r4_8 : BIT;	-- r4 8
+  SIGNAL r4_9 : BIT;	-- r4 9
+  SIGNAL r4_10 : BIT;	-- r4 10
+  SIGNAL r4_11 : BIT;	-- r4 11
+  SIGNAL r4_12 : BIT;	-- r4 12
+  SIGNAL r4_13 : BIT;	-- r4 13
+  SIGNAL r4_14 : BIT;	-- r4 14
+  SIGNAL r4_15 : BIT;	-- r4 15
+  SIGNAL r4_16 : BIT;	-- r4 16
+  SIGNAL r4_17 : BIT;	-- r4 17
+  SIGNAL r4_18 : BIT;	-- r4 18
+  SIGNAL r4_19 : BIT;	-- r4 19
+  SIGNAL r4_20 : BIT;	-- r4 20
+  SIGNAL r4_21 : BIT;	-- r4 21
+  SIGNAL r4_22 : BIT;	-- r4 22
+  SIGNAL r4_23 : BIT;	-- r4 23
+  SIGNAL r4_24 : BIT;	-- r4 24
+  SIGNAL r4_25 : BIT;	-- r4 25
+  SIGNAL r4_26 : BIT;	-- r4 26
+  SIGNAL r4_27 : BIT;	-- r4 27
+  SIGNAL r4_28 : BIT;	-- r4 28
+  SIGNAL r4_29 : BIT;	-- r4 29
+  SIGNAL r4_30 : BIT;	-- r4 30
+  SIGNAL r4_31 : BIT;	-- r4 31
+  SIGNAL r5_0 : BIT;	-- r5 0
+  SIGNAL r5_1 : BIT;	-- r5 1
+  SIGNAL r5_2 : BIT;	-- r5 2
+  SIGNAL r5_3 : BIT;	-- r5 3
+  SIGNAL r5_4 : BIT;	-- r5 4
+  SIGNAL r5_5 : BIT;	-- r5 5
+  SIGNAL r5_6 : BIT;	-- r5 6
+  SIGNAL r5_7 : BIT;	-- r5 7
+  SIGNAL r5_8 : BIT;	-- r5 8
+  SIGNAL r5_9 : BIT;	-- r5 9
+  SIGNAL r5_10 : BIT;	-- r5 10
+  SIGNAL r5_11 : BIT;	-- r5 11
+  SIGNAL r5_12 : BIT;	-- r5 12
+  SIGNAL r5_13 : BIT;	-- r5 13
+  SIGNAL r5_14 : BIT;	-- r5 14
+  SIGNAL r5_15 : BIT;	-- r5 15
+  SIGNAL r5_16 : BIT;	-- r5 16
+  SIGNAL r5_17 : BIT;	-- r5 17
+  SIGNAL r5_18 : BIT;	-- r5 18
+  SIGNAL r5_19 : BIT;	-- r5 19
+  SIGNAL r5_20 : BIT;	-- r5 20
+  SIGNAL r5_21 : BIT;	-- r5 21
+  SIGNAL r5_22 : BIT;	-- r5 22
+  SIGNAL r5_23 : BIT;	-- r5 23
+  SIGNAL r5_24 : BIT;	-- r5 24
+  SIGNAL r5_25 : BIT;	-- r5 25
+  SIGNAL r5_26 : BIT;	-- r5 26
+  SIGNAL r5_27 : BIT;	-- r5 27
+  SIGNAL r5_28 : BIT;	-- r5 28
+  SIGNAL r5_29 : BIT;	-- r5 29
+  SIGNAL r5_30 : BIT;	-- r5 30
+  SIGNAL r5_31 : BIT;	-- r5 31
+  SIGNAL r6_0 : BIT;	-- r6 0
+  SIGNAL r6_1 : BIT;	-- r6 1
+  SIGNAL r6_2 : BIT;	-- r6 2
+  SIGNAL r6_3 : BIT;	-- r6 3
+  SIGNAL r6_4 : BIT;	-- r6 4
+  SIGNAL r6_5 : BIT;	-- r6 5
+  SIGNAL r6_6 : BIT;	-- r6 6
+  SIGNAL r6_7 : BIT;	-- r6 7
+  SIGNAL r6_8 : BIT;	-- r6 8
+  SIGNAL r6_9 : BIT;	-- r6 9
+  SIGNAL r6_10 : BIT;	-- r6 10
+  SIGNAL r6_11 : BIT;	-- r6 11
+  SIGNAL r6_12 : BIT;	-- r6 12
+  SIGNAL r6_13 : BIT;	-- r6 13
+  SIGNAL r6_14 : BIT;	-- r6 14
+  SIGNAL r6_15 : BIT;	-- r6 15
+  SIGNAL r6_16 : BIT;	-- r6 16
+  SIGNAL r6_17 : BIT;	-- r6 17
+  SIGNAL r6_18 : BIT;	-- r6 18
+  SIGNAL r6_19 : BIT;	-- r6 19
+  SIGNAL r6_20 : BIT;	-- r6 20
+  SIGNAL r6_21 : BIT;	-- r6 21
+  SIGNAL r6_22 : BIT;	-- r6 22
+  SIGNAL r6_23 : BIT;	-- r6 23
+  SIGNAL r6_24 : BIT;	-- r6 24
+  SIGNAL r6_25 : BIT;	-- r6 25
+  SIGNAL r6_26 : BIT;	-- r6 26
+  SIGNAL r6_27 : BIT;	-- r6 27
+  SIGNAL r6_28 : BIT;	-- r6 28
+  SIGNAL r6_29 : BIT;	-- r6 29
+  SIGNAL r6_30 : BIT;	-- r6 30
+  SIGNAL r6_31 : BIT;	-- r6 31
+  SIGNAL r7_0 : BIT;	-- r7 0
+  SIGNAL r7_1 : BIT;	-- r7 1
+  SIGNAL r7_2 : BIT;	-- r7 2
+  SIGNAL r7_3 : BIT;	-- r7 3
+  SIGNAL r7_4 : BIT;	-- r7 4
+  SIGNAL r7_5 : BIT;	-- r7 5
+  SIGNAL r7_6 : BIT;	-- r7 6
+  SIGNAL r7_7 : BIT;	-- r7 7
+  SIGNAL r7_8 : BIT;	-- r7 8
+  SIGNAL r7_9 : BIT;	-- r7 9
+  SIGNAL r7_10 : BIT;	-- r7 10
+  SIGNAL r7_11 : BIT;	-- r7 11
+  SIGNAL r7_12 : BIT;	-- r7 12
+  SIGNAL r7_13 : BIT;	-- r7 13
+  SIGNAL r7_14 : BIT;	-- r7 14
+  SIGNAL r7_15 : BIT;	-- r7 15
+  SIGNAL r7_16 : BIT;	-- r7 16
+  SIGNAL r7_17 : BIT;	-- r7 17
+  SIGNAL r7_18 : BIT;	-- r7 18
+  SIGNAL r7_19 : BIT;	-- r7 19
+  SIGNAL r7_20 : BIT;	-- r7 20
+  SIGNAL r7_21 : BIT;	-- r7 21
+  SIGNAL r7_22 : BIT;	-- r7 22
+  SIGNAL r7_23 : BIT;	-- r7 23
+  SIGNAL r7_24 : BIT;	-- r7 24
+  SIGNAL r7_25 : BIT;	-- r7 25
+  SIGNAL r7_26 : BIT;	-- r7 26
+  SIGNAL r7_27 : BIT;	-- r7 27
+  SIGNAL r7_28 : BIT;	-- r7 28
+  SIGNAL r7_29 : BIT;	-- r7 29
+  SIGNAL r7_30 : BIT;	-- r7 30
+  SIGNAL r7_31 : BIT;	-- r7 31
+  SIGNAL r8_0 : BIT;	-- r8 0
+  SIGNAL r8_1 : BIT;	-- r8 1
+  SIGNAL r8_2 : BIT;	-- r8 2
+  SIGNAL r8_3 : BIT;	-- r8 3
+  SIGNAL r8_4 : BIT;	-- r8 4
+  SIGNAL r8_5 : BIT;	-- r8 5
+  SIGNAL r8_6 : BIT;	-- r8 6
+  SIGNAL r8_7 : BIT;	-- r8 7
+  SIGNAL r8_8 : BIT;	-- r8 8
+  SIGNAL r8_9 : BIT;	-- r8 9
+  SIGNAL r8_10 : BIT;	-- r8 10
+  SIGNAL r8_11 : BIT;	-- r8 11
+  SIGNAL r8_12 : BIT;	-- r8 12
+  SIGNAL r8_13 : BIT;	-- r8 13
+  SIGNAL r8_14 : BIT;	-- r8 14
+  SIGNAL r8_15 : BIT;	-- r8 15
+  SIGNAL r8_16 : BIT;	-- r8 16
+  SIGNAL r8_17 : BIT;	-- r8 17
+  SIGNAL r8_18 : BIT;	-- r8 18
+  SIGNAL r8_19 : BIT;	-- r8 19
+  SIGNAL r8_20 : BIT;	-- r8 20
+  SIGNAL r8_21 : BIT;	-- r8 21
+  SIGNAL r8_22 : BIT;	-- r8 22
+  SIGNAL r8_23 : BIT;	-- r8 23
+  SIGNAL r8_24 : BIT;	-- r8 24
+  SIGNAL r8_25 : BIT;	-- r8 25
+  SIGNAL r8_26 : BIT;	-- r8 26
+  SIGNAL r8_27 : BIT;	-- r8 27
+  SIGNAL r8_28 : BIT;	-- r8 28
+  SIGNAL r8_29 : BIT;	-- r8 29
+  SIGNAL r8_30 : BIT;	-- r8 30
+  SIGNAL r8_31 : BIT;	-- r8 31
+  SIGNAL r9_0 : BIT;	-- r9 0
+  SIGNAL r9_1 : BIT;	-- r9 1
+  SIGNAL r9_2 : BIT;	-- r9 2
+  SIGNAL r9_3 : BIT;	-- r9 3
+  SIGNAL r9_4 : BIT;	-- r9 4
+  SIGNAL r9_5 : BIT;	-- r9 5
+  SIGNAL r9_6 : BIT;	-- r9 6
+  SIGNAL r9_7 : BIT;	-- r9 7
+  SIGNAL r9_8 : BIT;	-- r9 8
+  SIGNAL r9_9 : BIT;	-- r9 9
+  SIGNAL r9_10 : BIT;	-- r9 10
+  SIGNAL r9_11 : BIT;	-- r9 11
+  SIGNAL r9_12 : BIT;	-- r9 12
+  SIGNAL r9_13 : BIT;	-- r9 13
+  SIGNAL r9_14 : BIT;	-- r9 14
+  SIGNAL r9_15 : BIT;	-- r9 15
+  SIGNAL r9_16 : BIT;	-- r9 16
+  SIGNAL r9_17 : BIT;	-- r9 17
+  SIGNAL r9_18 : BIT;	-- r9 18
+  SIGNAL r9_19 : BIT;	-- r9 19
+  SIGNAL r9_20 : BIT;	-- r9 20
+  SIGNAL r9_21 : BIT;	-- r9 21
+  SIGNAL r9_22 : BIT;	-- r9 22
+  SIGNAL r9_23 : BIT;	-- r9 23
+  SIGNAL r9_24 : BIT;	-- r9 24
+  SIGNAL r9_25 : BIT;	-- r9 25
+  SIGNAL r9_26 : BIT;	-- r9 26
+  SIGNAL r9_27 : BIT;	-- r9 27
+  SIGNAL r9_28 : BIT;	-- r9 28
+  SIGNAL r9_29 : BIT;	-- r9 29
+  SIGNAL r9_30 : BIT;	-- r9 30
+  SIGNAL r9_31 : BIT;	-- r9 31
+  SIGNAL sum1_0 : BIT;	-- sum1 0
+  SIGNAL sum1_1 : BIT;	-- sum1 1
+  SIGNAL sum1_2 : BIT;	-- sum1 2
+  SIGNAL sum1_3 : BIT;	-- sum1 3
+  SIGNAL sum1_4 : BIT;	-- sum1 4
+  SIGNAL sum1_5 : BIT;	-- sum1 5
+  SIGNAL sum1_6 : BIT;	-- sum1 6
+  SIGNAL sum1_7 : BIT;	-- sum1 7
+  SIGNAL sum1_8 : BIT;	-- sum1 8
+  SIGNAL sum1_9 : BIT;	-- sum1 9
+  SIGNAL sum1_10 : BIT;	-- sum1 10
+  SIGNAL sum1_11 : BIT;	-- sum1 11
+  SIGNAL sum1_12 : BIT;	-- sum1 12
+  SIGNAL sum1_13 : BIT;	-- sum1 13
+  SIGNAL sum1_14 : BIT;	-- sum1 14
+  SIGNAL sum1_15 : BIT;	-- sum1 15
+  SIGNAL sum1_16 : BIT;	-- sum1 16
+  SIGNAL sum1_17 : BIT;	-- sum1 17
+  SIGNAL sum1_18 : BIT;	-- sum1 18
+  SIGNAL sum1_19 : BIT;	-- sum1 19
+  SIGNAL sum1_20 : BIT;	-- sum1 20
+  SIGNAL sum1_21 : BIT;	-- sum1 21
+  SIGNAL sum1_22 : BIT;	-- sum1 22
+  SIGNAL sum1_23 : BIT;	-- sum1 23
+  SIGNAL sum1_24 : BIT;	-- sum1 24
+  SIGNAL sum1_25 : BIT;	-- sum1 25
+  SIGNAL sum1_26 : BIT;	-- sum1 26
+  SIGNAL sum1_27 : BIT;	-- sum1 27
+  SIGNAL sum1_28 : BIT;	-- sum1 28
+  SIGNAL sum1_29 : BIT;	-- sum1 29
+  SIGNAL sum1_30 : BIT;	-- sum1 30
+  SIGNAL sum1_31 : BIT;	-- sum1 31
+  SIGNAL sum10_0 : BIT;	-- sum10 0
+  SIGNAL sum10_1 : BIT;	-- sum10 1
+  SIGNAL sum10_2 : BIT;	-- sum10 2
+  SIGNAL sum10_3 : BIT;	-- sum10 3
+  SIGNAL sum10_4 : BIT;	-- sum10 4
+  SIGNAL sum10_5 : BIT;	-- sum10 5
+  SIGNAL sum10_6 : BIT;	-- sum10 6
+  SIGNAL sum10_7 : BIT;	-- sum10 7
+  SIGNAL sum10_8 : BIT;	-- sum10 8
+  SIGNAL sum10_9 : BIT;	-- sum10 9
+  SIGNAL sum10_10 : BIT;	-- sum10 10
+  SIGNAL sum10_11 : BIT;	-- sum10 11
+  SIGNAL sum10_12 : BIT;	-- sum10 12
+  SIGNAL sum10_13 : BIT;	-- sum10 13
+  SIGNAL sum10_14 : BIT;	-- sum10 14
+  SIGNAL sum10_15 : BIT;	-- sum10 15
+  SIGNAL sum10_16 : BIT;	-- sum10 16
+  SIGNAL sum10_17 : BIT;	-- sum10 17
+  SIGNAL sum10_18 : BIT;	-- sum10 18
+  SIGNAL sum10_19 : BIT;	-- sum10 19
+  SIGNAL sum10_20 : BIT;	-- sum10 20
+  SIGNAL sum10_21 : BIT;	-- sum10 21
+  SIGNAL sum10_22 : BIT;	-- sum10 22
+  SIGNAL sum10_23 : BIT;	-- sum10 23
+  SIGNAL sum10_24 : BIT;	-- sum10 24
+  SIGNAL sum10_25 : BIT;	-- sum10 25
+  SIGNAL sum10_26 : BIT;	-- sum10 26
+  SIGNAL sum10_27 : BIT;	-- sum10 27
+  SIGNAL sum10_28 : BIT;	-- sum10 28
+  SIGNAL sum10_29 : BIT;	-- sum10 29
+  SIGNAL sum10_30 : BIT;	-- sum10 30
+  SIGNAL sum10_31 : BIT;	-- sum10 31
+  SIGNAL sum11_0 : BIT;	-- sum11 0
+  SIGNAL sum11_1 : BIT;	-- sum11 1
+  SIGNAL sum11_2 : BIT;	-- sum11 2
+  SIGNAL sum11_3 : BIT;	-- sum11 3
+  SIGNAL sum11_4 : BIT;	-- sum11 4
+  SIGNAL sum11_5 : BIT;	-- sum11 5
+  SIGNAL sum11_6 : BIT;	-- sum11 6
+  SIGNAL sum11_7 : BIT;	-- sum11 7
+  SIGNAL sum11_8 : BIT;	-- sum11 8
+  SIGNAL sum11_9 : BIT;	-- sum11 9
+  SIGNAL sum11_10 : BIT;	-- sum11 10
+  SIGNAL sum11_11 : BIT;	-- sum11 11
+  SIGNAL sum11_12 : BIT;	-- sum11 12
+  SIGNAL sum11_13 : BIT;	-- sum11 13
+  SIGNAL sum11_14 : BIT;	-- sum11 14
+  SIGNAL sum11_15 : BIT;	-- sum11 15
+  SIGNAL sum11_16 : BIT;	-- sum11 16
+  SIGNAL sum11_17 : BIT;	-- sum11 17
+  SIGNAL sum11_18 : BIT;	-- sum11 18
+  SIGNAL sum11_19 : BIT;	-- sum11 19
+  SIGNAL sum11_20 : BIT;	-- sum11 20
+  SIGNAL sum11_21 : BIT;	-- sum11 21
+  SIGNAL sum11_22 : BIT;	-- sum11 22
+  SIGNAL sum11_23 : BIT;	-- sum11 23
+  SIGNAL sum11_24 : BIT;	-- sum11 24
+  SIGNAL sum11_25 : BIT;	-- sum11 25
+  SIGNAL sum11_26 : BIT;	-- sum11 26
+  SIGNAL sum11_27 : BIT;	-- sum11 27
+  SIGNAL sum11_28 : BIT;	-- sum11 28
+  SIGNAL sum11_29 : BIT;	-- sum11 29
+  SIGNAL sum11_30 : BIT;	-- sum11 30
+  SIGNAL sum11_31 : BIT;	-- sum11 31
+  SIGNAL sum12_0 : BIT;	-- sum12 0
+  SIGNAL sum12_1 : BIT;	-- sum12 1
+  SIGNAL sum12_2 : BIT;	-- sum12 2
+  SIGNAL sum12_3 : BIT;	-- sum12 3
+  SIGNAL sum12_4 : BIT;	-- sum12 4
+  SIGNAL sum12_5 : BIT;	-- sum12 5
+  SIGNAL sum12_6 : BIT;	-- sum12 6
+  SIGNAL sum12_7 : BIT;	-- sum12 7
+  SIGNAL sum12_8 : BIT;	-- sum12 8
+  SIGNAL sum12_9 : BIT;	-- sum12 9
+  SIGNAL sum12_10 : BIT;	-- sum12 10
+  SIGNAL sum12_11 : BIT;	-- sum12 11
+  SIGNAL sum12_12 : BIT;	-- sum12 12
+  SIGNAL sum12_13 : BIT;	-- sum12 13
+  SIGNAL sum12_14 : BIT;	-- sum12 14
+  SIGNAL sum12_15 : BIT;	-- sum12 15
+  SIGNAL sum12_16 : BIT;	-- sum12 16
+  SIGNAL sum12_17 : BIT;	-- sum12 17
+  SIGNAL sum12_18 : BIT;	-- sum12 18
+  SIGNAL sum12_19 : BIT;	-- sum12 19
+  SIGNAL sum12_20 : BIT;	-- sum12 20
+  SIGNAL sum12_21 : BIT;	-- sum12 21
+  SIGNAL sum12_22 : BIT;	-- sum12 22
+  SIGNAL sum12_23 : BIT;	-- sum12 23
+  SIGNAL sum12_24 : BIT;	-- sum12 24
+  SIGNAL sum12_25 : BIT;	-- sum12 25
+  SIGNAL sum12_26 : BIT;	-- sum12 26
+  SIGNAL sum12_27 : BIT;	-- sum12 27
+  SIGNAL sum12_28 : BIT;	-- sum12 28
+  SIGNAL sum12_29 : BIT;	-- sum12 29
+  SIGNAL sum12_30 : BIT;	-- sum12 30
+  SIGNAL sum12_31 : BIT;	-- sum12 31
+  SIGNAL sum13_0 : BIT;	-- sum13 0
+  SIGNAL sum13_1 : BIT;	-- sum13 1
+  SIGNAL sum13_2 : BIT;	-- sum13 2
+  SIGNAL sum13_3 : BIT;	-- sum13 3
+  SIGNAL sum13_4 : BIT;	-- sum13 4
+  SIGNAL sum13_5 : BIT;	-- sum13 5
+  SIGNAL sum13_6 : BIT;	-- sum13 6
+  SIGNAL sum13_7 : BIT;	-- sum13 7
+  SIGNAL sum13_8 : BIT;	-- sum13 8
+  SIGNAL sum13_9 : BIT;	-- sum13 9
+  SIGNAL sum13_10 : BIT;	-- sum13 10
+  SIGNAL sum13_11 : BIT;	-- sum13 11
+  SIGNAL sum13_12 : BIT;	-- sum13 12
+  SIGNAL sum13_13 : BIT;	-- sum13 13
+  SIGNAL sum13_14 : BIT;	-- sum13 14
+  SIGNAL sum13_15 : BIT;	-- sum13 15
+  SIGNAL sum13_16 : BIT;	-- sum13 16
+  SIGNAL sum13_17 : BIT;	-- sum13 17
+  SIGNAL sum13_18 : BIT;	-- sum13 18
+  SIGNAL sum13_19 : BIT;	-- sum13 19
+  SIGNAL sum13_20 : BIT;	-- sum13 20
+  SIGNAL sum13_21 : BIT;	-- sum13 21
+  SIGNAL sum13_22 : BIT;	-- sum13 22
+  SIGNAL sum13_23 : BIT;	-- sum13 23
+  SIGNAL sum13_24 : BIT;	-- sum13 24
+  SIGNAL sum13_25 : BIT;	-- sum13 25
+  SIGNAL sum13_26 : BIT;	-- sum13 26
+  SIGNAL sum13_27 : BIT;	-- sum13 27
+  SIGNAL sum13_28 : BIT;	-- sum13 28
+  SIGNAL sum13_29 : BIT;	-- sum13 29
+  SIGNAL sum13_30 : BIT;	-- sum13 30
+  SIGNAL sum13_31 : BIT;	-- sum13 31
+  SIGNAL sum14_0 : BIT;	-- sum14 0
+  SIGNAL sum14_1 : BIT;	-- sum14 1
+  SIGNAL sum14_2 : BIT;	-- sum14 2
+  SIGNAL sum14_3 : BIT;	-- sum14 3
+  SIGNAL sum14_4 : BIT;	-- sum14 4
+  SIGNAL sum14_5 : BIT;	-- sum14 5
+  SIGNAL sum14_6 : BIT;	-- sum14 6
+  SIGNAL sum14_7 : BIT;	-- sum14 7
+  SIGNAL sum14_8 : BIT;	-- sum14 8
+  SIGNAL sum14_9 : BIT;	-- sum14 9
+  SIGNAL sum14_10 : BIT;	-- sum14 10
+  SIGNAL sum14_11 : BIT;	-- sum14 11
+  SIGNAL sum14_12 : BIT;	-- sum14 12
+  SIGNAL sum14_13 : BIT;	-- sum14 13
+  SIGNAL sum14_14 : BIT;	-- sum14 14
+  SIGNAL sum14_15 : BIT;	-- sum14 15
+  SIGNAL sum14_16 : BIT;	-- sum14 16
+  SIGNAL sum14_17 : BIT;	-- sum14 17
+  SIGNAL sum14_18 : BIT;	-- sum14 18
+  SIGNAL sum14_19 : BIT;	-- sum14 19
+  SIGNAL sum14_20 : BIT;	-- sum14 20
+  SIGNAL sum14_21 : BIT;	-- sum14 21
+  SIGNAL sum14_22 : BIT;	-- sum14 22
+  SIGNAL sum14_23 : BIT;	-- sum14 23
+  SIGNAL sum14_24 : BIT;	-- sum14 24
+  SIGNAL sum14_25 : BIT;	-- sum14 25
+  SIGNAL sum14_26 : BIT;	-- sum14 26
+  SIGNAL sum14_27 : BIT;	-- sum14 27
+  SIGNAL sum14_28 : BIT;	-- sum14 28
+  SIGNAL sum14_29 : BIT;	-- sum14 29
+  SIGNAL sum14_30 : BIT;	-- sum14 30
+  SIGNAL sum14_31 : BIT;	-- sum14 31
+  SIGNAL sum15_0 : BIT;	-- sum15 0
+  SIGNAL sum15_1 : BIT;	-- sum15 1
+  SIGNAL sum15_2 : BIT;	-- sum15 2
+  SIGNAL sum15_3 : BIT;	-- sum15 3
+  SIGNAL sum15_4 : BIT;	-- sum15 4
+  SIGNAL sum15_5 : BIT;	-- sum15 5
+  SIGNAL sum15_6 : BIT;	-- sum15 6
+  SIGNAL sum15_7 : BIT;	-- sum15 7
+  SIGNAL sum15_8 : BIT;	-- sum15 8
+  SIGNAL sum15_9 : BIT;	-- sum15 9
+  SIGNAL sum15_10 : BIT;	-- sum15 10
+  SIGNAL sum15_11 : BIT;	-- sum15 11
+  SIGNAL sum15_12 : BIT;	-- sum15 12
+  SIGNAL sum15_13 : BIT;	-- sum15 13
+  SIGNAL sum15_14 : BIT;	-- sum15 14
+  SIGNAL sum15_15 : BIT;	-- sum15 15
+  SIGNAL sum15_16 : BIT;	-- sum15 16
+  SIGNAL sum15_17 : BIT;	-- sum15 17
+  SIGNAL sum15_18 : BIT;	-- sum15 18
+  SIGNAL sum15_19 : BIT;	-- sum15 19
+  SIGNAL sum15_20 : BIT;	-- sum15 20
+  SIGNAL sum15_21 : BIT;	-- sum15 21
+  SIGNAL sum15_22 : BIT;	-- sum15 22
+  SIGNAL sum15_23 : BIT;	-- sum15 23
+  SIGNAL sum15_24 : BIT;	-- sum15 24
+  SIGNAL sum15_25 : BIT;	-- sum15 25
+  SIGNAL sum15_26 : BIT;	-- sum15 26
+  SIGNAL sum15_27 : BIT;	-- sum15 27
+  SIGNAL sum15_28 : BIT;	-- sum15 28
+  SIGNAL sum15_29 : BIT;	-- sum15 29
+  SIGNAL sum15_30 : BIT;	-- sum15 30
+  SIGNAL sum15_31 : BIT;	-- sum15 31
+  SIGNAL sum16_0 : BIT;	-- sum16 0
+  SIGNAL sum16_1 : BIT;	-- sum16 1
+  SIGNAL sum16_2 : BIT;	-- sum16 2
+  SIGNAL sum16_3 : BIT;	-- sum16 3
+  SIGNAL sum16_4 : BIT;	-- sum16 4
+  SIGNAL sum16_5 : BIT;	-- sum16 5
+  SIGNAL sum16_6 : BIT;	-- sum16 6
+  SIGNAL sum16_7 : BIT;	-- sum16 7
+  SIGNAL sum16_8 : BIT;	-- sum16 8
+  SIGNAL sum16_9 : BIT;	-- sum16 9
+  SIGNAL sum16_10 : BIT;	-- sum16 10
+  SIGNAL sum16_11 : BIT;	-- sum16 11
+  SIGNAL sum16_12 : BIT;	-- sum16 12
+  SIGNAL sum16_13 : BIT;	-- sum16 13
+  SIGNAL sum16_14 : BIT;	-- sum16 14
+  SIGNAL sum16_15 : BIT;	-- sum16 15
+  SIGNAL sum16_16 : BIT;	-- sum16 16
+  SIGNAL sum16_17 : BIT;	-- sum16 17
+  SIGNAL sum16_18 : BIT;	-- sum16 18
+  SIGNAL sum16_19 : BIT;	-- sum16 19
+  SIGNAL sum16_20 : BIT;	-- sum16 20
+  SIGNAL sum16_21 : BIT;	-- sum16 21
+  SIGNAL sum16_22 : BIT;	-- sum16 22
+  SIGNAL sum16_23 : BIT;	-- sum16 23
+  SIGNAL sum16_24 : BIT;	-- sum16 24
+  SIGNAL sum16_25 : BIT;	-- sum16 25
+  SIGNAL sum16_26 : BIT;	-- sum16 26
+  SIGNAL sum16_27 : BIT;	-- sum16 27
+  SIGNAL sum16_28 : BIT;	-- sum16 28
+  SIGNAL sum16_29 : BIT;	-- sum16 29
+  SIGNAL sum16_30 : BIT;	-- sum16 30
+  SIGNAL sum16_31 : BIT;	-- sum16 31
+  SIGNAL sum17_0 : BIT;	-- sum17 0
+  SIGNAL sum17_1 : BIT;	-- sum17 1
+  SIGNAL sum17_2 : BIT;	-- sum17 2
+  SIGNAL sum17_3 : BIT;	-- sum17 3
+  SIGNAL sum17_4 : BIT;	-- sum17 4
+  SIGNAL sum17_5 : BIT;	-- sum17 5
+  SIGNAL sum17_6 : BIT;	-- sum17 6
+  SIGNAL sum17_7 : BIT;	-- sum17 7
+  SIGNAL sum17_8 : BIT;	-- sum17 8
+  SIGNAL sum17_9 : BIT;	-- sum17 9
+  SIGNAL sum17_10 : BIT;	-- sum17 10
+  SIGNAL sum17_11 : BIT;	-- sum17 11
+  SIGNAL sum17_12 : BIT;	-- sum17 12
+  SIGNAL sum17_13 : BIT;	-- sum17 13
+  SIGNAL sum17_14 : BIT;	-- sum17 14
+  SIGNAL sum17_15 : BIT;	-- sum17 15
+  SIGNAL sum17_16 : BIT;	-- sum17 16
+  SIGNAL sum17_17 : BIT;	-- sum17 17
+  SIGNAL sum17_18 : BIT;	-- sum17 18
+  SIGNAL sum17_19 : BIT;	-- sum17 19
+  SIGNAL sum17_20 : BIT;	-- sum17 20
+  SIGNAL sum17_21 : BIT;	-- sum17 21
+  SIGNAL sum17_22 : BIT;	-- sum17 22
+  SIGNAL sum17_23 : BIT;	-- sum17 23
+  SIGNAL sum17_24 : BIT;	-- sum17 24
+  SIGNAL sum17_25 : BIT;	-- sum17 25
+  SIGNAL sum17_26 : BIT;	-- sum17 26
+  SIGNAL sum17_27 : BIT;	-- sum17 27
+  SIGNAL sum17_28 : BIT;	-- sum17 28
+  SIGNAL sum17_29 : BIT;	-- sum17 29
+  SIGNAL sum17_30 : BIT;	-- sum17 30
+  SIGNAL sum17_31 : BIT;	-- sum17 31
+  SIGNAL sum2_0 : BIT;	-- sum2 0
+  SIGNAL sum2_1 : BIT;	-- sum2 1
+  SIGNAL sum2_2 : BIT;	-- sum2 2
+  SIGNAL sum2_3 : BIT;	-- sum2 3
+  SIGNAL sum2_4 : BIT;	-- sum2 4
+  SIGNAL sum2_5 : BIT;	-- sum2 5
+  SIGNAL sum2_6 : BIT;	-- sum2 6
+  SIGNAL sum2_7 : BIT;	-- sum2 7
+  SIGNAL sum2_8 : BIT;	-- sum2 8
+  SIGNAL sum2_9 : BIT;	-- sum2 9
+  SIGNAL sum2_10 : BIT;	-- sum2 10
+  SIGNAL sum2_11 : BIT;	-- sum2 11
+  SIGNAL sum2_12 : BIT;	-- sum2 12
+  SIGNAL sum2_13 : BIT;	-- sum2 13
+  SIGNAL sum2_14 : BIT;	-- sum2 14
+  SIGNAL sum2_15 : BIT;	-- sum2 15
+  SIGNAL sum2_16 : BIT;	-- sum2 16
+  SIGNAL sum2_17 : BIT;	-- sum2 17
+  SIGNAL sum2_18 : BIT;	-- sum2 18
+  SIGNAL sum2_19 : BIT;	-- sum2 19
+  SIGNAL sum2_20 : BIT;	-- sum2 20
+  SIGNAL sum2_21 : BIT;	-- sum2 21
+  SIGNAL sum2_22 : BIT;	-- sum2 22
+  SIGNAL sum2_23 : BIT;	-- sum2 23
+  SIGNAL sum2_24 : BIT;	-- sum2 24
+  SIGNAL sum2_25 : BIT;	-- sum2 25
+  SIGNAL sum2_26 : BIT;	-- sum2 26
+  SIGNAL sum2_27 : BIT;	-- sum2 27
+  SIGNAL sum2_28 : BIT;	-- sum2 28
+  SIGNAL sum2_29 : BIT;	-- sum2 29
+  SIGNAL sum2_30 : BIT;	-- sum2 30
+  SIGNAL sum2_31 : BIT;	-- sum2 31
+  SIGNAL sum3_0 : BIT;	-- sum3 0
+  SIGNAL sum3_1 : BIT;	-- sum3 1
+  SIGNAL sum3_2 : BIT;	-- sum3 2
+  SIGNAL sum3_3 : BIT;	-- sum3 3
+  SIGNAL sum3_4 : BIT;	-- sum3 4
+  SIGNAL sum3_5 : BIT;	-- sum3 5
+  SIGNAL sum3_6 : BIT;	-- sum3 6
+  SIGNAL sum3_7 : BIT;	-- sum3 7
+  SIGNAL sum3_8 : BIT;	-- sum3 8
+  SIGNAL sum3_9 : BIT;	-- sum3 9
+  SIGNAL sum3_10 : BIT;	-- sum3 10
+  SIGNAL sum3_11 : BIT;	-- sum3 11
+  SIGNAL sum3_12 : BIT;	-- sum3 12
+  SIGNAL sum3_13 : BIT;	-- sum3 13
+  SIGNAL sum3_14 : BIT;	-- sum3 14
+  SIGNAL sum3_15 : BIT;	-- sum3 15
+  SIGNAL sum3_16 : BIT;	-- sum3 16
+  SIGNAL sum3_17 : BIT;	-- sum3 17
+  SIGNAL sum3_18 : BIT;	-- sum3 18
+  SIGNAL sum3_19 : BIT;	-- sum3 19
+  SIGNAL sum3_20 : BIT;	-- sum3 20
+  SIGNAL sum3_21 : BIT;	-- sum3 21
+  SIGNAL sum3_22 : BIT;	-- sum3 22
+  SIGNAL sum3_23 : BIT;	-- sum3 23
+  SIGNAL sum3_24 : BIT;	-- sum3 24
+  SIGNAL sum3_25 : BIT;	-- sum3 25
+  SIGNAL sum3_26 : BIT;	-- sum3 26
+  SIGNAL sum3_27 : BIT;	-- sum3 27
+  SIGNAL sum3_28 : BIT;	-- sum3 28
+  SIGNAL sum3_29 : BIT;	-- sum3 29
+  SIGNAL sum3_30 : BIT;	-- sum3 30
+  SIGNAL sum3_31 : BIT;	-- sum3 31
+  SIGNAL sum4_0 : BIT;	-- sum4 0
+  SIGNAL sum4_1 : BIT;	-- sum4 1
+  SIGNAL sum4_2 : BIT;	-- sum4 2
+  SIGNAL sum4_3 : BIT;	-- sum4 3
+  SIGNAL sum4_4 : BIT;	-- sum4 4
+  SIGNAL sum4_5 : BIT;	-- sum4 5
+  SIGNAL sum4_6 : BIT;	-- sum4 6
+  SIGNAL sum4_7 : BIT;	-- sum4 7
+  SIGNAL sum4_8 : BIT;	-- sum4 8
+  SIGNAL sum4_9 : BIT;	-- sum4 9
+  SIGNAL sum4_10 : BIT;	-- sum4 10
+  SIGNAL sum4_11 : BIT;	-- sum4 11
+  SIGNAL sum4_12 : BIT;	-- sum4 12
+  SIGNAL sum4_13 : BIT;	-- sum4 13
+  SIGNAL sum4_14 : BIT;	-- sum4 14
+  SIGNAL sum4_15 : BIT;	-- sum4 15
+  SIGNAL sum4_16 : BIT;	-- sum4 16
+  SIGNAL sum4_17 : BIT;	-- sum4 17
+  SIGNAL sum4_18 : BIT;	-- sum4 18
+  SIGNAL sum4_19 : BIT;	-- sum4 19
+  SIGNAL sum4_20 : BIT;	-- sum4 20
+  SIGNAL sum4_21 : BIT;	-- sum4 21
+  SIGNAL sum4_22 : BIT;	-- sum4 22
+  SIGNAL sum4_23 : BIT;	-- sum4 23
+  SIGNAL sum4_24 : BIT;	-- sum4 24
+  SIGNAL sum4_25 : BIT;	-- sum4 25
+  SIGNAL sum4_26 : BIT;	-- sum4 26
+  SIGNAL sum4_27 : BIT;	-- sum4 27
+  SIGNAL sum4_28 : BIT;	-- sum4 28
+  SIGNAL sum4_29 : BIT;	-- sum4 29
+  SIGNAL sum4_30 : BIT;	-- sum4 30
+  SIGNAL sum4_31 : BIT;	-- sum4 31
+  SIGNAL sum5_0 : BIT;	-- sum5 0
+  SIGNAL sum5_1 : BIT;	-- sum5 1
+  SIGNAL sum5_2 : BIT;	-- sum5 2
+  SIGNAL sum5_3 : BIT;	-- sum5 3
+  SIGNAL sum5_4 : BIT;	-- sum5 4
+  SIGNAL sum5_5 : BIT;	-- sum5 5
+  SIGNAL sum5_6 : BIT;	-- sum5 6
+  SIGNAL sum5_7 : BIT;	-- sum5 7
+  SIGNAL sum5_8 : BIT;	-- sum5 8
+  SIGNAL sum5_9 : BIT;	-- sum5 9
+  SIGNAL sum5_10 : BIT;	-- sum5 10
+  SIGNAL sum5_11 : BIT;	-- sum5 11
+  SIGNAL sum5_12 : BIT;	-- sum5 12
+  SIGNAL sum5_13 : BIT;	-- sum5 13
+  SIGNAL sum5_14 : BIT;	-- sum5 14
+  SIGNAL sum5_15 : BIT;	-- sum5 15
+  SIGNAL sum5_16 : BIT;	-- sum5 16
+  SIGNAL sum5_17 : BIT;	-- sum5 17
+  SIGNAL sum5_18 : BIT;	-- sum5 18
+  SIGNAL sum5_19 : BIT;	-- sum5 19
+  SIGNAL sum5_20 : BIT;	-- sum5 20
+  SIGNAL sum5_21 : BIT;	-- sum5 21
+  SIGNAL sum5_22 : BIT;	-- sum5 22
+  SIGNAL sum5_23 : BIT;	-- sum5 23
+  SIGNAL sum5_24 : BIT;	-- sum5 24
+  SIGNAL sum5_25 : BIT;	-- sum5 25
+  SIGNAL sum5_26 : BIT;	-- sum5 26
+  SIGNAL sum5_27 : BIT;	-- sum5 27
+  SIGNAL sum5_28 : BIT;	-- sum5 28
+  SIGNAL sum5_29 : BIT;	-- sum5 29
+  SIGNAL sum5_30 : BIT;	-- sum5 30
+  SIGNAL sum5_31 : BIT;	-- sum5 31
+  SIGNAL sum6_0 : BIT;	-- sum6 0
+  SIGNAL sum6_1 : BIT;	-- sum6 1
+  SIGNAL sum6_2 : BIT;	-- sum6 2
+  SIGNAL sum6_3 : BIT;	-- sum6 3
+  SIGNAL sum6_4 : BIT;	-- sum6 4
+  SIGNAL sum6_5 : BIT;	-- sum6 5
+  SIGNAL sum6_6 : BIT;	-- sum6 6
+  SIGNAL sum6_7 : BIT;	-- sum6 7
+  SIGNAL sum6_8 : BIT;	-- sum6 8
+  SIGNAL sum6_9 : BIT;	-- sum6 9
+  SIGNAL sum6_10 : BIT;	-- sum6 10
+  SIGNAL sum6_11 : BIT;	-- sum6 11
+  SIGNAL sum6_12 : BIT;	-- sum6 12
+  SIGNAL sum6_13 : BIT;	-- sum6 13
+  SIGNAL sum6_14 : BIT;	-- sum6 14
+  SIGNAL sum6_15 : BIT;	-- sum6 15
+  SIGNAL sum6_16 : BIT;	-- sum6 16
+  SIGNAL sum6_17 : BIT;	-- sum6 17
+  SIGNAL sum6_18 : BIT;	-- sum6 18
+  SIGNAL sum6_19 : BIT;	-- sum6 19
+  SIGNAL sum6_20 : BIT;	-- sum6 20
+  SIGNAL sum6_21 : BIT;	-- sum6 21
+  SIGNAL sum6_22 : BIT;	-- sum6 22
+  SIGNAL sum6_23 : BIT;	-- sum6 23
+  SIGNAL sum6_24 : BIT;	-- sum6 24
+  SIGNAL sum6_25 : BIT;	-- sum6 25
+  SIGNAL sum6_26 : BIT;	-- sum6 26
+  SIGNAL sum6_27 : BIT;	-- sum6 27
+  SIGNAL sum6_28 : BIT;	-- sum6 28
+  SIGNAL sum6_29 : BIT;	-- sum6 29
+  SIGNAL sum6_30 : BIT;	-- sum6 30
+  SIGNAL sum6_31 : BIT;	-- sum6 31
+  SIGNAL sum7_0 : BIT;	-- sum7 0
+  SIGNAL sum7_1 : BIT;	-- sum7 1
+  SIGNAL sum7_2 : BIT;	-- sum7 2
+  SIGNAL sum7_3 : BIT;	-- sum7 3
+  SIGNAL sum7_4 : BIT;	-- sum7 4
+  SIGNAL sum7_5 : BIT;	-- sum7 5
+  SIGNAL sum7_6 : BIT;	-- sum7 6
+  SIGNAL sum7_7 : BIT;	-- sum7 7
+  SIGNAL sum7_8 : BIT;	-- sum7 8
+  SIGNAL sum7_9 : BIT;	-- sum7 9
+  SIGNAL sum7_10 : BIT;	-- sum7 10
+  SIGNAL sum7_11 : BIT;	-- sum7 11
+  SIGNAL sum7_12 : BIT;	-- sum7 12
+  SIGNAL sum7_13 : BIT;	-- sum7 13
+  SIGNAL sum7_14 : BIT;	-- sum7 14
+  SIGNAL sum7_15 : BIT;	-- sum7 15
+  SIGNAL sum7_16 : BIT;	-- sum7 16
+  SIGNAL sum7_17 : BIT;	-- sum7 17
+  SIGNAL sum7_18 : BIT;	-- sum7 18
+  SIGNAL sum7_19 : BIT;	-- sum7 19
+  SIGNAL sum7_20 : BIT;	-- sum7 20
+  SIGNAL sum7_21 : BIT;	-- sum7 21
+  SIGNAL sum7_22 : BIT;	-- sum7 22
+  SIGNAL sum7_23 : BIT;	-- sum7 23
+  SIGNAL sum7_24 : BIT;	-- sum7 24
+  SIGNAL sum7_25 : BIT;	-- sum7 25
+  SIGNAL sum7_26 : BIT;	-- sum7 26
+  SIGNAL sum7_27 : BIT;	-- sum7 27
+  SIGNAL sum7_28 : BIT;	-- sum7 28
+  SIGNAL sum7_29 : BIT;	-- sum7 29
+  SIGNAL sum7_30 : BIT;	-- sum7 30
+  SIGNAL sum7_31 : BIT;	-- sum7 31
+  SIGNAL sum8_0 : BIT;	-- sum8 0
+  SIGNAL sum8_1 : BIT;	-- sum8 1
+  SIGNAL sum8_2 : BIT;	-- sum8 2
+  SIGNAL sum8_3 : BIT;	-- sum8 3
+  SIGNAL sum8_4 : BIT;	-- sum8 4
+  SIGNAL sum8_5 : BIT;	-- sum8 5
+  SIGNAL sum8_6 : BIT;	-- sum8 6
+  SIGNAL sum8_7 : BIT;	-- sum8 7
+  SIGNAL sum8_8 : BIT;	-- sum8 8
+  SIGNAL sum8_9 : BIT;	-- sum8 9
+  SIGNAL sum8_10 : BIT;	-- sum8 10
+  SIGNAL sum8_11 : BIT;	-- sum8 11
+  SIGNAL sum8_12 : BIT;	-- sum8 12
+  SIGNAL sum8_13 : BIT;	-- sum8 13
+  SIGNAL sum8_14 : BIT;	-- sum8 14
+  SIGNAL sum8_15 : BIT;	-- sum8 15
+  SIGNAL sum8_16 : BIT;	-- sum8 16
+  SIGNAL sum8_17 : BIT;	-- sum8 17
+  SIGNAL sum8_18 : BIT;	-- sum8 18
+  SIGNAL sum8_19 : BIT;	-- sum8 19
+  SIGNAL sum8_20 : BIT;	-- sum8 20
+  SIGNAL sum8_21 : BIT;	-- sum8 21
+  SIGNAL sum8_22 : BIT;	-- sum8 22
+  SIGNAL sum8_23 : BIT;	-- sum8 23
+  SIGNAL sum8_24 : BIT;	-- sum8 24
+  SIGNAL sum8_25 : BIT;	-- sum8 25
+  SIGNAL sum8_26 : BIT;	-- sum8 26
+  SIGNAL sum8_27 : BIT;	-- sum8 27
+  SIGNAL sum8_28 : BIT;	-- sum8 28
+  SIGNAL sum8_29 : BIT;	-- sum8 29
+  SIGNAL sum8_30 : BIT;	-- sum8 30
+  SIGNAL sum8_31 : BIT;	-- sum8 31
+  SIGNAL sum9_0 : BIT;	-- sum9 0
+  SIGNAL sum9_1 : BIT;	-- sum9 1
+  SIGNAL sum9_2 : BIT;	-- sum9 2
+  SIGNAL sum9_3 : BIT;	-- sum9 3
+  SIGNAL sum9_4 : BIT;	-- sum9 4
+  SIGNAL sum9_5 : BIT;	-- sum9 5
+  SIGNAL sum9_6 : BIT;	-- sum9 6
+  SIGNAL sum9_7 : BIT;	-- sum9 7
+  SIGNAL sum9_8 : BIT;	-- sum9 8
+  SIGNAL sum9_9 : BIT;	-- sum9 9
+  SIGNAL sum9_10 : BIT;	-- sum9 10
+  SIGNAL sum9_11 : BIT;	-- sum9 11
+  SIGNAL sum9_12 : BIT;	-- sum9 12
+  SIGNAL sum9_13 : BIT;	-- sum9 13
+  SIGNAL sum9_14 : BIT;	-- sum9 14
+  SIGNAL sum9_15 : BIT;	-- sum9 15
+  SIGNAL sum9_16 : BIT;	-- sum9 16
+  SIGNAL sum9_17 : BIT;	-- sum9 17
+  SIGNAL sum9_18 : BIT;	-- sum9 18
+  SIGNAL sum9_19 : BIT;	-- sum9 19
+  SIGNAL sum9_20 : BIT;	-- sum9 20
+  SIGNAL sum9_21 : BIT;	-- sum9 21
+  SIGNAL sum9_22 : BIT;	-- sum9 22
+  SIGNAL sum9_23 : BIT;	-- sum9 23
+  SIGNAL sum9_24 : BIT;	-- sum9 24
+  SIGNAL sum9_25 : BIT;	-- sum9 25
+  SIGNAL sum9_26 : BIT;	-- sum9 26
+  SIGNAL sum9_27 : BIT;	-- sum9 27
+  SIGNAL sum9_28 : BIT;	-- sum9 28
+  SIGNAL sum9_29 : BIT;	-- sum9 29
+  SIGNAL sum9_30 : BIT;	-- sum9 30
+  SIGNAL sum9_31 : BIT;	-- sum9 31
+
+BEGIN
+
+  lshifter : leftshifter_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    r16 => r16_31& r16_30& r16_29& r16_28& r16_27& r16_26& r16_25& r16_24& r16_23& r16_22& r16_21& r16_20& r16_19& r16_18& r16_17& r16_16& r16_15& r16_14& r16_13& r16_12& r16_11& r16_10& r16_9& r16_8& r16_7& r16_6& r16_5& r16_4& r16_3& r16_2& r16_1& r16_0,
+    r15 => r15_31& r15_30& r15_29& r15_28& r15_27& r15_26& r15_25& r15_24& r15_23& r15_22& r15_21& r15_20& r15_19& r15_18& r15_17& r15_16& r15_15& r15_14& r15_13& r15_12& r15_11& r15_10& r15_9& r15_8& r15_7& r15_6& r15_5& r15_4& r15_3& r15_2& r15_1& r15_0,
+    r14 => r14_31& r14_30& r14_29& r14_28& r14_27& r14_26& r14_25& r14_24& r14_23& r14_22& r14_21& r14_20& r14_19& r14_18& r14_17& r14_16& r14_15& r14_14& r14_13& r14_12& r14_11& r14_10& r14_9& r14_8& r14_7& r14_6& r14_5& r14_4& r14_3& r14_2& r14_1& r14_0,
+    r13 => r13_31& r13_30& r13_29& r13_28& r13_27& r13_26& r13_25& r13_24& r13_23& r13_22& r13_21& r13_20& r13_19& r13_18& r13_17& r13_16& r13_15& r13_14& r13_13& r13_12& r13_11& r13_10& r13_9& r13_8& r13_7& r13_6& r13_5& r13_4& r13_3& r13_2& r13_1& r13_0,
+    r12 => r12_31& r12_30& r12_29& r12_28& r12_27& r12_26& r12_25& r12_24& r12_23& r12_22& r12_21& r12_20& r12_19& r12_18& r12_17& r12_16& r12_15& r12_14& r12_13& r12_12& r12_11& r12_10& r12_9& r12_8& r12_7& r12_6& r12_5& r12_4& r12_3& r12_2& r12_1& r12_0,
+    r11 => r11_31& r11_30& r11_29& r11_28& r11_27& r11_26& r11_25& r11_24& r11_23& r11_22& r11_21& r11_20& r11_19& r11_18& r11_17& r11_16& r11_15& r11_14& r11_13& r11_12& r11_11& r11_10& r11_9& r11_8& r11_7& r11_6& r11_5& r11_4& r11_3& r11_2& r11_1& r11_0,
+    r10 => r10_31& r10_30& r10_29& r10_28& r10_27& r10_26& r10_25& r10_24& r10_23& r10_22& r10_21& r10_20& r10_19& r10_18& r10_17& r10_16& r10_15& r10_14& r10_13& r10_12& r10_11& r10_10& r10_9& r10_8& r10_7& r10_6& r10_5& r10_4& r10_3& r10_2& r10_1& r10_0,
+    r9 => r9_31& r9_30& r9_29& r9_28& r9_27& r9_26& r9_25& r9_24& r9_23& r9_22& r9_21& r9_20& r9_19& r9_18& r9_17& r9_16& r9_15& r9_14& r9_13& r9_12& r9_11& r9_10& r9_9& r9_8& r9_7& r9_6& r9_5& r9_4& r9_3& r9_2& r9_1& r9_0,
+    r8 => r8_31& r8_30& r8_29& r8_28& r8_27& r8_26& r8_25& r8_24& r8_23& r8_22& r8_21& r8_20& r8_19& r8_18& r8_17& r8_16& r8_15& r8_14& r8_13& r8_12& r8_11& r8_10& r8_9& r8_8& r8_7& r8_6& r8_5& r8_4& r8_3& r8_2& r8_1& r8_0,
+    r7 => r7_31& r7_30& r7_29& r7_28& r7_27& r7_26& r7_25& r7_24& r7_23& r7_22& r7_21& r7_20& r7_19& r7_18& r7_17& r7_16& r7_15& r7_14& r7_13& r7_12& r7_11& r7_10& r7_9& r7_8& r7_7& r7_6& r7_5& r7_4& r7_3& r7_2& r7_1& r7_0,
+    r6 => r6_31& r6_30& r6_29& r6_28& r6_27& r6_26& r6_25& r6_24& r6_23& r6_22& r6_21& r6_20& r6_19& r6_18& r6_17& r6_16& r6_15& r6_14& r6_13& r6_12& r6_11& r6_10& r6_9& r6_8& r6_7& r6_6& r6_5& r6_4& r6_3& r6_2& r6_1& r6_0,
+    r5 => r5_31& r5_30& r5_29& r5_28& r5_27& r5_26& r5_25& r5_24& r5_23& r5_22& r5_21& r5_20& r5_19& r5_18& r5_17& r5_16& r5_15& r5_14& r5_13& r5_12& r5_11& r5_10& r5_9& r5_8& r5_7& r5_6& r5_5& r5_4& r5_3& r5_2& r5_1& r5_0,
+    r4 => r4_31& r4_30& r4_29& r4_28& r4_27& r4_26& r4_25& r4_24& r4_23& r4_22& r4_21& r4_20& r4_19& r4_18& r4_17& r4_16& r4_15& r4_14& r4_13& r4_12& r4_11& r4_10& r4_9& r4_8& r4_7& r4_6& r4_5& r4_4& r4_3& r4_2& r4_1& r4_0,
+    r3 => r3_31& r3_30& r3_29& r3_28& r3_27& r3_26& r3_25& r3_24& r3_23& r3_22& r3_21& r3_20& r3_19& r3_18& r3_17& r3_16& r3_15& r3_14& r3_13& r3_12& r3_11& r3_10& r3_9& r3_8& r3_7& r3_6& r3_5& r3_4& r3_3& r3_2& r3_1& r3_0,
+    r2 => r2_31& r2_30& r2_29& r2_28& r2_27& r2_26& r2_25& r2_24& r2_23& r2_22& r2_21& r2_20& r2_19& r2_18& r2_17& r2_16& r2_15& r2_14& r2_13& r2_12& r2_11& r2_10& r2_9& r2_8& r2_7& r2_6& r2_5& r2_4& r2_3& r2_2& r2_1& r2_0,
+    r1 => r1_31& r1_30& r1_29& r1_28& r1_27& r1_26& r1_25& r1_24& r1_23& r1_22& r1_21& r1_20& r1_19& r1_18& r1_17& r1_16& r1_15& r1_14& r1_13& r1_12& r1_11& r1_10& r1_9& r1_8& r1_7& r1_6& r1_5& r1_4& r1_3& r1_2& r1_1& r1_0,
+    r0 => r0_31& r0_30& r0_29& r0_28& r0_27& r0_26& r0_25& r0_24& r0_23& r0_22& r0_21& r0_20& r0_19& r0_18& r0_17& r0_16& r0_15& r0_14& r0_13& r0_12& r0_11& r0_10& r0_9& r0_8& r0_7& r0_6& r0_5& r0_4& r0_3& r0_2& r0_1& r0_0,
+    q => b(15)& b(14)& b(13)& b(12)& b(11)& b(10)& b(9)& b(8)& b(7)& b(6)& b(5)& b(4)& b(3)& b(2)& b(1)& b(0),
+    p => a(16)& a(15)& a(14)& a(13)& a(12)& a(11)& a(10)& a(9)& a(8)& a(7)& a(6)& a(5)& a(4)& a(3)& a(2)& a(1)& a(0));
+  zero0 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_0);
+  zero1 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_1);
+  zero2 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_2);
+  zero3 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_3);
+  zero4 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_4);
+  zero5 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_5);
+  zero6 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_6);
+  zero7 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_7);
+  zero8 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_8);
+  zero9 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_9);
+  zero10 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_10);
+  zero11 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_11);
+  zero12 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_12);
+  zero13 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_13);
+  zero14 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_14);
+  zero15 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_15);
+  zero16 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_16);
+  zero17 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_17);
+  zero18 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_18);
+  zero19 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_19);
+  zero20 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_20);
+  zero21 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_21);
+  zero22 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_22);
+  zero23 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_23);
+  zero24 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_24);
+  zero25 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_25);
+  zero26 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_26);
+  zero27 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_27);
+  zero28 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_28);
+  zero29 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_29);
+  zero30 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_30);
+  zero31 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero_31);
+  m32add_1 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum1_31& sum1_30& sum1_29& sum1_28& sum1_27& sum1_26& sum1_25& sum1_24& sum1_23& sum1_22& sum1_21& sum1_20& sum1_19& sum1_18& sum1_17& sum1_16& sum1_15& sum1_14& sum1_13& sum1_12& sum1_11& sum1_10& sum1_9& sum1_8& sum1_7& sum1_6& sum1_5& sum1_4& sum1_3& sum1_2& sum1_1& sum1_0,
+    b => r0_31& r0_30& r0_29& r0_28& r0_27& r0_26& r0_25& r0_24& r0_23& r0_22& r0_21& r0_20& r0_19& r0_18& r0_17& r0_16& r0_15& r0_14& r0_13& r0_12& r0_11& r0_10& r0_9& r0_8& r0_7& r0_6& r0_5& r0_4& r0_3& r0_2& r0_1& r0_0,
+    a => o_zero_31& o_zero_30& o_zero_29& o_zero_28& o_zero_27& o_zero_26& o_zero_25& o_zero_24& o_zero_23& o_zero_22& o_zero_21& o_zero_20& o_zero_19& o_zero_18& o_zero_17& o_zero_16& o_zero_15& o_zero_14& o_zero_13& o_zero_12& o_zero_11& o_zero_10& o_zero_9& o_zero_8& o_zero_7& o_zero_6& o_zero_5& o_zero_4& o_zero_3& o_zero_2& o_zero_1& o_zero_0);
+  m32add_2 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum2_31& sum2_30& sum2_29& sum2_28& sum2_27& sum2_26& sum2_25& sum2_24& sum2_23& sum2_22& sum2_21& sum2_20& sum2_19& sum2_18& sum2_17& sum2_16& sum2_15& sum2_14& sum2_13& sum2_12& sum2_11& sum2_10& sum2_9& sum2_8& sum2_7& sum2_6& sum2_5& sum2_4& sum2_3& sum2_2& sum2_1& sum2_0,
+    b => r1_31& r1_30& r1_29& r1_28& r1_27& r1_26& r1_25& r1_24& r1_23& r1_22& r1_21& r1_20& r1_19& r1_18& r1_17& r1_16& r1_15& r1_14& r1_13& r1_12& r1_11& r1_10& r1_9& r1_8& r1_7& r1_6& r1_5& r1_4& r1_3& r1_2& r1_1& r1_0,
+    a => sum1_31& sum1_30& sum1_29& sum1_28& sum1_27& sum1_26& sum1_25& sum1_24& sum1_23& sum1_22& sum1_21& sum1_20& sum1_19& sum1_18& sum1_17& sum1_16& sum1_15& sum1_14& sum1_13& sum1_12& sum1_11& sum1_10& sum1_9& sum1_8& sum1_7& sum1_6& sum1_5& sum1_4& sum1_3& sum1_2& sum1_1& sum1_0);
+  m32add_3 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum3_31& sum3_30& sum3_29& sum3_28& sum3_27& sum3_26& sum3_25& sum3_24& sum3_23& sum3_22& sum3_21& sum3_20& sum3_19& sum3_18& sum3_17& sum3_16& sum3_15& sum3_14& sum3_13& sum3_12& sum3_11& sum3_10& sum3_9& sum3_8& sum3_7& sum3_6& sum3_5& sum3_4& sum3_3& sum3_2& sum3_1& sum3_0,
+    b => r2_31& r2_30& r2_29& r2_28& r2_27& r2_26& r2_25& r2_24& r2_23& r2_22& r2_21& r2_20& r2_19& r2_18& r2_17& r2_16& r2_15& r2_14& r2_13& r2_12& r2_11& r2_10& r2_9& r2_8& r2_7& r2_6& r2_5& r2_4& r2_3& r2_2& r2_1& r2_0,
+    a => sum2_31& sum2_30& sum2_29& sum2_28& sum2_27& sum2_26& sum2_25& sum2_24& sum2_23& sum2_22& sum2_21& sum2_20& sum2_19& sum2_18& sum2_17& sum2_16& sum2_15& sum2_14& sum2_13& sum2_12& sum2_11& sum2_10& sum2_9& sum2_8& sum2_7& sum2_6& sum2_5& sum2_4& sum2_3& sum2_2& sum2_1& sum2_0);
+  m32add_4 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum4_31& sum4_30& sum4_29& sum4_28& sum4_27& sum4_26& sum4_25& sum4_24& sum4_23& sum4_22& sum4_21& sum4_20& sum4_19& sum4_18& sum4_17& sum4_16& sum4_15& sum4_14& sum4_13& sum4_12& sum4_11& sum4_10& sum4_9& sum4_8& sum4_7& sum4_6& sum4_5& sum4_4& sum4_3& sum4_2& sum4_1& sum4_0,
+    b => r3_31& r3_30& r3_29& r3_28& r3_27& r3_26& r3_25& r3_24& r3_23& r3_22& r3_21& r3_20& r3_19& r3_18& r3_17& r3_16& r3_15& r3_14& r3_13& r3_12& r3_11& r3_10& r3_9& r3_8& r3_7& r3_6& r3_5& r3_4& r3_3& r3_2& r3_1& r3_0,
+    a => sum3_31& sum3_30& sum3_29& sum3_28& sum3_27& sum3_26& sum3_25& sum3_24& sum3_23& sum3_22& sum3_21& sum3_20& sum3_19& sum3_18& sum3_17& sum3_16& sum3_15& sum3_14& sum3_13& sum3_12& sum3_11& sum3_10& sum3_9& sum3_8& sum3_7& sum3_6& sum3_5& sum3_4& sum3_3& sum3_2& sum3_1& sum3_0);
+  m32add_5 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum5_31& sum5_30& sum5_29& sum5_28& sum5_27& sum5_26& sum5_25& sum5_24& sum5_23& sum5_22& sum5_21& sum5_20& sum5_19& sum5_18& sum5_17& sum5_16& sum5_15& sum5_14& sum5_13& sum5_12& sum5_11& sum5_10& sum5_9& sum5_8& sum5_7& sum5_6& sum5_5& sum5_4& sum5_3& sum5_2& sum5_1& sum5_0,
+    b => r4_31& r4_30& r4_29& r4_28& r4_27& r4_26& r4_25& r4_24& r4_23& r4_22& r4_21& r4_20& r4_19& r4_18& r4_17& r4_16& r4_15& r4_14& r4_13& r4_12& r4_11& r4_10& r4_9& r4_8& r4_7& r4_6& r4_5& r4_4& r4_3& r4_2& r4_1& r4_0,
+    a => sum4_31& sum4_30& sum4_29& sum4_28& sum4_27& sum4_26& sum4_25& sum4_24& sum4_23& sum4_22& sum4_21& sum4_20& sum4_19& sum4_18& sum4_17& sum4_16& sum4_15& sum4_14& sum4_13& sum4_12& sum4_11& sum4_10& sum4_9& sum4_8& sum4_7& sum4_6& sum4_5& sum4_4& sum4_3& sum4_2& sum4_1& sum4_0);
+  m32add_6 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum6_31& sum6_30& sum6_29& sum6_28& sum6_27& sum6_26& sum6_25& sum6_24& sum6_23& sum6_22& sum6_21& sum6_20& sum6_19& sum6_18& sum6_17& sum6_16& sum6_15& sum6_14& sum6_13& sum6_12& sum6_11& sum6_10& sum6_9& sum6_8& sum6_7& sum6_6& sum6_5& sum6_4& sum6_3& sum6_2& sum6_1& sum6_0,
+    b => r5_31& r5_30& r5_29& r5_28& r5_27& r5_26& r5_25& r5_24& r5_23& r5_22& r5_21& r5_20& r5_19& r5_18& r5_17& r5_16& r5_15& r5_14& r5_13& r5_12& r5_11& r5_10& r5_9& r5_8& r5_7& r5_6& r5_5& r5_4& r5_3& r5_2& r5_1& r5_0,
+    a => sum5_31& sum5_30& sum5_29& sum5_28& sum5_27& sum5_26& sum5_25& sum5_24& sum5_23& sum5_22& sum5_21& sum5_20& sum5_19& sum5_18& sum5_17& sum5_16& sum5_15& sum5_14& sum5_13& sum5_12& sum5_11& sum5_10& sum5_9& sum5_8& sum5_7& sum5_6& sum5_5& sum5_4& sum5_3& sum5_2& sum5_1& sum5_0);
+  m32add_7 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum7_31& sum7_30& sum7_29& sum7_28& sum7_27& sum7_26& sum7_25& sum7_24& sum7_23& sum7_22& sum7_21& sum7_20& sum7_19& sum7_18& sum7_17& sum7_16& sum7_15& sum7_14& sum7_13& sum7_12& sum7_11& sum7_10& sum7_9& sum7_8& sum7_7& sum7_6& sum7_5& sum7_4& sum7_3& sum7_2& sum7_1& sum7_0,
+    b => r6_31& r6_30& r6_29& r6_28& r6_27& r6_26& r6_25& r6_24& r6_23& r6_22& r6_21& r6_20& r6_19& r6_18& r6_17& r6_16& r6_15& r6_14& r6_13& r6_12& r6_11& r6_10& r6_9& r6_8& r6_7& r6_6& r6_5& r6_4& r6_3& r6_2& r6_1& r6_0,
+    a => sum6_31& sum6_30& sum6_29& sum6_28& sum6_27& sum6_26& sum6_25& sum6_24& sum6_23& sum6_22& sum6_21& sum6_20& sum6_19& sum6_18& sum6_17& sum6_16& sum6_15& sum6_14& sum6_13& sum6_12& sum6_11& sum6_10& sum6_9& sum6_8& sum6_7& sum6_6& sum6_5& sum6_4& sum6_3& sum6_2& sum6_1& sum6_0);
+  m32add_8 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum8_31& sum8_30& sum8_29& sum8_28& sum8_27& sum8_26& sum8_25& sum8_24& sum8_23& sum8_22& sum8_21& sum8_20& sum8_19& sum8_18& sum8_17& sum8_16& sum8_15& sum8_14& sum8_13& sum8_12& sum8_11& sum8_10& sum8_9& sum8_8& sum8_7& sum8_6& sum8_5& sum8_4& sum8_3& sum8_2& sum8_1& sum8_0,
+    b => r7_31& r7_30& r7_29& r7_28& r7_27& r7_26& r7_25& r7_24& r7_23& r7_22& r7_21& r7_20& r7_19& r7_18& r7_17& r7_16& r7_15& r7_14& r7_13& r7_12& r7_11& r7_10& r7_9& r7_8& r7_7& r7_6& r7_5& r7_4& r7_3& r7_2& r7_1& r7_0,
+    a => sum7_31& sum7_30& sum7_29& sum7_28& sum7_27& sum7_26& sum7_25& sum7_24& sum7_23& sum7_22& sum7_21& sum7_20& sum7_19& sum7_18& sum7_17& sum7_16& sum7_15& sum7_14& sum7_13& sum7_12& sum7_11& sum7_10& sum7_9& sum7_8& sum7_7& sum7_6& sum7_5& sum7_4& sum7_3& sum7_2& sum7_1& sum7_0);
+  m32add_9 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum9_31& sum9_30& sum9_29& sum9_28& sum9_27& sum9_26& sum9_25& sum9_24& sum9_23& sum9_22& sum9_21& sum9_20& sum9_19& sum9_18& sum9_17& sum9_16& sum9_15& sum9_14& sum9_13& sum9_12& sum9_11& sum9_10& sum9_9& sum9_8& sum9_7& sum9_6& sum9_5& sum9_4& sum9_3& sum9_2& sum9_1& sum9_0,
+    b => r8_31& r8_30& r8_29& r8_28& r8_27& r8_26& r8_25& r8_24& r8_23& r8_22& r8_21& r8_20& r8_19& r8_18& r8_17& r8_16& r8_15& r8_14& r8_13& r8_12& r8_11& r8_10& r8_9& r8_8& r8_7& r8_6& r8_5& r8_4& r8_3& r8_2& r8_1& r8_0,
+    a => sum8_31& sum8_30& sum8_29& sum8_28& sum8_27& sum8_26& sum8_25& sum8_24& sum8_23& sum8_22& sum8_21& sum8_20& sum8_19& sum8_18& sum8_17& sum8_16& sum8_15& sum8_14& sum8_13& sum8_12& sum8_11& sum8_10& sum8_9& sum8_8& sum8_7& sum8_6& sum8_5& sum8_4& sum8_3& sum8_2& sum8_1& sum8_0);
+  m32add_10 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum10_31& sum10_30& sum10_29& sum10_28& sum10_27& sum10_26& sum10_25& sum10_24& sum10_23& sum10_22& sum10_21& sum10_20& sum10_19& sum10_18& sum10_17& sum10_16& sum10_15& sum10_14& sum10_13& sum10_12& sum10_11& sum10_10& sum10_9& sum10_8& sum10_7& sum10_6& sum10_5& sum10_4& sum10_3& sum10_2& sum10_1& sum10_0,
+    b => r9_31& r9_30& r9_29& r9_28& r9_27& r9_26& r9_25& r9_24& r9_23& r9_22& r9_21& r9_20& r9_19& r9_18& r9_17& r9_16& r9_15& r9_14& r9_13& r9_12& r9_11& r9_10& r9_9& r9_8& r9_7& r9_6& r9_5& r9_4& r9_3& r9_2& r9_1& r9_0,
+    a => sum9_31& sum9_30& sum9_29& sum9_28& sum9_27& sum9_26& sum9_25& sum9_24& sum9_23& sum9_22& sum9_21& sum9_20& sum9_19& sum9_18& sum9_17& sum9_16& sum9_15& sum9_14& sum9_13& sum9_12& sum9_11& sum9_10& sum9_9& sum9_8& sum9_7& sum9_6& sum9_5& sum9_4& sum9_3& sum9_2& sum9_1& sum9_0);
+  m32add_11 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum11_31& sum11_30& sum11_29& sum11_28& sum11_27& sum11_26& sum11_25& sum11_24& sum11_23& sum11_22& sum11_21& sum11_20& sum11_19& sum11_18& sum11_17& sum11_16& sum11_15& sum11_14& sum11_13& sum11_12& sum11_11& sum11_10& sum11_9& sum11_8& sum11_7& sum11_6& sum11_5& sum11_4& sum11_3& sum11_2& sum11_1& sum11_0,
+    b => r10_31& r10_30& r10_29& r10_28& r10_27& r10_26& r10_25& r10_24& r10_23& r10_22& r10_21& r10_20& r10_19& r10_18& r10_17& r10_16& r10_15& r10_14& r10_13& r10_12& r10_11& r10_10& r10_9& r10_8& r10_7& r10_6& r10_5& r10_4& r10_3& r10_2& r10_1& r10_0,
+    a => sum10_31& sum10_30& sum10_29& sum10_28& sum10_27& sum10_26& sum10_25& sum10_24& sum10_23& sum10_22& sum10_21& sum10_20& sum10_19& sum10_18& sum10_17& sum10_16& sum10_15& sum10_14& sum10_13& sum10_12& sum10_11& sum10_10& sum10_9& sum10_8& sum10_7& sum10_6& sum10_5& sum10_4& sum10_3& sum10_2& sum10_1& sum10_0);
+  m32add_12 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum12_31& sum12_30& sum12_29& sum12_28& sum12_27& sum12_26& sum12_25& sum12_24& sum12_23& sum12_22& sum12_21& sum12_20& sum12_19& sum12_18& sum12_17& sum12_16& sum12_15& sum12_14& sum12_13& sum12_12& sum12_11& sum12_10& sum12_9& sum12_8& sum12_7& sum12_6& sum12_5& sum12_4& sum12_3& sum12_2& sum12_1& sum12_0,
+    b => r11_31& r11_30& r11_29& r11_28& r11_27& r11_26& r11_25& r11_24& r11_23& r11_22& r11_21& r11_20& r11_19& r11_18& r11_17& r11_16& r11_15& r11_14& r11_13& r11_12& r11_11& r11_10& r11_9& r11_8& r11_7& r11_6& r11_5& r11_4& r11_3& r11_2& r11_1& r11_0,
+    a => sum11_31& sum11_30& sum11_29& sum11_28& sum11_27& sum11_26& sum11_25& sum11_24& sum11_23& sum11_22& sum11_21& sum11_20& sum11_19& sum11_18& sum11_17& sum11_16& sum11_15& sum11_14& sum11_13& sum11_12& sum11_11& sum11_10& sum11_9& sum11_8& sum11_7& sum11_6& sum11_5& sum11_4& sum11_3& sum11_2& sum11_1& sum11_0);
+  m32add_13 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum13_31& sum13_30& sum13_29& sum13_28& sum13_27& sum13_26& sum13_25& sum13_24& sum13_23& sum13_22& sum13_21& sum13_20& sum13_19& sum13_18& sum13_17& sum13_16& sum13_15& sum13_14& sum13_13& sum13_12& sum13_11& sum13_10& sum13_9& sum13_8& sum13_7& sum13_6& sum13_5& sum13_4& sum13_3& sum13_2& sum13_1& sum13_0,
+    b => r12_31& r12_30& r12_29& r12_28& r12_27& r12_26& r12_25& r12_24& r12_23& r12_22& r12_21& r12_20& r12_19& r12_18& r12_17& r12_16& r12_15& r12_14& r12_13& r12_12& r12_11& r12_10& r12_9& r12_8& r12_7& r12_6& r12_5& r12_4& r12_3& r12_2& r12_1& r12_0,
+    a => sum12_31& sum12_30& sum12_29& sum12_28& sum12_27& sum12_26& sum12_25& sum12_24& sum12_23& sum12_22& sum12_21& sum12_20& sum12_19& sum12_18& sum12_17& sum12_16& sum12_15& sum12_14& sum12_13& sum12_12& sum12_11& sum12_10& sum12_9& sum12_8& sum12_7& sum12_6& sum12_5& sum12_4& sum12_3& sum12_2& sum12_1& sum12_0);
+  m32add_14 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum14_31& sum14_30& sum14_29& sum14_28& sum14_27& sum14_26& sum14_25& sum14_24& sum14_23& sum14_22& sum14_21& sum14_20& sum14_19& sum14_18& sum14_17& sum14_16& sum14_15& sum14_14& sum14_13& sum14_12& sum14_11& sum14_10& sum14_9& sum14_8& sum14_7& sum14_6& sum14_5& sum14_4& sum14_3& sum14_2& sum14_1& sum14_0,
+    b => r13_31& r13_30& r13_29& r13_28& r13_27& r13_26& r13_25& r13_24& r13_23& r13_22& r13_21& r13_20& r13_19& r13_18& r13_17& r13_16& r13_15& r13_14& r13_13& r13_12& r13_11& r13_10& r13_9& r13_8& r13_7& r13_6& r13_5& r13_4& r13_3& r13_2& r13_1& r13_0,
+    a => sum13_31& sum13_30& sum13_29& sum13_28& sum13_27& sum13_26& sum13_25& sum13_24& sum13_23& sum13_22& sum13_21& sum13_20& sum13_19& sum13_18& sum13_17& sum13_16& sum13_15& sum13_14& sum13_13& sum13_12& sum13_11& sum13_10& sum13_9& sum13_8& sum13_7& sum13_6& sum13_5& sum13_4& sum13_3& sum13_2& sum13_1& sum13_0);
+  m32add_15 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum15_31& sum15_30& sum15_29& sum15_28& sum15_27& sum15_26& sum15_25& sum15_24& sum15_23& sum15_22& sum15_21& sum15_20& sum15_19& sum15_18& sum15_17& sum15_16& sum15_15& sum15_14& sum15_13& sum15_12& sum15_11& sum15_10& sum15_9& sum15_8& sum15_7& sum15_6& sum15_5& sum15_4& sum15_3& sum15_2& sum15_1& sum15_0,
+    b => r14_31& r14_30& r14_29& r14_28& r14_27& r14_26& r14_25& r14_24& r14_23& r14_22& r14_21& r14_20& r14_19& r14_18& r14_17& r14_16& r14_15& r14_14& r14_13& r14_12& r14_11& r14_10& r14_9& r14_8& r14_7& r14_6& r14_5& r14_4& r14_3& r14_2& r14_1& r14_0,
+    a => sum14_31& sum14_30& sum14_29& sum14_28& sum14_27& sum14_26& sum14_25& sum14_24& sum14_23& sum14_22& sum14_21& sum14_20& sum14_19& sum14_18& sum14_17& sum14_16& sum14_15& sum14_14& sum14_13& sum14_12& sum14_11& sum14_10& sum14_9& sum14_8& sum14_7& sum14_6& sum14_5& sum14_4& sum14_3& sum14_2& sum14_1& sum14_0);
+  m32add_16 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum16_31& sum16_30& sum16_29& sum16_28& sum16_27& sum16_26& sum16_25& sum16_24& sum16_23& sum16_22& sum16_21& sum16_20& sum16_19& sum16_18& sum16_17& sum16_16& sum16_15& sum16_14& sum16_13& sum16_12& sum16_11& sum16_10& sum16_9& sum16_8& sum16_7& sum16_6& sum16_5& sum16_4& sum16_3& sum16_2& sum16_1& sum16_0,
+    b => r15_31& r15_30& r15_29& r15_28& r15_27& r15_26& r15_25& r15_24& r15_23& r15_22& r15_21& r15_20& r15_19& r15_18& r15_17& r15_16& r15_15& r15_14& r15_13& r15_12& r15_11& r15_10& r15_9& r15_8& r15_7& r15_6& r15_5& r15_4& r15_3& r15_2& r15_1& r15_0,
+    a => sum15_31& sum15_30& sum15_29& sum15_28& sum15_27& sum15_26& sum15_25& sum15_24& sum15_23& sum15_22& sum15_21& sum15_20& sum15_19& sum15_18& sum15_17& sum15_16& sum15_15& sum15_14& sum15_13& sum15_12& sum15_11& sum15_10& sum15_9& sum15_8& sum15_7& sum15_6& sum15_5& sum15_4& sum15_3& sum15_2& sum15_1& sum15_0);
+  m32add_17 : m32adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum17_31& sum17_30& sum17_29& sum17_28& sum17_27& sum17_26& sum17_25& sum17_24& sum17_23& sum17_22& sum17_21& sum17_20& sum17_19& sum17_18& sum17_17& sum17_16& sum17_15& sum17_14& sum17_13& sum17_12& sum17_11& sum17_10& sum17_9& sum17_8& sum17_7& sum17_6& sum17_5& sum17_4& sum17_3& sum17_2& sum17_1& sum17_0,
+    b => r16_31& r16_30& r16_29& r16_28& r16_27& r16_26& r16_25& r16_24& r16_23& r16_22& r16_21& r16_20& r16_19& r16_18& r16_17& r16_16& r16_15& r16_14& r16_13& r16_12& r16_11& r16_10& r16_9& r16_8& r16_7& r16_6& r16_5& r16_4& r16_3& r16_2& r16_1& r16_0,
+    a => sum16_31& sum16_30& sum16_29& sum16_28& sum16_27& sum16_26& sum16_25& sum16_24& sum16_23& sum16_22& sum16_21& sum16_20& sum16_19& sum16_18& sum16_17& sum16_16& sum16_15& sum16_14& sum16_13& sum16_12& sum16_11& sum16_10& sum16_9& sum16_8& sum16_7& sum16_6& sum16_5& sum16_4& sum16_3& sum16_2& sum16_1& sum16_0);
+  or2_0 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(0),
+    i1 => sum17_0,
+    i0 => b(16));
+  or2_1 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(1),
+    i1 => sum17_1,
+    i0 => b(16));
+  or2_2 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(2),
+    i1 => sum17_2,
+    i0 => b(16));
+  or2_3 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(3),
+    i1 => sum17_3,
+    i0 => b(16));
+  or2_4 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(4),
+    i1 => sum17_4,
+    i0 => b(16));
+  or2_5 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(5),
+    i1 => sum17_5,
+    i0 => b(16));
+  or2_6 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(6),
+    i1 => sum17_6,
+    i0 => b(16));
+  or2_7 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(7),
+    i1 => sum17_7,
+    i0 => b(16));
+  or2_8 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(8),
+    i1 => sum17_8,
+    i0 => b(16));
+  or2_9 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(9),
+    i1 => sum17_9,
+    i0 => b(16));
+  or2_10 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(10),
+    i1 => sum17_10,
+    i0 => b(16));
+  or2_11 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(11),
+    i1 => sum17_11,
+    i0 => b(16));
+  or2_12 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(12),
+    i1 => sum17_12,
+    i0 => b(16));
+  or2_13 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(13),
+    i1 => sum17_13,
+    i0 => b(16));
+  or2_14 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(14),
+    i1 => sum17_14,
+    i0 => b(16));
+  or2_15 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(15),
+    i1 => sum17_15,
+    i0 => b(16));
+  or2_16 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(16),
+    i1 => sum17_16,
+    i0 => b(16));
+  or2_17 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(17),
+    i1 => sum17_17,
+    i0 => b(16));
+  or2_18 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(18),
+    i1 => sum17_18,
+    i0 => b(16));
+  or2_19 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(19),
+    i1 => sum17_19,
+    i0 => b(16));
+  or2_20 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(20),
+    i1 => sum17_20,
+    i0 => b(16));
+  or2_21 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(21),
+    i1 => sum17_21,
+    i0 => b(16));
+  or2_22 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(22),
+    i1 => sum17_22,
+    i0 => b(16));
+  or2_23 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(23),
+    i1 => sum17_23,
+    i0 => b(16));
+  or2_24 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(24),
+    i1 => sum17_24,
+    i0 => b(16));
+  or2_25 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(25),
+    i1 => sum17_25,
+    i0 => b(16));
+  or2_26 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(26),
+    i1 => sum17_26,
+    i0 => b(16));
+  or2_27 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(27),
+    i1 => sum17_27,
+    i0 => b(16));
+  or2_28 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(28),
+    i1 => sum17_28,
+    i0 => b(16));
+  or2_29 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(29),
+    i1 => sum17_29,
+    i0 => b(16));
+  or2_30 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(30),
+    i1 => sum17_30,
+    i0 => b(16));
+  or2_31 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(31),
+    i1 => sum17_31,
+    i0 => b(16));
+
+end VST;

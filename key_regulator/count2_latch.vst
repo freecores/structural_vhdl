@@ -1,0 +1,69 @@
+-- VHDL structural description generated from `count2_latch`
+--		date : Thu Aug  2 10:02:23 2001
+
+
+-- Entity Declaration
+
+ENTITY count2_latch IS
+  PORT (
+  clk : in BIT;	-- clk
+  en : in BIT;	-- en
+  rst : in BIT;	-- rst
+  q : out BIT_VECTOR (1 DOWNTO 0);	-- q
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END count2_latch;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF count2_latch IS
+  COMPONENT count2
+    port (
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    q : out BIT_VECTOR(1 DOWNTO 0);	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT latch
+    port (
+    a : in BIT;	-- a
+    en : in BIT;	-- en
+    b : inout BIT;	-- b
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL p_0 : BIT;	-- p 0
+  SIGNAL p_1 : BIT;	-- p 1
+  SIGNAL vd : BIT;	-- vd
+
+BEGIN
+
+  count1 : count2
+    PORT MAP (
+    vss => vss,
+    vdd => vd,
+    q => p_1& p_0,
+    rst => rst,
+    clk => clk);
+  latch0 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => q(0),
+    en => en,
+    a => p_0);
+  latch1 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => q(1),
+    en => en,
+    a => p_1);
+
+end VST;

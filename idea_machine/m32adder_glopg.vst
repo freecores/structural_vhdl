@@ -1,0 +1,1311 @@
+-- VHDL structural description generated from `m32adder_glopg`
+--		date : Sat Sep  8 03:51:17 2001
+
+
+-- Entity Declaration
+
+ENTITY m32adder_glopg IS
+  PORT (
+  a : in BIT_VECTOR (31 DOWNTO 0);	-- a
+  b : in BIT_VECTOR (31 DOWNTO 0);	-- b
+  sum : out BIT_VECTOR (31 DOWNTO 0);	-- sum
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END m32adder_glopg;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF m32adder_glopg IS
+  COMPONENT buf_x2
+    port (
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT o2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT ao22_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL cout0 : BIT;	-- cout0
+  SIGNAL halfadder_netops8 : BIT;	-- halfadder.netops8
+  SIGNAL cout1 : BIT;	-- cout1
+  SIGNAL fulladder1_auxsc2 : BIT;	-- fulladder1.auxsc2
+  SIGNAL fulladder1_auxsc4 : BIT;	-- fulladder1.auxsc4
+  SIGNAL fulladder1_auxsc1 : BIT;	-- fulladder1.auxsc1
+  SIGNAL cout2 : BIT;	-- cout2
+  SIGNAL fulladder2_auxsc2 : BIT;	-- fulladder2.auxsc2
+  SIGNAL fulladder2_auxsc4 : BIT;	-- fulladder2.auxsc4
+  SIGNAL fulladder2_auxsc1 : BIT;	-- fulladder2.auxsc1
+  SIGNAL cout3 : BIT;	-- cout3
+  SIGNAL fulladder3_auxsc2 : BIT;	-- fulladder3.auxsc2
+  SIGNAL fulladder3_auxsc4 : BIT;	-- fulladder3.auxsc4
+  SIGNAL fulladder3_auxsc1 : BIT;	-- fulladder3.auxsc1
+  SIGNAL cout4 : BIT;	-- cout4
+  SIGNAL fulladder4_auxsc2 : BIT;	-- fulladder4.auxsc2
+  SIGNAL fulladder4_auxsc4 : BIT;	-- fulladder4.auxsc4
+  SIGNAL fulladder4_auxsc1 : BIT;	-- fulladder4.auxsc1
+  SIGNAL cout5 : BIT;	-- cout5
+  SIGNAL fulladder5_auxsc2 : BIT;	-- fulladder5.auxsc2
+  SIGNAL fulladder5_auxsc4 : BIT;	-- fulladder5.auxsc4
+  SIGNAL fulladder5_auxsc1 : BIT;	-- fulladder5.auxsc1
+  SIGNAL cout6 : BIT;	-- cout6
+  SIGNAL fulladder6_auxsc2 : BIT;	-- fulladder6.auxsc2
+  SIGNAL fulladder6_auxsc4 : BIT;	-- fulladder6.auxsc4
+  SIGNAL fulladder6_auxsc1 : BIT;	-- fulladder6.auxsc1
+  SIGNAL cout7 : BIT;	-- cout7
+  SIGNAL fulladder7_auxsc2 : BIT;	-- fulladder7.auxsc2
+  SIGNAL fulladder7_auxsc4 : BIT;	-- fulladder7.auxsc4
+  SIGNAL fulladder7_auxsc1 : BIT;	-- fulladder7.auxsc1
+  SIGNAL cout8 : BIT;	-- cout8
+  SIGNAL fulladder8_auxsc2 : BIT;	-- fulladder8.auxsc2
+  SIGNAL fulladder8_auxsc4 : BIT;	-- fulladder8.auxsc4
+  SIGNAL fulladder8_auxsc1 : BIT;	-- fulladder8.auxsc1
+  SIGNAL cout9 : BIT;	-- cout9
+  SIGNAL fulladder9_auxsc2 : BIT;	-- fulladder9.auxsc2
+  SIGNAL fulladder9_auxsc4 : BIT;	-- fulladder9.auxsc4
+  SIGNAL fulladder9_auxsc1 : BIT;	-- fulladder9.auxsc1
+  SIGNAL cout10 : BIT;	-- cout10
+  SIGNAL fulladder10_auxsc2 : BIT;	-- fulladder10.auxsc2
+  SIGNAL fulladder10_auxsc4 : BIT;	-- fulladder10.auxsc4
+  SIGNAL fulladder10_auxsc1 : BIT;	-- fulladder10.auxsc1
+  SIGNAL cout11 : BIT;	-- cout11
+  SIGNAL fulladder11_auxsc2 : BIT;	-- fulladder11.auxsc2
+  SIGNAL fulladder11_auxsc4 : BIT;	-- fulladder11.auxsc4
+  SIGNAL fulladder11_auxsc1 : BIT;	-- fulladder11.auxsc1
+  SIGNAL cout12 : BIT;	-- cout12
+  SIGNAL fulladder12_auxsc2 : BIT;	-- fulladder12.auxsc2
+  SIGNAL fulladder12_auxsc4 : BIT;	-- fulladder12.auxsc4
+  SIGNAL fulladder12_auxsc1 : BIT;	-- fulladder12.auxsc1
+  SIGNAL cout13 : BIT;	-- cout13
+  SIGNAL fulladder13_auxsc2 : BIT;	-- fulladder13.auxsc2
+  SIGNAL fulladder13_auxsc4 : BIT;	-- fulladder13.auxsc4
+  SIGNAL fulladder13_auxsc1 : BIT;	-- fulladder13.auxsc1
+  SIGNAL cout14 : BIT;	-- cout14
+  SIGNAL fulladder14_auxsc2 : BIT;	-- fulladder14.auxsc2
+  SIGNAL fulladder14_auxsc4 : BIT;	-- fulladder14.auxsc4
+  SIGNAL fulladder14_auxsc1 : BIT;	-- fulladder14.auxsc1
+  SIGNAL cout15 : BIT;	-- cout15
+  SIGNAL fulladder15_auxsc2 : BIT;	-- fulladder15.auxsc2
+  SIGNAL fulladder15_auxsc4 : BIT;	-- fulladder15.auxsc4
+  SIGNAL fulladder15_auxsc1 : BIT;	-- fulladder15.auxsc1
+  SIGNAL cout16 : BIT;	-- cout16
+  SIGNAL fulladder16_auxsc2 : BIT;	-- fulladder16.auxsc2
+  SIGNAL fulladder16_auxsc4 : BIT;	-- fulladder16.auxsc4
+  SIGNAL fulladder16_auxsc1 : BIT;	-- fulladder16.auxsc1
+  SIGNAL cout17 : BIT;	-- cout17
+  SIGNAL fulladder17_auxsc2 : BIT;	-- fulladder17.auxsc2
+  SIGNAL fulladder17_auxsc4 : BIT;	-- fulladder17.auxsc4
+  SIGNAL fulladder17_auxsc1 : BIT;	-- fulladder17.auxsc1
+  SIGNAL cout18 : BIT;	-- cout18
+  SIGNAL fulladder18_auxsc2 : BIT;	-- fulladder18.auxsc2
+  SIGNAL fulladder18_auxsc4 : BIT;	-- fulladder18.auxsc4
+  SIGNAL fulladder18_auxsc1 : BIT;	-- fulladder18.auxsc1
+  SIGNAL cout19 : BIT;	-- cout19
+  SIGNAL fulladder19_auxsc2 : BIT;	-- fulladder19.auxsc2
+  SIGNAL fulladder19_auxsc4 : BIT;	-- fulladder19.auxsc4
+  SIGNAL fulladder19_auxsc1 : BIT;	-- fulladder19.auxsc1
+  SIGNAL cout20 : BIT;	-- cout20
+  SIGNAL fulladder20_auxsc2 : BIT;	-- fulladder20.auxsc2
+  SIGNAL fulladder20_auxsc4 : BIT;	-- fulladder20.auxsc4
+  SIGNAL fulladder20_auxsc1 : BIT;	-- fulladder20.auxsc1
+  SIGNAL cout21 : BIT;	-- cout21
+  SIGNAL fulladder21_auxsc2 : BIT;	-- fulladder21.auxsc2
+  SIGNAL fulladder21_auxsc4 : BIT;	-- fulladder21.auxsc4
+  SIGNAL fulladder21_auxsc1 : BIT;	-- fulladder21.auxsc1
+  SIGNAL cout22 : BIT;	-- cout22
+  SIGNAL fulladder22_auxsc2 : BIT;	-- fulladder22.auxsc2
+  SIGNAL fulladder22_auxsc4 : BIT;	-- fulladder22.auxsc4
+  SIGNAL fulladder22_auxsc1 : BIT;	-- fulladder22.auxsc1
+  SIGNAL cout23 : BIT;	-- cout23
+  SIGNAL fulladder23_auxsc2 : BIT;	-- fulladder23.auxsc2
+  SIGNAL fulladder23_auxsc4 : BIT;	-- fulladder23.auxsc4
+  SIGNAL fulladder23_auxsc1 : BIT;	-- fulladder23.auxsc1
+  SIGNAL cout24 : BIT;	-- cout24
+  SIGNAL fulladder24_auxsc2 : BIT;	-- fulladder24.auxsc2
+  SIGNAL fulladder24_auxsc4 : BIT;	-- fulladder24.auxsc4
+  SIGNAL fulladder24_auxsc1 : BIT;	-- fulladder24.auxsc1
+  SIGNAL cout25 : BIT;	-- cout25
+  SIGNAL fulladder25_auxsc2 : BIT;	-- fulladder25.auxsc2
+  SIGNAL fulladder25_auxsc4 : BIT;	-- fulladder25.auxsc4
+  SIGNAL fulladder25_auxsc1 : BIT;	-- fulladder25.auxsc1
+  SIGNAL cout26 : BIT;	-- cout26
+  SIGNAL fulladder26_auxsc2 : BIT;	-- fulladder26.auxsc2
+  SIGNAL fulladder26_auxsc4 : BIT;	-- fulladder26.auxsc4
+  SIGNAL fulladder26_auxsc1 : BIT;	-- fulladder26.auxsc1
+  SIGNAL cout27 : BIT;	-- cout27
+  SIGNAL fulladder27_auxsc2 : BIT;	-- fulladder27.auxsc2
+  SIGNAL fulladder27_auxsc4 : BIT;	-- fulladder27.auxsc4
+  SIGNAL fulladder27_auxsc1 : BIT;	-- fulladder27.auxsc1
+  SIGNAL cout28 : BIT;	-- cout28
+  SIGNAL fulladder28_auxsc2 : BIT;	-- fulladder28.auxsc2
+  SIGNAL fulladder28_auxsc4 : BIT;	-- fulladder28.auxsc4
+  SIGNAL fulladder28_auxsc1 : BIT;	-- fulladder28.auxsc1
+  SIGNAL cout29 : BIT;	-- cout29
+  SIGNAL fulladder29_auxsc2 : BIT;	-- fulladder29.auxsc2
+  SIGNAL fulladder29_auxsc4 : BIT;	-- fulladder29.auxsc4
+  SIGNAL fulladder29_auxsc1 : BIT;	-- fulladder29.auxsc1
+  SIGNAL cout30 : BIT;	-- cout30
+  SIGNAL fulladder30_auxsc2 : BIT;	-- fulladder30.auxsc2
+  SIGNAL fulladder30_auxsc4 : BIT;	-- fulladder30.auxsc4
+  SIGNAL fulladder30_auxsc1 : BIT;	-- fulladder30.auxsc1
+  SIGNAL o_xr1 : BIT;	-- o_xr1
+
+BEGIN
+
+  halfadder_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(0),
+    i1 => halfadder_netops8,
+    i0 => b(0));
+  halfadder_cout : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout0,
+    i1 => halfadder_netops8,
+    i0 => b(0));
+  halfadder_netopi8 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => halfadder_netops8,
+    i => a(0));
+  fulladder1_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(1),
+    i1 => fulladder1_auxsc1,
+    i0 => cout0);
+  fulladder1_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout1,
+    i1 => fulladder1_auxsc2,
+    i0 => fulladder1_auxsc4);
+  fulladder1_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder1_auxsc2,
+    i1 => a(1),
+    i0 => b(1));
+  fulladder1_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder1_auxsc4,
+    i2 => cout0,
+    i1 => a(1),
+    i0 => b(1));
+  fulladder1_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder1_auxsc1,
+    i1 => a(1),
+    i0 => b(1));
+  fulladder2_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(2),
+    i1 => fulladder2_auxsc1,
+    i0 => cout1);
+  fulladder2_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout2,
+    i1 => fulladder2_auxsc2,
+    i0 => fulladder2_auxsc4);
+  fulladder2_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder2_auxsc2,
+    i1 => a(2),
+    i0 => b(2));
+  fulladder2_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder2_auxsc4,
+    i2 => cout1,
+    i1 => a(2),
+    i0 => b(2));
+  fulladder2_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder2_auxsc1,
+    i1 => a(2),
+    i0 => b(2));
+  fulladder3_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(3),
+    i1 => fulladder3_auxsc1,
+    i0 => cout2);
+  fulladder3_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout3,
+    i1 => fulladder3_auxsc2,
+    i0 => fulladder3_auxsc4);
+  fulladder3_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder3_auxsc2,
+    i1 => a(3),
+    i0 => b(3));
+  fulladder3_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder3_auxsc4,
+    i2 => cout2,
+    i1 => a(3),
+    i0 => b(3));
+  fulladder3_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder3_auxsc1,
+    i1 => a(3),
+    i0 => b(3));
+  fulladder4_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(4),
+    i1 => fulladder4_auxsc1,
+    i0 => cout3);
+  fulladder4_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout4,
+    i1 => fulladder4_auxsc2,
+    i0 => fulladder4_auxsc4);
+  fulladder4_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder4_auxsc2,
+    i1 => a(4),
+    i0 => b(4));
+  fulladder4_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder4_auxsc4,
+    i2 => cout3,
+    i1 => a(4),
+    i0 => b(4));
+  fulladder4_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder4_auxsc1,
+    i1 => a(4),
+    i0 => b(4));
+  fulladder5_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(5),
+    i1 => fulladder5_auxsc1,
+    i0 => cout4);
+  fulladder5_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout5,
+    i1 => fulladder5_auxsc2,
+    i0 => fulladder5_auxsc4);
+  fulladder5_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder5_auxsc2,
+    i1 => a(5),
+    i0 => b(5));
+  fulladder5_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder5_auxsc4,
+    i2 => cout4,
+    i1 => a(5),
+    i0 => b(5));
+  fulladder5_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder5_auxsc1,
+    i1 => a(5),
+    i0 => b(5));
+  fulladder6_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(6),
+    i1 => fulladder6_auxsc1,
+    i0 => cout5);
+  fulladder6_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout6,
+    i1 => fulladder6_auxsc2,
+    i0 => fulladder6_auxsc4);
+  fulladder6_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder6_auxsc2,
+    i1 => a(6),
+    i0 => b(6));
+  fulladder6_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder6_auxsc4,
+    i2 => cout5,
+    i1 => a(6),
+    i0 => b(6));
+  fulladder6_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder6_auxsc1,
+    i1 => a(6),
+    i0 => b(6));
+  fulladder7_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(7),
+    i1 => fulladder7_auxsc1,
+    i0 => cout6);
+  fulladder7_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout7,
+    i1 => fulladder7_auxsc2,
+    i0 => fulladder7_auxsc4);
+  fulladder7_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder7_auxsc2,
+    i1 => a(7),
+    i0 => b(7));
+  fulladder7_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder7_auxsc4,
+    i2 => cout6,
+    i1 => a(7),
+    i0 => b(7));
+  fulladder7_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder7_auxsc1,
+    i1 => a(7),
+    i0 => b(7));
+  fulladder8_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(8),
+    i1 => fulladder8_auxsc1,
+    i0 => cout7);
+  fulladder8_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout8,
+    i1 => fulladder8_auxsc2,
+    i0 => fulladder8_auxsc4);
+  fulladder8_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder8_auxsc2,
+    i1 => a(8),
+    i0 => b(8));
+  fulladder8_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder8_auxsc4,
+    i2 => cout7,
+    i1 => a(8),
+    i0 => b(8));
+  fulladder8_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder8_auxsc1,
+    i1 => a(8),
+    i0 => b(8));
+  fulladder9_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(9),
+    i1 => fulladder9_auxsc1,
+    i0 => cout8);
+  fulladder9_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout9,
+    i1 => fulladder9_auxsc2,
+    i0 => fulladder9_auxsc4);
+  fulladder9_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder9_auxsc2,
+    i1 => a(9),
+    i0 => b(9));
+  fulladder9_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder9_auxsc4,
+    i2 => cout8,
+    i1 => a(9),
+    i0 => b(9));
+  fulladder9_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder9_auxsc1,
+    i1 => a(9),
+    i0 => b(9));
+  fulladder10_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(10),
+    i1 => fulladder10_auxsc1,
+    i0 => cout9);
+  fulladder10_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout10,
+    i1 => fulladder10_auxsc2,
+    i0 => fulladder10_auxsc4);
+  fulladder10_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder10_auxsc2,
+    i1 => a(10),
+    i0 => b(10));
+  fulladder10_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder10_auxsc4,
+    i2 => cout9,
+    i1 => a(10),
+    i0 => b(10));
+  fulladder10_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder10_auxsc1,
+    i1 => a(10),
+    i0 => b(10));
+  fulladder11_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(11),
+    i1 => fulladder11_auxsc1,
+    i0 => cout10);
+  fulladder11_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout11,
+    i1 => fulladder11_auxsc2,
+    i0 => fulladder11_auxsc4);
+  fulladder11_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder11_auxsc2,
+    i1 => a(11),
+    i0 => b(11));
+  fulladder11_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder11_auxsc4,
+    i2 => cout10,
+    i1 => a(11),
+    i0 => b(11));
+  fulladder11_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder11_auxsc1,
+    i1 => a(11),
+    i0 => b(11));
+  fulladder12_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(12),
+    i1 => fulladder12_auxsc1,
+    i0 => cout11);
+  fulladder12_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout12,
+    i1 => fulladder12_auxsc2,
+    i0 => fulladder12_auxsc4);
+  fulladder12_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder12_auxsc2,
+    i1 => a(12),
+    i0 => b(12));
+  fulladder12_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder12_auxsc4,
+    i2 => cout11,
+    i1 => a(12),
+    i0 => b(12));
+  fulladder12_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder12_auxsc1,
+    i1 => a(12),
+    i0 => b(12));
+  fulladder13_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(13),
+    i1 => fulladder13_auxsc1,
+    i0 => cout12);
+  fulladder13_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout13,
+    i1 => fulladder13_auxsc2,
+    i0 => fulladder13_auxsc4);
+  fulladder13_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder13_auxsc2,
+    i1 => a(13),
+    i0 => b(13));
+  fulladder13_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder13_auxsc4,
+    i2 => cout12,
+    i1 => a(13),
+    i0 => b(13));
+  fulladder13_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder13_auxsc1,
+    i1 => a(13),
+    i0 => b(13));
+  fulladder14_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(14),
+    i1 => fulladder14_auxsc1,
+    i0 => cout13);
+  fulladder14_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout14,
+    i1 => fulladder14_auxsc2,
+    i0 => fulladder14_auxsc4);
+  fulladder14_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder14_auxsc2,
+    i1 => a(14),
+    i0 => b(14));
+  fulladder14_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder14_auxsc4,
+    i2 => cout13,
+    i1 => a(14),
+    i0 => b(14));
+  fulladder14_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder14_auxsc1,
+    i1 => a(14),
+    i0 => b(14));
+  fulladder15_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(15),
+    i1 => fulladder15_auxsc1,
+    i0 => cout14);
+  fulladder15_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout15,
+    i1 => fulladder15_auxsc2,
+    i0 => fulladder15_auxsc4);
+  fulladder15_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder15_auxsc2,
+    i1 => a(15),
+    i0 => b(15));
+  fulladder15_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder15_auxsc4,
+    i2 => cout14,
+    i1 => a(15),
+    i0 => b(15));
+  fulladder15_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder15_auxsc1,
+    i1 => a(15),
+    i0 => b(15));
+  fulladder16_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(16),
+    i1 => fulladder16_auxsc1,
+    i0 => cout15);
+  fulladder16_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout16,
+    i1 => fulladder16_auxsc2,
+    i0 => fulladder16_auxsc4);
+  fulladder16_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder16_auxsc2,
+    i1 => a(16),
+    i0 => b(16));
+  fulladder16_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder16_auxsc4,
+    i2 => cout15,
+    i1 => a(16),
+    i0 => b(16));
+  fulladder16_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder16_auxsc1,
+    i1 => a(16),
+    i0 => b(16));
+  fulladder17_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(17),
+    i1 => fulladder17_auxsc1,
+    i0 => cout16);
+  fulladder17_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout17,
+    i1 => fulladder17_auxsc2,
+    i0 => fulladder17_auxsc4);
+  fulladder17_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder17_auxsc2,
+    i1 => a(17),
+    i0 => b(17));
+  fulladder17_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder17_auxsc4,
+    i2 => cout16,
+    i1 => a(17),
+    i0 => b(17));
+  fulladder17_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder17_auxsc1,
+    i1 => a(17),
+    i0 => b(17));
+  fulladder18_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(18),
+    i1 => fulladder18_auxsc1,
+    i0 => cout17);
+  fulladder18_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout18,
+    i1 => fulladder18_auxsc2,
+    i0 => fulladder18_auxsc4);
+  fulladder18_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder18_auxsc2,
+    i1 => a(18),
+    i0 => b(18));
+  fulladder18_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder18_auxsc4,
+    i2 => cout17,
+    i1 => a(18),
+    i0 => b(18));
+  fulladder18_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder18_auxsc1,
+    i1 => a(18),
+    i0 => b(18));
+  fulladder19_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(19),
+    i1 => fulladder19_auxsc1,
+    i0 => cout18);
+  fulladder19_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout19,
+    i1 => fulladder19_auxsc2,
+    i0 => fulladder19_auxsc4);
+  fulladder19_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder19_auxsc2,
+    i1 => a(19),
+    i0 => b(19));
+  fulladder19_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder19_auxsc4,
+    i2 => cout18,
+    i1 => a(19),
+    i0 => b(19));
+  fulladder19_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder19_auxsc1,
+    i1 => a(19),
+    i0 => b(19));
+  fulladder20_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(20),
+    i1 => fulladder20_auxsc1,
+    i0 => cout19);
+  fulladder20_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout20,
+    i1 => fulladder20_auxsc2,
+    i0 => fulladder20_auxsc4);
+  fulladder20_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder20_auxsc2,
+    i1 => a(20),
+    i0 => b(20));
+  fulladder20_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder20_auxsc4,
+    i2 => cout19,
+    i1 => a(20),
+    i0 => b(20));
+  fulladder20_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder20_auxsc1,
+    i1 => a(20),
+    i0 => b(20));
+  fulladder21_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(21),
+    i1 => fulladder21_auxsc1,
+    i0 => cout20);
+  fulladder21_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout21,
+    i1 => fulladder21_auxsc2,
+    i0 => fulladder21_auxsc4);
+  fulladder21_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder21_auxsc2,
+    i1 => a(21),
+    i0 => b(21));
+  fulladder21_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder21_auxsc4,
+    i2 => cout20,
+    i1 => a(21),
+    i0 => b(21));
+  fulladder21_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder21_auxsc1,
+    i1 => a(21),
+    i0 => b(21));
+  fulladder22_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(22),
+    i1 => fulladder22_auxsc1,
+    i0 => cout21);
+  fulladder22_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout22,
+    i1 => fulladder22_auxsc2,
+    i0 => fulladder22_auxsc4);
+  fulladder22_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder22_auxsc2,
+    i1 => a(22),
+    i0 => b(22));
+  fulladder22_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder22_auxsc4,
+    i2 => cout21,
+    i1 => a(22),
+    i0 => b(22));
+  fulladder22_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder22_auxsc1,
+    i1 => a(22),
+    i0 => b(22));
+  fulladder23_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(23),
+    i1 => fulladder23_auxsc1,
+    i0 => cout22);
+  fulladder23_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout23,
+    i1 => fulladder23_auxsc2,
+    i0 => fulladder23_auxsc4);
+  fulladder23_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder23_auxsc2,
+    i1 => a(23),
+    i0 => b(23));
+  fulladder23_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder23_auxsc4,
+    i2 => cout22,
+    i1 => a(23),
+    i0 => b(23));
+  fulladder23_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder23_auxsc1,
+    i1 => a(23),
+    i0 => b(23));
+  fulladder24_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(24),
+    i1 => fulladder24_auxsc1,
+    i0 => cout23);
+  fulladder24_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout24,
+    i1 => fulladder24_auxsc2,
+    i0 => fulladder24_auxsc4);
+  fulladder24_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder24_auxsc2,
+    i1 => a(24),
+    i0 => b(24));
+  fulladder24_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder24_auxsc4,
+    i2 => cout23,
+    i1 => a(24),
+    i0 => b(24));
+  fulladder24_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder24_auxsc1,
+    i1 => a(24),
+    i0 => b(24));
+  fulladder25_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(25),
+    i1 => fulladder25_auxsc1,
+    i0 => cout24);
+  fulladder25_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout25,
+    i1 => fulladder25_auxsc2,
+    i0 => fulladder25_auxsc4);
+  fulladder25_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder25_auxsc2,
+    i1 => a(25),
+    i0 => b(25));
+  fulladder25_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder25_auxsc4,
+    i2 => cout24,
+    i1 => a(25),
+    i0 => b(25));
+  fulladder25_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder25_auxsc1,
+    i1 => a(25),
+    i0 => b(25));
+  fulladder26_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(26),
+    i1 => fulladder26_auxsc1,
+    i0 => cout25);
+  fulladder26_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout26,
+    i1 => fulladder26_auxsc2,
+    i0 => fulladder26_auxsc4);
+  fulladder26_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder26_auxsc2,
+    i1 => a(26),
+    i0 => b(26));
+  fulladder26_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder26_auxsc4,
+    i2 => cout25,
+    i1 => a(26),
+    i0 => b(26));
+  fulladder26_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder26_auxsc1,
+    i1 => a(26),
+    i0 => b(26));
+  fulladder27_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(27),
+    i1 => fulladder27_auxsc1,
+    i0 => cout26);
+  fulladder27_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout27,
+    i1 => fulladder27_auxsc2,
+    i0 => fulladder27_auxsc4);
+  fulladder27_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder27_auxsc2,
+    i1 => a(27),
+    i0 => b(27));
+  fulladder27_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder27_auxsc4,
+    i2 => cout26,
+    i1 => a(27),
+    i0 => b(27));
+  fulladder27_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder27_auxsc1,
+    i1 => a(27),
+    i0 => b(27));
+  fulladder28_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(28),
+    i1 => fulladder28_auxsc1,
+    i0 => cout27);
+  fulladder28_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout28,
+    i1 => fulladder28_auxsc2,
+    i0 => fulladder28_auxsc4);
+  fulladder28_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder28_auxsc2,
+    i1 => a(28),
+    i0 => b(28));
+  fulladder28_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder28_auxsc4,
+    i2 => cout27,
+    i1 => a(28),
+    i0 => b(28));
+  fulladder28_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder28_auxsc1,
+    i1 => a(28),
+    i0 => b(28));
+  fulladder29_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(29),
+    i1 => fulladder29_auxsc1,
+    i0 => cout28);
+  fulladder29_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout29,
+    i1 => fulladder29_auxsc2,
+    i0 => fulladder29_auxsc4);
+  fulladder29_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder29_auxsc2,
+    i1 => a(29),
+    i0 => b(29));
+  fulladder29_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder29_auxsc4,
+    i2 => cout28,
+    i1 => a(29),
+    i0 => b(29));
+  fulladder29_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder29_auxsc1,
+    i1 => a(29),
+    i0 => b(29));
+  fulladder30_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(30),
+    i1 => fulladder30_auxsc1,
+    i0 => cout29);
+  fulladder30_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout30,
+    i1 => fulladder30_auxsc2,
+    i0 => fulladder30_auxsc4);
+  fulladder30_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder30_auxsc2,
+    i1 => a(30),
+    i0 => b(30));
+  fulladder30_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder30_auxsc4,
+    i2 => cout29,
+    i1 => a(30),
+    i0 => b(30));
+  fulladder30_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fulladder30_auxsc1,
+    i1 => a(30),
+    i0 => b(30));
+  xr1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => o_xr1,
+    i1 => b(31),
+    i0 => a(31));
+  xr2 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum(31),
+    i1 => cout30,
+    i0 => o_xr1);
+
+end VST;

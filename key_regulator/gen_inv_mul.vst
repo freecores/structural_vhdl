@@ -1,0 +1,275 @@
+-- VHDL structural description generated from `gen_inv_mul`
+--		date : Sat Sep  1 20:52:46 2001
+
+
+-- Entity Declaration
+
+ENTITY gen_inv_mul IS
+  PORT (
+  i1 : in BIT_VECTOR (15 DOWNTO 0);	-- i1
+  i2 : in BIT_VECTOR (15 DOWNTO 0);	-- i2
+  i3 : in BIT_VECTOR (15 DOWNTO 0);	-- i3
+  i4 : in BIT_VECTOR (15 DOWNTO 0);	-- i4
+  i5 : in BIT_VECTOR (15 DOWNTO 0);	-- i5
+  i6 : in BIT_VECTOR (15 DOWNTO 0);	-- i6
+  i7 : in BIT_VECTOR (15 DOWNTO 0);	-- i7
+  i8 : in BIT_VECTOR (15 DOWNTO 0);	-- i8
+  i9 : in BIT_VECTOR (15 DOWNTO 0);	-- i9
+  i10 : in BIT_VECTOR (15 DOWNTO 0);	-- i10
+  i11 : in BIT_VECTOR (15 DOWNTO 0);	-- i11
+  i12 : in BIT_VECTOR (15 DOWNTO 0);	-- i12
+  i13 : in BIT_VECTOR (15 DOWNTO 0);	-- i13
+  i14 : in BIT_VECTOR (15 DOWNTO 0);	-- i14
+  i15 : in BIT_VECTOR (15 DOWNTO 0);	-- i15
+  i16 : in BIT_VECTOR (15 DOWNTO 0);	-- i16
+  i17 : in BIT_VECTOR (15 DOWNTO 0);	-- i17
+  i18 : in BIT_VECTOR (15 DOWNTO 0);	-- i18
+  clk : in BIT;	-- clk
+  start : in BIT;	-- start
+  rst : in BIT;	-- rst
+  finish : out BIT;	-- finish
+  o1 : out BIT_VECTOR (15 DOWNTO 0);	-- o1
+  o2 : out BIT_VECTOR (15 DOWNTO 0);	-- o2
+  o3 : out BIT_VECTOR (15 DOWNTO 0);	-- o3
+  o4 : out BIT_VECTOR (15 DOWNTO 0);	-- o4
+  o5 : out BIT_VECTOR (15 DOWNTO 0);	-- o5
+  o6 : out BIT_VECTOR (15 DOWNTO 0);	-- o6
+  o7 : out BIT_VECTOR (15 DOWNTO 0);	-- o7
+  o8 : out BIT_VECTOR (15 DOWNTO 0);	-- o8
+  o9 : out BIT_VECTOR (15 DOWNTO 0);	-- o9
+  o10 : out BIT_VECTOR (15 DOWNTO 0);	-- o10
+  o11 : out BIT_VECTOR (15 DOWNTO 0);	-- o11
+  o12 : out BIT_VECTOR (15 DOWNTO 0);	-- o12
+  o13 : out BIT_VECTOR (15 DOWNTO 0);	-- o13
+  o14 : out BIT_VECTOR (15 DOWNTO 0);	-- o14
+  o15 : out BIT_VECTOR (15 DOWNTO 0);	-- o15
+  o16 : out BIT_VECTOR (15 DOWNTO 0);	-- o16
+  o17 : out BIT_VECTOR (15 DOWNTO 0);	-- o17
+  o18 : out BIT_VECTOR (15 DOWNTO 0);	-- o18
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END gen_inv_mul;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF gen_inv_mul IS
+  COMPONENT mux288to16_latch
+    port (
+    i1 : in BIT_VECTOR(15 DOWNTO 0);	-- i1
+    i2 : in BIT_VECTOR(15 DOWNTO 0);	-- i2
+    i3 : in BIT_VECTOR(15 DOWNTO 0);	-- i3
+    i4 : in BIT_VECTOR(15 DOWNTO 0);	-- i4
+    i5 : in BIT_VECTOR(15 DOWNTO 0);	-- i5
+    i6 : in BIT_VECTOR(15 DOWNTO 0);	-- i6
+    i7 : in BIT_VECTOR(15 DOWNTO 0);	-- i7
+    i8 : in BIT_VECTOR(15 DOWNTO 0);	-- i8
+    i9 : in BIT_VECTOR(15 DOWNTO 0);	-- i9
+    i10 : in BIT_VECTOR(15 DOWNTO 0);	-- i10
+    i11 : in BIT_VECTOR(15 DOWNTO 0);	-- i11
+    i12 : in BIT_VECTOR(15 DOWNTO 0);	-- i12
+    i13 : in BIT_VECTOR(15 DOWNTO 0);	-- i13
+    i14 : in BIT_VECTOR(15 DOWNTO 0);	-- i14
+    i15 : in BIT_VECTOR(15 DOWNTO 0);	-- i15
+    i16 : in BIT_VECTOR(15 DOWNTO 0);	-- i16
+    i17 : in BIT_VECTOR(15 DOWNTO 0);	-- i17
+    i18 : in BIT_VECTOR(15 DOWNTO 0);	-- i18
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    sel : in BIT_VECTOR(4 DOWNTO 0);	-- sel
+    cke : in BIT;	-- cke
+    c : inout BIT_VECTOR(15 DOWNTO 0);	-- c
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT invmuls
+    port (
+    zi : in BIT_VECTOR(15 DOWNTO 0);	-- zi
+    rst : in BIT;	-- rst
+    en_pipe : in BIT;	-- en_pipe
+    sel : in BIT;	-- sel
+    cke : in BIT;	-- cke
+    zo : out BIT_VECTOR(15 DOWNTO 0);	-- zo
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT kontrol_invmul
+    port (
+    start : in BIT;	-- start
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    finish : out BIT;	-- finish
+    en_in : out BIT;	-- en_in
+    sel_in : out BIT_VECTOR(4 DOWNTO 0);	-- sel_in
+    sel : out BIT;	-- sel
+    en_pipe : out BIT;	-- en_pipe
+    en_out : out BIT;	-- en_out
+    sel_out : out BIT_VECTOR(4 DOWNTO 0);	-- sel_out
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT dec16to288_latch
+    port (
+    a : in BIT_VECTOR(15 DOWNTO 0);	-- a
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    sel : in BIT_VECTOR(4 DOWNTO 0);	-- sel
+    cke : in BIT;	-- cke
+    o1 : inout BIT_VECTOR(15 DOWNTO 0);	-- o1
+    o2 : inout BIT_VECTOR(15 DOWNTO 0);	-- o2
+    o3 : inout BIT_VECTOR(15 DOWNTO 0);	-- o3
+    o4 : inout BIT_VECTOR(15 DOWNTO 0);	-- o4
+    o5 : inout BIT_VECTOR(15 DOWNTO 0);	-- o5
+    o6 : inout BIT_VECTOR(15 DOWNTO 0);	-- o6
+    o7 : inout BIT_VECTOR(15 DOWNTO 0);	-- o7
+    o8 : inout BIT_VECTOR(15 DOWNTO 0);	-- o8
+    o9 : inout BIT_VECTOR(15 DOWNTO 0);	-- o9
+    o10 : inout BIT_VECTOR(15 DOWNTO 0);	-- o10
+    o11 : inout BIT_VECTOR(15 DOWNTO 0);	-- o11
+    o12 : inout BIT_VECTOR(15 DOWNTO 0);	-- o12
+    o13 : inout BIT_VECTOR(15 DOWNTO 0);	-- o13
+    o14 : inout BIT_VECTOR(15 DOWNTO 0);	-- o14
+    o15 : inout BIT_VECTOR(15 DOWNTO 0);	-- o15
+    o16 : inout BIT_VECTOR(15 DOWNTO 0);	-- o16
+    o17 : inout BIT_VECTOR(15 DOWNTO 0);	-- o17
+    o18 : inout BIT_VECTOR(15 DOWNTO 0);	-- o18
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL en_in : BIT;	-- en_in
+  SIGNAL en_out : BIT;	-- en_out
+  SIGNAL en_pipe : BIT;	-- en_pipe
+  SIGNAL sel : BIT;	-- sel
+  SIGNAL sel_in_0 : BIT;	-- sel_in 0
+  SIGNAL sel_in_1 : BIT;	-- sel_in 1
+  SIGNAL sel_in_2 : BIT;	-- sel_in 2
+  SIGNAL sel_in_3 : BIT;	-- sel_in 3
+  SIGNAL sel_in_4 : BIT;	-- sel_in 4
+  SIGNAL sel_out_0 : BIT;	-- sel_out 0
+  SIGNAL sel_out_1 : BIT;	-- sel_out 1
+  SIGNAL sel_out_2 : BIT;	-- sel_out 2
+  SIGNAL sel_out_3 : BIT;	-- sel_out 3
+  SIGNAL sel_out_4 : BIT;	-- sel_out 4
+  SIGNAL zi_0 : BIT;	-- zi 0
+  SIGNAL zi_1 : BIT;	-- zi 1
+  SIGNAL zi_2 : BIT;	-- zi 2
+  SIGNAL zi_3 : BIT;	-- zi 3
+  SIGNAL zi_4 : BIT;	-- zi 4
+  SIGNAL zi_5 : BIT;	-- zi 5
+  SIGNAL zi_6 : BIT;	-- zi 6
+  SIGNAL zi_7 : BIT;	-- zi 7
+  SIGNAL zi_8 : BIT;	-- zi 8
+  SIGNAL zi_9 : BIT;	-- zi 9
+  SIGNAL zi_10 : BIT;	-- zi 10
+  SIGNAL zi_11 : BIT;	-- zi 11
+  SIGNAL zi_12 : BIT;	-- zi 12
+  SIGNAL zi_13 : BIT;	-- zi 13
+  SIGNAL zi_14 : BIT;	-- zi 14
+  SIGNAL zi_15 : BIT;	-- zi 15
+  SIGNAL zo_0 : BIT;	-- zo 0
+  SIGNAL zo_1 : BIT;	-- zo 1
+  SIGNAL zo_2 : BIT;	-- zo 2
+  SIGNAL zo_3 : BIT;	-- zo 3
+  SIGNAL zo_4 : BIT;	-- zo 4
+  SIGNAL zo_5 : BIT;	-- zo 5
+  SIGNAL zo_6 : BIT;	-- zo 6
+  SIGNAL zo_7 : BIT;	-- zo 7
+  SIGNAL zo_8 : BIT;	-- zo 8
+  SIGNAL zo_9 : BIT;	-- zo 9
+  SIGNAL zo_10 : BIT;	-- zo 10
+  SIGNAL zo_11 : BIT;	-- zo 11
+  SIGNAL zo_12 : BIT;	-- zo 12
+  SIGNAL zo_13 : BIT;	-- zo 13
+  SIGNAL zo_14 : BIT;	-- zo 14
+  SIGNAL zo_15 : BIT;	-- zo 15
+
+BEGIN
+
+  mux1 : mux288to16_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    c => zi_15& zi_14& zi_13& zi_12& zi_11& zi_10& zi_9& zi_8& zi_7& zi_6& zi_5& zi_4& zi_3& zi_2& zi_1& zi_0,
+    cke => start,
+    sel => sel_in_4& sel_in_3& sel_in_2& sel_in_1& sel_in_0,
+    clr => rst,
+    en => en_in,
+    i18 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i17 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i16 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i15 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i14 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i13 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i12 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i11 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i10 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i9 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i8 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i7 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i6 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i5 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i4 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i3 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i2 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0),
+    i1 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0));
+  invmuls1 : invmuls
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    zo => zo_15& zo_14& zo_13& zo_12& zo_11& zo_10& zo_9& zo_8& zo_7& zo_6& zo_5& zo_4& zo_3& zo_2& zo_1& zo_0,
+    cke => start,
+    sel => sel,
+    en_pipe => en_pipe,
+    rst => rst,
+    zi => zi_15& zi_14& zi_13& zi_12& zi_11& zi_10& zi_9& zi_8& zi_7& zi_6& zi_5& zi_4& zi_3& zi_2& zi_1& zi_0);
+  kontrol_invmul1 : kontrol_invmul
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sel_out => sel_out_4& sel_out_3& sel_out_2& sel_out_1& sel_out_0,
+    en_out => en_out,
+    en_pipe => en_pipe,
+    sel => sel,
+    sel_in => sel_in_4& sel_in_3& sel_in_2& sel_in_1& sel_in_0,
+    en_in => en_in,
+    finish => finish,
+    rst => rst,
+    clk => clk,
+    start => start);
+  dec1 : dec16to288_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o18 => o18(15)& o18(14)& o18(13)& o18(12)& o18(11)& o18(10)& o18(9)& o18(8)& o18(7)& o18(6)& o18(5)& o18(4)& o18(3)& o18(2)& o18(1)& o18(0),
+    o17 => o17(15)& o17(14)& o17(13)& o17(12)& o17(11)& o17(10)& o17(9)& o17(8)& o17(7)& o17(6)& o17(5)& o17(4)& o17(3)& o17(2)& o17(1)& o17(0),
+    o16 => o16(15)& o16(14)& o16(13)& o16(12)& o16(11)& o16(10)& o16(9)& o16(8)& o16(7)& o16(6)& o16(5)& o16(4)& o16(3)& o16(2)& o16(1)& o16(0),
+    o15 => o15(15)& o15(14)& o15(13)& o15(12)& o15(11)& o15(10)& o15(9)& o15(8)& o15(7)& o15(6)& o15(5)& o15(4)& o15(3)& o15(2)& o15(1)& o15(0),
+    o14 => o14(15)& o14(14)& o14(13)& o14(12)& o14(11)& o14(10)& o14(9)& o14(8)& o14(7)& o14(6)& o14(5)& o14(4)& o14(3)& o14(2)& o14(1)& o14(0),
+    o13 => o13(15)& o13(14)& o13(13)& o13(12)& o13(11)& o13(10)& o13(9)& o13(8)& o13(7)& o13(6)& o13(5)& o13(4)& o13(3)& o13(2)& o13(1)& o13(0),
+    o12 => o12(15)& o12(14)& o12(13)& o12(12)& o12(11)& o12(10)& o12(9)& o12(8)& o12(7)& o12(6)& o12(5)& o12(4)& o12(3)& o12(2)& o12(1)& o12(0),
+    o11 => o11(15)& o11(14)& o11(13)& o11(12)& o11(11)& o11(10)& o11(9)& o11(8)& o11(7)& o11(6)& o11(5)& o11(4)& o11(3)& o11(2)& o11(1)& o11(0),
+    o10 => o10(15)& o10(14)& o10(13)& o10(12)& o10(11)& o10(10)& o10(9)& o10(8)& o10(7)& o10(6)& o10(5)& o10(4)& o10(3)& o10(2)& o10(1)& o10(0),
+    o9 => o9(15)& o9(14)& o9(13)& o9(12)& o9(11)& o9(10)& o9(9)& o9(8)& o9(7)& o9(6)& o9(5)& o9(4)& o9(3)& o9(2)& o9(1)& o9(0),
+    o8 => o8(15)& o8(14)& o8(13)& o8(12)& o8(11)& o8(10)& o8(9)& o8(8)& o8(7)& o8(6)& o8(5)& o8(4)& o8(3)& o8(2)& o8(1)& o8(0),
+    o7 => o7(15)& o7(14)& o7(13)& o7(12)& o7(11)& o7(10)& o7(9)& o7(8)& o7(7)& o7(6)& o7(5)& o7(4)& o7(3)& o7(2)& o7(1)& o7(0),
+    o6 => o6(15)& o6(14)& o6(13)& o6(12)& o6(11)& o6(10)& o6(9)& o6(8)& o6(7)& o6(6)& o6(5)& o6(4)& o6(3)& o6(2)& o6(1)& o6(0),
+    o5 => o5(15)& o5(14)& o5(13)& o5(12)& o5(11)& o5(10)& o5(9)& o5(8)& o5(7)& o5(6)& o5(5)& o5(4)& o5(3)& o5(2)& o5(1)& o5(0),
+    o4 => o4(15)& o4(14)& o4(13)& o4(12)& o4(11)& o4(10)& o4(9)& o4(8)& o4(7)& o4(6)& o4(5)& o4(4)& o4(3)& o4(2)& o4(1)& o4(0),
+    o3 => o3(15)& o3(14)& o3(13)& o3(12)& o3(11)& o3(10)& o3(9)& o3(8)& o3(7)& o3(6)& o3(5)& o3(4)& o3(3)& o3(2)& o3(1)& o3(0),
+    o2 => o2(15)& o2(14)& o2(13)& o2(12)& o2(11)& o2(10)& o2(9)& o2(8)& o2(7)& o2(6)& o2(5)& o2(4)& o2(3)& o2(2)& o2(1)& o2(0),
+    o1 => o1(15)& o1(14)& o1(13)& o1(12)& o1(11)& o1(10)& o1(9)& o1(8)& o1(7)& o1(6)& o1(5)& o1(4)& o1(3)& o1(2)& o1(1)& o1(0),
+    cke => start,
+    sel => sel_out_4& sel_out_3& sel_out_2& sel_out_1& sel_out_0,
+    clr => rst,
+    en => en_out,
+    a => zo_15& zo_14& zo_13& zo_12& zo_11& zo_10& zo_9& zo_8& zo_7& zo_6& zo_5& zo_4& zo_3& zo_2& zo_1& zo_0);
+
+end VST;

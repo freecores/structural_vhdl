@@ -1,0 +1,980 @@
+-- VHDL structural description generated from `blokmode`
+--		date : Sat Sep  1 21:21:47 2001
+
+
+-- Entity Declaration
+
+ENTITY blokmode IS
+  PORT (
+  data_in : in BIT_VECTOR (0 TO 63);	-- data_in
+  ideam_out : in BIT_VECTOR (0 TO 63);	-- ideam_out
+  rst : in BIT;	-- rst
+  clk : in BIT;	-- clk
+  en_in : in BIT;	-- en_in
+  en_iv : in BIT;	-- en_iv
+  en_rcbc : in BIT;	-- en_rcbc
+  en_out : in BIT;	-- en_out
+  sel1 : in BIT_VECTOR (0 TO 1);	-- sel1
+  sel2 : in BIT_VECTOR (0 TO 1);	-- sel2
+  sel3 : in BIT_VECTOR (0 TO 1);	-- sel3
+  dt_inidea : out BIT_VECTOR (0 TO 63);	-- dt_inidea
+  cp_out : out BIT_VECTOR (0 TO 63);	-- cp_out
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END blokmode;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF blokmode IS
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT mux64
+    port (
+    a : in BIT_VECTOR(63 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(63 DOWNTO 0);	-- b
+    c : in BIT_VECTOR(63 DOWNTO 0);	-- c
+    sel : in BIT_VECTOR(1 DOWNTO 0);	-- sel
+    o : out BIT_VECTOR(63 DOWNTO 0);	-- o
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xor64
+    port (
+    a : in BIT_VECTOR(0 TO 63);	-- a
+    b : in BIT_VECTOR(0 TO 63);	-- b
+    o : out BIT_VECTOR(0 TO 63);	-- o
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT register64
+    port (
+    a : in BIT_VECTOR(0 TO 63);	-- a
+    rst : in BIT;	-- rst
+    en : in BIT;	-- en
+    b : inout BIT_VECTOR(0 TO 63);	-- b
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL mux1_0 : BIT;	-- mux1 0
+  SIGNAL mux1_1 : BIT;	-- mux1 1
+  SIGNAL mux1_2 : BIT;	-- mux1 2
+  SIGNAL mux1_3 : BIT;	-- mux1 3
+  SIGNAL mux1_4 : BIT;	-- mux1 4
+  SIGNAL mux1_5 : BIT;	-- mux1 5
+  SIGNAL mux1_6 : BIT;	-- mux1 6
+  SIGNAL mux1_7 : BIT;	-- mux1 7
+  SIGNAL mux1_8 : BIT;	-- mux1 8
+  SIGNAL mux1_9 : BIT;	-- mux1 9
+  SIGNAL mux1_10 : BIT;	-- mux1 10
+  SIGNAL mux1_11 : BIT;	-- mux1 11
+  SIGNAL mux1_12 : BIT;	-- mux1 12
+  SIGNAL mux1_13 : BIT;	-- mux1 13
+  SIGNAL mux1_14 : BIT;	-- mux1 14
+  SIGNAL mux1_15 : BIT;	-- mux1 15
+  SIGNAL mux1_16 : BIT;	-- mux1 16
+  SIGNAL mux1_17 : BIT;	-- mux1 17
+  SIGNAL mux1_18 : BIT;	-- mux1 18
+  SIGNAL mux1_19 : BIT;	-- mux1 19
+  SIGNAL mux1_20 : BIT;	-- mux1 20
+  SIGNAL mux1_21 : BIT;	-- mux1 21
+  SIGNAL mux1_22 : BIT;	-- mux1 22
+  SIGNAL mux1_23 : BIT;	-- mux1 23
+  SIGNAL mux1_24 : BIT;	-- mux1 24
+  SIGNAL mux1_25 : BIT;	-- mux1 25
+  SIGNAL mux1_26 : BIT;	-- mux1 26
+  SIGNAL mux1_27 : BIT;	-- mux1 27
+  SIGNAL mux1_28 : BIT;	-- mux1 28
+  SIGNAL mux1_29 : BIT;	-- mux1 29
+  SIGNAL mux1_30 : BIT;	-- mux1 30
+  SIGNAL mux1_31 : BIT;	-- mux1 31
+  SIGNAL mux1_32 : BIT;	-- mux1 32
+  SIGNAL mux1_33 : BIT;	-- mux1 33
+  SIGNAL mux1_34 : BIT;	-- mux1 34
+  SIGNAL mux1_35 : BIT;	-- mux1 35
+  SIGNAL mux1_36 : BIT;	-- mux1 36
+  SIGNAL mux1_37 : BIT;	-- mux1 37
+  SIGNAL mux1_38 : BIT;	-- mux1 38
+  SIGNAL mux1_39 : BIT;	-- mux1 39
+  SIGNAL mux1_40 : BIT;	-- mux1 40
+  SIGNAL mux1_41 : BIT;	-- mux1 41
+  SIGNAL mux1_42 : BIT;	-- mux1 42
+  SIGNAL mux1_43 : BIT;	-- mux1 43
+  SIGNAL mux1_44 : BIT;	-- mux1 44
+  SIGNAL mux1_45 : BIT;	-- mux1 45
+  SIGNAL mux1_46 : BIT;	-- mux1 46
+  SIGNAL mux1_47 : BIT;	-- mux1 47
+  SIGNAL mux1_48 : BIT;	-- mux1 48
+  SIGNAL mux1_49 : BIT;	-- mux1 49
+  SIGNAL mux1_50 : BIT;	-- mux1 50
+  SIGNAL mux1_51 : BIT;	-- mux1 51
+  SIGNAL mux1_52 : BIT;	-- mux1 52
+  SIGNAL mux1_53 : BIT;	-- mux1 53
+  SIGNAL mux1_54 : BIT;	-- mux1 54
+  SIGNAL mux1_55 : BIT;	-- mux1 55
+  SIGNAL mux1_56 : BIT;	-- mux1 56
+  SIGNAL mux1_57 : BIT;	-- mux1 57
+  SIGNAL mux1_58 : BIT;	-- mux1 58
+  SIGNAL mux1_59 : BIT;	-- mux1 59
+  SIGNAL mux1_60 : BIT;	-- mux1 60
+  SIGNAL mux1_61 : BIT;	-- mux1 61
+  SIGNAL mux1_62 : BIT;	-- mux1 62
+  SIGNAL mux1_63 : BIT;	-- mux1 63
+  SIGNAL mux2_0 : BIT;	-- mux2 0
+  SIGNAL mux2_1 : BIT;	-- mux2 1
+  SIGNAL mux2_2 : BIT;	-- mux2 2
+  SIGNAL mux2_3 : BIT;	-- mux2 3
+  SIGNAL mux2_4 : BIT;	-- mux2 4
+  SIGNAL mux2_5 : BIT;	-- mux2 5
+  SIGNAL mux2_6 : BIT;	-- mux2 6
+  SIGNAL mux2_7 : BIT;	-- mux2 7
+  SIGNAL mux2_8 : BIT;	-- mux2 8
+  SIGNAL mux2_9 : BIT;	-- mux2 9
+  SIGNAL mux2_10 : BIT;	-- mux2 10
+  SIGNAL mux2_11 : BIT;	-- mux2 11
+  SIGNAL mux2_12 : BIT;	-- mux2 12
+  SIGNAL mux2_13 : BIT;	-- mux2 13
+  SIGNAL mux2_14 : BIT;	-- mux2 14
+  SIGNAL mux2_15 : BIT;	-- mux2 15
+  SIGNAL mux2_16 : BIT;	-- mux2 16
+  SIGNAL mux2_17 : BIT;	-- mux2 17
+  SIGNAL mux2_18 : BIT;	-- mux2 18
+  SIGNAL mux2_19 : BIT;	-- mux2 19
+  SIGNAL mux2_20 : BIT;	-- mux2 20
+  SIGNAL mux2_21 : BIT;	-- mux2 21
+  SIGNAL mux2_22 : BIT;	-- mux2 22
+  SIGNAL mux2_23 : BIT;	-- mux2 23
+  SIGNAL mux2_24 : BIT;	-- mux2 24
+  SIGNAL mux2_25 : BIT;	-- mux2 25
+  SIGNAL mux2_26 : BIT;	-- mux2 26
+  SIGNAL mux2_27 : BIT;	-- mux2 27
+  SIGNAL mux2_28 : BIT;	-- mux2 28
+  SIGNAL mux2_29 : BIT;	-- mux2 29
+  SIGNAL mux2_30 : BIT;	-- mux2 30
+  SIGNAL mux2_31 : BIT;	-- mux2 31
+  SIGNAL mux2_32 : BIT;	-- mux2 32
+  SIGNAL mux2_33 : BIT;	-- mux2 33
+  SIGNAL mux2_34 : BIT;	-- mux2 34
+  SIGNAL mux2_35 : BIT;	-- mux2 35
+  SIGNAL mux2_36 : BIT;	-- mux2 36
+  SIGNAL mux2_37 : BIT;	-- mux2 37
+  SIGNAL mux2_38 : BIT;	-- mux2 38
+  SIGNAL mux2_39 : BIT;	-- mux2 39
+  SIGNAL mux2_40 : BIT;	-- mux2 40
+  SIGNAL mux2_41 : BIT;	-- mux2 41
+  SIGNAL mux2_42 : BIT;	-- mux2 42
+  SIGNAL mux2_43 : BIT;	-- mux2 43
+  SIGNAL mux2_44 : BIT;	-- mux2 44
+  SIGNAL mux2_45 : BIT;	-- mux2 45
+  SIGNAL mux2_46 : BIT;	-- mux2 46
+  SIGNAL mux2_47 : BIT;	-- mux2 47
+  SIGNAL mux2_48 : BIT;	-- mux2 48
+  SIGNAL mux2_49 : BIT;	-- mux2 49
+  SIGNAL mux2_50 : BIT;	-- mux2 50
+  SIGNAL mux2_51 : BIT;	-- mux2 51
+  SIGNAL mux2_52 : BIT;	-- mux2 52
+  SIGNAL mux2_53 : BIT;	-- mux2 53
+  SIGNAL mux2_54 : BIT;	-- mux2 54
+  SIGNAL mux2_55 : BIT;	-- mux2 55
+  SIGNAL mux2_56 : BIT;	-- mux2 56
+  SIGNAL mux2_57 : BIT;	-- mux2 57
+  SIGNAL mux2_58 : BIT;	-- mux2 58
+  SIGNAL mux2_59 : BIT;	-- mux2 59
+  SIGNAL mux2_60 : BIT;	-- mux2 60
+  SIGNAL mux2_61 : BIT;	-- mux2 61
+  SIGNAL mux2_62 : BIT;	-- mux2 62
+  SIGNAL mux2_63 : BIT;	-- mux2 63
+  SIGNAL mux3_0 : BIT;	-- mux3 0
+  SIGNAL mux3_1 : BIT;	-- mux3 1
+  SIGNAL mux3_2 : BIT;	-- mux3 2
+  SIGNAL mux3_3 : BIT;	-- mux3 3
+  SIGNAL mux3_4 : BIT;	-- mux3 4
+  SIGNAL mux3_5 : BIT;	-- mux3 5
+  SIGNAL mux3_6 : BIT;	-- mux3 6
+  SIGNAL mux3_7 : BIT;	-- mux3 7
+  SIGNAL mux3_8 : BIT;	-- mux3 8
+  SIGNAL mux3_9 : BIT;	-- mux3 9
+  SIGNAL mux3_10 : BIT;	-- mux3 10
+  SIGNAL mux3_11 : BIT;	-- mux3 11
+  SIGNAL mux3_12 : BIT;	-- mux3 12
+  SIGNAL mux3_13 : BIT;	-- mux3 13
+  SIGNAL mux3_14 : BIT;	-- mux3 14
+  SIGNAL mux3_15 : BIT;	-- mux3 15
+  SIGNAL mux3_16 : BIT;	-- mux3 16
+  SIGNAL mux3_17 : BIT;	-- mux3 17
+  SIGNAL mux3_18 : BIT;	-- mux3 18
+  SIGNAL mux3_19 : BIT;	-- mux3 19
+  SIGNAL mux3_20 : BIT;	-- mux3 20
+  SIGNAL mux3_21 : BIT;	-- mux3 21
+  SIGNAL mux3_22 : BIT;	-- mux3 22
+  SIGNAL mux3_23 : BIT;	-- mux3 23
+  SIGNAL mux3_24 : BIT;	-- mux3 24
+  SIGNAL mux3_25 : BIT;	-- mux3 25
+  SIGNAL mux3_26 : BIT;	-- mux3 26
+  SIGNAL mux3_27 : BIT;	-- mux3 27
+  SIGNAL mux3_28 : BIT;	-- mux3 28
+  SIGNAL mux3_29 : BIT;	-- mux3 29
+  SIGNAL mux3_30 : BIT;	-- mux3 30
+  SIGNAL mux3_31 : BIT;	-- mux3 31
+  SIGNAL mux3_32 : BIT;	-- mux3 32
+  SIGNAL mux3_33 : BIT;	-- mux3 33
+  SIGNAL mux3_34 : BIT;	-- mux3 34
+  SIGNAL mux3_35 : BIT;	-- mux3 35
+  SIGNAL mux3_36 : BIT;	-- mux3 36
+  SIGNAL mux3_37 : BIT;	-- mux3 37
+  SIGNAL mux3_38 : BIT;	-- mux3 38
+  SIGNAL mux3_39 : BIT;	-- mux3 39
+  SIGNAL mux3_40 : BIT;	-- mux3 40
+  SIGNAL mux3_41 : BIT;	-- mux3 41
+  SIGNAL mux3_42 : BIT;	-- mux3 42
+  SIGNAL mux3_43 : BIT;	-- mux3 43
+  SIGNAL mux3_44 : BIT;	-- mux3 44
+  SIGNAL mux3_45 : BIT;	-- mux3 45
+  SIGNAL mux3_46 : BIT;	-- mux3 46
+  SIGNAL mux3_47 : BIT;	-- mux3 47
+  SIGNAL mux3_48 : BIT;	-- mux3 48
+  SIGNAL mux3_49 : BIT;	-- mux3 49
+  SIGNAL mux3_50 : BIT;	-- mux3 50
+  SIGNAL mux3_51 : BIT;	-- mux3 51
+  SIGNAL mux3_52 : BIT;	-- mux3 52
+  SIGNAL mux3_53 : BIT;	-- mux3 53
+  SIGNAL mux3_54 : BIT;	-- mux3 54
+  SIGNAL mux3_55 : BIT;	-- mux3 55
+  SIGNAL mux3_56 : BIT;	-- mux3 56
+  SIGNAL mux3_57 : BIT;	-- mux3 57
+  SIGNAL mux3_58 : BIT;	-- mux3 58
+  SIGNAL mux3_59 : BIT;	-- mux3 59
+  SIGNAL mux3_60 : BIT;	-- mux3 60
+  SIGNAL mux3_61 : BIT;	-- mux3 61
+  SIGNAL mux3_62 : BIT;	-- mux3 62
+  SIGNAL mux3_63 : BIT;	-- mux3 63
+  SIGNAL reg_cbc_0 : BIT;	-- reg_cbc 0
+  SIGNAL reg_cbc_1 : BIT;	-- reg_cbc 1
+  SIGNAL reg_cbc_2 : BIT;	-- reg_cbc 2
+  SIGNAL reg_cbc_3 : BIT;	-- reg_cbc 3
+  SIGNAL reg_cbc_4 : BIT;	-- reg_cbc 4
+  SIGNAL reg_cbc_5 : BIT;	-- reg_cbc 5
+  SIGNAL reg_cbc_6 : BIT;	-- reg_cbc 6
+  SIGNAL reg_cbc_7 : BIT;	-- reg_cbc 7
+  SIGNAL reg_cbc_8 : BIT;	-- reg_cbc 8
+  SIGNAL reg_cbc_9 : BIT;	-- reg_cbc 9
+  SIGNAL reg_cbc_10 : BIT;	-- reg_cbc 10
+  SIGNAL reg_cbc_11 : BIT;	-- reg_cbc 11
+  SIGNAL reg_cbc_12 : BIT;	-- reg_cbc 12
+  SIGNAL reg_cbc_13 : BIT;	-- reg_cbc 13
+  SIGNAL reg_cbc_14 : BIT;	-- reg_cbc 14
+  SIGNAL reg_cbc_15 : BIT;	-- reg_cbc 15
+  SIGNAL reg_cbc_16 : BIT;	-- reg_cbc 16
+  SIGNAL reg_cbc_17 : BIT;	-- reg_cbc 17
+  SIGNAL reg_cbc_18 : BIT;	-- reg_cbc 18
+  SIGNAL reg_cbc_19 : BIT;	-- reg_cbc 19
+  SIGNAL reg_cbc_20 : BIT;	-- reg_cbc 20
+  SIGNAL reg_cbc_21 : BIT;	-- reg_cbc 21
+  SIGNAL reg_cbc_22 : BIT;	-- reg_cbc 22
+  SIGNAL reg_cbc_23 : BIT;	-- reg_cbc 23
+  SIGNAL reg_cbc_24 : BIT;	-- reg_cbc 24
+  SIGNAL reg_cbc_25 : BIT;	-- reg_cbc 25
+  SIGNAL reg_cbc_26 : BIT;	-- reg_cbc 26
+  SIGNAL reg_cbc_27 : BIT;	-- reg_cbc 27
+  SIGNAL reg_cbc_28 : BIT;	-- reg_cbc 28
+  SIGNAL reg_cbc_29 : BIT;	-- reg_cbc 29
+  SIGNAL reg_cbc_30 : BIT;	-- reg_cbc 30
+  SIGNAL reg_cbc_31 : BIT;	-- reg_cbc 31
+  SIGNAL reg_cbc_32 : BIT;	-- reg_cbc 32
+  SIGNAL reg_cbc_33 : BIT;	-- reg_cbc 33
+  SIGNAL reg_cbc_34 : BIT;	-- reg_cbc 34
+  SIGNAL reg_cbc_35 : BIT;	-- reg_cbc 35
+  SIGNAL reg_cbc_36 : BIT;	-- reg_cbc 36
+  SIGNAL reg_cbc_37 : BIT;	-- reg_cbc 37
+  SIGNAL reg_cbc_38 : BIT;	-- reg_cbc 38
+  SIGNAL reg_cbc_39 : BIT;	-- reg_cbc 39
+  SIGNAL reg_cbc_40 : BIT;	-- reg_cbc 40
+  SIGNAL reg_cbc_41 : BIT;	-- reg_cbc 41
+  SIGNAL reg_cbc_42 : BIT;	-- reg_cbc 42
+  SIGNAL reg_cbc_43 : BIT;	-- reg_cbc 43
+  SIGNAL reg_cbc_44 : BIT;	-- reg_cbc 44
+  SIGNAL reg_cbc_45 : BIT;	-- reg_cbc 45
+  SIGNAL reg_cbc_46 : BIT;	-- reg_cbc 46
+  SIGNAL reg_cbc_47 : BIT;	-- reg_cbc 47
+  SIGNAL reg_cbc_48 : BIT;	-- reg_cbc 48
+  SIGNAL reg_cbc_49 : BIT;	-- reg_cbc 49
+  SIGNAL reg_cbc_50 : BIT;	-- reg_cbc 50
+  SIGNAL reg_cbc_51 : BIT;	-- reg_cbc 51
+  SIGNAL reg_cbc_52 : BIT;	-- reg_cbc 52
+  SIGNAL reg_cbc_53 : BIT;	-- reg_cbc 53
+  SIGNAL reg_cbc_54 : BIT;	-- reg_cbc 54
+  SIGNAL reg_cbc_55 : BIT;	-- reg_cbc 55
+  SIGNAL reg_cbc_56 : BIT;	-- reg_cbc 56
+  SIGNAL reg_cbc_57 : BIT;	-- reg_cbc 57
+  SIGNAL reg_cbc_58 : BIT;	-- reg_cbc 58
+  SIGNAL reg_cbc_59 : BIT;	-- reg_cbc 59
+  SIGNAL reg_cbc_60 : BIT;	-- reg_cbc 60
+  SIGNAL reg_cbc_61 : BIT;	-- reg_cbc 61
+  SIGNAL reg_cbc_62 : BIT;	-- reg_cbc 62
+  SIGNAL reg_cbc_63 : BIT;	-- reg_cbc 63
+  SIGNAL reg_in_0 : BIT;	-- reg_in 0
+  SIGNAL reg_in_1 : BIT;	-- reg_in 1
+  SIGNAL reg_in_2 : BIT;	-- reg_in 2
+  SIGNAL reg_in_3 : BIT;	-- reg_in 3
+  SIGNAL reg_in_4 : BIT;	-- reg_in 4
+  SIGNAL reg_in_5 : BIT;	-- reg_in 5
+  SIGNAL reg_in_6 : BIT;	-- reg_in 6
+  SIGNAL reg_in_7 : BIT;	-- reg_in 7
+  SIGNAL reg_in_8 : BIT;	-- reg_in 8
+  SIGNAL reg_in_9 : BIT;	-- reg_in 9
+  SIGNAL reg_in_10 : BIT;	-- reg_in 10
+  SIGNAL reg_in_11 : BIT;	-- reg_in 11
+  SIGNAL reg_in_12 : BIT;	-- reg_in 12
+  SIGNAL reg_in_13 : BIT;	-- reg_in 13
+  SIGNAL reg_in_14 : BIT;	-- reg_in 14
+  SIGNAL reg_in_15 : BIT;	-- reg_in 15
+  SIGNAL reg_in_16 : BIT;	-- reg_in 16
+  SIGNAL reg_in_17 : BIT;	-- reg_in 17
+  SIGNAL reg_in_18 : BIT;	-- reg_in 18
+  SIGNAL reg_in_19 : BIT;	-- reg_in 19
+  SIGNAL reg_in_20 : BIT;	-- reg_in 20
+  SIGNAL reg_in_21 : BIT;	-- reg_in 21
+  SIGNAL reg_in_22 : BIT;	-- reg_in 22
+  SIGNAL reg_in_23 : BIT;	-- reg_in 23
+  SIGNAL reg_in_24 : BIT;	-- reg_in 24
+  SIGNAL reg_in_25 : BIT;	-- reg_in 25
+  SIGNAL reg_in_26 : BIT;	-- reg_in 26
+  SIGNAL reg_in_27 : BIT;	-- reg_in 27
+  SIGNAL reg_in_28 : BIT;	-- reg_in 28
+  SIGNAL reg_in_29 : BIT;	-- reg_in 29
+  SIGNAL reg_in_30 : BIT;	-- reg_in 30
+  SIGNAL reg_in_31 : BIT;	-- reg_in 31
+  SIGNAL reg_in_32 : BIT;	-- reg_in 32
+  SIGNAL reg_in_33 : BIT;	-- reg_in 33
+  SIGNAL reg_in_34 : BIT;	-- reg_in 34
+  SIGNAL reg_in_35 : BIT;	-- reg_in 35
+  SIGNAL reg_in_36 : BIT;	-- reg_in 36
+  SIGNAL reg_in_37 : BIT;	-- reg_in 37
+  SIGNAL reg_in_38 : BIT;	-- reg_in 38
+  SIGNAL reg_in_39 : BIT;	-- reg_in 39
+  SIGNAL reg_in_40 : BIT;	-- reg_in 40
+  SIGNAL reg_in_41 : BIT;	-- reg_in 41
+  SIGNAL reg_in_42 : BIT;	-- reg_in 42
+  SIGNAL reg_in_43 : BIT;	-- reg_in 43
+  SIGNAL reg_in_44 : BIT;	-- reg_in 44
+  SIGNAL reg_in_45 : BIT;	-- reg_in 45
+  SIGNAL reg_in_46 : BIT;	-- reg_in 46
+  SIGNAL reg_in_47 : BIT;	-- reg_in 47
+  SIGNAL reg_in_48 : BIT;	-- reg_in 48
+  SIGNAL reg_in_49 : BIT;	-- reg_in 49
+  SIGNAL reg_in_50 : BIT;	-- reg_in 50
+  SIGNAL reg_in_51 : BIT;	-- reg_in 51
+  SIGNAL reg_in_52 : BIT;	-- reg_in 52
+  SIGNAL reg_in_53 : BIT;	-- reg_in 53
+  SIGNAL reg_in_54 : BIT;	-- reg_in 54
+  SIGNAL reg_in_55 : BIT;	-- reg_in 55
+  SIGNAL reg_in_56 : BIT;	-- reg_in 56
+  SIGNAL reg_in_57 : BIT;	-- reg_in 57
+  SIGNAL reg_in_58 : BIT;	-- reg_in 58
+  SIGNAL reg_in_59 : BIT;	-- reg_in 59
+  SIGNAL reg_in_60 : BIT;	-- reg_in 60
+  SIGNAL reg_in_61 : BIT;	-- reg_in 61
+  SIGNAL reg_in_62 : BIT;	-- reg_in 62
+  SIGNAL reg_in_63 : BIT;	-- reg_in 63
+  SIGNAL reg_iv_0 : BIT;	-- reg_iv 0
+  SIGNAL reg_iv_1 : BIT;	-- reg_iv 1
+  SIGNAL reg_iv_2 : BIT;	-- reg_iv 2
+  SIGNAL reg_iv_3 : BIT;	-- reg_iv 3
+  SIGNAL reg_iv_4 : BIT;	-- reg_iv 4
+  SIGNAL reg_iv_5 : BIT;	-- reg_iv 5
+  SIGNAL reg_iv_6 : BIT;	-- reg_iv 6
+  SIGNAL reg_iv_7 : BIT;	-- reg_iv 7
+  SIGNAL reg_iv_8 : BIT;	-- reg_iv 8
+  SIGNAL reg_iv_9 : BIT;	-- reg_iv 9
+  SIGNAL reg_iv_10 : BIT;	-- reg_iv 10
+  SIGNAL reg_iv_11 : BIT;	-- reg_iv 11
+  SIGNAL reg_iv_12 : BIT;	-- reg_iv 12
+  SIGNAL reg_iv_13 : BIT;	-- reg_iv 13
+  SIGNAL reg_iv_14 : BIT;	-- reg_iv 14
+  SIGNAL reg_iv_15 : BIT;	-- reg_iv 15
+  SIGNAL reg_iv_16 : BIT;	-- reg_iv 16
+  SIGNAL reg_iv_17 : BIT;	-- reg_iv 17
+  SIGNAL reg_iv_18 : BIT;	-- reg_iv 18
+  SIGNAL reg_iv_19 : BIT;	-- reg_iv 19
+  SIGNAL reg_iv_20 : BIT;	-- reg_iv 20
+  SIGNAL reg_iv_21 : BIT;	-- reg_iv 21
+  SIGNAL reg_iv_22 : BIT;	-- reg_iv 22
+  SIGNAL reg_iv_23 : BIT;	-- reg_iv 23
+  SIGNAL reg_iv_24 : BIT;	-- reg_iv 24
+  SIGNAL reg_iv_25 : BIT;	-- reg_iv 25
+  SIGNAL reg_iv_26 : BIT;	-- reg_iv 26
+  SIGNAL reg_iv_27 : BIT;	-- reg_iv 27
+  SIGNAL reg_iv_28 : BIT;	-- reg_iv 28
+  SIGNAL reg_iv_29 : BIT;	-- reg_iv 29
+  SIGNAL reg_iv_30 : BIT;	-- reg_iv 30
+  SIGNAL reg_iv_31 : BIT;	-- reg_iv 31
+  SIGNAL reg_iv_32 : BIT;	-- reg_iv 32
+  SIGNAL reg_iv_33 : BIT;	-- reg_iv 33
+  SIGNAL reg_iv_34 : BIT;	-- reg_iv 34
+  SIGNAL reg_iv_35 : BIT;	-- reg_iv 35
+  SIGNAL reg_iv_36 : BIT;	-- reg_iv 36
+  SIGNAL reg_iv_37 : BIT;	-- reg_iv 37
+  SIGNAL reg_iv_38 : BIT;	-- reg_iv 38
+  SIGNAL reg_iv_39 : BIT;	-- reg_iv 39
+  SIGNAL reg_iv_40 : BIT;	-- reg_iv 40
+  SIGNAL reg_iv_41 : BIT;	-- reg_iv 41
+  SIGNAL reg_iv_42 : BIT;	-- reg_iv 42
+  SIGNAL reg_iv_43 : BIT;	-- reg_iv 43
+  SIGNAL reg_iv_44 : BIT;	-- reg_iv 44
+  SIGNAL reg_iv_45 : BIT;	-- reg_iv 45
+  SIGNAL reg_iv_46 : BIT;	-- reg_iv 46
+  SIGNAL reg_iv_47 : BIT;	-- reg_iv 47
+  SIGNAL reg_iv_48 : BIT;	-- reg_iv 48
+  SIGNAL reg_iv_49 : BIT;	-- reg_iv 49
+  SIGNAL reg_iv_50 : BIT;	-- reg_iv 50
+  SIGNAL reg_iv_51 : BIT;	-- reg_iv 51
+  SIGNAL reg_iv_52 : BIT;	-- reg_iv 52
+  SIGNAL reg_iv_53 : BIT;	-- reg_iv 53
+  SIGNAL reg_iv_54 : BIT;	-- reg_iv 54
+  SIGNAL reg_iv_55 : BIT;	-- reg_iv 55
+  SIGNAL reg_iv_56 : BIT;	-- reg_iv 56
+  SIGNAL reg_iv_57 : BIT;	-- reg_iv 57
+  SIGNAL reg_iv_58 : BIT;	-- reg_iv 58
+  SIGNAL reg_iv_59 : BIT;	-- reg_iv 59
+  SIGNAL reg_iv_60 : BIT;	-- reg_iv 60
+  SIGNAL reg_iv_61 : BIT;	-- reg_iv 61
+  SIGNAL reg_iv_62 : BIT;	-- reg_iv 62
+  SIGNAL reg_iv_63 : BIT;	-- reg_iv 63
+  SIGNAL xor2_0 : BIT;	-- xor2 0
+  SIGNAL xor2_1 : BIT;	-- xor2 1
+  SIGNAL xor2_2 : BIT;	-- xor2 2
+  SIGNAL xor2_3 : BIT;	-- xor2 3
+  SIGNAL xor2_4 : BIT;	-- xor2 4
+  SIGNAL xor2_5 : BIT;	-- xor2 5
+  SIGNAL xor2_6 : BIT;	-- xor2 6
+  SIGNAL xor2_7 : BIT;	-- xor2 7
+  SIGNAL xor2_8 : BIT;	-- xor2 8
+  SIGNAL xor2_9 : BIT;	-- xor2 9
+  SIGNAL xor2_10 : BIT;	-- xor2 10
+  SIGNAL xor2_11 : BIT;	-- xor2 11
+  SIGNAL xor2_12 : BIT;	-- xor2 12
+  SIGNAL xor2_13 : BIT;	-- xor2 13
+  SIGNAL xor2_14 : BIT;	-- xor2 14
+  SIGNAL xor2_15 : BIT;	-- xor2 15
+  SIGNAL xor2_16 : BIT;	-- xor2 16
+  SIGNAL xor2_17 : BIT;	-- xor2 17
+  SIGNAL xor2_18 : BIT;	-- xor2 18
+  SIGNAL xor2_19 : BIT;	-- xor2 19
+  SIGNAL xor2_20 : BIT;	-- xor2 20
+  SIGNAL xor2_21 : BIT;	-- xor2 21
+  SIGNAL xor2_22 : BIT;	-- xor2 22
+  SIGNAL xor2_23 : BIT;	-- xor2 23
+  SIGNAL xor2_24 : BIT;	-- xor2 24
+  SIGNAL xor2_25 : BIT;	-- xor2 25
+  SIGNAL xor2_26 : BIT;	-- xor2 26
+  SIGNAL xor2_27 : BIT;	-- xor2 27
+  SIGNAL xor2_28 : BIT;	-- xor2 28
+  SIGNAL xor2_29 : BIT;	-- xor2 29
+  SIGNAL xor2_30 : BIT;	-- xor2 30
+  SIGNAL xor2_31 : BIT;	-- xor2 31
+  SIGNAL xor2_32 : BIT;	-- xor2 32
+  SIGNAL xor2_33 : BIT;	-- xor2 33
+  SIGNAL xor2_34 : BIT;	-- xor2 34
+  SIGNAL xor2_35 : BIT;	-- xor2 35
+  SIGNAL xor2_36 : BIT;	-- xor2 36
+  SIGNAL xor2_37 : BIT;	-- xor2 37
+  SIGNAL xor2_38 : BIT;	-- xor2 38
+  SIGNAL xor2_39 : BIT;	-- xor2 39
+  SIGNAL xor2_40 : BIT;	-- xor2 40
+  SIGNAL xor2_41 : BIT;	-- xor2 41
+  SIGNAL xor2_42 : BIT;	-- xor2 42
+  SIGNAL xor2_43 : BIT;	-- xor2 43
+  SIGNAL xor2_44 : BIT;	-- xor2 44
+  SIGNAL xor2_45 : BIT;	-- xor2 45
+  SIGNAL xor2_46 : BIT;	-- xor2 46
+  SIGNAL xor2_47 : BIT;	-- xor2 47
+  SIGNAL xor2_48 : BIT;	-- xor2 48
+  SIGNAL xor2_49 : BIT;	-- xor2 49
+  SIGNAL xor2_50 : BIT;	-- xor2 50
+  SIGNAL xor2_51 : BIT;	-- xor2 51
+  SIGNAL xor2_52 : BIT;	-- xor2 52
+  SIGNAL xor2_53 : BIT;	-- xor2 53
+  SIGNAL xor2_54 : BIT;	-- xor2 54
+  SIGNAL xor2_55 : BIT;	-- xor2 55
+  SIGNAL xor2_56 : BIT;	-- xor2 56
+  SIGNAL xor2_57 : BIT;	-- xor2 57
+  SIGNAL xor2_58 : BIT;	-- xor2 58
+  SIGNAL xor2_59 : BIT;	-- xor2 59
+  SIGNAL xor2_60 : BIT;	-- xor2 60
+  SIGNAL xor2_61 : BIT;	-- xor2 61
+  SIGNAL xor2_62 : BIT;	-- xor2 62
+  SIGNAL xor2_63 : BIT;	-- xor2 63
+  SIGNAL zero64_0 : BIT;	-- zero64 0
+  SIGNAL zero64_1 : BIT;	-- zero64 1
+  SIGNAL zero64_2 : BIT;	-- zero64 2
+  SIGNAL zero64_3 : BIT;	-- zero64 3
+  SIGNAL zero64_4 : BIT;	-- zero64 4
+  SIGNAL zero64_5 : BIT;	-- zero64 5
+  SIGNAL zero64_6 : BIT;	-- zero64 6
+  SIGNAL zero64_7 : BIT;	-- zero64 7
+  SIGNAL zero64_8 : BIT;	-- zero64 8
+  SIGNAL zero64_9 : BIT;	-- zero64 9
+  SIGNAL zero64_10 : BIT;	-- zero64 10
+  SIGNAL zero64_11 : BIT;	-- zero64 11
+  SIGNAL zero64_12 : BIT;	-- zero64 12
+  SIGNAL zero64_13 : BIT;	-- zero64 13
+  SIGNAL zero64_14 : BIT;	-- zero64 14
+  SIGNAL zero64_15 : BIT;	-- zero64 15
+  SIGNAL zero64_16 : BIT;	-- zero64 16
+  SIGNAL zero64_17 : BIT;	-- zero64 17
+  SIGNAL zero64_18 : BIT;	-- zero64 18
+  SIGNAL zero64_19 : BIT;	-- zero64 19
+  SIGNAL zero64_20 : BIT;	-- zero64 20
+  SIGNAL zero64_21 : BIT;	-- zero64 21
+  SIGNAL zero64_22 : BIT;	-- zero64 22
+  SIGNAL zero64_23 : BIT;	-- zero64 23
+  SIGNAL zero64_24 : BIT;	-- zero64 24
+  SIGNAL zero64_25 : BIT;	-- zero64 25
+  SIGNAL zero64_26 : BIT;	-- zero64 26
+  SIGNAL zero64_27 : BIT;	-- zero64 27
+  SIGNAL zero64_28 : BIT;	-- zero64 28
+  SIGNAL zero64_29 : BIT;	-- zero64 29
+  SIGNAL zero64_30 : BIT;	-- zero64 30
+  SIGNAL zero64_31 : BIT;	-- zero64 31
+  SIGNAL zero64_32 : BIT;	-- zero64 32
+  SIGNAL zero64_33 : BIT;	-- zero64 33
+  SIGNAL zero64_34 : BIT;	-- zero64 34
+  SIGNAL zero64_35 : BIT;	-- zero64 35
+  SIGNAL zero64_36 : BIT;	-- zero64 36
+  SIGNAL zero64_37 : BIT;	-- zero64 37
+  SIGNAL zero64_38 : BIT;	-- zero64 38
+  SIGNAL zero64_39 : BIT;	-- zero64 39
+  SIGNAL zero64_40 : BIT;	-- zero64 40
+  SIGNAL zero64_41 : BIT;	-- zero64 41
+  SIGNAL zero64_42 : BIT;	-- zero64 42
+  SIGNAL zero64_43 : BIT;	-- zero64 43
+  SIGNAL zero64_44 : BIT;	-- zero64 44
+  SIGNAL zero64_45 : BIT;	-- zero64 45
+  SIGNAL zero64_46 : BIT;	-- zero64 46
+  SIGNAL zero64_47 : BIT;	-- zero64 47
+  SIGNAL zero64_48 : BIT;	-- zero64 48
+  SIGNAL zero64_49 : BIT;	-- zero64 49
+  SIGNAL zero64_50 : BIT;	-- zero64 50
+  SIGNAL zero64_51 : BIT;	-- zero64 51
+  SIGNAL zero64_52 : BIT;	-- zero64 52
+  SIGNAL zero64_53 : BIT;	-- zero64 53
+  SIGNAL zero64_54 : BIT;	-- zero64 54
+  SIGNAL zero64_55 : BIT;	-- zero64 55
+  SIGNAL zero64_56 : BIT;	-- zero64 56
+  SIGNAL zero64_57 : BIT;	-- zero64 57
+  SIGNAL zero64_58 : BIT;	-- zero64 58
+  SIGNAL zero64_59 : BIT;	-- zero64 59
+  SIGNAL zero64_60 : BIT;	-- zero64 60
+  SIGNAL zero64_61 : BIT;	-- zero64 61
+  SIGNAL zero64_62 : BIT;	-- zero64 62
+  SIGNAL zero64_63 : BIT;	-- zero64 63
+
+BEGIN
+
+  zero0 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_0);
+  zero1 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_1);
+  zero2 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_2);
+  zero3 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_3);
+  zero4 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_4);
+  zero5 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_5);
+  zero6 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_6);
+  zero7 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_7);
+  zero8 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_8);
+  zero9 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_9);
+  zero10 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_10);
+  zero11 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_11);
+  zero12 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_12);
+  zero13 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_13);
+  zero14 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_14);
+  zero15 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_15);
+  zero16 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_16);
+  zero17 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_17);
+  zero18 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_18);
+  zero19 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_19);
+  zero20 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_20);
+  zero21 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_21);
+  zero22 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_22);
+  zero23 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_23);
+  zero24 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_24);
+  zero25 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_25);
+  zero26 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_26);
+  zero27 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_27);
+  zero28 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_28);
+  zero29 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_29);
+  zero30 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_30);
+  zero31 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_31);
+  zero32 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_32);
+  zero33 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_33);
+  zero34 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_34);
+  zero35 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_35);
+  zero36 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_36);
+  zero37 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_37);
+  zero38 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_38);
+  zero39 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_39);
+  zero40 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_40);
+  zero41 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_41);
+  zero42 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_42);
+  zero43 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_43);
+  zero44 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_44);
+  zero45 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_45);
+  zero46 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_46);
+  zero47 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_47);
+  zero48 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_48);
+  zero49 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_49);
+  zero50 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_50);
+  zero51 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_51);
+  zero52 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_52);
+  zero53 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_53);
+  zero54 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_54);
+  zero55 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_55);
+  zero56 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_56);
+  zero57 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_57);
+  zero58 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_58);
+  zero59 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_59);
+  zero60 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_60);
+  zero61 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_61);
+  zero62 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_62);
+  zero63 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => zero64_63);
+  reg_in : register64
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => reg_in_0& reg_in_1& reg_in_2& reg_in_3& reg_in_4& reg_in_5& reg_in_6& reg_in_7& reg_in_8& reg_in_9& reg_in_10& reg_in_11& reg_in_12& reg_in_13& reg_in_14& reg_in_15& reg_in_16& reg_in_17& reg_in_18& reg_in_19& reg_in_20& reg_in_21& reg_in_22& reg_in_23& reg_in_24& reg_in_25& reg_in_26& reg_in_27& reg_in_28& reg_in_29& reg_in_30& reg_in_31& reg_in_32& reg_in_33& reg_in_34& reg_in_35& reg_in_36& reg_in_37& reg_in_38& reg_in_39& reg_in_40& reg_in_41& reg_in_42& reg_in_43& reg_in_44& reg_in_45& reg_in_46& reg_in_47& reg_in_48& reg_in_49& reg_in_50& reg_in_51& reg_in_52& reg_in_53& reg_in_54& reg_in_55& reg_in_56& reg_in_57& reg_in_58& reg_in_59& reg_in_60& reg_in_61& reg_in_62& reg_in_63,
+    en => en_in,
+    rst => rst,
+    a => data_in(0)& data_in(1)& data_in(2)& data_in(3)& data_in(4)& data_in(5)& data_in(6)& data_in(7)& data_in(8)& data_in(9)& data_in(10)& data_in(11)& data_in(12)& data_in(13)& data_in(14)& data_in(15)& data_in(16)& data_in(17)& data_in(18)& data_in(19)& data_in(20)& data_in(21)& data_in(22)& data_in(23)& data_in(24)& data_in(25)& data_in(26)& data_in(27)& data_in(28)& data_in(29)& data_in(30)& data_in(31)& data_in(32)& data_in(33)& data_in(34)& data_in(35)& data_in(36)& data_in(37)& data_in(38)& data_in(39)& data_in(40)& data_in(41)& data_in(42)& data_in(43)& data_in(44)& data_in(45)& data_in(46)& data_in(47)& data_in(48)& data_in(49)& data_in(50)& data_in(51)& data_in(52)& data_in(53)& data_in(54)& data_in(55)& data_in(56)& data_in(57)& data_in(58)& data_in(59)& data_in(60)& data_in(61)& data_in(62)& data_in(63));
+  mux1 : mux64
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => mux1_63& mux1_62& mux1_61& mux1_60& mux1_59& mux1_58& mux1_57& mux1_56& mux1_55& mux1_54& mux1_53& mux1_52& mux1_51& mux1_50& mux1_49& mux1_48& mux1_47& mux1_46& mux1_45& mux1_44& mux1_43& mux1_42& mux1_41& mux1_40& mux1_39& mux1_38& mux1_37& mux1_36& mux1_35& mux1_34& mux1_33& mux1_32& mux1_31& mux1_30& mux1_29& mux1_28& mux1_27& mux1_26& mux1_25& mux1_24& mux1_23& mux1_22& mux1_21& mux1_20& mux1_19& mux1_18& mux1_17& mux1_16& mux1_15& mux1_14& mux1_13& mux1_12& mux1_11& mux1_10& mux1_9& mux1_8& mux1_7& mux1_6& mux1_5& mux1_4& mux1_3& mux1_2& mux1_1& mux1_0,
+    sel => sel1(1)& sel1(0),
+    c => zero64_63& zero64_62& zero64_61& zero64_60& zero64_59& zero64_58& zero64_57& zero64_56& zero64_55& zero64_54& zero64_53& zero64_52& zero64_51& zero64_50& zero64_49& zero64_48& zero64_47& zero64_46& zero64_45& zero64_44& zero64_43& zero64_42& zero64_41& zero64_40& zero64_39& zero64_38& zero64_37& zero64_36& zero64_35& zero64_34& zero64_33& zero64_32& zero64_31& zero64_30& zero64_29& zero64_28& zero64_27& zero64_26& zero64_25& zero64_24& zero64_23& zero64_22& zero64_21& zero64_20& zero64_19& zero64_18& zero64_17& zero64_16& zero64_15& zero64_14& zero64_13& zero64_12& zero64_11& zero64_10& zero64_9& zero64_8& zero64_7& zero64_6& zero64_5& zero64_4& zero64_3& zero64_2& zero64_1& zero64_0,
+    b => reg_in_63& reg_in_62& reg_in_61& reg_in_60& reg_in_59& reg_in_58& reg_in_57& reg_in_56& reg_in_55& reg_in_54& reg_in_53& reg_in_52& reg_in_51& reg_in_50& reg_in_49& reg_in_48& reg_in_47& reg_in_46& reg_in_45& reg_in_44& reg_in_43& reg_in_42& reg_in_41& reg_in_40& reg_in_39& reg_in_38& reg_in_37& reg_in_36& reg_in_35& reg_in_34& reg_in_33& reg_in_32& reg_in_31& reg_in_30& reg_in_29& reg_in_28& reg_in_27& reg_in_26& reg_in_25& reg_in_24& reg_in_23& reg_in_22& reg_in_21& reg_in_20& reg_in_19& reg_in_18& reg_in_17& reg_in_16& reg_in_15& reg_in_14& reg_in_13& reg_in_12& reg_in_11& reg_in_10& reg_in_9& reg_in_8& reg_in_7& reg_in_6& reg_in_5& reg_in_4& reg_in_3& reg_in_2& reg_in_1& reg_in_0,
+    a => xor2_63& xor2_62& xor2_61& xor2_60& xor2_59& xor2_58& xor2_57& xor2_56& xor2_55& xor2_54& xor2_53& xor2_52& xor2_51& xor2_50& xor2_49& xor2_48& xor2_47& xor2_46& xor2_45& xor2_44& xor2_43& xor2_42& xor2_41& xor2_40& xor2_39& xor2_38& xor2_37& xor2_36& xor2_35& xor2_34& xor2_33& xor2_32& xor2_31& xor2_30& xor2_29& xor2_28& xor2_27& xor2_26& xor2_25& xor2_24& xor2_23& xor2_22& xor2_21& xor2_20& xor2_19& xor2_18& xor2_17& xor2_16& xor2_15& xor2_14& xor2_13& xor2_12& xor2_11& xor2_10& xor2_9& xor2_8& xor2_7& xor2_6& xor2_5& xor2_4& xor2_3& xor2_2& xor2_1& xor2_0);
+  reg_iv : register64
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => reg_iv_0& reg_iv_1& reg_iv_2& reg_iv_3& reg_iv_4& reg_iv_5& reg_iv_6& reg_iv_7& reg_iv_8& reg_iv_9& reg_iv_10& reg_iv_11& reg_iv_12& reg_iv_13& reg_iv_14& reg_iv_15& reg_iv_16& reg_iv_17& reg_iv_18& reg_iv_19& reg_iv_20& reg_iv_21& reg_iv_22& reg_iv_23& reg_iv_24& reg_iv_25& reg_iv_26& reg_iv_27& reg_iv_28& reg_iv_29& reg_iv_30& reg_iv_31& reg_iv_32& reg_iv_33& reg_iv_34& reg_iv_35& reg_iv_36& reg_iv_37& reg_iv_38& reg_iv_39& reg_iv_40& reg_iv_41& reg_iv_42& reg_iv_43& reg_iv_44& reg_iv_45& reg_iv_46& reg_iv_47& reg_iv_48& reg_iv_49& reg_iv_50& reg_iv_51& reg_iv_52& reg_iv_53& reg_iv_54& reg_iv_55& reg_iv_56& reg_iv_57& reg_iv_58& reg_iv_59& reg_iv_60& reg_iv_61& reg_iv_62& reg_iv_63,
+    en => en_iv,
+    rst => rst,
+    a => mux1_0& mux1_1& mux1_2& mux1_3& mux1_4& mux1_5& mux1_6& mux1_7& mux1_8& mux1_9& mux1_10& mux1_11& mux1_12& mux1_13& mux1_14& mux1_15& mux1_16& mux1_17& mux1_18& mux1_19& mux1_20& mux1_21& mux1_22& mux1_23& mux1_24& mux1_25& mux1_26& mux1_27& mux1_28& mux1_29& mux1_30& mux1_31& mux1_32& mux1_33& mux1_34& mux1_35& mux1_36& mux1_37& mux1_38& mux1_39& mux1_40& mux1_41& mux1_42& mux1_43& mux1_44& mux1_45& mux1_46& mux1_47& mux1_48& mux1_49& mux1_50& mux1_51& mux1_52& mux1_53& mux1_54& mux1_55& mux1_56& mux1_57& mux1_58& mux1_59& mux1_60& mux1_61& mux1_62& mux1_63);
+  mux2 : mux64
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => mux2_63& mux2_62& mux2_61& mux2_60& mux2_59& mux2_58& mux2_57& mux2_56& mux2_55& mux2_54& mux2_53& mux2_52& mux2_51& mux2_50& mux2_49& mux2_48& mux2_47& mux2_46& mux2_45& mux2_44& mux2_43& mux2_42& mux2_41& mux2_40& mux2_39& mux2_38& mux2_37& mux2_36& mux2_35& mux2_34& mux2_33& mux2_32& mux2_31& mux2_30& mux2_29& mux2_28& mux2_27& mux2_26& mux2_25& mux2_24& mux2_23& mux2_22& mux2_21& mux2_20& mux2_19& mux2_18& mux2_17& mux2_16& mux2_15& mux2_14& mux2_13& mux2_12& mux2_11& mux2_10& mux2_9& mux2_8& mux2_7& mux2_6& mux2_5& mux2_4& mux2_3& mux2_2& mux2_1& mux2_0,
+    sel => sel2(1)& sel2(0),
+    c => zero64_63& zero64_62& zero64_61& zero64_60& zero64_59& zero64_58& zero64_57& zero64_56& zero64_55& zero64_54& zero64_53& zero64_52& zero64_51& zero64_50& zero64_49& zero64_48& zero64_47& zero64_46& zero64_45& zero64_44& zero64_43& zero64_42& zero64_41& zero64_40& zero64_39& zero64_38& zero64_37& zero64_36& zero64_35& zero64_34& zero64_33& zero64_32& zero64_31& zero64_30& zero64_29& zero64_28& zero64_27& zero64_26& zero64_25& zero64_24& zero64_23& zero64_22& zero64_21& zero64_20& zero64_19& zero64_18& zero64_17& zero64_16& zero64_15& zero64_14& zero64_13& zero64_12& zero64_11& zero64_10& zero64_9& zero64_8& zero64_7& zero64_6& zero64_5& zero64_4& zero64_3& zero64_2& zero64_1& zero64_0,
+    b => reg_iv_63& reg_iv_62& reg_iv_61& reg_iv_60& reg_iv_59& reg_iv_58& reg_iv_57& reg_iv_56& reg_iv_55& reg_iv_54& reg_iv_53& reg_iv_52& reg_iv_51& reg_iv_50& reg_iv_49& reg_iv_48& reg_iv_47& reg_iv_46& reg_iv_45& reg_iv_44& reg_iv_43& reg_iv_42& reg_iv_41& reg_iv_40& reg_iv_39& reg_iv_38& reg_iv_37& reg_iv_36& reg_iv_35& reg_iv_34& reg_iv_33& reg_iv_32& reg_iv_31& reg_iv_30& reg_iv_29& reg_iv_28& reg_iv_27& reg_iv_26& reg_iv_25& reg_iv_24& reg_iv_23& reg_iv_22& reg_iv_21& reg_iv_20& reg_iv_19& reg_iv_18& reg_iv_17& reg_iv_16& reg_iv_15& reg_iv_14& reg_iv_13& reg_iv_12& reg_iv_11& reg_iv_10& reg_iv_9& reg_iv_8& reg_iv_7& reg_iv_6& reg_iv_5& reg_iv_4& reg_iv_3& reg_iv_2& reg_iv_1& reg_iv_0,
+    a => xor2_63& xor2_62& xor2_61& xor2_60& xor2_59& xor2_58& xor2_57& xor2_56& xor2_55& xor2_54& xor2_53& xor2_52& xor2_51& xor2_50& xor2_49& xor2_48& xor2_47& xor2_46& xor2_45& xor2_44& xor2_43& xor2_42& xor2_41& xor2_40& xor2_39& xor2_38& xor2_37& xor2_36& xor2_35& xor2_34& xor2_33& xor2_32& xor2_31& xor2_30& xor2_29& xor2_28& xor2_27& xor2_26& xor2_25& xor2_24& xor2_23& xor2_22& xor2_21& xor2_20& xor2_19& xor2_18& xor2_17& xor2_16& xor2_15& xor2_14& xor2_13& xor2_12& xor2_11& xor2_10& xor2_9& xor2_8& xor2_7& xor2_6& xor2_5& xor2_4& xor2_3& xor2_2& xor2_1& xor2_0);
+  xor1 : xor64
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => dt_inidea(63)& dt_inidea(62)& dt_inidea(61)& dt_inidea(60)& dt_inidea(59)& dt_inidea(58)& dt_inidea(57)& dt_inidea(56)& dt_inidea(55)& dt_inidea(54)& dt_inidea(53)& dt_inidea(52)& dt_inidea(51)& dt_inidea(50)& dt_inidea(49)& dt_inidea(48)& dt_inidea(47)& dt_inidea(46)& dt_inidea(45)& dt_inidea(44)& dt_inidea(43)& dt_inidea(42)& dt_inidea(41)& dt_inidea(40)& dt_inidea(39)& dt_inidea(38)& dt_inidea(37)& dt_inidea(36)& dt_inidea(35)& dt_inidea(34)& dt_inidea(33)& dt_inidea(32)& dt_inidea(31)& dt_inidea(30)& dt_inidea(29)& dt_inidea(28)& dt_inidea(27)& dt_inidea(26)& dt_inidea(25)& dt_inidea(24)& dt_inidea(23)& dt_inidea(22)& dt_inidea(21)& dt_inidea(20)& dt_inidea(19)& dt_inidea(18)& dt_inidea(17)& dt_inidea(16)& dt_inidea(15)& dt_inidea(14)& dt_inidea(13)& dt_inidea(12)& dt_inidea(11)& dt_inidea(10)& dt_inidea(9)& dt_inidea(8)& dt_inidea(7)& dt_inidea(6)& dt_inidea(5)& dt_inidea(4)& dt_inidea(3)& dt_inidea(2)& dt_inidea(1)& dt_inidea(0),
+    b => mux2_63& mux2_62& mux2_61& mux2_60& mux2_59& mux2_58& mux2_57& mux2_56& mux2_55& mux2_54& mux2_53& mux2_52& mux2_51& mux2_50& mux2_49& mux2_48& mux2_47& mux2_46& mux2_45& mux2_44& mux2_43& mux2_42& mux2_41& mux2_40& mux2_39& mux2_38& mux2_37& mux2_36& mux2_35& mux2_34& mux2_33& mux2_32& mux2_31& mux2_30& mux2_29& mux2_28& mux2_27& mux2_26& mux2_25& mux2_24& mux2_23& mux2_22& mux2_21& mux2_20& mux2_19& mux2_18& mux2_17& mux2_16& mux2_15& mux2_14& mux2_13& mux2_12& mux2_11& mux2_10& mux2_9& mux2_8& mux2_7& mux2_6& mux2_5& mux2_4& mux2_3& mux2_2& mux2_1& mux2_0,
+    a => mux1_63& mux1_62& mux1_61& mux1_60& mux1_59& mux1_58& mux1_57& mux1_56& mux1_55& mux1_54& mux1_53& mux1_52& mux1_51& mux1_50& mux1_49& mux1_48& mux1_47& mux1_46& mux1_45& mux1_44& mux1_43& mux1_42& mux1_41& mux1_40& mux1_39& mux1_38& mux1_37& mux1_36& mux1_35& mux1_34& mux1_33& mux1_32& mux1_31& mux1_30& mux1_29& mux1_28& mux1_27& mux1_26& mux1_25& mux1_24& mux1_23& mux1_22& mux1_21& mux1_20& mux1_19& mux1_18& mux1_17& mux1_16& mux1_15& mux1_14& mux1_13& mux1_12& mux1_11& mux1_10& mux1_9& mux1_8& mux1_7& mux1_6& mux1_5& mux1_4& mux1_3& mux1_2& mux1_1& mux1_0);
+  reg_cbc : register64
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => reg_cbc_0& reg_cbc_1& reg_cbc_2& reg_cbc_3& reg_cbc_4& reg_cbc_5& reg_cbc_6& reg_cbc_7& reg_cbc_8& reg_cbc_9& reg_cbc_10& reg_cbc_11& reg_cbc_12& reg_cbc_13& reg_cbc_14& reg_cbc_15& reg_cbc_16& reg_cbc_17& reg_cbc_18& reg_cbc_19& reg_cbc_20& reg_cbc_21& reg_cbc_22& reg_cbc_23& reg_cbc_24& reg_cbc_25& reg_cbc_26& reg_cbc_27& reg_cbc_28& reg_cbc_29& reg_cbc_30& reg_cbc_31& reg_cbc_32& reg_cbc_33& reg_cbc_34& reg_cbc_35& reg_cbc_36& reg_cbc_37& reg_cbc_38& reg_cbc_39& reg_cbc_40& reg_cbc_41& reg_cbc_42& reg_cbc_43& reg_cbc_44& reg_cbc_45& reg_cbc_46& reg_cbc_47& reg_cbc_48& reg_cbc_49& reg_cbc_50& reg_cbc_51& reg_cbc_52& reg_cbc_53& reg_cbc_54& reg_cbc_55& reg_cbc_56& reg_cbc_57& reg_cbc_58& reg_cbc_59& reg_cbc_60& reg_cbc_61& reg_cbc_62& reg_cbc_63,
+    en => en_rcbc,
+    rst => rst,
+    a => reg_iv_0& reg_iv_1& reg_iv_2& reg_iv_3& reg_iv_4& reg_iv_5& reg_iv_6& reg_iv_7& reg_iv_8& reg_iv_9& reg_iv_10& reg_iv_11& reg_iv_12& reg_iv_13& reg_iv_14& reg_iv_15& reg_iv_16& reg_iv_17& reg_iv_18& reg_iv_19& reg_iv_20& reg_iv_21& reg_iv_22& reg_iv_23& reg_iv_24& reg_iv_25& reg_iv_26& reg_iv_27& reg_iv_28& reg_iv_29& reg_iv_30& reg_iv_31& reg_iv_32& reg_iv_33& reg_iv_34& reg_iv_35& reg_iv_36& reg_iv_37& reg_iv_38& reg_iv_39& reg_iv_40& reg_iv_41& reg_iv_42& reg_iv_43& reg_iv_44& reg_iv_45& reg_iv_46& reg_iv_47& reg_iv_48& reg_iv_49& reg_iv_50& reg_iv_51& reg_iv_52& reg_iv_53& reg_iv_54& reg_iv_55& reg_iv_56& reg_iv_57& reg_iv_58& reg_iv_59& reg_iv_60& reg_iv_61& reg_iv_62& reg_iv_63);
+  mux3 : mux64
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => mux3_63& mux3_62& mux3_61& mux3_60& mux3_59& mux3_58& mux3_57& mux3_56& mux3_55& mux3_54& mux3_53& mux3_52& mux3_51& mux3_50& mux3_49& mux3_48& mux3_47& mux3_46& mux3_45& mux3_44& mux3_43& mux3_42& mux3_41& mux3_40& mux3_39& mux3_38& mux3_37& mux3_36& mux3_35& mux3_34& mux3_33& mux3_32& mux3_31& mux3_30& mux3_29& mux3_28& mux3_27& mux3_26& mux3_25& mux3_24& mux3_23& mux3_22& mux3_21& mux3_20& mux3_19& mux3_18& mux3_17& mux3_16& mux3_15& mux3_14& mux3_13& mux3_12& mux3_11& mux3_10& mux3_9& mux3_8& mux3_7& mux3_6& mux3_5& mux3_4& mux3_3& mux3_2& mux3_1& mux3_0,
+    sel => sel3(1)& sel3(0),
+    c => zero64_63& zero64_62& zero64_61& zero64_60& zero64_59& zero64_58& zero64_57& zero64_56& zero64_55& zero64_54& zero64_53& zero64_52& zero64_51& zero64_50& zero64_49& zero64_48& zero64_47& zero64_46& zero64_45& zero64_44& zero64_43& zero64_42& zero64_41& zero64_40& zero64_39& zero64_38& zero64_37& zero64_36& zero64_35& zero64_34& zero64_33& zero64_32& zero64_31& zero64_30& zero64_29& zero64_28& zero64_27& zero64_26& zero64_25& zero64_24& zero64_23& zero64_22& zero64_21& zero64_20& zero64_19& zero64_18& zero64_17& zero64_16& zero64_15& zero64_14& zero64_13& zero64_12& zero64_11& zero64_10& zero64_9& zero64_8& zero64_7& zero64_6& zero64_5& zero64_4& zero64_3& zero64_2& zero64_1& zero64_0,
+    b => reg_in_63& reg_in_62& reg_in_61& reg_in_60& reg_in_59& reg_in_58& reg_in_57& reg_in_56& reg_in_55& reg_in_54& reg_in_53& reg_in_52& reg_in_51& reg_in_50& reg_in_49& reg_in_48& reg_in_47& reg_in_46& reg_in_45& reg_in_44& reg_in_43& reg_in_42& reg_in_41& reg_in_40& reg_in_39& reg_in_38& reg_in_37& reg_in_36& reg_in_35& reg_in_34& reg_in_33& reg_in_32& reg_in_31& reg_in_30& reg_in_29& reg_in_28& reg_in_27& reg_in_26& reg_in_25& reg_in_24& reg_in_23& reg_in_22& reg_in_21& reg_in_20& reg_in_19& reg_in_18& reg_in_17& reg_in_16& reg_in_15& reg_in_14& reg_in_13& reg_in_12& reg_in_11& reg_in_10& reg_in_9& reg_in_8& reg_in_7& reg_in_6& reg_in_5& reg_in_4& reg_in_3& reg_in_2& reg_in_1& reg_in_0,
+    a => reg_cbc_63& reg_cbc_62& reg_cbc_61& reg_cbc_60& reg_cbc_59& reg_cbc_58& reg_cbc_57& reg_cbc_56& reg_cbc_55& reg_cbc_54& reg_cbc_53& reg_cbc_52& reg_cbc_51& reg_cbc_50& reg_cbc_49& reg_cbc_48& reg_cbc_47& reg_cbc_46& reg_cbc_45& reg_cbc_44& reg_cbc_43& reg_cbc_42& reg_cbc_41& reg_cbc_40& reg_cbc_39& reg_cbc_38& reg_cbc_37& reg_cbc_36& reg_cbc_35& reg_cbc_34& reg_cbc_33& reg_cbc_32& reg_cbc_31& reg_cbc_30& reg_cbc_29& reg_cbc_28& reg_cbc_27& reg_cbc_26& reg_cbc_25& reg_cbc_24& reg_cbc_23& reg_cbc_22& reg_cbc_21& reg_cbc_20& reg_cbc_19& reg_cbc_18& reg_cbc_17& reg_cbc_16& reg_cbc_15& reg_cbc_14& reg_cbc_13& reg_cbc_12& reg_cbc_11& reg_cbc_10& reg_cbc_9& reg_cbc_8& reg_cbc_7& reg_cbc_6& reg_cbc_5& reg_cbc_4& reg_cbc_3& reg_cbc_2& reg_cbc_1& reg_cbc_0);
+  xor2 : xor64
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => xor2_63& xor2_62& xor2_61& xor2_60& xor2_59& xor2_58& xor2_57& xor2_56& xor2_55& xor2_54& xor2_53& xor2_52& xor2_51& xor2_50& xor2_49& xor2_48& xor2_47& xor2_46& xor2_45& xor2_44& xor2_43& xor2_42& xor2_41& xor2_40& xor2_39& xor2_38& xor2_37& xor2_36& xor2_35& xor2_34& xor2_33& xor2_32& xor2_31& xor2_30& xor2_29& xor2_28& xor2_27& xor2_26& xor2_25& xor2_24& xor2_23& xor2_22& xor2_21& xor2_20& xor2_19& xor2_18& xor2_17& xor2_16& xor2_15& xor2_14& xor2_13& xor2_12& xor2_11& xor2_10& xor2_9& xor2_8& xor2_7& xor2_6& xor2_5& xor2_4& xor2_3& xor2_2& xor2_1& xor2_0,
+    b => mux3_63& mux3_62& mux3_61& mux3_60& mux3_59& mux3_58& mux3_57& mux3_56& mux3_55& mux3_54& mux3_53& mux3_52& mux3_51& mux3_50& mux3_49& mux3_48& mux3_47& mux3_46& mux3_45& mux3_44& mux3_43& mux3_42& mux3_41& mux3_40& mux3_39& mux3_38& mux3_37& mux3_36& mux3_35& mux3_34& mux3_33& mux3_32& mux3_31& mux3_30& mux3_29& mux3_28& mux3_27& mux3_26& mux3_25& mux3_24& mux3_23& mux3_22& mux3_21& mux3_20& mux3_19& mux3_18& mux3_17& mux3_16& mux3_15& mux3_14& mux3_13& mux3_12& mux3_11& mux3_10& mux3_9& mux3_8& mux3_7& mux3_6& mux3_5& mux3_4& mux3_3& mux3_2& mux3_1& mux3_0,
+    a => ideam_out(63)& ideam_out(62)& ideam_out(61)& ideam_out(60)& ideam_out(59)& ideam_out(58)& ideam_out(57)& ideam_out(56)& ideam_out(55)& ideam_out(54)& ideam_out(53)& ideam_out(52)& ideam_out(51)& ideam_out(50)& ideam_out(49)& ideam_out(48)& ideam_out(47)& ideam_out(46)& ideam_out(45)& ideam_out(44)& ideam_out(43)& ideam_out(42)& ideam_out(41)& ideam_out(40)& ideam_out(39)& ideam_out(38)& ideam_out(37)& ideam_out(36)& ideam_out(35)& ideam_out(34)& ideam_out(33)& ideam_out(32)& ideam_out(31)& ideam_out(30)& ideam_out(29)& ideam_out(28)& ideam_out(27)& ideam_out(26)& ideam_out(25)& ideam_out(24)& ideam_out(23)& ideam_out(22)& ideam_out(21)& ideam_out(20)& ideam_out(19)& ideam_out(18)& ideam_out(17)& ideam_out(16)& ideam_out(15)& ideam_out(14)& ideam_out(13)& ideam_out(12)& ideam_out(11)& ideam_out(10)& ideam_out(9)& ideam_out(8)& ideam_out(7)& ideam_out(6)& ideam_out(5)& ideam_out(4)& ideam_out(3)& ideam_out(2)& ideam_out(1)& ideam_out(0));
+  reg_out : register64
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => cp_out(0)& cp_out(1)& cp_out(2)& cp_out(3)& cp_out(4)& cp_out(5)& cp_out(6)& cp_out(7)& cp_out(8)& cp_out(9)& cp_out(10)& cp_out(11)& cp_out(12)& cp_out(13)& cp_out(14)& cp_out(15)& cp_out(16)& cp_out(17)& cp_out(18)& cp_out(19)& cp_out(20)& cp_out(21)& cp_out(22)& cp_out(23)& cp_out(24)& cp_out(25)& cp_out(26)& cp_out(27)& cp_out(28)& cp_out(29)& cp_out(30)& cp_out(31)& cp_out(32)& cp_out(33)& cp_out(34)& cp_out(35)& cp_out(36)& cp_out(37)& cp_out(38)& cp_out(39)& cp_out(40)& cp_out(41)& cp_out(42)& cp_out(43)& cp_out(44)& cp_out(45)& cp_out(46)& cp_out(47)& cp_out(48)& cp_out(49)& cp_out(50)& cp_out(51)& cp_out(52)& cp_out(53)& cp_out(54)& cp_out(55)& cp_out(56)& cp_out(57)& cp_out(58)& cp_out(59)& cp_out(60)& cp_out(61)& cp_out(62)& cp_out(63),
+    en => en_out,
+    rst => rst,
+    a => xor2_0& xor2_1& xor2_2& xor2_3& xor2_4& xor2_5& xor2_6& xor2_7& xor2_8& xor2_9& xor2_10& xor2_11& xor2_12& xor2_13& xor2_14& xor2_15& xor2_16& xor2_17& xor2_18& xor2_19& xor2_20& xor2_21& xor2_22& xor2_23& xor2_24& xor2_25& xor2_26& xor2_27& xor2_28& xor2_29& xor2_30& xor2_31& xor2_32& xor2_33& xor2_34& xor2_35& xor2_36& xor2_37& xor2_38& xor2_39& xor2_40& xor2_41& xor2_42& xor2_43& xor2_44& xor2_45& xor2_46& xor2_47& xor2_48& xor2_49& xor2_50& xor2_51& xor2_52& xor2_53& xor2_54& xor2_55& xor2_56& xor2_57& xor2_58& xor2_59& xor2_60& xor2_61& xor2_62& xor2_63);
+
+end VST;

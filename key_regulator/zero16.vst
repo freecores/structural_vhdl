@@ -1,0 +1,110 @@
+-- VHDL structural description generated from `zero16`
+--		date : Mon Jul 30 17:40:30 2001
+
+
+-- Entity Declaration
+
+ENTITY zero16 IS
+  PORT (
+  a : out BIT_VECTOR (15 DOWNTO 0);	-- a
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END zero16;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF zero16 IS
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+
+BEGIN
+
+  a_0 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(0));
+  a_1 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(1));
+  a_2 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(2));
+  a_3 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(3));
+  a_4 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(4));
+  a_5 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(5));
+  a_6 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(6));
+  a_7 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(7));
+  a_8 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(8));
+  a_9 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(9));
+  a_10 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(10));
+  a_11 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(11));
+  a_12 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(12));
+  a_13 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(13));
+  a_14 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(14));
+  a_15 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a(15));
+
+end VST;

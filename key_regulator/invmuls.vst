@@ -1,0 +1,249 @@
+-- VHDL structural description generated from `invmuls`
+--		date : Sat Sep  1 20:52:37 2001
+
+
+-- Entity Declaration
+
+ENTITY invmuls IS
+  PORT (
+  zi : in BIT_VECTOR (15 DOWNTO 0);	-- zi
+  rst : in BIT;	-- rst
+  en_pipe : in BIT;	-- en_pipe
+  sel : in BIT;	-- sel
+  cke : in BIT;	-- cke
+  zo : out BIT_VECTOR (15 DOWNTO 0);	-- zo
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END invmuls;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF invmuls IS
+  COMPONENT mux16
+    port (
+    a : in BIT_VECTOR(15 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(15 DOWNTO 0);	-- b
+    sel : in BIT;	-- sel
+    c : out BIT_VECTOR(15 DOWNTO 0);	-- c
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT mulmod
+    port (
+    in1 : in BIT_VECTOR(15 DOWNTO 0);	-- in1
+    in2 : in BIT_VECTOR(15 DOWNTO 0);	-- in2
+    en : in BIT;	-- en
+    rst : in BIT;	-- rst
+    cke : in BIT;	-- cke
+    mulout : out BIT_VECTOR(15 DOWNTO 0);	-- mulout
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT reg16_latch
+    port (
+    a : in BIT_VECTOR(15 DOWNTO 0);	-- a
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    cke : in BIT;	-- cke
+    b : inout BIT_VECTOR(15 DOWNTO 0);	-- b
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL clr : BIT;	-- clr
+  SIGNAL en : BIT;	-- en
+  SIGNAL o_mux_l_0 : BIT;	-- o_mux_l 0
+  SIGNAL o_mux_l_1 : BIT;	-- o_mux_l 1
+  SIGNAL o_mux_l_2 : BIT;	-- o_mux_l 2
+  SIGNAL o_mux_l_3 : BIT;	-- o_mux_l 3
+  SIGNAL o_mux_l_4 : BIT;	-- o_mux_l 4
+  SIGNAL o_mux_l_5 : BIT;	-- o_mux_l 5
+  SIGNAL o_mux_l_6 : BIT;	-- o_mux_l 6
+  SIGNAL o_mux_l_7 : BIT;	-- o_mux_l 7
+  SIGNAL o_mux_l_8 : BIT;	-- o_mux_l 8
+  SIGNAL o_mux_l_9 : BIT;	-- o_mux_l 9
+  SIGNAL o_mux_l_10 : BIT;	-- o_mux_l 10
+  SIGNAL o_mux_l_11 : BIT;	-- o_mux_l 11
+  SIGNAL o_mux_l_12 : BIT;	-- o_mux_l 12
+  SIGNAL o_mux_l_13 : BIT;	-- o_mux_l 13
+  SIGNAL o_mux_l_14 : BIT;	-- o_mux_l 14
+  SIGNAL o_mux_l_15 : BIT;	-- o_mux_l 15
+  SIGNAL o_mux_r_0 : BIT;	-- o_mux_r 0
+  SIGNAL o_mux_r_1 : BIT;	-- o_mux_r 1
+  SIGNAL o_mux_r_2 : BIT;	-- o_mux_r 2
+  SIGNAL o_mux_r_3 : BIT;	-- o_mux_r 3
+  SIGNAL o_mux_r_4 : BIT;	-- o_mux_r 4
+  SIGNAL o_mux_r_5 : BIT;	-- o_mux_r 5
+  SIGNAL o_mux_r_6 : BIT;	-- o_mux_r 6
+  SIGNAL o_mux_r_7 : BIT;	-- o_mux_r 7
+  SIGNAL o_mux_r_8 : BIT;	-- o_mux_r 8
+  SIGNAL o_mux_r_9 : BIT;	-- o_mux_r 9
+  SIGNAL o_mux_r_10 : BIT;	-- o_mux_r 10
+  SIGNAL o_mux_r_11 : BIT;	-- o_mux_r 11
+  SIGNAL o_mux_r_12 : BIT;	-- o_mux_r 12
+  SIGNAL o_mux_r_13 : BIT;	-- o_mux_r 13
+  SIGNAL o_mux_r_14 : BIT;	-- o_mux_r 14
+  SIGNAL o_mux_r_15 : BIT;	-- o_mux_r 15
+  SIGNAL ost1_l_0 : BIT;	-- ost1_l 0
+  SIGNAL ost1_l_1 : BIT;	-- ost1_l 1
+  SIGNAL ost1_l_2 : BIT;	-- ost1_l 2
+  SIGNAL ost1_l_3 : BIT;	-- ost1_l 3
+  SIGNAL ost1_l_4 : BIT;	-- ost1_l 4
+  SIGNAL ost1_l_5 : BIT;	-- ost1_l 5
+  SIGNAL ost1_l_6 : BIT;	-- ost1_l 6
+  SIGNAL ost1_l_7 : BIT;	-- ost1_l 7
+  SIGNAL ost1_l_8 : BIT;	-- ost1_l 8
+  SIGNAL ost1_l_9 : BIT;	-- ost1_l 9
+  SIGNAL ost1_l_10 : BIT;	-- ost1_l 10
+  SIGNAL ost1_l_11 : BIT;	-- ost1_l 11
+  SIGNAL ost1_l_12 : BIT;	-- ost1_l 12
+  SIGNAL ost1_l_13 : BIT;	-- ost1_l 13
+  SIGNAL ost1_l_14 : BIT;	-- ost1_l 14
+  SIGNAL ost1_l_15 : BIT;	-- ost1_l 15
+  SIGNAL ost1_r_0 : BIT;	-- ost1_r 0
+  SIGNAL ost1_r_1 : BIT;	-- ost1_r 1
+  SIGNAL ost1_r_2 : BIT;	-- ost1_r 2
+  SIGNAL ost1_r_3 : BIT;	-- ost1_r 3
+  SIGNAL ost1_r_4 : BIT;	-- ost1_r 4
+  SIGNAL ost1_r_5 : BIT;	-- ost1_r 5
+  SIGNAL ost1_r_6 : BIT;	-- ost1_r 6
+  SIGNAL ost1_r_7 : BIT;	-- ost1_r 7
+  SIGNAL ost1_r_8 : BIT;	-- ost1_r 8
+  SIGNAL ost1_r_9 : BIT;	-- ost1_r 9
+  SIGNAL ost1_r_10 : BIT;	-- ost1_r 10
+  SIGNAL ost1_r_11 : BIT;	-- ost1_r 11
+  SIGNAL ost1_r_12 : BIT;	-- ost1_r 12
+  SIGNAL ost1_r_13 : BIT;	-- ost1_r 13
+  SIGNAL ost1_r_14 : BIT;	-- ost1_r 14
+  SIGNAL ost1_r_15 : BIT;	-- ost1_r 15
+  SIGNAL ost2_l_0 : BIT;	-- ost2_l 0
+  SIGNAL ost2_l_1 : BIT;	-- ost2_l 1
+  SIGNAL ost2_l_2 : BIT;	-- ost2_l 2
+  SIGNAL ost2_l_3 : BIT;	-- ost2_l 3
+  SIGNAL ost2_l_4 : BIT;	-- ost2_l 4
+  SIGNAL ost2_l_5 : BIT;	-- ost2_l 5
+  SIGNAL ost2_l_6 : BIT;	-- ost2_l 6
+  SIGNAL ost2_l_7 : BIT;	-- ost2_l 7
+  SIGNAL ost2_l_8 : BIT;	-- ost2_l 8
+  SIGNAL ost2_l_9 : BIT;	-- ost2_l 9
+  SIGNAL ost2_l_10 : BIT;	-- ost2_l 10
+  SIGNAL ost2_l_11 : BIT;	-- ost2_l 11
+  SIGNAL ost2_l_12 : BIT;	-- ost2_l 12
+  SIGNAL ost2_l_13 : BIT;	-- ost2_l 13
+  SIGNAL ost2_l_14 : BIT;	-- ost2_l 14
+  SIGNAL ost2_l_15 : BIT;	-- ost2_l 15
+  SIGNAL ost2_r_0 : BIT;	-- ost2_r 0
+  SIGNAL ost2_r_1 : BIT;	-- ost2_r 1
+  SIGNAL ost2_r_2 : BIT;	-- ost2_r 2
+  SIGNAL ost2_r_3 : BIT;	-- ost2_r 3
+  SIGNAL ost2_r_4 : BIT;	-- ost2_r 4
+  SIGNAL ost2_r_5 : BIT;	-- ost2_r 5
+  SIGNAL ost2_r_6 : BIT;	-- ost2_r 6
+  SIGNAL ost2_r_7 : BIT;	-- ost2_r 7
+  SIGNAL ost2_r_8 : BIT;	-- ost2_r 8
+  SIGNAL ost2_r_9 : BIT;	-- ost2_r 9
+  SIGNAL ost2_r_10 : BIT;	-- ost2_r 10
+  SIGNAL ost2_r_11 : BIT;	-- ost2_r 11
+  SIGNAL ost2_r_12 : BIT;	-- ost2_r 12
+  SIGNAL ost2_r_13 : BIT;	-- ost2_r 13
+  SIGNAL ost2_r_14 : BIT;	-- ost2_r 14
+  SIGNAL ost2_r_15 : BIT;	-- ost2_r 15
+  SIGNAL ost3_r_0 : BIT;	-- ost3_r 0
+  SIGNAL ost3_r_1 : BIT;	-- ost3_r 1
+  SIGNAL ost3_r_2 : BIT;	-- ost3_r 2
+  SIGNAL ost3_r_3 : BIT;	-- ost3_r 3
+  SIGNAL ost3_r_4 : BIT;	-- ost3_r 4
+  SIGNAL ost3_r_5 : BIT;	-- ost3_r 5
+  SIGNAL ost3_r_6 : BIT;	-- ost3_r 6
+  SIGNAL ost3_r_7 : BIT;	-- ost3_r 7
+  SIGNAL ost3_r_8 : BIT;	-- ost3_r 8
+  SIGNAL ost3_r_9 : BIT;	-- ost3_r 9
+  SIGNAL ost3_r_10 : BIT;	-- ost3_r 10
+  SIGNAL ost3_r_11 : BIT;	-- ost3_r 11
+  SIGNAL ost3_r_12 : BIT;	-- ost3_r 12
+  SIGNAL ost3_r_13 : BIT;	-- ost3_r 13
+  SIGNAL ost3_r_14 : BIT;	-- ost3_r 14
+  SIGNAL ost3_r_15 : BIT;	-- ost3_r 15
+
+BEGIN
+
+  mux_l : mux16
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    c => o_mux_l_15& o_mux_l_14& o_mux_l_13& o_mux_l_12& o_mux_l_11& o_mux_l_10& o_mux_l_9& o_mux_l_8& o_mux_l_7& o_mux_l_6& o_mux_l_5& o_mux_l_4& o_mux_l_3& o_mux_l_2& o_mux_l_1& o_mux_l_0,
+    sel => sel,
+    b => zi(15)& zi(14)& zi(13)& zi(12)& zi(11)& zi(10)& zi(9)& zi(8)& zi(7)& zi(6)& zi(5)& zi(4)& zi(3)& zi(2)& zi(1)& zi(0),
+    a => zo(15)& zo(14)& zo(13)& zo(12)& zo(11)& zo(10)& zo(9)& zo(8)& zo(7)& zo(6)& zo(5)& zo(4)& zo(3)& zo(2)& zo(1)& zo(0));
+  mux_r : mux16
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    c => o_mux_r_15& o_mux_r_14& o_mux_r_13& o_mux_r_12& o_mux_r_11& o_mux_r_10& o_mux_r_9& o_mux_r_8& o_mux_r_7& o_mux_r_6& o_mux_r_5& o_mux_r_4& o_mux_r_3& o_mux_r_2& o_mux_r_1& o_mux_r_0,
+    sel => sel,
+    b => zi(15)& zi(14)& zi(13)& zi(12)& zi(11)& zi(10)& zi(9)& zi(8)& zi(7)& zi(6)& zi(5)& zi(4)& zi(3)& zi(2)& zi(1)& zi(0),
+    a => ost3_r_15& ost3_r_14& ost3_r_13& ost3_r_12& ost3_r_11& ost3_r_10& ost3_r_9& ost3_r_8& ost3_r_7& ost3_r_6& ost3_r_5& ost3_r_4& ost3_r_3& ost3_r_2& ost3_r_1& ost3_r_0);
+  reg1_l : reg16_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => ost1_l_15& ost1_l_14& ost1_l_13& ost1_l_12& ost1_l_11& ost1_l_10& ost1_l_9& ost1_l_8& ost1_l_7& ost1_l_6& ost1_l_5& ost1_l_4& ost1_l_3& ost1_l_2& ost1_l_1& ost1_l_0,
+    cke => cke,
+    clr => clr,
+    en => en,
+    a => o_mux_l_15& o_mux_l_14& o_mux_l_13& o_mux_l_12& o_mux_l_11& o_mux_l_10& o_mux_l_9& o_mux_l_8& o_mux_l_7& o_mux_l_6& o_mux_l_5& o_mux_l_4& o_mux_l_3& o_mux_l_2& o_mux_l_1& o_mux_l_0);
+  reg1_r : reg16_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => ost1_r_15& ost1_r_14& ost1_r_13& ost1_r_12& ost1_r_11& ost1_r_10& ost1_r_9& ost1_r_8& ost1_r_7& ost1_r_6& ost1_r_5& ost1_r_4& ost1_r_3& ost1_r_2& ost1_r_1& ost1_r_0,
+    cke => cke,
+    clr => clr,
+    en => en,
+    a => o_mux_r_15& o_mux_r_14& o_mux_r_13& o_mux_r_12& o_mux_r_11& o_mux_r_10& o_mux_r_9& o_mux_r_8& o_mux_r_7& o_mux_r_6& o_mux_r_5& o_mux_r_4& o_mux_r_3& o_mux_r_2& o_mux_r_1& o_mux_r_0);
+  reg2_l : reg16_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => ost2_l_15& ost2_l_14& ost2_l_13& ost2_l_12& ost2_l_11& ost2_l_10& ost2_l_9& ost2_l_8& ost2_l_7& ost2_l_6& ost2_l_5& ost2_l_4& ost2_l_3& ost2_l_2& ost2_l_1& ost2_l_0,
+    cke => cke,
+    clr => clr,
+    en => en,
+    a => ost1_l_15& ost1_l_14& ost1_l_13& ost1_l_12& ost1_l_11& ost1_l_10& ost1_l_9& ost1_l_8& ost1_l_7& ost1_l_6& ost1_l_5& ost1_l_4& ost1_l_3& ost1_l_2& ost1_l_1& ost1_l_0);
+  mulmod_r : mulmod
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    mulout => ost2_r_15& ost2_r_14& ost2_r_13& ost2_r_12& ost2_r_11& ost2_r_10& ost2_r_9& ost2_r_8& ost2_r_7& ost2_r_6& ost2_r_5& ost2_r_4& ost2_r_3& ost2_r_2& ost2_r_1& ost2_r_0,
+    cke => cke,
+    rst => clr,
+    en => en,
+    in2 => ost1_r_15& ost1_r_14& ost1_r_13& ost1_r_12& ost1_r_11& ost1_r_10& ost1_r_9& ost1_r_8& ost1_r_7& ost1_r_6& ost1_r_5& ost1_r_4& ost1_r_3& ost1_r_2& ost1_r_1& ost1_r_0,
+    in1 => ost1_r_15& ost1_r_14& ost1_r_13& ost1_r_12& ost1_r_11& ost1_r_10& ost1_r_9& ost1_r_8& ost1_r_7& ost1_r_6& ost1_r_5& ost1_r_4& ost1_r_3& ost1_r_2& ost1_r_1& ost1_r_0);
+  mulmod_l : mulmod
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    mulout => zo(15)& zo(14)& zo(13)& zo(12)& zo(11)& zo(10)& zo(9)& zo(8)& zo(7)& zo(6)& zo(5)& zo(4)& zo(3)& zo(2)& zo(1)& zo(0),
+    cke => cke,
+    rst => clr,
+    en => en,
+    in2 => ost2_r_15& ost2_r_14& ost2_r_13& ost2_r_12& ost2_r_11& ost2_r_10& ost2_r_9& ost2_r_8& ost2_r_7& ost2_r_6& ost2_r_5& ost2_r_4& ost2_r_3& ost2_r_2& ost2_r_1& ost2_r_0,
+    in1 => ost2_l_15& ost2_l_14& ost2_l_13& ost2_l_12& ost2_l_11& ost2_l_10& ost2_l_9& ost2_l_8& ost2_l_7& ost2_l_6& ost2_l_5& ost2_l_4& ost2_l_3& ost2_l_2& ost2_l_1& ost2_l_0);
+  reg2_r : reg16_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => ost3_r_15& ost3_r_14& ost3_r_13& ost3_r_12& ost3_r_11& ost3_r_10& ost3_r_9& ost3_r_8& ost3_r_7& ost3_r_6& ost3_r_5& ost3_r_4& ost3_r_3& ost3_r_2& ost3_r_1& ost3_r_0,
+    cke => cke,
+    clr => clr,
+    en => en,
+    a => ost2_r_15& ost2_r_14& ost2_r_13& ost2_r_12& ost2_r_11& ost2_r_10& ost2_r_9& ost2_r_8& ost2_r_7& ost2_r_6& ost2_r_5& ost2_r_4& ost2_r_3& ost2_r_2& ost2_r_1& ost2_r_0);
+
+end VST;

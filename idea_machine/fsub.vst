@@ -1,0 +1,113 @@
+-- VHDL structural description generated from `fsub`
+--		date : Sat Sep  8 02:01:14 2001
+
+
+-- Entity Declaration
+
+ENTITY fsub IS
+  PORT (
+  a : in BIT;	-- a
+  b : in BIT;	-- b
+  bin : in BIT;	-- bin
+  d : out BIT;	-- d
+  bout : out BIT;	-- bout
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END fsub;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF fsub IS
+  COMPONENT nao2o22_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    i3 : in BIT;	-- i3
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT an12_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT inv_x1
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL auxsc7 : BIT;	-- auxsc7
+  SIGNAL auxsc8 : BIT;	-- auxsc8
+  SIGNAL auxsc9 : BIT;	-- auxsc9
+  SIGNAL auxsc1 : BIT;	-- auxsc1
+
+BEGIN
+
+  bout : nao2o22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => bout,
+    i3 => auxsc9,
+    i2 => a,
+    i1 => auxsc8,
+    i0 => auxsc7);
+  d : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => d,
+    i1 => auxsc1,
+    i0 => bin);
+  auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc1,
+    i1 => a,
+    i0 => b);
+  auxsc9 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc9,
+    i => b);
+  auxsc8 : an12_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc8,
+    i1 => a,
+    i0 => b);
+  auxsc7 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc7,
+    i => bin);
+
+end VST;

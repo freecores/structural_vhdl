@@ -1,0 +1,146 @@
+-- VHDL structural description generated from `xor16_glopg`
+--		date : Sat Sep  8 02:20:05 2001
+
+
+-- Entity Declaration
+
+ENTITY xor16_glopg IS
+  PORT (
+  a : in BIT_VECTOR (0 TO 15);	-- a
+  b : in BIT_VECTOR (0 TO 15);	-- b
+  q : out BIT_VECTOR (0 TO 15);	-- q
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END xor16_glopg;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF xor16_glopg IS
+  COMPONENT xr2_x4
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+
+BEGIN
+
+  xr0 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(0),
+    i1 => b(0),
+    i0 => a(0));
+  xr1 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(1),
+    i1 => b(1),
+    i0 => a(1));
+  xr2 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(2),
+    i1 => b(2),
+    i0 => a(2));
+  xr3 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(3),
+    i1 => b(3),
+    i0 => a(3));
+  xr4 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(4),
+    i1 => b(4),
+    i0 => a(4));
+  xr5 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(5),
+    i1 => b(5),
+    i0 => a(5));
+  xr6 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(6),
+    i1 => b(6),
+    i0 => a(6));
+  xr7 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(7),
+    i1 => b(7),
+    i0 => a(7));
+  xr8 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(8),
+    i1 => b(8),
+    i0 => a(8));
+  xr9 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(9),
+    i1 => b(9),
+    i0 => a(9));
+  xr10 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(10),
+    i1 => b(10),
+    i0 => a(10));
+  xr11 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(11),
+    i1 => b(11),
+    i0 => a(11));
+  xr12 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(12),
+    i1 => b(12),
+    i0 => a(12));
+  xr13 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(13),
+    i1 => b(13),
+    i0 => a(13));
+  xr14 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(14),
+    i1 => b(14),
+    i0 => a(14));
+  xr15 : xr2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(15),
+    i1 => b(15),
+    i0 => a(15));
+
+end VST;

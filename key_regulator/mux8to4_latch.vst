@@ -1,0 +1,600 @@
+-- VHDL structural description generated from `mux8to4_latch`
+--		date : Sat Jul 28 16:33:13 2001
+
+
+-- Entity Declaration
+
+ENTITY mux8to4_latch IS
+  PORT (
+  i1 : in BIT_VECTOR (15 DOWNTO 0);	-- i1
+  i2 : in BIT_VECTOR (15 DOWNTO 0);	-- i2
+  i3 : in BIT_VECTOR (15 DOWNTO 0);	-- i3
+  i4 : in BIT_VECTOR (15 DOWNTO 0);	-- i4
+  i5 : in BIT_VECTOR (15 DOWNTO 0);	-- i5
+  i6 : in BIT_VECTOR (15 DOWNTO 0);	-- i6
+  i7 : in BIT_VECTOR (15 DOWNTO 0);	-- i7
+  i8 : in BIT_VECTOR (15 DOWNTO 0);	-- i8
+  en : in BIT;	-- en
+  clr : in BIT;	-- clr
+  sel : in BIT;	-- sel
+  cke : in BIT;	-- cke
+  o1 : inout BIT_VECTOR (15 DOWNTO 0);	-- o1
+  o2 : inout BIT_VECTOR (15 DOWNTO 0);	-- o2
+  o3 : inout BIT_VECTOR (15 DOWNTO 0);	-- o3
+  o4 : inout BIT_VECTOR (15 DOWNTO 0);	-- o4
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END mux8to4_latch;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF mux8to4_latch IS
+  COMPONENT mux8to4
+    port (
+    i1 : in BIT_VECTOR(15 DOWNTO 0);	-- i1
+    i2 : in BIT_VECTOR(15 DOWNTO 0);	-- i2
+    i3 : in BIT_VECTOR(15 DOWNTO 0);	-- i3
+    i4 : in BIT_VECTOR(15 DOWNTO 0);	-- i4
+    i5 : in BIT_VECTOR(15 DOWNTO 0);	-- i5
+    i6 : in BIT_VECTOR(15 DOWNTO 0);	-- i6
+    i7 : in BIT_VECTOR(15 DOWNTO 0);	-- i7
+    i8 : in BIT_VECTOR(15 DOWNTO 0);	-- i8
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    sel : in BIT;	-- sel
+    o1 : out BIT_VECTOR(15 DOWNTO 0);	-- o1
+    o2 : out BIT_VECTOR(15 DOWNTO 0);	-- o2
+    o3 : out BIT_VECTOR(15 DOWNTO 0);	-- o3
+    o4 : out BIT_VECTOR(15 DOWNTO 0);	-- o4
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT latch
+    port (
+    a : in BIT;	-- a
+    en : in BIT;	-- en
+    b : inout BIT;	-- b
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL x1_0 : BIT;	-- x1 0
+  SIGNAL x1_1 : BIT;	-- x1 1
+  SIGNAL x1_2 : BIT;	-- x1 2
+  SIGNAL x1_3 : BIT;	-- x1 3
+  SIGNAL x1_4 : BIT;	-- x1 4
+  SIGNAL x1_5 : BIT;	-- x1 5
+  SIGNAL x1_6 : BIT;	-- x1 6
+  SIGNAL x1_7 : BIT;	-- x1 7
+  SIGNAL x1_8 : BIT;	-- x1 8
+  SIGNAL x1_9 : BIT;	-- x1 9
+  SIGNAL x1_10 : BIT;	-- x1 10
+  SIGNAL x1_11 : BIT;	-- x1 11
+  SIGNAL x1_12 : BIT;	-- x1 12
+  SIGNAL x1_13 : BIT;	-- x1 13
+  SIGNAL x1_14 : BIT;	-- x1 14
+  SIGNAL x1_15 : BIT;	-- x1 15
+  SIGNAL x2_0 : BIT;	-- x2 0
+  SIGNAL x2_1 : BIT;	-- x2 1
+  SIGNAL x2_2 : BIT;	-- x2 2
+  SIGNAL x2_3 : BIT;	-- x2 3
+  SIGNAL x2_4 : BIT;	-- x2 4
+  SIGNAL x2_5 : BIT;	-- x2 5
+  SIGNAL x2_6 : BIT;	-- x2 6
+  SIGNAL x2_7 : BIT;	-- x2 7
+  SIGNAL x2_8 : BIT;	-- x2 8
+  SIGNAL x2_9 : BIT;	-- x2 9
+  SIGNAL x2_10 : BIT;	-- x2 10
+  SIGNAL x2_11 : BIT;	-- x2 11
+  SIGNAL x2_12 : BIT;	-- x2 12
+  SIGNAL x2_13 : BIT;	-- x2 13
+  SIGNAL x2_14 : BIT;	-- x2 14
+  SIGNAL x2_15 : BIT;	-- x2 15
+  SIGNAL x3_0 : BIT;	-- x3 0
+  SIGNAL x3_1 : BIT;	-- x3 1
+  SIGNAL x3_2 : BIT;	-- x3 2
+  SIGNAL x3_3 : BIT;	-- x3 3
+  SIGNAL x3_4 : BIT;	-- x3 4
+  SIGNAL x3_5 : BIT;	-- x3 5
+  SIGNAL x3_6 : BIT;	-- x3 6
+  SIGNAL x3_7 : BIT;	-- x3 7
+  SIGNAL x3_8 : BIT;	-- x3 8
+  SIGNAL x3_9 : BIT;	-- x3 9
+  SIGNAL x3_10 : BIT;	-- x3 10
+  SIGNAL x3_11 : BIT;	-- x3 11
+  SIGNAL x3_12 : BIT;	-- x3 12
+  SIGNAL x3_13 : BIT;	-- x3 13
+  SIGNAL x3_14 : BIT;	-- x3 14
+  SIGNAL x3_15 : BIT;	-- x3 15
+  SIGNAL x4_0 : BIT;	-- x4 0
+  SIGNAL x4_1 : BIT;	-- x4 1
+  SIGNAL x4_2 : BIT;	-- x4 2
+  SIGNAL x4_3 : BIT;	-- x4 3
+  SIGNAL x4_4 : BIT;	-- x4 4
+  SIGNAL x4_5 : BIT;	-- x4 5
+  SIGNAL x4_6 : BIT;	-- x4 6
+  SIGNAL x4_7 : BIT;	-- x4 7
+  SIGNAL x4_8 : BIT;	-- x4 8
+  SIGNAL x4_9 : BIT;	-- x4 9
+  SIGNAL x4_10 : BIT;	-- x4 10
+  SIGNAL x4_11 : BIT;	-- x4 11
+  SIGNAL x4_12 : BIT;	-- x4 12
+  SIGNAL x4_13 : BIT;	-- x4 13
+  SIGNAL x4_14 : BIT;	-- x4 14
+  SIGNAL x4_15 : BIT;	-- x4 15
+
+BEGIN
+
+  mux1 : mux8to4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o4 => x4_15& x4_14& x4_13& x4_12& x4_11& x4_10& x4_9& x4_8& x4_7& x4_6& x4_5& x4_4& x4_3& x4_2& x4_1& x4_0,
+    o3 => x3_15& x3_14& x3_13& x3_12& x3_11& x3_10& x3_9& x3_8& x3_7& x3_6& x3_5& x3_4& x3_3& x3_2& x3_1& x3_0,
+    o2 => x2_15& x2_14& x2_13& x2_12& x2_11& x2_10& x2_9& x2_8& x2_7& x2_6& x2_5& x2_4& x2_3& x2_2& x2_1& x2_0,
+    o1 => x1_15& x1_14& x1_13& x1_12& x1_11& x1_10& x1_9& x1_8& x1_7& x1_6& x1_5& x1_4& x1_3& x1_2& x1_1& x1_0,
+    sel => sel,
+    clr => clr,
+    en => en,
+    i8 => i8(15)& i8(14)& i8(13)& i8(12)& i8(11)& i8(10)& i8(9)& i8(8)& i8(7)& i8(6)& i8(5)& i8(4)& i8(3)& i8(2)& i8(1)& i8(0),
+    i7 => i7(15)& i7(14)& i7(13)& i7(12)& i7(11)& i7(10)& i7(9)& i7(8)& i7(7)& i7(6)& i7(5)& i7(4)& i7(3)& i7(2)& i7(1)& i7(0),
+    i6 => i6(15)& i6(14)& i6(13)& i6(12)& i6(11)& i6(10)& i6(9)& i6(8)& i6(7)& i6(6)& i6(5)& i6(4)& i6(3)& i6(2)& i6(1)& i6(0),
+    i5 => i5(15)& i5(14)& i5(13)& i5(12)& i5(11)& i5(10)& i5(9)& i5(8)& i5(7)& i5(6)& i5(5)& i5(4)& i5(3)& i5(2)& i5(1)& i5(0),
+    i4 => i4(15)& i4(14)& i4(13)& i4(12)& i4(11)& i4(10)& i4(9)& i4(8)& i4(7)& i4(6)& i4(5)& i4(4)& i4(3)& i4(2)& i4(1)& i4(0),
+    i3 => i3(15)& i3(14)& i3(13)& i3(12)& i3(11)& i3(10)& i3(9)& i3(8)& i3(7)& i3(6)& i3(5)& i3(4)& i3(3)& i3(2)& i3(1)& i3(0),
+    i2 => i2(15)& i2(14)& i2(13)& i2(12)& i2(11)& i2(10)& i2(9)& i2(8)& i2(7)& i2(6)& i2(5)& i2(4)& i2(3)& i2(2)& i2(1)& i2(0),
+    i1 => i1(15)& i1(14)& i1(13)& i1(12)& i1(11)& i1(10)& i1(9)& i1(8)& i1(7)& i1(6)& i1(5)& i1(4)& i1(3)& i1(2)& i1(1)& i1(0));
+  latch0 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(0),
+    en => cke,
+    a => x1_0);
+  latch16 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(0),
+    en => cke,
+    a => x2_0);
+  latch32 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(0),
+    en => cke,
+    a => x3_0);
+  latch48 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(0),
+    en => cke,
+    a => x4_0);
+  latch1 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(1),
+    en => cke,
+    a => x1_1);
+  latch17 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(1),
+    en => cke,
+    a => x2_1);
+  latch33 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(1),
+    en => cke,
+    a => x3_1);
+  latch49 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(1),
+    en => cke,
+    a => x4_1);
+  latch2 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(2),
+    en => cke,
+    a => x1_2);
+  latch18 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(2),
+    en => cke,
+    a => x2_2);
+  latch34 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(2),
+    en => cke,
+    a => x3_2);
+  latch50 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(2),
+    en => cke,
+    a => x4_2);
+  latch3 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(3),
+    en => cke,
+    a => x1_3);
+  latch19 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(3),
+    en => cke,
+    a => x2_3);
+  latch35 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(3),
+    en => cke,
+    a => x3_3);
+  latch51 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(3),
+    en => cke,
+    a => x4_3);
+  latch4 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(4),
+    en => cke,
+    a => x1_4);
+  latch20 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(4),
+    en => cke,
+    a => x2_4);
+  latch36 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(4),
+    en => cke,
+    a => x3_4);
+  latch52 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(4),
+    en => cke,
+    a => x4_4);
+  latch5 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(5),
+    en => cke,
+    a => x1_5);
+  latch21 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(5),
+    en => cke,
+    a => x2_5);
+  latch37 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(5),
+    en => cke,
+    a => x3_5);
+  latch53 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(5),
+    en => cke,
+    a => x4_5);
+  latch6 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(6),
+    en => cke,
+    a => x1_6);
+  latch22 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(6),
+    en => cke,
+    a => x2_6);
+  latch38 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(6),
+    en => cke,
+    a => x3_6);
+  latch54 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(6),
+    en => cke,
+    a => x4_6);
+  latch7 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(7),
+    en => cke,
+    a => x1_7);
+  latch23 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(7),
+    en => cke,
+    a => x2_7);
+  latch39 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(7),
+    en => cke,
+    a => x3_7);
+  latch55 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(7),
+    en => cke,
+    a => x4_7);
+  latch8 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(8),
+    en => cke,
+    a => x1_8);
+  latch24 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(8),
+    en => cke,
+    a => x2_8);
+  latch40 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(8),
+    en => cke,
+    a => x3_8);
+  latch56 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(8),
+    en => cke,
+    a => x4_8);
+  latch9 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(9),
+    en => cke,
+    a => x1_9);
+  latch25 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(9),
+    en => cke,
+    a => x2_9);
+  latch41 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(9),
+    en => cke,
+    a => x3_9);
+  latch57 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(9),
+    en => cke,
+    a => x4_9);
+  latch10 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(10),
+    en => cke,
+    a => x1_10);
+  latch26 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(10),
+    en => cke,
+    a => x2_10);
+  latch42 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(10),
+    en => cke,
+    a => x3_10);
+  latch58 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(10),
+    en => cke,
+    a => x4_10);
+  latch11 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(11),
+    en => cke,
+    a => x1_11);
+  latch27 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(11),
+    en => cke,
+    a => x2_11);
+  latch43 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(11),
+    en => cke,
+    a => x3_11);
+  latch59 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(11),
+    en => cke,
+    a => x4_11);
+  latch12 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(12),
+    en => cke,
+    a => x1_12);
+  latch28 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(12),
+    en => cke,
+    a => x2_12);
+  latch44 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(12),
+    en => cke,
+    a => x3_12);
+  latch60 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(12),
+    en => cke,
+    a => x4_12);
+  latch13 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(13),
+    en => cke,
+    a => x1_13);
+  latch29 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(13),
+    en => cke,
+    a => x2_13);
+  latch45 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(13),
+    en => cke,
+    a => x3_13);
+  latch61 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(13),
+    en => cke,
+    a => x4_13);
+  latch14 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(14),
+    en => cke,
+    a => x1_14);
+  latch30 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(14),
+    en => cke,
+    a => x2_14);
+  latch46 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(14),
+    en => cke,
+    a => x3_14);
+  latch62 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(14),
+    en => cke,
+    a => x4_14);
+  latch15 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o1(15),
+    en => cke,
+    a => x1_15);
+  latch31 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o2(15),
+    en => cke,
+    a => x2_15);
+  latch47 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o3(15),
+    en => cke,
+    a => x3_15);
+  latch63 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => o4(15),
+    en => cke,
+    a => x4_15);
+
+end VST;

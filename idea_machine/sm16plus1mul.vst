@@ -1,0 +1,272 @@
+-- VHDL structural description generated from `sm16plus1mul`
+--		date : Sat Sep  8 04:28:34 2001
+
+
+-- Entity Declaration
+
+ENTITY sm16plus1mul IS
+  PORT (
+  in1 : in BIT_VECTOR (0 TO 15);	-- in1
+  in2 : in BIT_VECTOR (0 TO 15);	-- in2
+  en : in BIT;	-- en
+  clr : in BIT;	-- clr
+  mulout : out BIT_VECTOR (0 TO 15);	-- mulout
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END sm16plus1mul;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF sm16plus1mul IS
+  COMPONENT comp1_glopg
+    port (
+    kin : in BIT_VECTOR(15 DOWNTO 0);	-- kin
+    kout1 : out BIT_VECTOR(16 DOWNTO 0);	-- kout1
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT mul17_glopg
+    port (
+    a : in BIT_VECTOR(16 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(16 DOWNTO 0);	-- b
+    sum : out BIT_VECTOR(31 DOWNTO 0);	-- sum
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT comp2_glopg
+    port (
+    vss : in BIT;	-- vss
+    vdd : in BIT;	-- vdd
+    kout2 : out BIT_VECTOR(0 TO 15);	-- kout2
+    q : in BIT_VECTOR(0 TO 15);	-- q
+    p : in BIT_VECTOR(0 TO 15)	-- p
+    );
+  END COMPONENT;
+
+  COMPONENT subtract16_glopg
+    port (
+    a : in BIT_VECTOR(0 TO 15);	-- a
+    b : in BIT_VECTOR(0 TO 15);	-- b
+    s : out BIT_VECTOR(0 TO 15);	-- s
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT reg16_glopf
+    port (
+    d : in BIT_VECTOR(0 TO 15);	-- d
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    q : inout BIT_VECTOR(0 TO 15);	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT m16adder_glopg
+    port (
+    a : in BIT_VECTOR(0 TO 15);	-- a
+    b : in BIT_VECTOR(0 TO 15);	-- b
+    s : out BIT_VECTOR(0 TO 15);	-- s
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL dif_0 : BIT;	-- dif 0
+  SIGNAL dif_1 : BIT;	-- dif 1
+  SIGNAL dif_2 : BIT;	-- dif 2
+  SIGNAL dif_3 : BIT;	-- dif 3
+  SIGNAL dif_4 : BIT;	-- dif 4
+  SIGNAL dif_5 : BIT;	-- dif 5
+  SIGNAL dif_6 : BIT;	-- dif 6
+  SIGNAL dif_7 : BIT;	-- dif 7
+  SIGNAL dif_8 : BIT;	-- dif 8
+  SIGNAL dif_9 : BIT;	-- dif 9
+  SIGNAL dif_10 : BIT;	-- dif 10
+  SIGNAL dif_11 : BIT;	-- dif 11
+  SIGNAL dif_12 : BIT;	-- dif 12
+  SIGNAL dif_13 : BIT;	-- dif 13
+  SIGNAL dif_14 : BIT;	-- dif 14
+  SIGNAL dif_15 : BIT;	-- dif 15
+  SIGNAL kout1a_0 : BIT;	-- kout1a 0
+  SIGNAL kout1a_1 : BIT;	-- kout1a 1
+  SIGNAL kout1a_2 : BIT;	-- kout1a 2
+  SIGNAL kout1a_3 : BIT;	-- kout1a 3
+  SIGNAL kout1a_4 : BIT;	-- kout1a 4
+  SIGNAL kout1a_5 : BIT;	-- kout1a 5
+  SIGNAL kout1a_6 : BIT;	-- kout1a 6
+  SIGNAL kout1a_7 : BIT;	-- kout1a 7
+  SIGNAL kout1a_8 : BIT;	-- kout1a 8
+  SIGNAL kout1a_9 : BIT;	-- kout1a 9
+  SIGNAL kout1a_10 : BIT;	-- kout1a 10
+  SIGNAL kout1a_11 : BIT;	-- kout1a 11
+  SIGNAL kout1a_12 : BIT;	-- kout1a 12
+  SIGNAL kout1a_13 : BIT;	-- kout1a 13
+  SIGNAL kout1a_14 : BIT;	-- kout1a 14
+  SIGNAL kout1a_15 : BIT;	-- kout1a 15
+  SIGNAL kout1a_16 : BIT;	-- kout1a 16
+  SIGNAL kout1b_0 : BIT;	-- kout1b 0
+  SIGNAL kout1b_1 : BIT;	-- kout1b 1
+  SIGNAL kout1b_2 : BIT;	-- kout1b 2
+  SIGNAL kout1b_3 : BIT;	-- kout1b 3
+  SIGNAL kout1b_4 : BIT;	-- kout1b 4
+  SIGNAL kout1b_5 : BIT;	-- kout1b 5
+  SIGNAL kout1b_6 : BIT;	-- kout1b 6
+  SIGNAL kout1b_7 : BIT;	-- kout1b 7
+  SIGNAL kout1b_8 : BIT;	-- kout1b 8
+  SIGNAL kout1b_9 : BIT;	-- kout1b 9
+  SIGNAL kout1b_10 : BIT;	-- kout1b 10
+  SIGNAL kout1b_11 : BIT;	-- kout1b 11
+  SIGNAL kout1b_12 : BIT;	-- kout1b 12
+  SIGNAL kout1b_13 : BIT;	-- kout1b 13
+  SIGNAL kout1b_14 : BIT;	-- kout1b 14
+  SIGNAL kout1b_15 : BIT;	-- kout1b 15
+  SIGNAL kout1b_16 : BIT;	-- kout1b 16
+  SIGNAL kout2_0 : BIT;	-- kout2 0
+  SIGNAL kout2_1 : BIT;	-- kout2 1
+  SIGNAL kout2_2 : BIT;	-- kout2 2
+  SIGNAL kout2_3 : BIT;	-- kout2 3
+  SIGNAL kout2_4 : BIT;	-- kout2 4
+  SIGNAL kout2_5 : BIT;	-- kout2 5
+  SIGNAL kout2_6 : BIT;	-- kout2 6
+  SIGNAL kout2_7 : BIT;	-- kout2 7
+  SIGNAL kout2_8 : BIT;	-- kout2 8
+  SIGNAL kout2_9 : BIT;	-- kout2 9
+  SIGNAL kout2_10 : BIT;	-- kout2 10
+  SIGNAL kout2_11 : BIT;	-- kout2 11
+  SIGNAL kout2_12 : BIT;	-- kout2 12
+  SIGNAL kout2_13 : BIT;	-- kout2 13
+  SIGNAL kout2_14 : BIT;	-- kout2 14
+  SIGNAL kout2_15 : BIT;	-- kout2 15
+  SIGNAL r1_0 : BIT;	-- r1 0
+  SIGNAL r1_1 : BIT;	-- r1 1
+  SIGNAL r1_2 : BIT;	-- r1 2
+  SIGNAL r1_3 : BIT;	-- r1 3
+  SIGNAL r1_4 : BIT;	-- r1 4
+  SIGNAL r1_5 : BIT;	-- r1 5
+  SIGNAL r1_6 : BIT;	-- r1 6
+  SIGNAL r1_7 : BIT;	-- r1 7
+  SIGNAL r1_8 : BIT;	-- r1 8
+  SIGNAL r1_9 : BIT;	-- r1 9
+  SIGNAL r1_10 : BIT;	-- r1 10
+  SIGNAL r1_11 : BIT;	-- r1 11
+  SIGNAL r1_12 : BIT;	-- r1 12
+  SIGNAL r1_13 : BIT;	-- r1 13
+  SIGNAL r1_14 : BIT;	-- r1 14
+  SIGNAL r1_15 : BIT;	-- r1 15
+  SIGNAL r2_0 : BIT;	-- r2 0
+  SIGNAL r2_1 : BIT;	-- r2 1
+  SIGNAL r2_2 : BIT;	-- r2 2
+  SIGNAL r2_3 : BIT;	-- r2 3
+  SIGNAL r2_4 : BIT;	-- r2 4
+  SIGNAL r2_5 : BIT;	-- r2 5
+  SIGNAL r2_6 : BIT;	-- r2 6
+  SIGNAL r2_7 : BIT;	-- r2 7
+  SIGNAL r2_8 : BIT;	-- r2 8
+  SIGNAL r2_9 : BIT;	-- r2 9
+  SIGNAL r2_10 : BIT;	-- r2 10
+  SIGNAL r2_11 : BIT;	-- r2 11
+  SIGNAL r2_12 : BIT;	-- r2 12
+  SIGNAL r2_13 : BIT;	-- r2 13
+  SIGNAL r2_14 : BIT;	-- r2 14
+  SIGNAL r2_15 : BIT;	-- r2 15
+  SIGNAL res_0 : BIT;	-- res 0
+  SIGNAL res_1 : BIT;	-- res 1
+  SIGNAL res_2 : BIT;	-- res 2
+  SIGNAL res_3 : BIT;	-- res 3
+  SIGNAL res_4 : BIT;	-- res 4
+  SIGNAL res_5 : BIT;	-- res 5
+  SIGNAL res_6 : BIT;	-- res 6
+  SIGNAL res_7 : BIT;	-- res 7
+  SIGNAL res_8 : BIT;	-- res 8
+  SIGNAL res_9 : BIT;	-- res 9
+  SIGNAL res_10 : BIT;	-- res 10
+  SIGNAL res_11 : BIT;	-- res 11
+  SIGNAL res_12 : BIT;	-- res 12
+  SIGNAL res_13 : BIT;	-- res 13
+  SIGNAL res_14 : BIT;	-- res 14
+  SIGNAL res_15 : BIT;	-- res 15
+  SIGNAL res_16 : BIT;	-- res 16
+  SIGNAL res_17 : BIT;	-- res 17
+  SIGNAL res_18 : BIT;	-- res 18
+  SIGNAL res_19 : BIT;	-- res 19
+  SIGNAL res_20 : BIT;	-- res 20
+  SIGNAL res_21 : BIT;	-- res 21
+  SIGNAL res_22 : BIT;	-- res 22
+  SIGNAL res_23 : BIT;	-- res 23
+  SIGNAL res_24 : BIT;	-- res 24
+  SIGNAL res_25 : BIT;	-- res 25
+  SIGNAL res_26 : BIT;	-- res 26
+  SIGNAL res_27 : BIT;	-- res 27
+  SIGNAL res_28 : BIT;	-- res 28
+  SIGNAL res_29 : BIT;	-- res 29
+  SIGNAL res_30 : BIT;	-- res 30
+  SIGNAL res_31 : BIT;	-- res 31
+
+BEGIN
+
+  com1a : comp1_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    kout1 => kout1a_16& kout1a_15& kout1a_14& kout1a_13& kout1a_12& kout1a_11& kout1a_10& kout1a_9& kout1a_8& kout1a_7& kout1a_6& kout1a_5& kout1a_4& kout1a_3& kout1a_2& kout1a_1& kout1a_0,
+    kin => in1(15)& in1(14)& in1(13)& in1(12)& in1(11)& in1(10)& in1(9)& in1(8)& in1(7)& in1(6)& in1(5)& in1(4)& in1(3)& in1(2)& in1(1)& in1(0));
+  com1b : comp1_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    kout1 => kout1b_16& kout1b_15& kout1b_14& kout1b_13& kout1b_12& kout1b_11& kout1b_10& kout1b_9& kout1b_8& kout1b_7& kout1b_6& kout1b_5& kout1b_4& kout1b_3& kout1b_2& kout1b_1& kout1b_0,
+    kin => in2(15)& in2(14)& in2(13)& in2(12)& in2(11)& in2(10)& in2(9)& in2(8)& in2(7)& in2(6)& in2(5)& in2(4)& in2(3)& in2(2)& in2(1)& in2(0));
+  mul : mul17_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => res_31& res_30& res_29& res_28& res_27& res_26& res_25& res_24& res_23& res_22& res_21& res_20& res_19& res_18& res_17& res_16& res_15& res_14& res_13& res_12& res_11& res_10& res_9& res_8& res_7& res_6& res_5& res_4& res_3& res_2& res_1& res_0,
+    b => kout1b_16& kout1b_15& kout1b_14& kout1b_13& kout1b_12& kout1b_11& kout1b_10& kout1b_9& kout1b_8& kout1b_7& kout1b_6& kout1b_5& kout1b_4& kout1b_3& kout1b_2& kout1b_1& kout1b_0,
+    a => kout1a_16& kout1a_15& kout1a_14& kout1a_13& kout1a_12& kout1a_11& kout1a_10& kout1a_9& kout1a_8& kout1a_7& kout1a_6& kout1a_5& kout1a_4& kout1a_3& kout1a_2& kout1a_1& kout1a_0);
+  com2 : comp2_glopg
+    PORT MAP (
+    p => res_0& res_1& res_2& res_3& res_4& res_5& res_6& res_7& res_8& res_9& res_10& res_11& res_12& res_13& res_14& res_15,
+    q => res_16& res_17& res_18& res_19& res_20& res_21& res_22& res_23& res_24& res_25& res_26& res_27& res_28& res_29& res_30& res_31,
+    kout2 => kout2_0& kout2_1& kout2_2& kout2_3& kout2_4& kout2_5& kout2_6& kout2_7& kout2_8& kout2_9& kout2_10& kout2_11& kout2_12& kout2_13& kout2_14& kout2_15,
+    vdd => vdd,
+    vss => vss);
+  sub : subtract16_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    s => dif_0& dif_1& dif_2& dif_3& dif_4& dif_5& dif_6& dif_7& dif_8& dif_9& dif_10& dif_11& dif_12& dif_13& dif_14& dif_15,
+    b => res_16& res_17& res_18& res_19& res_20& res_21& res_22& res_23& res_24& res_25& res_26& res_27& res_28& res_29& res_30& res_31,
+    a => res_0& res_1& res_2& res_3& res_4& res_5& res_6& res_7& res_8& res_9& res_10& res_11& res_12& res_13& res_14& res_15);
+  reg1 : reg16_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r1_0& r1_1& r1_2& r1_3& r1_4& r1_5& r1_6& r1_7& r1_8& r1_9& r1_10& r1_11& r1_12& r1_13& r1_14& r1_15,
+    clr => clr,
+    en => en,
+    d => kout2_0& kout2_1& kout2_2& kout2_3& kout2_4& kout2_5& kout2_6& kout2_7& kout2_8& kout2_9& kout2_10& kout2_11& kout2_12& kout2_13& kout2_14& kout2_15);
+  reg2 : reg16_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r2_0& r2_1& r2_2& r2_3& r2_4& r2_5& r2_6& r2_7& r2_8& r2_9& r2_10& r2_11& r2_12& r2_13& r2_14& r2_15,
+    clr => clr,
+    en => en,
+    d => dif_0& dif_1& dif_2& dif_3& dif_4& dif_5& dif_6& dif_7& dif_8& dif_9& dif_10& dif_11& dif_12& dif_13& dif_14& dif_15);
+  add : m16adder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    s => mulout(0)& mulout(1)& mulout(2)& mulout(3)& mulout(4)& mulout(5)& mulout(6)& mulout(7)& mulout(8)& mulout(9)& mulout(10)& mulout(11)& mulout(12)& mulout(13)& mulout(14)& mulout(15),
+    b => r1_0& r1_1& r1_2& r1_3& r1_4& r1_5& r1_6& r1_7& r1_8& r1_9& r1_10& r1_11& r1_12& r1_13& r1_14& r1_15,
+    a => r2_0& r2_1& r2_2& r2_3& r2_4& r2_5& r2_6& r2_7& r2_8& r2_9& r2_10& r2_11& r2_12& r2_13& r2_14& r2_15);
+
+end VST;

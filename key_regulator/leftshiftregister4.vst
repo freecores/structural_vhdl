@@ -1,0 +1,246 @@
+-- VHDL structural description generated from `leftshiftregister4`
+--		date : Tue Jul 31 10:16:40 2001
+
+
+-- Entity Declaration
+
+ENTITY leftshiftregister4 IS
+  PORT (
+  p : in BIT_VECTOR (16 DOWNTO 0);	-- p
+  q : in BIT;	-- q
+  r : out BIT_VECTOR (33 DOWNTO 0);	-- r
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END leftshiftregister4;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF leftshiftregister4 IS
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+
+BEGIN
+
+  r_0 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(0));
+  r_1 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(1));
+  r_2 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(2));
+  r_3 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(3));
+  r_4 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(4),
+    i1 => p(0),
+    i0 => q);
+  r_5 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(5),
+    i1 => p(1),
+    i0 => q);
+  r_6 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(6),
+    i1 => p(2),
+    i0 => q);
+  r_7 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(7),
+    i1 => p(3),
+    i0 => q);
+  r_8 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(8),
+    i1 => p(4),
+    i0 => q);
+  r_9 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(9),
+    i1 => p(5),
+    i0 => q);
+  r_10 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(10),
+    i1 => p(6),
+    i0 => q);
+  r_11 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(11),
+    i1 => p(7),
+    i0 => q);
+  r_12 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(12),
+    i1 => p(8),
+    i0 => q);
+  r_13 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(13),
+    i1 => p(9),
+    i0 => q);
+  r_14 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(14),
+    i1 => p(10),
+    i0 => q);
+  r_15 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(15),
+    i1 => p(11),
+    i0 => q);
+  r_16 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(16),
+    i1 => p(12),
+    i0 => q);
+  r_17 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(17),
+    i1 => p(13),
+    i0 => q);
+  r_18 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(18),
+    i1 => p(14),
+    i0 => q);
+  r_19 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(19),
+    i1 => p(15),
+    i0 => q);
+  r_20 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => r(20),
+    i1 => p(16),
+    i0 => q);
+  r_21 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(21));
+  r_22 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(22));
+  r_23 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(23));
+  r_24 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(24));
+  r_25 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(25));
+  r_26 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(26));
+  r_27 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(27));
+  r_28 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(28));
+  r_29 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(29));
+  r_30 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(30));
+  r_31 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(31));
+  r_32 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(32));
+  r_33 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => r(33));
+
+end VST;

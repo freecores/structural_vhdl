@@ -1,0 +1,197 @@
+-- VHDL structural description generated from `substract16`
+--		date : Mon Jul 30 17:21:56 2001
+
+
+-- Entity Declaration
+
+ENTITY substract16 IS
+  PORT (
+  a : in BIT_VECTOR (15 DOWNTO 0);	-- a
+  b : in BIT_VECTOR (15 DOWNTO 0);	-- b
+  bin : in BIT;	-- bin
+  diff : out BIT_VECTOR (15 DOWNTO 0);	-- diff
+  bout : out BIT;	-- bout
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END substract16;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF substract16 IS
+  COMPONENT substract
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    bin : in BIT;	-- bin
+    diff : out BIT;	-- diff
+    bout : out BIT;	-- bout
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL boutx_0 : BIT;	-- boutx 0
+  SIGNAL boutx_1 : BIT;	-- boutx 1
+  SIGNAL boutx_2 : BIT;	-- boutx 2
+  SIGNAL boutx_3 : BIT;	-- boutx 3
+  SIGNAL boutx_4 : BIT;	-- boutx 4
+  SIGNAL boutx_5 : BIT;	-- boutx 5
+  SIGNAL boutx_6 : BIT;	-- boutx 6
+  SIGNAL boutx_7 : BIT;	-- boutx 7
+  SIGNAL boutx_8 : BIT;	-- boutx 8
+  SIGNAL boutx_9 : BIT;	-- boutx 9
+  SIGNAL boutx_10 : BIT;	-- boutx 10
+  SIGNAL boutx_11 : BIT;	-- boutx 11
+  SIGNAL boutx_12 : BIT;	-- boutx 12
+  SIGNAL boutx_13 : BIT;	-- boutx 13
+  SIGNAL boutx_14 : BIT;	-- boutx 14
+
+BEGIN
+
+  substract0 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_0,
+    diff => diff(0),
+    bin => bin,
+    b => b(0),
+    a => a(0));
+  substract1 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_1,
+    diff => diff(1),
+    bin => boutx_0,
+    b => b(1),
+    a => a(1));
+  substract2 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_2,
+    diff => diff(2),
+    bin => boutx_1,
+    b => b(2),
+    a => a(2));
+  substract3 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_3,
+    diff => diff(3),
+    bin => boutx_2,
+    b => b(3),
+    a => a(3));
+  substract4 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_4,
+    diff => diff(4),
+    bin => boutx_3,
+    b => b(4),
+    a => a(4));
+  substract5 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_5,
+    diff => diff(5),
+    bin => boutx_4,
+    b => b(5),
+    a => a(5));
+  substract6 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_6,
+    diff => diff(6),
+    bin => boutx_5,
+    b => b(6),
+    a => a(6));
+  substract7 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_7,
+    diff => diff(7),
+    bin => boutx_6,
+    b => b(7),
+    a => a(7));
+  substract8 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_8,
+    diff => diff(8),
+    bin => boutx_7,
+    b => b(8),
+    a => a(8));
+  substract9 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_9,
+    diff => diff(9),
+    bin => boutx_8,
+    b => b(9),
+    a => a(9));
+  substract10 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_10,
+    diff => diff(10),
+    bin => boutx_9,
+    b => b(10),
+    a => a(10));
+  substract11 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_11,
+    diff => diff(11),
+    bin => boutx_10,
+    b => b(11),
+    a => a(11));
+  substract12 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_12,
+    diff => diff(12),
+    bin => boutx_11,
+    b => b(12),
+    a => a(12));
+  substract13 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_13,
+    diff => diff(13),
+    bin => boutx_12,
+    b => b(13),
+    a => a(13));
+  substract14 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => boutx_14,
+    diff => diff(14),
+    bin => boutx_13,
+    b => b(14),
+    a => a(14));
+  substract15 : substract
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout,
+    diff => diff(15),
+    bin => boutx_14,
+    b => b(15),
+    a => a(15));
+
+end VST;

@@ -1,0 +1,388 @@
+-- VHDL structural description generated from `en_key`
+--		date : Thu Aug  2 10:31:50 2001
+
+
+-- Entity Declaration
+
+ENTITY en_key IS
+  PORT (
+  key_in : in BIT_VECTOR (127 DOWNTO 0);	-- key_in
+  clk : in BIT;	-- clk
+  start : in BIT;	-- start
+  rst : in BIT;	-- rst
+  finish : out BIT;	-- finish
+  o1_1 : out BIT_VECTOR (15 DOWNTO 0);	-- o1_1
+  o1_2 : out BIT_VECTOR (15 DOWNTO 0);	-- o1_2
+  o1_3 : out BIT_VECTOR (15 DOWNTO 0);	-- o1_3
+  o1_4 : out BIT_VECTOR (15 DOWNTO 0);	-- o1_4
+  o1_5 : out BIT_VECTOR (15 DOWNTO 0);	-- o1_5
+  o1_6 : out BIT_VECTOR (15 DOWNTO 0);	-- o1_6
+  o2_1 : out BIT_VECTOR (15 DOWNTO 0);	-- o2_1
+  o2_2 : out BIT_VECTOR (15 DOWNTO 0);	-- o2_2
+  o2_3 : out BIT_VECTOR (15 DOWNTO 0);	-- o2_3
+  o2_4 : out BIT_VECTOR (15 DOWNTO 0);	-- o2_4
+  o2_5 : out BIT_VECTOR (15 DOWNTO 0);	-- o2_5
+  o2_6 : out BIT_VECTOR (15 DOWNTO 0);	-- o2_6
+  o3_1 : out BIT_VECTOR (15 DOWNTO 0);	-- o3_1
+  o3_2 : out BIT_VECTOR (15 DOWNTO 0);	-- o3_2
+  o3_3 : out BIT_VECTOR (15 DOWNTO 0);	-- o3_3
+  o3_4 : out BIT_VECTOR (15 DOWNTO 0);	-- o3_4
+  o3_5 : out BIT_VECTOR (15 DOWNTO 0);	-- o3_5
+  o3_6 : out BIT_VECTOR (15 DOWNTO 0);	-- o3_6
+  o4_1 : out BIT_VECTOR (15 DOWNTO 0);	-- o4_1
+  o4_2 : out BIT_VECTOR (15 DOWNTO 0);	-- o4_2
+  o4_3 : out BIT_VECTOR (15 DOWNTO 0);	-- o4_3
+  o4_4 : out BIT_VECTOR (15 DOWNTO 0);	-- o4_4
+  o4_5 : out BIT_VECTOR (15 DOWNTO 0);	-- o4_5
+  o4_6 : out BIT_VECTOR (15 DOWNTO 0);	-- o4_6
+  o5_1 : out BIT_VECTOR (15 DOWNTO 0);	-- o5_1
+  o5_2 : out BIT_VECTOR (15 DOWNTO 0);	-- o5_2
+  o5_3 : out BIT_VECTOR (15 DOWNTO 0);	-- o5_3
+  o5_4 : out BIT_VECTOR (15 DOWNTO 0);	-- o5_4
+  o5_5 : out BIT_VECTOR (15 DOWNTO 0);	-- o5_5
+  o5_6 : out BIT_VECTOR (15 DOWNTO 0);	-- o5_6
+  o6_1 : out BIT_VECTOR (15 DOWNTO 0);	-- o6_1
+  o6_2 : out BIT_VECTOR (15 DOWNTO 0);	-- o6_2
+  o6_3 : out BIT_VECTOR (15 DOWNTO 0);	-- o6_3
+  o6_4 : out BIT_VECTOR (15 DOWNTO 0);	-- o6_4
+  o6_5 : out BIT_VECTOR (15 DOWNTO 0);	-- o6_5
+  o6_6 : out BIT_VECTOR (15 DOWNTO 0);	-- o6_6
+  o7_1 : out BIT_VECTOR (15 DOWNTO 0);	-- o7_1
+  o7_2 : out BIT_VECTOR (15 DOWNTO 0);	-- o7_2
+  o7_3 : out BIT_VECTOR (15 DOWNTO 0);	-- o7_3
+  o7_4 : out BIT_VECTOR (15 DOWNTO 0);	-- o7_4
+  o7_5 : out BIT_VECTOR (15 DOWNTO 0);	-- o7_5
+  o7_6 : out BIT_VECTOR (15 DOWNTO 0);	-- o7_6
+  o8_1 : out BIT_VECTOR (15 DOWNTO 0);	-- o8_1
+  o8_2 : out BIT_VECTOR (15 DOWNTO 0);	-- o8_2
+  o8_3 : out BIT_VECTOR (15 DOWNTO 0);	-- o8_3
+  o8_4 : out BIT_VECTOR (15 DOWNTO 0);	-- o8_4
+  o8_5 : out BIT_VECTOR (15 DOWNTO 0);	-- o8_5
+  o8_6 : out BIT_VECTOR (15 DOWNTO 0);	-- o8_6
+  o9_1 : out BIT_VECTOR (15 DOWNTO 0);	-- o9_1
+  o9_2 : out BIT_VECTOR (15 DOWNTO 0);	-- o9_2
+  o9_3 : out BIT_VECTOR (15 DOWNTO 0);	-- o9_3
+  o9_4 : out BIT_VECTOR (15 DOWNTO 0);	-- o9_4
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END en_key;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF en_key IS
+  COMPONENT shift25
+    port (
+    in_key : in BIT_VECTOR(127 DOWNTO 0);	-- in_key
+    clr : in BIT;	-- clr
+    en : in BIT;	-- en
+    sel1 : in BIT;	-- sel1
+    sel2 : in BIT;	-- sel2
+    out_key : out BIT_VECTOR(127 DOWNTO 0);	-- out_key
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT ctr_enkey1
+    port (
+    clk : in BIT;	-- clk
+    start : in BIT;	-- start
+    rst : in BIT;	-- rst
+    qiu : inout BIT_VECTOR(2 DOWNTO 0);	-- qiu
+    finish : out BIT;	-- finish
+    en_shft : out BIT;	-- en_shft
+    sel1 : out BIT;	-- sel1
+    sel2 : out BIT;	-- sel2
+    en_out : out BIT;	-- en_out
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT dec128to832
+    port (
+    a : in BIT_VECTOR(127 DOWNTO 0);	-- a
+    en : in BIT;	-- en
+    rst : in BIT;	-- rst
+    sel : in BIT_VECTOR(2 DOWNTO 0);	-- sel
+    o1_1 : out BIT_VECTOR(15 DOWNTO 0);	-- o1_1
+    o1_2 : out BIT_VECTOR(15 DOWNTO 0);	-- o1_2
+    o1_3 : out BIT_VECTOR(15 DOWNTO 0);	-- o1_3
+    o1_4 : out BIT_VECTOR(15 DOWNTO 0);	-- o1_4
+    o1_5 : out BIT_VECTOR(15 DOWNTO 0);	-- o1_5
+    o1_6 : out BIT_VECTOR(15 DOWNTO 0);	-- o1_6
+    o2_1 : out BIT_VECTOR(15 DOWNTO 0);	-- o2_1
+    o2_2 : out BIT_VECTOR(15 DOWNTO 0);	-- o2_2
+    o2_3 : out BIT_VECTOR(15 DOWNTO 0);	-- o2_3
+    o2_4 : out BIT_VECTOR(15 DOWNTO 0);	-- o2_4
+    o2_5 : out BIT_VECTOR(15 DOWNTO 0);	-- o2_5
+    o2_6 : out BIT_VECTOR(15 DOWNTO 0);	-- o2_6
+    o3_1 : out BIT_VECTOR(15 DOWNTO 0);	-- o3_1
+    o3_2 : out BIT_VECTOR(15 DOWNTO 0);	-- o3_2
+    o3_3 : out BIT_VECTOR(15 DOWNTO 0);	-- o3_3
+    o3_4 : out BIT_VECTOR(15 DOWNTO 0);	-- o3_4
+    o3_5 : out BIT_VECTOR(15 DOWNTO 0);	-- o3_5
+    o3_6 : out BIT_VECTOR(15 DOWNTO 0);	-- o3_6
+    o4_1 : out BIT_VECTOR(15 DOWNTO 0);	-- o4_1
+    o4_2 : out BIT_VECTOR(15 DOWNTO 0);	-- o4_2
+    o4_3 : out BIT_VECTOR(15 DOWNTO 0);	-- o4_3
+    o4_4 : out BIT_VECTOR(15 DOWNTO 0);	-- o4_4
+    o4_5 : out BIT_VECTOR(15 DOWNTO 0);	-- o4_5
+    o4_6 : out BIT_VECTOR(15 DOWNTO 0);	-- o4_6
+    o5_1 : out BIT_VECTOR(15 DOWNTO 0);	-- o5_1
+    o5_2 : out BIT_VECTOR(15 DOWNTO 0);	-- o5_2
+    o5_3 : out BIT_VECTOR(15 DOWNTO 0);	-- o5_3
+    o5_4 : out BIT_VECTOR(15 DOWNTO 0);	-- o5_4
+    o5_5 : out BIT_VECTOR(15 DOWNTO 0);	-- o5_5
+    o5_6 : out BIT_VECTOR(15 DOWNTO 0);	-- o5_6
+    o6_1 : out BIT_VECTOR(15 DOWNTO 0);	-- o6_1
+    o6_2 : out BIT_VECTOR(15 DOWNTO 0);	-- o6_2
+    o6_3 : out BIT_VECTOR(15 DOWNTO 0);	-- o6_3
+    o6_4 : out BIT_VECTOR(15 DOWNTO 0);	-- o6_4
+    o6_5 : out BIT_VECTOR(15 DOWNTO 0);	-- o6_5
+    o6_6 : out BIT_VECTOR(15 DOWNTO 0);	-- o6_6
+    o7_1 : out BIT_VECTOR(15 DOWNTO 0);	-- o7_1
+    o7_2 : out BIT_VECTOR(15 DOWNTO 0);	-- o7_2
+    o7_3 : out BIT_VECTOR(15 DOWNTO 0);	-- o7_3
+    o7_4 : out BIT_VECTOR(15 DOWNTO 0);	-- o7_4
+    o7_5 : out BIT_VECTOR(15 DOWNTO 0);	-- o7_5
+    o7_6 : out BIT_VECTOR(15 DOWNTO 0);	-- o7_6
+    o8_1 : out BIT_VECTOR(15 DOWNTO 0);	-- o8_1
+    o8_2 : out BIT_VECTOR(15 DOWNTO 0);	-- o8_2
+    o8_3 : out BIT_VECTOR(15 DOWNTO 0);	-- o8_3
+    o8_4 : out BIT_VECTOR(15 DOWNTO 0);	-- o8_4
+    o8_5 : out BIT_VECTOR(15 DOWNTO 0);	-- o8_5
+    o8_6 : out BIT_VECTOR(15 DOWNTO 0);	-- o8_6
+    o9_1 : out BIT_VECTOR(15 DOWNTO 0);	-- o9_1
+    o9_2 : out BIT_VECTOR(15 DOWNTO 0);	-- o9_2
+    o9_3 : out BIT_VECTOR(15 DOWNTO 0);	-- o9_3
+    o9_4 : out BIT_VECTOR(15 DOWNTO 0);	-- o9_4
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL dec_en : BIT;	-- dec_en
+  SIGNAL out_shift_0 : BIT;	-- out_shift 0
+  SIGNAL out_shift_1 : BIT;	-- out_shift 1
+  SIGNAL out_shift_2 : BIT;	-- out_shift 2
+  SIGNAL out_shift_3 : BIT;	-- out_shift 3
+  SIGNAL out_shift_4 : BIT;	-- out_shift 4
+  SIGNAL out_shift_5 : BIT;	-- out_shift 5
+  SIGNAL out_shift_6 : BIT;	-- out_shift 6
+  SIGNAL out_shift_7 : BIT;	-- out_shift 7
+  SIGNAL out_shift_8 : BIT;	-- out_shift 8
+  SIGNAL out_shift_9 : BIT;	-- out_shift 9
+  SIGNAL out_shift_10 : BIT;	-- out_shift 10
+  SIGNAL out_shift_11 : BIT;	-- out_shift 11
+  SIGNAL out_shift_12 : BIT;	-- out_shift 12
+  SIGNAL out_shift_13 : BIT;	-- out_shift 13
+  SIGNAL out_shift_14 : BIT;	-- out_shift 14
+  SIGNAL out_shift_15 : BIT;	-- out_shift 15
+  SIGNAL out_shift_16 : BIT;	-- out_shift 16
+  SIGNAL out_shift_17 : BIT;	-- out_shift 17
+  SIGNAL out_shift_18 : BIT;	-- out_shift 18
+  SIGNAL out_shift_19 : BIT;	-- out_shift 19
+  SIGNAL out_shift_20 : BIT;	-- out_shift 20
+  SIGNAL out_shift_21 : BIT;	-- out_shift 21
+  SIGNAL out_shift_22 : BIT;	-- out_shift 22
+  SIGNAL out_shift_23 : BIT;	-- out_shift 23
+  SIGNAL out_shift_24 : BIT;	-- out_shift 24
+  SIGNAL out_shift_25 : BIT;	-- out_shift 25
+  SIGNAL out_shift_26 : BIT;	-- out_shift 26
+  SIGNAL out_shift_27 : BIT;	-- out_shift 27
+  SIGNAL out_shift_28 : BIT;	-- out_shift 28
+  SIGNAL out_shift_29 : BIT;	-- out_shift 29
+  SIGNAL out_shift_30 : BIT;	-- out_shift 30
+  SIGNAL out_shift_31 : BIT;	-- out_shift 31
+  SIGNAL out_shift_32 : BIT;	-- out_shift 32
+  SIGNAL out_shift_33 : BIT;	-- out_shift 33
+  SIGNAL out_shift_34 : BIT;	-- out_shift 34
+  SIGNAL out_shift_35 : BIT;	-- out_shift 35
+  SIGNAL out_shift_36 : BIT;	-- out_shift 36
+  SIGNAL out_shift_37 : BIT;	-- out_shift 37
+  SIGNAL out_shift_38 : BIT;	-- out_shift 38
+  SIGNAL out_shift_39 : BIT;	-- out_shift 39
+  SIGNAL out_shift_40 : BIT;	-- out_shift 40
+  SIGNAL out_shift_41 : BIT;	-- out_shift 41
+  SIGNAL out_shift_42 : BIT;	-- out_shift 42
+  SIGNAL out_shift_43 : BIT;	-- out_shift 43
+  SIGNAL out_shift_44 : BIT;	-- out_shift 44
+  SIGNAL out_shift_45 : BIT;	-- out_shift 45
+  SIGNAL out_shift_46 : BIT;	-- out_shift 46
+  SIGNAL out_shift_47 : BIT;	-- out_shift 47
+  SIGNAL out_shift_48 : BIT;	-- out_shift 48
+  SIGNAL out_shift_49 : BIT;	-- out_shift 49
+  SIGNAL out_shift_50 : BIT;	-- out_shift 50
+  SIGNAL out_shift_51 : BIT;	-- out_shift 51
+  SIGNAL out_shift_52 : BIT;	-- out_shift 52
+  SIGNAL out_shift_53 : BIT;	-- out_shift 53
+  SIGNAL out_shift_54 : BIT;	-- out_shift 54
+  SIGNAL out_shift_55 : BIT;	-- out_shift 55
+  SIGNAL out_shift_56 : BIT;	-- out_shift 56
+  SIGNAL out_shift_57 : BIT;	-- out_shift 57
+  SIGNAL out_shift_58 : BIT;	-- out_shift 58
+  SIGNAL out_shift_59 : BIT;	-- out_shift 59
+  SIGNAL out_shift_60 : BIT;	-- out_shift 60
+  SIGNAL out_shift_61 : BIT;	-- out_shift 61
+  SIGNAL out_shift_62 : BIT;	-- out_shift 62
+  SIGNAL out_shift_63 : BIT;	-- out_shift 63
+  SIGNAL out_shift_64 : BIT;	-- out_shift 64
+  SIGNAL out_shift_65 : BIT;	-- out_shift 65
+  SIGNAL out_shift_66 : BIT;	-- out_shift 66
+  SIGNAL out_shift_67 : BIT;	-- out_shift 67
+  SIGNAL out_shift_68 : BIT;	-- out_shift 68
+  SIGNAL out_shift_69 : BIT;	-- out_shift 69
+  SIGNAL out_shift_70 : BIT;	-- out_shift 70
+  SIGNAL out_shift_71 : BIT;	-- out_shift 71
+  SIGNAL out_shift_72 : BIT;	-- out_shift 72
+  SIGNAL out_shift_73 : BIT;	-- out_shift 73
+  SIGNAL out_shift_74 : BIT;	-- out_shift 74
+  SIGNAL out_shift_75 : BIT;	-- out_shift 75
+  SIGNAL out_shift_76 : BIT;	-- out_shift 76
+  SIGNAL out_shift_77 : BIT;	-- out_shift 77
+  SIGNAL out_shift_78 : BIT;	-- out_shift 78
+  SIGNAL out_shift_79 : BIT;	-- out_shift 79
+  SIGNAL out_shift_80 : BIT;	-- out_shift 80
+  SIGNAL out_shift_81 : BIT;	-- out_shift 81
+  SIGNAL out_shift_82 : BIT;	-- out_shift 82
+  SIGNAL out_shift_83 : BIT;	-- out_shift 83
+  SIGNAL out_shift_84 : BIT;	-- out_shift 84
+  SIGNAL out_shift_85 : BIT;	-- out_shift 85
+  SIGNAL out_shift_86 : BIT;	-- out_shift 86
+  SIGNAL out_shift_87 : BIT;	-- out_shift 87
+  SIGNAL out_shift_88 : BIT;	-- out_shift 88
+  SIGNAL out_shift_89 : BIT;	-- out_shift 89
+  SIGNAL out_shift_90 : BIT;	-- out_shift 90
+  SIGNAL out_shift_91 : BIT;	-- out_shift 91
+  SIGNAL out_shift_92 : BIT;	-- out_shift 92
+  SIGNAL out_shift_93 : BIT;	-- out_shift 93
+  SIGNAL out_shift_94 : BIT;	-- out_shift 94
+  SIGNAL out_shift_95 : BIT;	-- out_shift 95
+  SIGNAL out_shift_96 : BIT;	-- out_shift 96
+  SIGNAL out_shift_97 : BIT;	-- out_shift 97
+  SIGNAL out_shift_98 : BIT;	-- out_shift 98
+  SIGNAL out_shift_99 : BIT;	-- out_shift 99
+  SIGNAL out_shift_100 : BIT;	-- out_shift 100
+  SIGNAL out_shift_101 : BIT;	-- out_shift 101
+  SIGNAL out_shift_102 : BIT;	-- out_shift 102
+  SIGNAL out_shift_103 : BIT;	-- out_shift 103
+  SIGNAL out_shift_104 : BIT;	-- out_shift 104
+  SIGNAL out_shift_105 : BIT;	-- out_shift 105
+  SIGNAL out_shift_106 : BIT;	-- out_shift 106
+  SIGNAL out_shift_107 : BIT;	-- out_shift 107
+  SIGNAL out_shift_108 : BIT;	-- out_shift 108
+  SIGNAL out_shift_109 : BIT;	-- out_shift 109
+  SIGNAL out_shift_110 : BIT;	-- out_shift 110
+  SIGNAL out_shift_111 : BIT;	-- out_shift 111
+  SIGNAL out_shift_112 : BIT;	-- out_shift 112
+  SIGNAL out_shift_113 : BIT;	-- out_shift 113
+  SIGNAL out_shift_114 : BIT;	-- out_shift 114
+  SIGNAL out_shift_115 : BIT;	-- out_shift 115
+  SIGNAL out_shift_116 : BIT;	-- out_shift 116
+  SIGNAL out_shift_117 : BIT;	-- out_shift 117
+  SIGNAL out_shift_118 : BIT;	-- out_shift 118
+  SIGNAL out_shift_119 : BIT;	-- out_shift 119
+  SIGNAL out_shift_120 : BIT;	-- out_shift 120
+  SIGNAL out_shift_121 : BIT;	-- out_shift 121
+  SIGNAL out_shift_122 : BIT;	-- out_shift 122
+  SIGNAL out_shift_123 : BIT;	-- out_shift 123
+  SIGNAL out_shift_124 : BIT;	-- out_shift 124
+  SIGNAL out_shift_125 : BIT;	-- out_shift 125
+  SIGNAL out_shift_126 : BIT;	-- out_shift 126
+  SIGNAL out_shift_127 : BIT;	-- out_shift 127
+  SIGNAL qiu_0 : BIT;	-- qiu 0
+  SIGNAL qiu_1 : BIT;	-- qiu 1
+  SIGNAL qiu_2 : BIT;	-- qiu 2
+  SIGNAL sel_1 : BIT;	-- sel_1
+  SIGNAL sel_2 : BIT;	-- sel_2
+  SIGNAL shft_en : BIT;	-- shft_en
+
+BEGIN
+
+  shift1 : shift25
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    out_key => out_shift_127& out_shift_126& out_shift_125& out_shift_124& out_shift_123& out_shift_122& out_shift_121& out_shift_120& out_shift_119& out_shift_118& out_shift_117& out_shift_116& out_shift_115& out_shift_114& out_shift_113& out_shift_112& out_shift_111& out_shift_110& out_shift_109& out_shift_108& out_shift_107& out_shift_106& out_shift_105& out_shift_104& out_shift_103& out_shift_102& out_shift_101& out_shift_100& out_shift_99& out_shift_98& out_shift_97& out_shift_96& out_shift_95& out_shift_94& out_shift_93& out_shift_92& out_shift_91& out_shift_90& out_shift_89& out_shift_88& out_shift_87& out_shift_86& out_shift_85& out_shift_84& out_shift_83& out_shift_82& out_shift_81& out_shift_80& out_shift_79& out_shift_78& out_shift_77& out_shift_76& out_shift_75& out_shift_74& out_shift_73& out_shift_72& out_shift_71& out_shift_70& out_shift_69& out_shift_68& out_shift_67& out_shift_66& out_shift_65& out_shift_64& out_shift_63& out_shift_62& out_shift_61& out_shift_60& out_shift_59& out_shift_58& out_shift_57& out_shift_56& out_shift_55& out_shift_54& out_shift_53& out_shift_52& out_shift_51& out_shift_50& out_shift_49& out_shift_48& out_shift_47& out_shift_46& out_shift_45& out_shift_44& out_shift_43& out_shift_42& out_shift_41& out_shift_40& out_shift_39& out_shift_38& out_shift_37& out_shift_36& out_shift_35& out_shift_34& out_shift_33& out_shift_32& out_shift_31& out_shift_30& out_shift_29& out_shift_28& out_shift_27& out_shift_26& out_shift_25& out_shift_24& out_shift_23& out_shift_22& out_shift_21& out_shift_20& out_shift_19& out_shift_18& out_shift_17& out_shift_16& out_shift_15& out_shift_14& out_shift_13& out_shift_12& out_shift_11& out_shift_10& out_shift_9& out_shift_8& out_shift_7& out_shift_6& out_shift_5& out_shift_4& out_shift_3& out_shift_2& out_shift_1& out_shift_0,
+    sel2 => sel_2,
+    sel1 => sel_1,
+    en => shft_en,
+    clr => rst,
+    in_key => key_in(127)& key_in(126)& key_in(125)& key_in(124)& key_in(123)& key_in(122)& key_in(121)& key_in(120)& key_in(119)& key_in(118)& key_in(117)& key_in(116)& key_in(115)& key_in(114)& key_in(113)& key_in(112)& key_in(111)& key_in(110)& key_in(109)& key_in(108)& key_in(107)& key_in(106)& key_in(105)& key_in(104)& key_in(103)& key_in(102)& key_in(101)& key_in(100)& key_in(99)& key_in(98)& key_in(97)& key_in(96)& key_in(95)& key_in(94)& key_in(93)& key_in(92)& key_in(91)& key_in(90)& key_in(89)& key_in(88)& key_in(87)& key_in(86)& key_in(85)& key_in(84)& key_in(83)& key_in(82)& key_in(81)& key_in(80)& key_in(79)& key_in(78)& key_in(77)& key_in(76)& key_in(75)& key_in(74)& key_in(73)& key_in(72)& key_in(71)& key_in(70)& key_in(69)& key_in(68)& key_in(67)& key_in(66)& key_in(65)& key_in(64)& key_in(63)& key_in(62)& key_in(61)& key_in(60)& key_in(59)& key_in(58)& key_in(57)& key_in(56)& key_in(55)& key_in(54)& key_in(53)& key_in(52)& key_in(51)& key_in(50)& key_in(49)& key_in(48)& key_in(47)& key_in(46)& key_in(45)& key_in(44)& key_in(43)& key_in(42)& key_in(41)& key_in(40)& key_in(39)& key_in(38)& key_in(37)& key_in(36)& key_in(35)& key_in(34)& key_in(33)& key_in(32)& key_in(31)& key_in(30)& key_in(29)& key_in(28)& key_in(27)& key_in(26)& key_in(25)& key_in(24)& key_in(23)& key_in(22)& key_in(21)& key_in(20)& key_in(19)& key_in(18)& key_in(17)& key_in(16)& key_in(15)& key_in(14)& key_in(13)& key_in(12)& key_in(11)& key_in(10)& key_in(9)& key_in(8)& key_in(7)& key_in(6)& key_in(5)& key_in(4)& key_in(3)& key_in(2)& key_in(1)& key_in(0));
+  ctr_enkey1 : ctr_enkey1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    en_out => dec_en,
+    sel2 => sel_2,
+    sel1 => sel_1,
+    en_shft => shft_en,
+    finish => finish,
+    qiu => qiu_2& qiu_1& qiu_0,
+    rst => rst,
+    start => start,
+    clk => clk);
+  dec1 : dec128to832
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o9_4 => o9_4(15)& o9_4(14)& o9_4(13)& o9_4(12)& o9_4(11)& o9_4(10)& o9_4(9)& o9_4(8)& o9_4(7)& o9_4(6)& o9_4(5)& o9_4(4)& o9_4(3)& o9_4(2)& o9_4(1)& o9_4(0),
+    o9_3 => o9_3(15)& o9_3(14)& o9_3(13)& o9_3(12)& o9_3(11)& o9_3(10)& o9_3(9)& o9_3(8)& o9_3(7)& o9_3(6)& o9_3(5)& o9_3(4)& o9_3(3)& o9_3(2)& o9_3(1)& o9_3(0),
+    o9_2 => o9_2(15)& o9_2(14)& o9_2(13)& o9_2(12)& o9_2(11)& o9_2(10)& o9_2(9)& o9_2(8)& o9_2(7)& o9_2(6)& o9_2(5)& o9_2(4)& o9_2(3)& o9_2(2)& o9_2(1)& o9_2(0),
+    o9_1 => o9_1(15)& o9_1(14)& o9_1(13)& o9_1(12)& o9_1(11)& o9_1(10)& o9_1(9)& o9_1(8)& o9_1(7)& o9_1(6)& o9_1(5)& o9_1(4)& o9_1(3)& o9_1(2)& o9_1(1)& o9_1(0),
+    o8_6 => o8_6(15)& o8_6(14)& o8_6(13)& o8_6(12)& o8_6(11)& o8_6(10)& o8_6(9)& o8_6(8)& o8_6(7)& o8_6(6)& o8_6(5)& o8_6(4)& o8_6(3)& o8_6(2)& o8_6(1)& o8_6(0),
+    o8_5 => o8_5(15)& o8_5(14)& o8_5(13)& o8_5(12)& o8_5(11)& o8_5(10)& o8_5(9)& o8_5(8)& o8_5(7)& o8_5(6)& o8_5(5)& o8_5(4)& o8_5(3)& o8_5(2)& o8_5(1)& o8_5(0),
+    o8_4 => o8_4(15)& o8_4(14)& o8_4(13)& o8_4(12)& o8_4(11)& o8_4(10)& o8_4(9)& o8_4(8)& o8_4(7)& o8_4(6)& o8_4(5)& o8_4(4)& o8_4(3)& o8_4(2)& o8_4(1)& o8_4(0),
+    o8_3 => o8_3(15)& o8_3(14)& o8_3(13)& o8_3(12)& o8_3(11)& o8_3(10)& o8_3(9)& o8_3(8)& o8_3(7)& o8_3(6)& o8_3(5)& o8_3(4)& o8_3(3)& o8_3(2)& o8_3(1)& o8_3(0),
+    o8_2 => o8_2(15)& o8_2(14)& o8_2(13)& o8_2(12)& o8_2(11)& o8_2(10)& o8_2(9)& o8_2(8)& o8_2(7)& o8_2(6)& o8_2(5)& o8_2(4)& o8_2(3)& o8_2(2)& o8_2(1)& o8_2(0),
+    o8_1 => o8_1(15)& o8_1(14)& o8_1(13)& o8_1(12)& o8_1(11)& o8_1(10)& o8_1(9)& o8_1(8)& o8_1(7)& o8_1(6)& o8_1(5)& o8_1(4)& o8_1(3)& o8_1(2)& o8_1(1)& o8_1(0),
+    o7_6 => o7_6(15)& o7_6(14)& o7_6(13)& o7_6(12)& o7_6(11)& o7_6(10)& o7_6(9)& o7_6(8)& o7_6(7)& o7_6(6)& o7_6(5)& o7_6(4)& o7_6(3)& o7_6(2)& o7_6(1)& o7_6(0),
+    o7_5 => o7_5(15)& o7_5(14)& o7_5(13)& o7_5(12)& o7_5(11)& o7_5(10)& o7_5(9)& o7_5(8)& o7_5(7)& o7_5(6)& o7_5(5)& o7_5(4)& o7_5(3)& o7_5(2)& o7_5(1)& o7_5(0),
+    o7_4 => o7_4(15)& o7_4(14)& o7_4(13)& o7_4(12)& o7_4(11)& o7_4(10)& o7_4(9)& o7_4(8)& o7_4(7)& o7_4(6)& o7_4(5)& o7_4(4)& o7_4(3)& o7_4(2)& o7_4(1)& o7_4(0),
+    o7_3 => o7_3(15)& o7_3(14)& o7_3(13)& o7_3(12)& o7_3(11)& o7_3(10)& o7_3(9)& o7_3(8)& o7_3(7)& o7_3(6)& o7_3(5)& o7_3(4)& o7_3(3)& o7_3(2)& o7_3(1)& o7_3(0),
+    o7_2 => o7_2(15)& o7_2(14)& o7_2(13)& o7_2(12)& o7_2(11)& o7_2(10)& o7_2(9)& o7_2(8)& o7_2(7)& o7_2(6)& o7_2(5)& o7_2(4)& o7_2(3)& o7_2(2)& o7_2(1)& o7_2(0),
+    o7_1 => o7_1(15)& o7_1(14)& o7_1(13)& o7_1(12)& o7_1(11)& o7_1(10)& o7_1(9)& o7_1(8)& o7_1(7)& o7_1(6)& o7_1(5)& o7_1(4)& o7_1(3)& o7_1(2)& o7_1(1)& o7_1(0),
+    o6_6 => o6_6(15)& o6_6(14)& o6_6(13)& o6_6(12)& o6_6(11)& o6_6(10)& o6_6(9)& o6_6(8)& o6_6(7)& o6_6(6)& o6_6(5)& o6_6(4)& o6_6(3)& o6_6(2)& o6_6(1)& o6_6(0),
+    o6_5 => o6_5(15)& o6_5(14)& o6_5(13)& o6_5(12)& o6_5(11)& o6_5(10)& o6_5(9)& o6_5(8)& o6_5(7)& o6_5(6)& o6_5(5)& o6_5(4)& o6_5(3)& o6_5(2)& o6_5(1)& o6_5(0),
+    o6_4 => o6_4(15)& o6_4(14)& o6_4(13)& o6_4(12)& o6_4(11)& o6_4(10)& o6_4(9)& o6_4(8)& o6_4(7)& o6_4(6)& o6_4(5)& o6_4(4)& o6_4(3)& o6_4(2)& o6_4(1)& o6_4(0),
+    o6_3 => o6_3(15)& o6_3(14)& o6_3(13)& o6_3(12)& o6_3(11)& o6_3(10)& o6_3(9)& o6_3(8)& o6_3(7)& o6_3(6)& o6_3(5)& o6_3(4)& o6_3(3)& o6_3(2)& o6_3(1)& o6_3(0),
+    o6_2 => o6_2(15)& o6_2(14)& o6_2(13)& o6_2(12)& o6_2(11)& o6_2(10)& o6_2(9)& o6_2(8)& o6_2(7)& o6_2(6)& o6_2(5)& o6_2(4)& o6_2(3)& o6_2(2)& o6_2(1)& o6_2(0),
+    o6_1 => o6_1(15)& o6_1(14)& o6_1(13)& o6_1(12)& o6_1(11)& o6_1(10)& o6_1(9)& o6_1(8)& o6_1(7)& o6_1(6)& o6_1(5)& o6_1(4)& o6_1(3)& o6_1(2)& o6_1(1)& o6_1(0),
+    o5_6 => o5_6(15)& o5_6(14)& o5_6(13)& o5_6(12)& o5_6(11)& o5_6(10)& o5_6(9)& o5_6(8)& o5_6(7)& o5_6(6)& o5_6(5)& o5_6(4)& o5_6(3)& o5_6(2)& o5_6(1)& o5_6(0),
+    o5_5 => o5_5(15)& o5_5(14)& o5_5(13)& o5_5(12)& o5_5(11)& o5_5(10)& o5_5(9)& o5_5(8)& o5_5(7)& o5_5(6)& o5_5(5)& o5_5(4)& o5_5(3)& o5_5(2)& o5_5(1)& o5_5(0),
+    o5_4 => o5_4(15)& o5_4(14)& o5_4(13)& o5_4(12)& o5_4(11)& o5_4(10)& o5_4(9)& o5_4(8)& o5_4(7)& o5_4(6)& o5_4(5)& o5_4(4)& o5_4(3)& o5_4(2)& o5_4(1)& o5_4(0),
+    o5_3 => o5_3(15)& o5_3(14)& o5_3(13)& o5_3(12)& o5_3(11)& o5_3(10)& o5_3(9)& o5_3(8)& o5_3(7)& o5_3(6)& o5_3(5)& o5_3(4)& o5_3(3)& o5_3(2)& o5_3(1)& o5_3(0),
+    o5_2 => o5_2(15)& o5_2(14)& o5_2(13)& o5_2(12)& o5_2(11)& o5_2(10)& o5_2(9)& o5_2(8)& o5_2(7)& o5_2(6)& o5_2(5)& o5_2(4)& o5_2(3)& o5_2(2)& o5_2(1)& o5_2(0),
+    o5_1 => o5_1(15)& o5_1(14)& o5_1(13)& o5_1(12)& o5_1(11)& o5_1(10)& o5_1(9)& o5_1(8)& o5_1(7)& o5_1(6)& o5_1(5)& o5_1(4)& o5_1(3)& o5_1(2)& o5_1(1)& o5_1(0),
+    o4_6 => o4_6(15)& o4_6(14)& o4_6(13)& o4_6(12)& o4_6(11)& o4_6(10)& o4_6(9)& o4_6(8)& o4_6(7)& o4_6(6)& o4_6(5)& o4_6(4)& o4_6(3)& o4_6(2)& o4_6(1)& o4_6(0),
+    o4_5 => o4_5(15)& o4_5(14)& o4_5(13)& o4_5(12)& o4_5(11)& o4_5(10)& o4_5(9)& o4_5(8)& o4_5(7)& o4_5(6)& o4_5(5)& o4_5(4)& o4_5(3)& o4_5(2)& o4_5(1)& o4_5(0),
+    o4_4 => o4_4(15)& o4_4(14)& o4_4(13)& o4_4(12)& o4_4(11)& o4_4(10)& o4_4(9)& o4_4(8)& o4_4(7)& o4_4(6)& o4_4(5)& o4_4(4)& o4_4(3)& o4_4(2)& o4_4(1)& o4_4(0),
+    o4_3 => o4_3(15)& o4_3(14)& o4_3(13)& o4_3(12)& o4_3(11)& o4_3(10)& o4_3(9)& o4_3(8)& o4_3(7)& o4_3(6)& o4_3(5)& o4_3(4)& o4_3(3)& o4_3(2)& o4_3(1)& o4_3(0),
+    o4_2 => o4_2(15)& o4_2(14)& o4_2(13)& o4_2(12)& o4_2(11)& o4_2(10)& o4_2(9)& o4_2(8)& o4_2(7)& o4_2(6)& o4_2(5)& o4_2(4)& o4_2(3)& o4_2(2)& o4_2(1)& o4_2(0),
+    o4_1 => o4_1(15)& o4_1(14)& o4_1(13)& o4_1(12)& o4_1(11)& o4_1(10)& o4_1(9)& o4_1(8)& o4_1(7)& o4_1(6)& o4_1(5)& o4_1(4)& o4_1(3)& o4_1(2)& o4_1(1)& o4_1(0),
+    o3_6 => o3_6(15)& o3_6(14)& o3_6(13)& o3_6(12)& o3_6(11)& o3_6(10)& o3_6(9)& o3_6(8)& o3_6(7)& o3_6(6)& o3_6(5)& o3_6(4)& o3_6(3)& o3_6(2)& o3_6(1)& o3_6(0),
+    o3_5 => o3_5(15)& o3_5(14)& o3_5(13)& o3_5(12)& o3_5(11)& o3_5(10)& o3_5(9)& o3_5(8)& o3_5(7)& o3_5(6)& o3_5(5)& o3_5(4)& o3_5(3)& o3_5(2)& o3_5(1)& o3_5(0),
+    o3_4 => o3_4(15)& o3_4(14)& o3_4(13)& o3_4(12)& o3_4(11)& o3_4(10)& o3_4(9)& o3_4(8)& o3_4(7)& o3_4(6)& o3_4(5)& o3_4(4)& o3_4(3)& o3_4(2)& o3_4(1)& o3_4(0),
+    o3_3 => o3_3(15)& o3_3(14)& o3_3(13)& o3_3(12)& o3_3(11)& o3_3(10)& o3_3(9)& o3_3(8)& o3_3(7)& o3_3(6)& o3_3(5)& o3_3(4)& o3_3(3)& o3_3(2)& o3_3(1)& o3_3(0),
+    o3_2 => o3_2(15)& o3_2(14)& o3_2(13)& o3_2(12)& o3_2(11)& o3_2(10)& o3_2(9)& o3_2(8)& o3_2(7)& o3_2(6)& o3_2(5)& o3_2(4)& o3_2(3)& o3_2(2)& o3_2(1)& o3_2(0),
+    o3_1 => o3_1(15)& o3_1(14)& o3_1(13)& o3_1(12)& o3_1(11)& o3_1(10)& o3_1(9)& o3_1(8)& o3_1(7)& o3_1(6)& o3_1(5)& o3_1(4)& o3_1(3)& o3_1(2)& o3_1(1)& o3_1(0),
+    o2_6 => o2_6(15)& o2_6(14)& o2_6(13)& o2_6(12)& o2_6(11)& o2_6(10)& o2_6(9)& o2_6(8)& o2_6(7)& o2_6(6)& o2_6(5)& o2_6(4)& o2_6(3)& o2_6(2)& o2_6(1)& o2_6(0),
+    o2_5 => o2_5(15)& o2_5(14)& o2_5(13)& o2_5(12)& o2_5(11)& o2_5(10)& o2_5(9)& o2_5(8)& o2_5(7)& o2_5(6)& o2_5(5)& o2_5(4)& o2_5(3)& o2_5(2)& o2_5(1)& o2_5(0),
+    o2_4 => o2_4(15)& o2_4(14)& o2_4(13)& o2_4(12)& o2_4(11)& o2_4(10)& o2_4(9)& o2_4(8)& o2_4(7)& o2_4(6)& o2_4(5)& o2_4(4)& o2_4(3)& o2_4(2)& o2_4(1)& o2_4(0),
+    o2_3 => o2_3(15)& o2_3(14)& o2_3(13)& o2_3(12)& o2_3(11)& o2_3(10)& o2_3(9)& o2_3(8)& o2_3(7)& o2_3(6)& o2_3(5)& o2_3(4)& o2_3(3)& o2_3(2)& o2_3(1)& o2_3(0),
+    o2_2 => o2_2(15)& o2_2(14)& o2_2(13)& o2_2(12)& o2_2(11)& o2_2(10)& o2_2(9)& o2_2(8)& o2_2(7)& o2_2(6)& o2_2(5)& o2_2(4)& o2_2(3)& o2_2(2)& o2_2(1)& o2_2(0),
+    o2_1 => o2_1(15)& o2_1(14)& o2_1(13)& o2_1(12)& o2_1(11)& o2_1(10)& o2_1(9)& o2_1(8)& o2_1(7)& o2_1(6)& o2_1(5)& o2_1(4)& o2_1(3)& o2_1(2)& o2_1(1)& o2_1(0),
+    o1_6 => o1_6(15)& o1_6(14)& o1_6(13)& o1_6(12)& o1_6(11)& o1_6(10)& o1_6(9)& o1_6(8)& o1_6(7)& o1_6(6)& o1_6(5)& o1_6(4)& o1_6(3)& o1_6(2)& o1_6(1)& o1_6(0),
+    o1_5 => o1_5(15)& o1_5(14)& o1_5(13)& o1_5(12)& o1_5(11)& o1_5(10)& o1_5(9)& o1_5(8)& o1_5(7)& o1_5(6)& o1_5(5)& o1_5(4)& o1_5(3)& o1_5(2)& o1_5(1)& o1_5(0),
+    o1_4 => o1_4(15)& o1_4(14)& o1_4(13)& o1_4(12)& o1_4(11)& o1_4(10)& o1_4(9)& o1_4(8)& o1_4(7)& o1_4(6)& o1_4(5)& o1_4(4)& o1_4(3)& o1_4(2)& o1_4(1)& o1_4(0),
+    o1_3 => o1_3(15)& o1_3(14)& o1_3(13)& o1_3(12)& o1_3(11)& o1_3(10)& o1_3(9)& o1_3(8)& o1_3(7)& o1_3(6)& o1_3(5)& o1_3(4)& o1_3(3)& o1_3(2)& o1_3(1)& o1_3(0),
+    o1_2 => o1_2(15)& o1_2(14)& o1_2(13)& o1_2(12)& o1_2(11)& o1_2(10)& o1_2(9)& o1_2(8)& o1_2(7)& o1_2(6)& o1_2(5)& o1_2(4)& o1_2(3)& o1_2(2)& o1_2(1)& o1_2(0),
+    o1_1 => o1_1(15)& o1_1(14)& o1_1(13)& o1_1(12)& o1_1(11)& o1_1(10)& o1_1(9)& o1_1(8)& o1_1(7)& o1_1(6)& o1_1(5)& o1_1(4)& o1_1(3)& o1_1(2)& o1_1(1)& o1_1(0),
+    sel => qiu_2& qiu_1& qiu_0,
+    rst => rst,
+    en => dec_en,
+    a => out_shift_127& out_shift_126& out_shift_125& out_shift_124& out_shift_123& out_shift_122& out_shift_121& out_shift_120& out_shift_119& out_shift_118& out_shift_117& out_shift_116& out_shift_115& out_shift_114& out_shift_113& out_shift_112& out_shift_111& out_shift_110& out_shift_109& out_shift_108& out_shift_107& out_shift_106& out_shift_105& out_shift_104& out_shift_103& out_shift_102& out_shift_101& out_shift_100& out_shift_99& out_shift_98& out_shift_97& out_shift_96& out_shift_95& out_shift_94& out_shift_93& out_shift_92& out_shift_91& out_shift_90& out_shift_89& out_shift_88& out_shift_87& out_shift_86& out_shift_85& out_shift_84& out_shift_83& out_shift_82& out_shift_81& out_shift_80& out_shift_79& out_shift_78& out_shift_77& out_shift_76& out_shift_75& out_shift_74& out_shift_73& out_shift_72& out_shift_71& out_shift_70& out_shift_69& out_shift_68& out_shift_67& out_shift_66& out_shift_65& out_shift_64& out_shift_63& out_shift_62& out_shift_61& out_shift_60& out_shift_59& out_shift_58& out_shift_57& out_shift_56& out_shift_55& out_shift_54& out_shift_53& out_shift_52& out_shift_51& out_shift_50& out_shift_49& out_shift_48& out_shift_47& out_shift_46& out_shift_45& out_shift_44& out_shift_43& out_shift_42& out_shift_41& out_shift_40& out_shift_39& out_shift_38& out_shift_37& out_shift_36& out_shift_35& out_shift_34& out_shift_33& out_shift_32& out_shift_31& out_shift_30& out_shift_29& out_shift_28& out_shift_27& out_shift_26& out_shift_25& out_shift_24& out_shift_23& out_shift_22& out_shift_21& out_shift_20& out_shift_19& out_shift_18& out_shift_17& out_shift_16& out_shift_15& out_shift_14& out_shift_13& out_shift_12& out_shift_11& out_shift_10& out_shift_9& out_shift_8& out_shift_7& out_shift_6& out_shift_5& out_shift_4& out_shift_3& out_shift_2& out_shift_1& out_shift_0);
+
+end VST;

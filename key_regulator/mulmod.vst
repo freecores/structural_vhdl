@@ -1,0 +1,278 @@
+-- VHDL structural description generated from `mulmod`
+--		date : Sat Sep  1 18:31:10 2001
+
+
+-- Entity Declaration
+
+ENTITY mulmod IS
+  PORT (
+  in1 : in BIT_VECTOR (15 DOWNTO 0);	-- in1
+  in2 : in BIT_VECTOR (15 DOWNTO 0);	-- in2
+  en : in BIT;	-- en
+  rst : in BIT;	-- rst
+  cke : in BIT;	-- cke
+  mulout : out BIT_VECTOR (15 DOWNTO 0);	-- mulout
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END mulmod;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF mulmod IS
+  COMPONENT comparator
+    port (
+    a : in BIT_VECTOR(15 DOWNTO 0);	-- a
+    o : inout BIT_VECTOR(16 DOWNTO 0);	-- o
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT multiplier17
+    port (
+    a : in BIT_VECTOR(16 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(16 DOWNTO 0);	-- b
+    o17 : out BIT_VECTOR(33 DOWNTO 0);	-- o17
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT comparator2
+    port (
+    a : in BIT_VECTOR(15 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(15 DOWNTO 0);	-- b
+    o : out BIT_VECTOR(15 DOWNTO 0);	-- o
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT fullsubstractor16
+    port (
+    a : in BIT_VECTOR(15 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(15 DOWNTO 0);	-- b
+    diff : out BIT_VECTOR(15 DOWNTO 0);	-- diff
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT reg16_latch
+    port (
+    a : in BIT_VECTOR(15 DOWNTO 0);	-- a
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    cke : in BIT;	-- cke
+    b : inout BIT_VECTOR(15 DOWNTO 0);	-- b
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT fulladder16
+    port (
+    a : in BIT_VECTOR(15 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(15 DOWNTO 0);	-- b
+    sum : out BIT_VECTOR(15 DOWNTO 0);	-- sum
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL b1_0 : BIT;	-- b1 0
+  SIGNAL b1_1 : BIT;	-- b1 1
+  SIGNAL b1_2 : BIT;	-- b1 2
+  SIGNAL b1_3 : BIT;	-- b1 3
+  SIGNAL b1_4 : BIT;	-- b1 4
+  SIGNAL b1_5 : BIT;	-- b1 5
+  SIGNAL b1_6 : BIT;	-- b1 6
+  SIGNAL b1_7 : BIT;	-- b1 7
+  SIGNAL b1_8 : BIT;	-- b1 8
+  SIGNAL b1_9 : BIT;	-- b1 9
+  SIGNAL b1_10 : BIT;	-- b1 10
+  SIGNAL b1_11 : BIT;	-- b1 11
+  SIGNAL b1_12 : BIT;	-- b1 12
+  SIGNAL b1_13 : BIT;	-- b1 13
+  SIGNAL b1_14 : BIT;	-- b1 14
+  SIGNAL b1_15 : BIT;	-- b1 15
+  SIGNAL b2_0 : BIT;	-- b2 0
+  SIGNAL b2_1 : BIT;	-- b2 1
+  SIGNAL b2_2 : BIT;	-- b2 2
+  SIGNAL b2_3 : BIT;	-- b2 3
+  SIGNAL b2_4 : BIT;	-- b2 4
+  SIGNAL b2_5 : BIT;	-- b2 5
+  SIGNAL b2_6 : BIT;	-- b2 6
+  SIGNAL b2_7 : BIT;	-- b2 7
+  SIGNAL b2_8 : BIT;	-- b2 8
+  SIGNAL b2_9 : BIT;	-- b2 9
+  SIGNAL b2_10 : BIT;	-- b2 10
+  SIGNAL b2_11 : BIT;	-- b2 11
+  SIGNAL b2_12 : BIT;	-- b2 12
+  SIGNAL b2_13 : BIT;	-- b2 13
+  SIGNAL b2_14 : BIT;	-- b2 14
+  SIGNAL b2_15 : BIT;	-- b2 15
+  SIGNAL diff_0 : BIT;	-- diff 0
+  SIGNAL diff_1 : BIT;	-- diff 1
+  SIGNAL diff_2 : BIT;	-- diff 2
+  SIGNAL diff_3 : BIT;	-- diff 3
+  SIGNAL diff_4 : BIT;	-- diff 4
+  SIGNAL diff_5 : BIT;	-- diff 5
+  SIGNAL diff_6 : BIT;	-- diff 6
+  SIGNAL diff_7 : BIT;	-- diff 7
+  SIGNAL diff_8 : BIT;	-- diff 8
+  SIGNAL diff_9 : BIT;	-- diff 9
+  SIGNAL diff_10 : BIT;	-- diff 10
+  SIGNAL diff_11 : BIT;	-- diff 11
+  SIGNAL diff_12 : BIT;	-- diff 12
+  SIGNAL diff_13 : BIT;	-- diff 13
+  SIGNAL diff_14 : BIT;	-- diff 14
+  SIGNAL diff_15 : BIT;	-- diff 15
+  SIGNAL has_0 : BIT;	-- has 0
+  SIGNAL has_1 : BIT;	-- has 1
+  SIGNAL has_2 : BIT;	-- has 2
+  SIGNAL has_3 : BIT;	-- has 3
+  SIGNAL has_4 : BIT;	-- has 4
+  SIGNAL has_5 : BIT;	-- has 5
+  SIGNAL has_6 : BIT;	-- has 6
+  SIGNAL has_7 : BIT;	-- has 7
+  SIGNAL has_8 : BIT;	-- has 8
+  SIGNAL has_9 : BIT;	-- has 9
+  SIGNAL has_10 : BIT;	-- has 10
+  SIGNAL has_11 : BIT;	-- has 11
+  SIGNAL has_12 : BIT;	-- has 12
+  SIGNAL has_13 : BIT;	-- has 13
+  SIGNAL has_14 : BIT;	-- has 14
+  SIGNAL has_15 : BIT;	-- has 15
+  SIGNAL has_16 : BIT;	-- has 16
+  SIGNAL has_17 : BIT;	-- has 17
+  SIGNAL has_18 : BIT;	-- has 18
+  SIGNAL has_19 : BIT;	-- has 19
+  SIGNAL has_20 : BIT;	-- has 20
+  SIGNAL has_21 : BIT;	-- has 21
+  SIGNAL has_22 : BIT;	-- has 22
+  SIGNAL has_23 : BIT;	-- has 23
+  SIGNAL has_24 : BIT;	-- has 24
+  SIGNAL has_25 : BIT;	-- has 25
+  SIGNAL has_26 : BIT;	-- has 26
+  SIGNAL has_27 : BIT;	-- has 27
+  SIGNAL has_28 : BIT;	-- has 28
+  SIGNAL has_29 : BIT;	-- has 29
+  SIGNAL has_30 : BIT;	-- has 30
+  SIGNAL has_31 : BIT;	-- has 31
+  SIGNAL has_32 : BIT;	-- has 32
+  SIGNAL has_33 : BIT;	-- has 33
+  SIGNAL kout1_0 : BIT;	-- kout1 0
+  SIGNAL kout1_1 : BIT;	-- kout1 1
+  SIGNAL kout1_2 : BIT;	-- kout1 2
+  SIGNAL kout1_3 : BIT;	-- kout1 3
+  SIGNAL kout1_4 : BIT;	-- kout1 4
+  SIGNAL kout1_5 : BIT;	-- kout1 5
+  SIGNAL kout1_6 : BIT;	-- kout1 6
+  SIGNAL kout1_7 : BIT;	-- kout1 7
+  SIGNAL kout1_8 : BIT;	-- kout1 8
+  SIGNAL kout1_9 : BIT;	-- kout1 9
+  SIGNAL kout1_10 : BIT;	-- kout1 10
+  SIGNAL kout1_11 : BIT;	-- kout1 11
+  SIGNAL kout1_12 : BIT;	-- kout1 12
+  SIGNAL kout1_13 : BIT;	-- kout1 13
+  SIGNAL kout1_14 : BIT;	-- kout1 14
+  SIGNAL kout1_15 : BIT;	-- kout1 15
+  SIGNAL kout1_16 : BIT;	-- kout1 16
+  SIGNAL kout2_0 : BIT;	-- kout2 0
+  SIGNAL kout2_1 : BIT;	-- kout2 1
+  SIGNAL kout2_2 : BIT;	-- kout2 2
+  SIGNAL kout2_3 : BIT;	-- kout2 3
+  SIGNAL kout2_4 : BIT;	-- kout2 4
+  SIGNAL kout2_5 : BIT;	-- kout2 5
+  SIGNAL kout2_6 : BIT;	-- kout2 6
+  SIGNAL kout2_7 : BIT;	-- kout2 7
+  SIGNAL kout2_8 : BIT;	-- kout2 8
+  SIGNAL kout2_9 : BIT;	-- kout2 9
+  SIGNAL kout2_10 : BIT;	-- kout2 10
+  SIGNAL kout2_11 : BIT;	-- kout2 11
+  SIGNAL kout2_12 : BIT;	-- kout2 12
+  SIGNAL kout2_13 : BIT;	-- kout2 13
+  SIGNAL kout2_14 : BIT;	-- kout2 14
+  SIGNAL kout2_15 : BIT;	-- kout2 15
+  SIGNAL kout2_16 : BIT;	-- kout2 16
+  SIGNAL kout3_0 : BIT;	-- kout3 0
+  SIGNAL kout3_1 : BIT;	-- kout3 1
+  SIGNAL kout3_2 : BIT;	-- kout3 2
+  SIGNAL kout3_3 : BIT;	-- kout3 3
+  SIGNAL kout3_4 : BIT;	-- kout3 4
+  SIGNAL kout3_5 : BIT;	-- kout3 5
+  SIGNAL kout3_6 : BIT;	-- kout3 6
+  SIGNAL kout3_7 : BIT;	-- kout3 7
+  SIGNAL kout3_8 : BIT;	-- kout3 8
+  SIGNAL kout3_9 : BIT;	-- kout3 9
+  SIGNAL kout3_10 : BIT;	-- kout3 10
+  SIGNAL kout3_11 : BIT;	-- kout3 11
+  SIGNAL kout3_12 : BIT;	-- kout3 12
+  SIGNAL kout3_13 : BIT;	-- kout3 13
+  SIGNAL kout3_14 : BIT;	-- kout3 14
+  SIGNAL kout3_15 : BIT;	-- kout3 15
+
+BEGIN
+
+  comparator1 : comparator
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => kout1_16& kout1_15& kout1_14& kout1_13& kout1_12& kout1_11& kout1_10& kout1_9& kout1_8& kout1_7& kout1_6& kout1_5& kout1_4& kout1_3& kout1_2& kout1_1& kout1_0,
+    a => in1(15)& in1(14)& in1(13)& in1(12)& in1(11)& in1(10)& in1(9)& in1(8)& in1(7)& in1(6)& in1(5)& in1(4)& in1(3)& in1(2)& in1(1)& in1(0));
+  comparator2 : comparator
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => kout2_16& kout2_15& kout2_14& kout2_13& kout2_12& kout2_11& kout2_10& kout2_9& kout2_8& kout2_7& kout2_6& kout2_5& kout2_4& kout2_3& kout2_2& kout2_1& kout2_0,
+    a => in2(15)& in2(14)& in2(13)& in2(12)& in2(11)& in2(10)& in2(9)& in2(8)& in2(7)& in2(6)& in2(5)& in2(4)& in2(3)& in2(2)& in2(1)& in2(0));
+  mul17 : multiplier17
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o17 => has_33& has_32& has_31& has_30& has_29& has_28& has_27& has_26& has_25& has_24& has_23& has_22& has_21& has_20& has_19& has_18& has_17& has_16& has_15& has_14& has_13& has_12& has_11& has_10& has_9& has_8& has_7& has_6& has_5& has_4& has_3& has_2& has_1& has_0,
+    b => kout2_16& kout2_15& kout2_14& kout2_13& kout2_12& kout2_11& kout2_10& kout2_9& kout2_8& kout2_7& kout2_6& kout2_5& kout2_4& kout2_3& kout2_2& kout2_1& kout2_0,
+    a => kout1_16& kout1_15& kout1_14& kout1_13& kout1_12& kout1_11& kout1_10& kout1_9& kout1_8& kout1_7& kout1_6& kout1_5& kout1_4& kout1_3& kout1_2& kout1_1& kout1_0);
+  comparator3 : comparator2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => kout3_15& kout3_14& kout3_13& kout3_12& kout3_11& kout3_10& kout3_9& kout3_8& kout3_7& kout3_6& kout3_5& kout3_4& kout3_3& kout3_2& kout3_1& kout3_0,
+    b => has_31& has_30& has_29& has_28& has_27& has_26& has_25& has_24& has_23& has_22& has_21& has_20& has_19& has_18& has_17& has_16,
+    a => has_15& has_14& has_13& has_12& has_11& has_10& has_9& has_8& has_7& has_6& has_5& has_4& has_3& has_2& has_1& has_0);
+  fullsubstractor1 : fullsubstractor16
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    diff => diff_15& diff_14& diff_13& diff_12& diff_11& diff_10& diff_9& diff_8& diff_7& diff_6& diff_5& diff_4& diff_3& diff_2& diff_1& diff_0,
+    b => has_31& has_30& has_29& has_28& has_27& has_26& has_25& has_24& has_23& has_22& has_21& has_20& has_19& has_18& has_17& has_16,
+    a => has_15& has_14& has_13& has_12& has_11& has_10& has_9& has_8& has_7& has_6& has_5& has_4& has_3& has_2& has_1& has_0);
+  reg1 : reg16_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b1_15& b1_14& b1_13& b1_12& b1_11& b1_10& b1_9& b1_8& b1_7& b1_6& b1_5& b1_4& b1_3& b1_2& b1_1& b1_0,
+    cke => cke,
+    clr => rst,
+    en => en,
+    a => kout3_15& kout3_14& kout3_13& kout3_12& kout3_11& kout3_10& kout3_9& kout3_8& kout3_7& kout3_6& kout3_5& kout3_4& kout3_3& kout3_2& kout3_1& kout3_0);
+  reg2 : reg16_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b2_15& b2_14& b2_13& b2_12& b2_11& b2_10& b2_9& b2_8& b2_7& b2_6& b2_5& b2_4& b2_3& b2_2& b2_1& b2_0,
+    cke => cke,
+    clr => rst,
+    en => en,
+    a => diff_15& diff_14& diff_13& diff_12& diff_11& diff_10& diff_9& diff_8& diff_7& diff_6& diff_5& diff_4& diff_3& diff_2& diff_1& diff_0);
+  fulladder1 : fulladder16
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => mulout(15)& mulout(14)& mulout(13)& mulout(12)& mulout(11)& mulout(10)& mulout(9)& mulout(8)& mulout(7)& mulout(6)& mulout(5)& mulout(4)& mulout(3)& mulout(2)& mulout(1)& mulout(0),
+    b => b2_15& b2_14& b2_13& b2_12& b2_11& b2_10& b2_9& b2_8& b2_7& b2_6& b2_5& b2_4& b2_3& b2_2& b2_1& b2_0,
+    a => b1_15& b1_14& b1_13& b1_12& b1_11& b1_10& b1_9& b1_8& b1_7& b1_6& b1_5& b1_4& b1_3& b1_2& b1_1& b1_0);
+
+end VST;

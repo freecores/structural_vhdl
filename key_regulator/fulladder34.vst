@@ -1,0 +1,399 @@
+-- VHDL structural description generated from `fulladder34`
+--		date : Tue Jul 31 11:58:16 2001
+
+
+-- Entity Declaration
+
+ENTITY fulladder34 IS
+  PORT (
+  a : in BIT_VECTOR (33 DOWNTO 0);	-- a
+  b : in BIT_VECTOR (33 DOWNTO 0);	-- b
+  sum : out BIT_VECTOR (33 DOWNTO 0);	-- sum
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END fulladder34;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF fulladder34 IS
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT fulladder
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    cin : in BIT;	-- cin
+    sum : out BIT;	-- sum
+    cout : out BIT;	-- cout
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT fulladdercout
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    cin : in BIT;	-- cin
+    sum : out BIT;	-- sum
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL cout0 : BIT;	-- cout0
+  SIGNAL cout1 : BIT;	-- cout1
+  SIGNAL cout10 : BIT;	-- cout10
+  SIGNAL cout11 : BIT;	-- cout11
+  SIGNAL cout12 : BIT;	-- cout12
+  SIGNAL cout13 : BIT;	-- cout13
+  SIGNAL cout14 : BIT;	-- cout14
+  SIGNAL cout15 : BIT;	-- cout15
+  SIGNAL cout16 : BIT;	-- cout16
+  SIGNAL cout17 : BIT;	-- cout17
+  SIGNAL cout18 : BIT;	-- cout18
+  SIGNAL cout19 : BIT;	-- cout19
+  SIGNAL cout2 : BIT;	-- cout2
+  SIGNAL cout20 : BIT;	-- cout20
+  SIGNAL cout21 : BIT;	-- cout21
+  SIGNAL cout22 : BIT;	-- cout22
+  SIGNAL cout23 : BIT;	-- cout23
+  SIGNAL cout24 : BIT;	-- cout24
+  SIGNAL cout25 : BIT;	-- cout25
+  SIGNAL cout26 : BIT;	-- cout26
+  SIGNAL cout27 : BIT;	-- cout27
+  SIGNAL cout28 : BIT;	-- cout28
+  SIGNAL cout29 : BIT;	-- cout29
+  SIGNAL cout3 : BIT;	-- cout3
+  SIGNAL cout30 : BIT;	-- cout30
+  SIGNAL cout31 : BIT;	-- cout31
+  SIGNAL cout32 : BIT;	-- cout32
+  SIGNAL cout4 : BIT;	-- cout4
+  SIGNAL cout5 : BIT;	-- cout5
+  SIGNAL cout6 : BIT;	-- cout6
+  SIGNAL cout7 : BIT;	-- cout7
+  SIGNAL cout8 : BIT;	-- cout8
+  SIGNAL cout9 : BIT;	-- cout9
+  SIGNAL nol : BIT;	-- nol
+
+BEGIN
+
+  zero1 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nol);
+  fulladder1 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout0,
+    sum => sum(0),
+    cin => nol,
+    b => b(0),
+    a => a(0));
+  fulladder2 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout1,
+    sum => sum(1),
+    cin => cout0,
+    b => b(1),
+    a => a(1));
+  fulladder3 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout2,
+    sum => sum(2),
+    cin => cout1,
+    b => b(2),
+    a => a(2));
+  fulladder4 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout3,
+    sum => sum(3),
+    cin => cout2,
+    b => b(3),
+    a => a(3));
+  fulladder5 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout4,
+    sum => sum(4),
+    cin => cout3,
+    b => b(4),
+    a => a(4));
+  fulladder6 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout5,
+    sum => sum(5),
+    cin => cout4,
+    b => b(5),
+    a => a(5));
+  fulladder7 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout6,
+    sum => sum(6),
+    cin => cout5,
+    b => b(6),
+    a => a(6));
+  fulladder8 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout7,
+    sum => sum(7),
+    cin => cout6,
+    b => b(7),
+    a => a(7));
+  fulladder9 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout8,
+    sum => sum(8),
+    cin => cout7,
+    b => b(8),
+    a => a(8));
+  fulladder10 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout9,
+    sum => sum(9),
+    cin => cout8,
+    b => b(9),
+    a => a(9));
+  fulladder11 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout10,
+    sum => sum(10),
+    cin => cout9,
+    b => b(10),
+    a => a(10));
+  fulladder12 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout11,
+    sum => sum(11),
+    cin => cout10,
+    b => b(11),
+    a => a(11));
+  fulladder13 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout12,
+    sum => sum(12),
+    cin => cout11,
+    b => b(12),
+    a => a(12));
+  fulladder14 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout13,
+    sum => sum(13),
+    cin => cout12,
+    b => b(13),
+    a => a(13));
+  fulladder15 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout14,
+    sum => sum(14),
+    cin => cout13,
+    b => b(14),
+    a => a(14));
+  fulladder16 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout15,
+    sum => sum(15),
+    cin => cout14,
+    b => b(15),
+    a => a(15));
+  fulladder17 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout16,
+    sum => sum(16),
+    cin => cout15,
+    b => b(16),
+    a => a(16));
+  fulladder18 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout17,
+    sum => sum(17),
+    cin => cout16,
+    b => b(17),
+    a => a(17));
+  fulladder19 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout18,
+    sum => sum(18),
+    cin => cout17,
+    b => b(18),
+    a => a(18));
+  fulladder20 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout19,
+    sum => sum(19),
+    cin => cout18,
+    b => b(19),
+    a => a(19));
+  fulladder21 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout20,
+    sum => sum(20),
+    cin => cout19,
+    b => b(20),
+    a => a(20));
+  fulladder22 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout21,
+    sum => sum(21),
+    cin => cout20,
+    b => b(21),
+    a => a(21));
+  fulladder23 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout22,
+    sum => sum(22),
+    cin => cout21,
+    b => b(22),
+    a => a(22));
+  fulladder24 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout23,
+    sum => sum(23),
+    cin => cout22,
+    b => b(23),
+    a => a(23));
+  fulladder25 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout24,
+    sum => sum(24),
+    cin => cout23,
+    b => b(24),
+    a => a(24));
+  fulladder26 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout25,
+    sum => sum(25),
+    cin => cout24,
+    b => b(25),
+    a => a(25));
+  fulladder27 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout26,
+    sum => sum(26),
+    cin => cout25,
+    b => b(26),
+    a => a(26));
+  fulladder28 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout27,
+    sum => sum(27),
+    cin => cout26,
+    b => b(27),
+    a => a(27));
+  fulladder29 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout28,
+    sum => sum(28),
+    cin => cout27,
+    b => b(28),
+    a => a(28));
+  fulladder30 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout29,
+    sum => sum(29),
+    cin => cout28,
+    b => b(29),
+    a => a(29));
+  fulladder31 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout30,
+    sum => sum(30),
+    cin => cout29,
+    b => b(30),
+    a => a(30));
+  fulladder32 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout31,
+    sum => sum(31),
+    cin => cout30,
+    b => b(31),
+    a => a(31));
+  fulladder33 : fulladder
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout32,
+    sum => sum(32),
+    cin => cout31,
+    b => b(32),
+    a => a(32));
+  fulladder34 : fulladdercout
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sum => sum(33),
+    cin => cout32,
+    b => b(33),
+    a => a(33));
+
+end VST;

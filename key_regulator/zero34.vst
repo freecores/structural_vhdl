@@ -1,0 +1,200 @@
+-- VHDL structural description generated from `zero34`
+--		date : Tue Jul 31 10:40:28 2001
+
+
+-- Entity Declaration
+
+ENTITY zero34 IS
+  PORT (
+  nq : out BIT_VECTOR (33 DOWNTO 0);	-- nq
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END zero34;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF zero34 IS
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+
+BEGIN
+
+  nq_0 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(0));
+  nq_1 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(1));
+  nq_2 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(2));
+  nq_3 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(3));
+  nq_4 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(4));
+  nq_5 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(5));
+  nq_6 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(6));
+  nq_7 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(7));
+  nq_8 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(8));
+  nq_9 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(9));
+  nq_10 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(10));
+  nq_11 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(11));
+  nq_12 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(12));
+  nq_13 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(13));
+  nq_14 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(14));
+  nq_15 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(15));
+  nq_16 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(16));
+  nq_17 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(17));
+  nq_18 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(18));
+  nq_19 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(19));
+  nq_20 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(20));
+  nq_21 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(21));
+  nq_22 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(22));
+  nq_23 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(23));
+  nq_24 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(24));
+  nq_25 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(25));
+  nq_26 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(26));
+  nq_27 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(27));
+  nq_28 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(28));
+  nq_29 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(29));
+  nq_30 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(30));
+  nq_31 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(31));
+  nq_32 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(32));
+  nq_33 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nq(33));
+
+end VST;

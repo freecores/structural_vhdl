@@ -1,0 +1,329 @@
+-- VHDL structural description generated from `shift25`
+--		date : Sun Jul 22 19:15:21 2001
+
+
+-- Entity Declaration
+
+ENTITY shift25 IS
+  PORT (
+  in_key : in BIT_VECTOR (127 DOWNTO 0);	-- in_key
+  clr : in BIT;	-- clr
+  en : in BIT;	-- en
+  sel1 : in BIT;	-- sel1
+  sel2 : in BIT;	-- sel2
+  out_key : out BIT_VECTOR (127 DOWNTO 0);	-- out_key
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END shift25;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF shift25 IS
+  COMPONENT shiftreg
+    port (
+    kunci_in : in BIT_VECTOR(127 DOWNTO 0);	-- kunci_in
+    clr : in BIT;	-- clr
+    en : in BIT;	-- en
+    kunci_out : out BIT_VECTOR(127 DOWNTO 0);	-- kunci_out
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT mux128
+    port (
+    a : in BIT_VECTOR(127 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(127 DOWNTO 0);	-- b
+    sel : in BIT;	-- sel
+    c : out BIT_VECTOR(127 DOWNTO 0);	-- c
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL kunci_in_0 : BIT;	-- kunci_in 0
+  SIGNAL kunci_in_1 : BIT;	-- kunci_in 1
+  SIGNAL kunci_in_2 : BIT;	-- kunci_in 2
+  SIGNAL kunci_in_3 : BIT;	-- kunci_in 3
+  SIGNAL kunci_in_4 : BIT;	-- kunci_in 4
+  SIGNAL kunci_in_5 : BIT;	-- kunci_in 5
+  SIGNAL kunci_in_6 : BIT;	-- kunci_in 6
+  SIGNAL kunci_in_7 : BIT;	-- kunci_in 7
+  SIGNAL kunci_in_8 : BIT;	-- kunci_in 8
+  SIGNAL kunci_in_9 : BIT;	-- kunci_in 9
+  SIGNAL kunci_in_10 : BIT;	-- kunci_in 10
+  SIGNAL kunci_in_11 : BIT;	-- kunci_in 11
+  SIGNAL kunci_in_12 : BIT;	-- kunci_in 12
+  SIGNAL kunci_in_13 : BIT;	-- kunci_in 13
+  SIGNAL kunci_in_14 : BIT;	-- kunci_in 14
+  SIGNAL kunci_in_15 : BIT;	-- kunci_in 15
+  SIGNAL kunci_in_16 : BIT;	-- kunci_in 16
+  SIGNAL kunci_in_17 : BIT;	-- kunci_in 17
+  SIGNAL kunci_in_18 : BIT;	-- kunci_in 18
+  SIGNAL kunci_in_19 : BIT;	-- kunci_in 19
+  SIGNAL kunci_in_20 : BIT;	-- kunci_in 20
+  SIGNAL kunci_in_21 : BIT;	-- kunci_in 21
+  SIGNAL kunci_in_22 : BIT;	-- kunci_in 22
+  SIGNAL kunci_in_23 : BIT;	-- kunci_in 23
+  SIGNAL kunci_in_24 : BIT;	-- kunci_in 24
+  SIGNAL kunci_in_25 : BIT;	-- kunci_in 25
+  SIGNAL kunci_in_26 : BIT;	-- kunci_in 26
+  SIGNAL kunci_in_27 : BIT;	-- kunci_in 27
+  SIGNAL kunci_in_28 : BIT;	-- kunci_in 28
+  SIGNAL kunci_in_29 : BIT;	-- kunci_in 29
+  SIGNAL kunci_in_30 : BIT;	-- kunci_in 30
+  SIGNAL kunci_in_31 : BIT;	-- kunci_in 31
+  SIGNAL kunci_in_32 : BIT;	-- kunci_in 32
+  SIGNAL kunci_in_33 : BIT;	-- kunci_in 33
+  SIGNAL kunci_in_34 : BIT;	-- kunci_in 34
+  SIGNAL kunci_in_35 : BIT;	-- kunci_in 35
+  SIGNAL kunci_in_36 : BIT;	-- kunci_in 36
+  SIGNAL kunci_in_37 : BIT;	-- kunci_in 37
+  SIGNAL kunci_in_38 : BIT;	-- kunci_in 38
+  SIGNAL kunci_in_39 : BIT;	-- kunci_in 39
+  SIGNAL kunci_in_40 : BIT;	-- kunci_in 40
+  SIGNAL kunci_in_41 : BIT;	-- kunci_in 41
+  SIGNAL kunci_in_42 : BIT;	-- kunci_in 42
+  SIGNAL kunci_in_43 : BIT;	-- kunci_in 43
+  SIGNAL kunci_in_44 : BIT;	-- kunci_in 44
+  SIGNAL kunci_in_45 : BIT;	-- kunci_in 45
+  SIGNAL kunci_in_46 : BIT;	-- kunci_in 46
+  SIGNAL kunci_in_47 : BIT;	-- kunci_in 47
+  SIGNAL kunci_in_48 : BIT;	-- kunci_in 48
+  SIGNAL kunci_in_49 : BIT;	-- kunci_in 49
+  SIGNAL kunci_in_50 : BIT;	-- kunci_in 50
+  SIGNAL kunci_in_51 : BIT;	-- kunci_in 51
+  SIGNAL kunci_in_52 : BIT;	-- kunci_in 52
+  SIGNAL kunci_in_53 : BIT;	-- kunci_in 53
+  SIGNAL kunci_in_54 : BIT;	-- kunci_in 54
+  SIGNAL kunci_in_55 : BIT;	-- kunci_in 55
+  SIGNAL kunci_in_56 : BIT;	-- kunci_in 56
+  SIGNAL kunci_in_57 : BIT;	-- kunci_in 57
+  SIGNAL kunci_in_58 : BIT;	-- kunci_in 58
+  SIGNAL kunci_in_59 : BIT;	-- kunci_in 59
+  SIGNAL kunci_in_60 : BIT;	-- kunci_in 60
+  SIGNAL kunci_in_61 : BIT;	-- kunci_in 61
+  SIGNAL kunci_in_62 : BIT;	-- kunci_in 62
+  SIGNAL kunci_in_63 : BIT;	-- kunci_in 63
+  SIGNAL kunci_in_64 : BIT;	-- kunci_in 64
+  SIGNAL kunci_in_65 : BIT;	-- kunci_in 65
+  SIGNAL kunci_in_66 : BIT;	-- kunci_in 66
+  SIGNAL kunci_in_67 : BIT;	-- kunci_in 67
+  SIGNAL kunci_in_68 : BIT;	-- kunci_in 68
+  SIGNAL kunci_in_69 : BIT;	-- kunci_in 69
+  SIGNAL kunci_in_70 : BIT;	-- kunci_in 70
+  SIGNAL kunci_in_71 : BIT;	-- kunci_in 71
+  SIGNAL kunci_in_72 : BIT;	-- kunci_in 72
+  SIGNAL kunci_in_73 : BIT;	-- kunci_in 73
+  SIGNAL kunci_in_74 : BIT;	-- kunci_in 74
+  SIGNAL kunci_in_75 : BIT;	-- kunci_in 75
+  SIGNAL kunci_in_76 : BIT;	-- kunci_in 76
+  SIGNAL kunci_in_77 : BIT;	-- kunci_in 77
+  SIGNAL kunci_in_78 : BIT;	-- kunci_in 78
+  SIGNAL kunci_in_79 : BIT;	-- kunci_in 79
+  SIGNAL kunci_in_80 : BIT;	-- kunci_in 80
+  SIGNAL kunci_in_81 : BIT;	-- kunci_in 81
+  SIGNAL kunci_in_82 : BIT;	-- kunci_in 82
+  SIGNAL kunci_in_83 : BIT;	-- kunci_in 83
+  SIGNAL kunci_in_84 : BIT;	-- kunci_in 84
+  SIGNAL kunci_in_85 : BIT;	-- kunci_in 85
+  SIGNAL kunci_in_86 : BIT;	-- kunci_in 86
+  SIGNAL kunci_in_87 : BIT;	-- kunci_in 87
+  SIGNAL kunci_in_88 : BIT;	-- kunci_in 88
+  SIGNAL kunci_in_89 : BIT;	-- kunci_in 89
+  SIGNAL kunci_in_90 : BIT;	-- kunci_in 90
+  SIGNAL kunci_in_91 : BIT;	-- kunci_in 91
+  SIGNAL kunci_in_92 : BIT;	-- kunci_in 92
+  SIGNAL kunci_in_93 : BIT;	-- kunci_in 93
+  SIGNAL kunci_in_94 : BIT;	-- kunci_in 94
+  SIGNAL kunci_in_95 : BIT;	-- kunci_in 95
+  SIGNAL kunci_in_96 : BIT;	-- kunci_in 96
+  SIGNAL kunci_in_97 : BIT;	-- kunci_in 97
+  SIGNAL kunci_in_98 : BIT;	-- kunci_in 98
+  SIGNAL kunci_in_99 : BIT;	-- kunci_in 99
+  SIGNAL kunci_in_100 : BIT;	-- kunci_in 100
+  SIGNAL kunci_in_101 : BIT;	-- kunci_in 101
+  SIGNAL kunci_in_102 : BIT;	-- kunci_in 102
+  SIGNAL kunci_in_103 : BIT;	-- kunci_in 103
+  SIGNAL kunci_in_104 : BIT;	-- kunci_in 104
+  SIGNAL kunci_in_105 : BIT;	-- kunci_in 105
+  SIGNAL kunci_in_106 : BIT;	-- kunci_in 106
+  SIGNAL kunci_in_107 : BIT;	-- kunci_in 107
+  SIGNAL kunci_in_108 : BIT;	-- kunci_in 108
+  SIGNAL kunci_in_109 : BIT;	-- kunci_in 109
+  SIGNAL kunci_in_110 : BIT;	-- kunci_in 110
+  SIGNAL kunci_in_111 : BIT;	-- kunci_in 111
+  SIGNAL kunci_in_112 : BIT;	-- kunci_in 112
+  SIGNAL kunci_in_113 : BIT;	-- kunci_in 113
+  SIGNAL kunci_in_114 : BIT;	-- kunci_in 114
+  SIGNAL kunci_in_115 : BIT;	-- kunci_in 115
+  SIGNAL kunci_in_116 : BIT;	-- kunci_in 116
+  SIGNAL kunci_in_117 : BIT;	-- kunci_in 117
+  SIGNAL kunci_in_118 : BIT;	-- kunci_in 118
+  SIGNAL kunci_in_119 : BIT;	-- kunci_in 119
+  SIGNAL kunci_in_120 : BIT;	-- kunci_in 120
+  SIGNAL kunci_in_121 : BIT;	-- kunci_in 121
+  SIGNAL kunci_in_122 : BIT;	-- kunci_in 122
+  SIGNAL kunci_in_123 : BIT;	-- kunci_in 123
+  SIGNAL kunci_in_124 : BIT;	-- kunci_in 124
+  SIGNAL kunci_in_125 : BIT;	-- kunci_in 125
+  SIGNAL kunci_in_126 : BIT;	-- kunci_in 126
+  SIGNAL kunci_in_127 : BIT;	-- kunci_in 127
+  SIGNAL kunci_out_0 : BIT;	-- kunci_out 0
+  SIGNAL kunci_out_1 : BIT;	-- kunci_out 1
+  SIGNAL kunci_out_2 : BIT;	-- kunci_out 2
+  SIGNAL kunci_out_3 : BIT;	-- kunci_out 3
+  SIGNAL kunci_out_4 : BIT;	-- kunci_out 4
+  SIGNAL kunci_out_5 : BIT;	-- kunci_out 5
+  SIGNAL kunci_out_6 : BIT;	-- kunci_out 6
+  SIGNAL kunci_out_7 : BIT;	-- kunci_out 7
+  SIGNAL kunci_out_8 : BIT;	-- kunci_out 8
+  SIGNAL kunci_out_9 : BIT;	-- kunci_out 9
+  SIGNAL kunci_out_10 : BIT;	-- kunci_out 10
+  SIGNAL kunci_out_11 : BIT;	-- kunci_out 11
+  SIGNAL kunci_out_12 : BIT;	-- kunci_out 12
+  SIGNAL kunci_out_13 : BIT;	-- kunci_out 13
+  SIGNAL kunci_out_14 : BIT;	-- kunci_out 14
+  SIGNAL kunci_out_15 : BIT;	-- kunci_out 15
+  SIGNAL kunci_out_16 : BIT;	-- kunci_out 16
+  SIGNAL kunci_out_17 : BIT;	-- kunci_out 17
+  SIGNAL kunci_out_18 : BIT;	-- kunci_out 18
+  SIGNAL kunci_out_19 : BIT;	-- kunci_out 19
+  SIGNAL kunci_out_20 : BIT;	-- kunci_out 20
+  SIGNAL kunci_out_21 : BIT;	-- kunci_out 21
+  SIGNAL kunci_out_22 : BIT;	-- kunci_out 22
+  SIGNAL kunci_out_23 : BIT;	-- kunci_out 23
+  SIGNAL kunci_out_24 : BIT;	-- kunci_out 24
+  SIGNAL kunci_out_25 : BIT;	-- kunci_out 25
+  SIGNAL kunci_out_26 : BIT;	-- kunci_out 26
+  SIGNAL kunci_out_27 : BIT;	-- kunci_out 27
+  SIGNAL kunci_out_28 : BIT;	-- kunci_out 28
+  SIGNAL kunci_out_29 : BIT;	-- kunci_out 29
+  SIGNAL kunci_out_30 : BIT;	-- kunci_out 30
+  SIGNAL kunci_out_31 : BIT;	-- kunci_out 31
+  SIGNAL kunci_out_32 : BIT;	-- kunci_out 32
+  SIGNAL kunci_out_33 : BIT;	-- kunci_out 33
+  SIGNAL kunci_out_34 : BIT;	-- kunci_out 34
+  SIGNAL kunci_out_35 : BIT;	-- kunci_out 35
+  SIGNAL kunci_out_36 : BIT;	-- kunci_out 36
+  SIGNAL kunci_out_37 : BIT;	-- kunci_out 37
+  SIGNAL kunci_out_38 : BIT;	-- kunci_out 38
+  SIGNAL kunci_out_39 : BIT;	-- kunci_out 39
+  SIGNAL kunci_out_40 : BIT;	-- kunci_out 40
+  SIGNAL kunci_out_41 : BIT;	-- kunci_out 41
+  SIGNAL kunci_out_42 : BIT;	-- kunci_out 42
+  SIGNAL kunci_out_43 : BIT;	-- kunci_out 43
+  SIGNAL kunci_out_44 : BIT;	-- kunci_out 44
+  SIGNAL kunci_out_45 : BIT;	-- kunci_out 45
+  SIGNAL kunci_out_46 : BIT;	-- kunci_out 46
+  SIGNAL kunci_out_47 : BIT;	-- kunci_out 47
+  SIGNAL kunci_out_48 : BIT;	-- kunci_out 48
+  SIGNAL kunci_out_49 : BIT;	-- kunci_out 49
+  SIGNAL kunci_out_50 : BIT;	-- kunci_out 50
+  SIGNAL kunci_out_51 : BIT;	-- kunci_out 51
+  SIGNAL kunci_out_52 : BIT;	-- kunci_out 52
+  SIGNAL kunci_out_53 : BIT;	-- kunci_out 53
+  SIGNAL kunci_out_54 : BIT;	-- kunci_out 54
+  SIGNAL kunci_out_55 : BIT;	-- kunci_out 55
+  SIGNAL kunci_out_56 : BIT;	-- kunci_out 56
+  SIGNAL kunci_out_57 : BIT;	-- kunci_out 57
+  SIGNAL kunci_out_58 : BIT;	-- kunci_out 58
+  SIGNAL kunci_out_59 : BIT;	-- kunci_out 59
+  SIGNAL kunci_out_60 : BIT;	-- kunci_out 60
+  SIGNAL kunci_out_61 : BIT;	-- kunci_out 61
+  SIGNAL kunci_out_62 : BIT;	-- kunci_out 62
+  SIGNAL kunci_out_63 : BIT;	-- kunci_out 63
+  SIGNAL kunci_out_64 : BIT;	-- kunci_out 64
+  SIGNAL kunci_out_65 : BIT;	-- kunci_out 65
+  SIGNAL kunci_out_66 : BIT;	-- kunci_out 66
+  SIGNAL kunci_out_67 : BIT;	-- kunci_out 67
+  SIGNAL kunci_out_68 : BIT;	-- kunci_out 68
+  SIGNAL kunci_out_69 : BIT;	-- kunci_out 69
+  SIGNAL kunci_out_70 : BIT;	-- kunci_out 70
+  SIGNAL kunci_out_71 : BIT;	-- kunci_out 71
+  SIGNAL kunci_out_72 : BIT;	-- kunci_out 72
+  SIGNAL kunci_out_73 : BIT;	-- kunci_out 73
+  SIGNAL kunci_out_74 : BIT;	-- kunci_out 74
+  SIGNAL kunci_out_75 : BIT;	-- kunci_out 75
+  SIGNAL kunci_out_76 : BIT;	-- kunci_out 76
+  SIGNAL kunci_out_77 : BIT;	-- kunci_out 77
+  SIGNAL kunci_out_78 : BIT;	-- kunci_out 78
+  SIGNAL kunci_out_79 : BIT;	-- kunci_out 79
+  SIGNAL kunci_out_80 : BIT;	-- kunci_out 80
+  SIGNAL kunci_out_81 : BIT;	-- kunci_out 81
+  SIGNAL kunci_out_82 : BIT;	-- kunci_out 82
+  SIGNAL kunci_out_83 : BIT;	-- kunci_out 83
+  SIGNAL kunci_out_84 : BIT;	-- kunci_out 84
+  SIGNAL kunci_out_85 : BIT;	-- kunci_out 85
+  SIGNAL kunci_out_86 : BIT;	-- kunci_out 86
+  SIGNAL kunci_out_87 : BIT;	-- kunci_out 87
+  SIGNAL kunci_out_88 : BIT;	-- kunci_out 88
+  SIGNAL kunci_out_89 : BIT;	-- kunci_out 89
+  SIGNAL kunci_out_90 : BIT;	-- kunci_out 90
+  SIGNAL kunci_out_91 : BIT;	-- kunci_out 91
+  SIGNAL kunci_out_92 : BIT;	-- kunci_out 92
+  SIGNAL kunci_out_93 : BIT;	-- kunci_out 93
+  SIGNAL kunci_out_94 : BIT;	-- kunci_out 94
+  SIGNAL kunci_out_95 : BIT;	-- kunci_out 95
+  SIGNAL kunci_out_96 : BIT;	-- kunci_out 96
+  SIGNAL kunci_out_97 : BIT;	-- kunci_out 97
+  SIGNAL kunci_out_98 : BIT;	-- kunci_out 98
+  SIGNAL kunci_out_99 : BIT;	-- kunci_out 99
+  SIGNAL kunci_out_100 : BIT;	-- kunci_out 100
+  SIGNAL kunci_out_101 : BIT;	-- kunci_out 101
+  SIGNAL kunci_out_102 : BIT;	-- kunci_out 102
+  SIGNAL kunci_out_103 : BIT;	-- kunci_out 103
+  SIGNAL kunci_out_104 : BIT;	-- kunci_out 104
+  SIGNAL kunci_out_105 : BIT;	-- kunci_out 105
+  SIGNAL kunci_out_106 : BIT;	-- kunci_out 106
+  SIGNAL kunci_out_107 : BIT;	-- kunci_out 107
+  SIGNAL kunci_out_108 : BIT;	-- kunci_out 108
+  SIGNAL kunci_out_109 : BIT;	-- kunci_out 109
+  SIGNAL kunci_out_110 : BIT;	-- kunci_out 110
+  SIGNAL kunci_out_111 : BIT;	-- kunci_out 111
+  SIGNAL kunci_out_112 : BIT;	-- kunci_out 112
+  SIGNAL kunci_out_113 : BIT;	-- kunci_out 113
+  SIGNAL kunci_out_114 : BIT;	-- kunci_out 114
+  SIGNAL kunci_out_115 : BIT;	-- kunci_out 115
+  SIGNAL kunci_out_116 : BIT;	-- kunci_out 116
+  SIGNAL kunci_out_117 : BIT;	-- kunci_out 117
+  SIGNAL kunci_out_118 : BIT;	-- kunci_out 118
+  SIGNAL kunci_out_119 : BIT;	-- kunci_out 119
+  SIGNAL kunci_out_120 : BIT;	-- kunci_out 120
+  SIGNAL kunci_out_121 : BIT;	-- kunci_out 121
+  SIGNAL kunci_out_122 : BIT;	-- kunci_out 122
+  SIGNAL kunci_out_123 : BIT;	-- kunci_out 123
+  SIGNAL kunci_out_124 : BIT;	-- kunci_out 124
+  SIGNAL kunci_out_125 : BIT;	-- kunci_out 125
+  SIGNAL kunci_out_126 : BIT;	-- kunci_out 126
+  SIGNAL kunci_out_127 : BIT;	-- kunci_out 127
+
+BEGIN
+
+  mux1 : mux128
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    c => kunci_in_127& kunci_in_126& kunci_in_125& kunci_in_124& kunci_in_123& kunci_in_122& kunci_in_121& kunci_in_120& kunci_in_119& kunci_in_118& kunci_in_117& kunci_in_116& kunci_in_115& kunci_in_114& kunci_in_113& kunci_in_112& kunci_in_111& kunci_in_110& kunci_in_109& kunci_in_108& kunci_in_107& kunci_in_106& kunci_in_105& kunci_in_104& kunci_in_103& kunci_in_102& kunci_in_101& kunci_in_100& kunci_in_99& kunci_in_98& kunci_in_97& kunci_in_96& kunci_in_95& kunci_in_94& kunci_in_93& kunci_in_92& kunci_in_91& kunci_in_90& kunci_in_89& kunci_in_88& kunci_in_87& kunci_in_86& kunci_in_85& kunci_in_84& kunci_in_83& kunci_in_82& kunci_in_81& kunci_in_80& kunci_in_79& kunci_in_78& kunci_in_77& kunci_in_76& kunci_in_75& kunci_in_74& kunci_in_73& kunci_in_72& kunci_in_71& kunci_in_70& kunci_in_69& kunci_in_68& kunci_in_67& kunci_in_66& kunci_in_65& kunci_in_64& kunci_in_63& kunci_in_62& kunci_in_61& kunci_in_60& kunci_in_59& kunci_in_58& kunci_in_57& kunci_in_56& kunci_in_55& kunci_in_54& kunci_in_53& kunci_in_52& kunci_in_51& kunci_in_50& kunci_in_49& kunci_in_48& kunci_in_47& kunci_in_46& kunci_in_45& kunci_in_44& kunci_in_43& kunci_in_42& kunci_in_41& kunci_in_40& kunci_in_39& kunci_in_38& kunci_in_37& kunci_in_36& kunci_in_35& kunci_in_34& kunci_in_33& kunci_in_32& kunci_in_31& kunci_in_30& kunci_in_29& kunci_in_28& kunci_in_27& kunci_in_26& kunci_in_25& kunci_in_24& kunci_in_23& kunci_in_22& kunci_in_21& kunci_in_20& kunci_in_19& kunci_in_18& kunci_in_17& kunci_in_16& kunci_in_15& kunci_in_14& kunci_in_13& kunci_in_12& kunci_in_11& kunci_in_10& kunci_in_9& kunci_in_8& kunci_in_7& kunci_in_6& kunci_in_5& kunci_in_4& kunci_in_3& kunci_in_2& kunci_in_1& kunci_in_0,
+    sel => sel1,
+    b => kunci_out_127& kunci_out_126& kunci_out_125& kunci_out_124& kunci_out_123& kunci_out_122& kunci_out_121& kunci_out_120& kunci_out_119& kunci_out_118& kunci_out_117& kunci_out_116& kunci_out_115& kunci_out_114& kunci_out_113& kunci_out_112& kunci_out_111& kunci_out_110& kunci_out_109& kunci_out_108& kunci_out_107& kunci_out_106& kunci_out_105& kunci_out_104& kunci_out_103& kunci_out_102& kunci_out_101& kunci_out_100& kunci_out_99& kunci_out_98& kunci_out_97& kunci_out_96& kunci_out_95& kunci_out_94& kunci_out_93& kunci_out_92& kunci_out_91& kunci_out_90& kunci_out_89& kunci_out_88& kunci_out_87& kunci_out_86& kunci_out_85& kunci_out_84& kunci_out_83& kunci_out_82& kunci_out_81& kunci_out_80& kunci_out_79& kunci_out_78& kunci_out_77& kunci_out_76& kunci_out_75& kunci_out_74& kunci_out_73& kunci_out_72& kunci_out_71& kunci_out_70& kunci_out_69& kunci_out_68& kunci_out_67& kunci_out_66& kunci_out_65& kunci_out_64& kunci_out_63& kunci_out_62& kunci_out_61& kunci_out_60& kunci_out_59& kunci_out_58& kunci_out_57& kunci_out_56& kunci_out_55& kunci_out_54& kunci_out_53& kunci_out_52& kunci_out_51& kunci_out_50& kunci_out_49& kunci_out_48& kunci_out_47& kunci_out_46& kunci_out_45& kunci_out_44& kunci_out_43& kunci_out_42& kunci_out_41& kunci_out_40& kunci_out_39& kunci_out_38& kunci_out_37& kunci_out_36& kunci_out_35& kunci_out_34& kunci_out_33& kunci_out_32& kunci_out_31& kunci_out_30& kunci_out_29& kunci_out_28& kunci_out_27& kunci_out_26& kunci_out_25& kunci_out_24& kunci_out_23& kunci_out_22& kunci_out_21& kunci_out_20& kunci_out_19& kunci_out_18& kunci_out_17& kunci_out_16& kunci_out_15& kunci_out_14& kunci_out_13& kunci_out_12& kunci_out_11& kunci_out_10& kunci_out_9& kunci_out_8& kunci_out_7& kunci_out_6& kunci_out_5& kunci_out_4& kunci_out_3& kunci_out_2& kunci_out_1& kunci_out_0,
+    a => in_key(127)& in_key(126)& in_key(125)& in_key(124)& in_key(123)& in_key(122)& in_key(121)& in_key(120)& in_key(119)& in_key(118)& in_key(117)& in_key(116)& in_key(115)& in_key(114)& in_key(113)& in_key(112)& in_key(111)& in_key(110)& in_key(109)& in_key(108)& in_key(107)& in_key(106)& in_key(105)& in_key(104)& in_key(103)& in_key(102)& in_key(101)& in_key(100)& in_key(99)& in_key(98)& in_key(97)& in_key(96)& in_key(95)& in_key(94)& in_key(93)& in_key(92)& in_key(91)& in_key(90)& in_key(89)& in_key(88)& in_key(87)& in_key(86)& in_key(85)& in_key(84)& in_key(83)& in_key(82)& in_key(81)& in_key(80)& in_key(79)& in_key(78)& in_key(77)& in_key(76)& in_key(75)& in_key(74)& in_key(73)& in_key(72)& in_key(71)& in_key(70)& in_key(69)& in_key(68)& in_key(67)& in_key(66)& in_key(65)& in_key(64)& in_key(63)& in_key(62)& in_key(61)& in_key(60)& in_key(59)& in_key(58)& in_key(57)& in_key(56)& in_key(55)& in_key(54)& in_key(53)& in_key(52)& in_key(51)& in_key(50)& in_key(49)& in_key(48)& in_key(47)& in_key(46)& in_key(45)& in_key(44)& in_key(43)& in_key(42)& in_key(41)& in_key(40)& in_key(39)& in_key(38)& in_key(37)& in_key(36)& in_key(35)& in_key(34)& in_key(33)& in_key(32)& in_key(31)& in_key(30)& in_key(29)& in_key(28)& in_key(27)& in_key(26)& in_key(25)& in_key(24)& in_key(23)& in_key(22)& in_key(21)& in_key(20)& in_key(19)& in_key(18)& in_key(17)& in_key(16)& in_key(15)& in_key(14)& in_key(13)& in_key(12)& in_key(11)& in_key(10)& in_key(9)& in_key(8)& in_key(7)& in_key(6)& in_key(5)& in_key(4)& in_key(3)& in_key(2)& in_key(1)& in_key(0));
+  shiftreg1 : shiftreg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    kunci_out => kunci_out_127& kunci_out_126& kunci_out_125& kunci_out_124& kunci_out_123& kunci_out_122& kunci_out_121& kunci_out_120& kunci_out_119& kunci_out_118& kunci_out_117& kunci_out_116& kunci_out_115& kunci_out_114& kunci_out_113& kunci_out_112& kunci_out_111& kunci_out_110& kunci_out_109& kunci_out_108& kunci_out_107& kunci_out_106& kunci_out_105& kunci_out_104& kunci_out_103& kunci_out_102& kunci_out_101& kunci_out_100& kunci_out_99& kunci_out_98& kunci_out_97& kunci_out_96& kunci_out_95& kunci_out_94& kunci_out_93& kunci_out_92& kunci_out_91& kunci_out_90& kunci_out_89& kunci_out_88& kunci_out_87& kunci_out_86& kunci_out_85& kunci_out_84& kunci_out_83& kunci_out_82& kunci_out_81& kunci_out_80& kunci_out_79& kunci_out_78& kunci_out_77& kunci_out_76& kunci_out_75& kunci_out_74& kunci_out_73& kunci_out_72& kunci_out_71& kunci_out_70& kunci_out_69& kunci_out_68& kunci_out_67& kunci_out_66& kunci_out_65& kunci_out_64& kunci_out_63& kunci_out_62& kunci_out_61& kunci_out_60& kunci_out_59& kunci_out_58& kunci_out_57& kunci_out_56& kunci_out_55& kunci_out_54& kunci_out_53& kunci_out_52& kunci_out_51& kunci_out_50& kunci_out_49& kunci_out_48& kunci_out_47& kunci_out_46& kunci_out_45& kunci_out_44& kunci_out_43& kunci_out_42& kunci_out_41& kunci_out_40& kunci_out_39& kunci_out_38& kunci_out_37& kunci_out_36& kunci_out_35& kunci_out_34& kunci_out_33& kunci_out_32& kunci_out_31& kunci_out_30& kunci_out_29& kunci_out_28& kunci_out_27& kunci_out_26& kunci_out_25& kunci_out_24& kunci_out_23& kunci_out_22& kunci_out_21& kunci_out_20& kunci_out_19& kunci_out_18& kunci_out_17& kunci_out_16& kunci_out_15& kunci_out_14& kunci_out_13& kunci_out_12& kunci_out_11& kunci_out_10& kunci_out_9& kunci_out_8& kunci_out_7& kunci_out_6& kunci_out_5& kunci_out_4& kunci_out_3& kunci_out_2& kunci_out_1& kunci_out_0,
+    en => en,
+    clr => clr,
+    kunci_in => kunci_in_127& kunci_in_126& kunci_in_125& kunci_in_124& kunci_in_123& kunci_in_122& kunci_in_121& kunci_in_120& kunci_in_119& kunci_in_118& kunci_in_117& kunci_in_116& kunci_in_115& kunci_in_114& kunci_in_113& kunci_in_112& kunci_in_111& kunci_in_110& kunci_in_109& kunci_in_108& kunci_in_107& kunci_in_106& kunci_in_105& kunci_in_104& kunci_in_103& kunci_in_102& kunci_in_101& kunci_in_100& kunci_in_99& kunci_in_98& kunci_in_97& kunci_in_96& kunci_in_95& kunci_in_94& kunci_in_93& kunci_in_92& kunci_in_91& kunci_in_90& kunci_in_89& kunci_in_88& kunci_in_87& kunci_in_86& kunci_in_85& kunci_in_84& kunci_in_83& kunci_in_82& kunci_in_81& kunci_in_80& kunci_in_79& kunci_in_78& kunci_in_77& kunci_in_76& kunci_in_75& kunci_in_74& kunci_in_73& kunci_in_72& kunci_in_71& kunci_in_70& kunci_in_69& kunci_in_68& kunci_in_67& kunci_in_66& kunci_in_65& kunci_in_64& kunci_in_63& kunci_in_62& kunci_in_61& kunci_in_60& kunci_in_59& kunci_in_58& kunci_in_57& kunci_in_56& kunci_in_55& kunci_in_54& kunci_in_53& kunci_in_52& kunci_in_51& kunci_in_50& kunci_in_49& kunci_in_48& kunci_in_47& kunci_in_46& kunci_in_45& kunci_in_44& kunci_in_43& kunci_in_42& kunci_in_41& kunci_in_40& kunci_in_39& kunci_in_38& kunci_in_37& kunci_in_36& kunci_in_35& kunci_in_34& kunci_in_33& kunci_in_32& kunci_in_31& kunci_in_30& kunci_in_29& kunci_in_28& kunci_in_27& kunci_in_26& kunci_in_25& kunci_in_24& kunci_in_23& kunci_in_22& kunci_in_21& kunci_in_20& kunci_in_19& kunci_in_18& kunci_in_17& kunci_in_16& kunci_in_15& kunci_in_14& kunci_in_13& kunci_in_12& kunci_in_11& kunci_in_10& kunci_in_9& kunci_in_8& kunci_in_7& kunci_in_6& kunci_in_5& kunci_in_4& kunci_in_3& kunci_in_2& kunci_in_1& kunci_in_0);
+  mux2 : mux128
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    c => out_key(127)& out_key(126)& out_key(125)& out_key(124)& out_key(123)& out_key(122)& out_key(121)& out_key(120)& out_key(119)& out_key(118)& out_key(117)& out_key(116)& out_key(115)& out_key(114)& out_key(113)& out_key(112)& out_key(111)& out_key(110)& out_key(109)& out_key(108)& out_key(107)& out_key(106)& out_key(105)& out_key(104)& out_key(103)& out_key(102)& out_key(101)& out_key(100)& out_key(99)& out_key(98)& out_key(97)& out_key(96)& out_key(95)& out_key(94)& out_key(93)& out_key(92)& out_key(91)& out_key(90)& out_key(89)& out_key(88)& out_key(87)& out_key(86)& out_key(85)& out_key(84)& out_key(83)& out_key(82)& out_key(81)& out_key(80)& out_key(79)& out_key(78)& out_key(77)& out_key(76)& out_key(75)& out_key(74)& out_key(73)& out_key(72)& out_key(71)& out_key(70)& out_key(69)& out_key(68)& out_key(67)& out_key(66)& out_key(65)& out_key(64)& out_key(63)& out_key(62)& out_key(61)& out_key(60)& out_key(59)& out_key(58)& out_key(57)& out_key(56)& out_key(55)& out_key(54)& out_key(53)& out_key(52)& out_key(51)& out_key(50)& out_key(49)& out_key(48)& out_key(47)& out_key(46)& out_key(45)& out_key(44)& out_key(43)& out_key(42)& out_key(41)& out_key(40)& out_key(39)& out_key(38)& out_key(37)& out_key(36)& out_key(35)& out_key(34)& out_key(33)& out_key(32)& out_key(31)& out_key(30)& out_key(29)& out_key(28)& out_key(27)& out_key(26)& out_key(25)& out_key(24)& out_key(23)& out_key(22)& out_key(21)& out_key(20)& out_key(19)& out_key(18)& out_key(17)& out_key(16)& out_key(15)& out_key(14)& out_key(13)& out_key(12)& out_key(11)& out_key(10)& out_key(9)& out_key(8)& out_key(7)& out_key(6)& out_key(5)& out_key(4)& out_key(3)& out_key(2)& out_key(1)& out_key(0),
+    sel => sel2,
+    b => kunci_out_127& kunci_out_126& kunci_out_125& kunci_out_124& kunci_out_123& kunci_out_122& kunci_out_121& kunci_out_120& kunci_out_119& kunci_out_118& kunci_out_117& kunci_out_116& kunci_out_115& kunci_out_114& kunci_out_113& kunci_out_112& kunci_out_111& kunci_out_110& kunci_out_109& kunci_out_108& kunci_out_107& kunci_out_106& kunci_out_105& kunci_out_104& kunci_out_103& kunci_out_102& kunci_out_101& kunci_out_100& kunci_out_99& kunci_out_98& kunci_out_97& kunci_out_96& kunci_out_95& kunci_out_94& kunci_out_93& kunci_out_92& kunci_out_91& kunci_out_90& kunci_out_89& kunci_out_88& kunci_out_87& kunci_out_86& kunci_out_85& kunci_out_84& kunci_out_83& kunci_out_82& kunci_out_81& kunci_out_80& kunci_out_79& kunci_out_78& kunci_out_77& kunci_out_76& kunci_out_75& kunci_out_74& kunci_out_73& kunci_out_72& kunci_out_71& kunci_out_70& kunci_out_69& kunci_out_68& kunci_out_67& kunci_out_66& kunci_out_65& kunci_out_64& kunci_out_63& kunci_out_62& kunci_out_61& kunci_out_60& kunci_out_59& kunci_out_58& kunci_out_57& kunci_out_56& kunci_out_55& kunci_out_54& kunci_out_53& kunci_out_52& kunci_out_51& kunci_out_50& kunci_out_49& kunci_out_48& kunci_out_47& kunci_out_46& kunci_out_45& kunci_out_44& kunci_out_43& kunci_out_42& kunci_out_41& kunci_out_40& kunci_out_39& kunci_out_38& kunci_out_37& kunci_out_36& kunci_out_35& kunci_out_34& kunci_out_33& kunci_out_32& kunci_out_31& kunci_out_30& kunci_out_29& kunci_out_28& kunci_out_27& kunci_out_26& kunci_out_25& kunci_out_24& kunci_out_23& kunci_out_22& kunci_out_21& kunci_out_20& kunci_out_19& kunci_out_18& kunci_out_17& kunci_out_16& kunci_out_15& kunci_out_14& kunci_out_13& kunci_out_12& kunci_out_11& kunci_out_10& kunci_out_9& kunci_out_8& kunci_out_7& kunci_out_6& kunci_out_5& kunci_out_4& kunci_out_3& kunci_out_2& kunci_out_1& kunci_out_0,
+    a => in_key(127)& in_key(126)& in_key(125)& in_key(124)& in_key(123)& in_key(122)& in_key(121)& in_key(120)& in_key(119)& in_key(118)& in_key(117)& in_key(116)& in_key(115)& in_key(114)& in_key(113)& in_key(112)& in_key(111)& in_key(110)& in_key(109)& in_key(108)& in_key(107)& in_key(106)& in_key(105)& in_key(104)& in_key(103)& in_key(102)& in_key(101)& in_key(100)& in_key(99)& in_key(98)& in_key(97)& in_key(96)& in_key(95)& in_key(94)& in_key(93)& in_key(92)& in_key(91)& in_key(90)& in_key(89)& in_key(88)& in_key(87)& in_key(86)& in_key(85)& in_key(84)& in_key(83)& in_key(82)& in_key(81)& in_key(80)& in_key(79)& in_key(78)& in_key(77)& in_key(76)& in_key(75)& in_key(74)& in_key(73)& in_key(72)& in_key(71)& in_key(70)& in_key(69)& in_key(68)& in_key(67)& in_key(66)& in_key(65)& in_key(64)& in_key(63)& in_key(62)& in_key(61)& in_key(60)& in_key(59)& in_key(58)& in_key(57)& in_key(56)& in_key(55)& in_key(54)& in_key(53)& in_key(52)& in_key(51)& in_key(50)& in_key(49)& in_key(48)& in_key(47)& in_key(46)& in_key(45)& in_key(44)& in_key(43)& in_key(42)& in_key(41)& in_key(40)& in_key(39)& in_key(38)& in_key(37)& in_key(36)& in_key(35)& in_key(34)& in_key(33)& in_key(32)& in_key(31)& in_key(30)& in_key(29)& in_key(28)& in_key(27)& in_key(26)& in_key(25)& in_key(24)& in_key(23)& in_key(22)& in_key(21)& in_key(20)& in_key(19)& in_key(18)& in_key(17)& in_key(16)& in_key(15)& in_key(14)& in_key(13)& in_key(12)& in_key(11)& in_key(10)& in_key(9)& in_key(8)& in_key(7)& in_key(6)& in_key(5)& in_key(4)& in_key(3)& in_key(2)& in_key(1)& in_key(0));
+
+end VST;

@@ -1,0 +1,225 @@
+-- VHDL structural description generated from `subtract16`
+--		date : Sat Sep  8 04:14:01 2001
+
+
+-- Entity Declaration
+
+ENTITY subtract16 IS
+  PORT (
+  a : in BIT_VECTOR (0 TO 15);	-- a
+  b : in BIT_VECTOR (0 TO 15);	-- b
+  s : out BIT_VECTOR (0 TO 15);	-- s
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END subtract16;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF subtract16 IS
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT fsub_glopg
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    bin : in BIT;	-- bin
+    d : out BIT;	-- d
+    bout : out BIT;	-- bout
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL bo_0 : BIT;	-- bo 0
+  SIGNAL bo_1 : BIT;	-- bo 1
+  SIGNAL bo_2 : BIT;	-- bo 2
+  SIGNAL bo_3 : BIT;	-- bo 3
+  SIGNAL bo_4 : BIT;	-- bo 4
+  SIGNAL bo_5 : BIT;	-- bo 5
+  SIGNAL bo_6 : BIT;	-- bo 6
+  SIGNAL bo_7 : BIT;	-- bo 7
+  SIGNAL bo_8 : BIT;	-- bo 8
+  SIGNAL bo_9 : BIT;	-- bo 9
+  SIGNAL bo_10 : BIT;	-- bo 10
+  SIGNAL bo_11 : BIT;	-- bo 11
+  SIGNAL bo_12 : BIT;	-- bo 12
+  SIGNAL bo_13 : BIT;	-- bo 13
+  SIGNAL bo_14 : BIT;	-- bo 14
+  SIGNAL o_xr2 : BIT;	-- o_xr2
+  SIGNAL o_zero : BIT;	-- o_zero
+
+BEGIN
+
+  zero : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_zero);
+  fs0 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_0,
+    d => s(0),
+    bin => o_zero,
+    b => b(0),
+    a => a(0));
+  fs1 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_1,
+    d => s(1),
+    bin => bo_0,
+    b => b(1),
+    a => a(1));
+  fs2 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_2,
+    d => s(2),
+    bin => bo_1,
+    b => b(2),
+    a => a(2));
+  fs3 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_3,
+    d => s(3),
+    bin => bo_2,
+    b => b(3),
+    a => a(3));
+  fs4 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_4,
+    d => s(4),
+    bin => bo_3,
+    b => b(4),
+    a => a(4));
+  fs5 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_5,
+    d => s(5),
+    bin => bo_4,
+    b => b(5),
+    a => a(5));
+  fs6 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_6,
+    d => s(6),
+    bin => bo_5,
+    b => b(6),
+    a => a(6));
+  fs7 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_7,
+    d => s(7),
+    bin => bo_6,
+    b => b(7),
+    a => a(7));
+  fs8 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_8,
+    d => s(8),
+    bin => bo_7,
+    b => b(8),
+    a => a(8));
+  fs9 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_9,
+    d => s(9),
+    bin => bo_8,
+    b => b(9),
+    a => a(9));
+  fs10 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_10,
+    d => s(10),
+    bin => bo_9,
+    b => b(10),
+    a => a(10));
+  fs11 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_11,
+    d => s(11),
+    bin => bo_10,
+    b => b(11),
+    a => a(11));
+  fs12 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_12,
+    d => s(12),
+    bin => bo_11,
+    b => b(12),
+    a => a(12));
+  fs13 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_13,
+    d => s(13),
+    bin => bo_12,
+    b => b(13),
+    a => a(13));
+  fs14 : fsub_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bo_14,
+    d => s(14),
+    bin => bo_13,
+    b => b(14),
+    a => a(14));
+  xr2 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => o_xr2,
+    i1 => b(15),
+    i0 => a(15));
+  xr3 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(15),
+    i1 => bo_14,
+    i0 => o_xr2);
+
+end VST;

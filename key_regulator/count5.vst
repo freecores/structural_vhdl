@@ -1,0 +1,1147 @@
+-- VHDL structural description generated from `count5`
+--		date : Thu Aug  2 08:47:56 2001
+
+
+-- Entity Declaration
+
+ENTITY count5 IS
+  PORT (
+  clk : in BIT;	-- clk
+  rst : in BIT;	-- rst
+  q : out BIT_VECTOR (4 DOWNTO 0);	-- q
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END count5;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF count5 IS
+  COMPONENT oa2a2a23_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    i3 : in BIT;	-- i3
+    i4 : in BIT;	-- i4
+    i5 : in BIT;	-- i5
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a4_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    i3 : in BIT;	-- i3
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT nao2o22_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    i3 : in BIT;	-- i3
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT an12_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT no3_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a3_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT oa22_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT na4_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    i3 : in BIT;	-- i3
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT ao22_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT o3_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT o4_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    i3 : in BIT;	-- i3
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT no2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT na2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT nxr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT on12_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT na3_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT noa22_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT nao22_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT inv_x1
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT o2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT sff1_x4
+    port (
+    ck : in BIT;	-- ck
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL aux45_a : BIT;	-- aux45_a
+  SIGNAL aux46_a : BIT;	-- aux46_a
+  SIGNAL auxsc9 : BIT;	-- auxsc9
+  SIGNAL auxsc32 : BIT;	-- auxsc32
+  SIGNAL auxsc4 : BIT;	-- auxsc4
+  SIGNAL auxsc14 : BIT;	-- auxsc14
+  SIGNAL auxsc175 : BIT;	-- auxsc175
+  SIGNAL auxsc176 : BIT;	-- auxsc176
+  SIGNAL auxsc173 : BIT;	-- auxsc173
+  SIGNAL auxsc174 : BIT;	-- auxsc174
+  SIGNAL auxsc13 : BIT;	-- auxsc13
+  SIGNAL auxsc177 : BIT;	-- auxsc177
+  SIGNAL auxsc178 : BIT;	-- auxsc178
+  SIGNAL auxsc172 : BIT;	-- auxsc172
+  SIGNAL auxsc11 : BIT;	-- auxsc11
+  SIGNAL auxsc188 : BIT;	-- auxsc188
+  SIGNAL auxsc194 : BIT;	-- auxsc194
+  SIGNAL auxsc193 : BIT;	-- auxsc193
+  SIGNAL auxsc184 : BIT;	-- auxsc184
+  SIGNAL auxsc185 : BIT;	-- auxsc185
+  SIGNAL auxsc197 : BIT;	-- auxsc197
+  SIGNAL auxsc227 : BIT;	-- auxsc227
+  SIGNAL auxsc226 : BIT;	-- auxsc226
+  SIGNAL auxsc221 : BIT;	-- auxsc221
+  SIGNAL auxsc241 : BIT;	-- auxsc241
+  SIGNAL auxsc242 : BIT;	-- auxsc242
+  SIGNAL auxsc236 : BIT;	-- auxsc236
+  SIGNAL auxsc243 : BIT;	-- auxsc243
+  SIGNAL auxsc239 : BIT;	-- auxsc239
+  SIGNAL auxsc229 : BIT;	-- auxsc229
+  SIGNAL auxsc244 : BIT;	-- auxsc244
+  SIGNAL auxsc125 : BIT;	-- auxsc125
+  SIGNAL auxsc206 : BIT;	-- auxsc206
+  SIGNAL auxsc216 : BIT;	-- auxsc216
+  SIGNAL auxsc202 : BIT;	-- auxsc202
+  SIGNAL auxsc217 : BIT;	-- auxsc217
+  SIGNAL auxsc215 : BIT;	-- auxsc215
+  SIGNAL auxsc212 : BIT;	-- auxsc212
+  SIGNAL auxsc218 : BIT;	-- auxsc218
+  SIGNAL auxsc21 : BIT;	-- auxsc21
+  SIGNAL auxsc29 : BIT;	-- auxsc29
+  SIGNAL auxsc30 : BIT;	-- auxsc30
+  SIGNAL auxsc31 : BIT;	-- auxsc31
+  SIGNAL auxsc22 : BIT;	-- auxsc22
+  SIGNAL auxsc33 : BIT;	-- auxsc33
+  SIGNAL auxsc10 : BIT;	-- auxsc10
+  SIGNAL auxsc27 : BIT;	-- auxsc27
+  SIGNAL auxsc34 : BIT;	-- auxsc34
+  SIGNAL auxsc24 : BIT;	-- auxsc24
+  SIGNAL auxsc25 : BIT;	-- auxsc25
+  SIGNAL auxsc35 : BIT;	-- auxsc35
+  SIGNAL auxsc36 : BIT;	-- auxsc36
+  SIGNAL auxsc18 : BIT;	-- auxsc18
+  SIGNAL auxsc39 : BIT;	-- auxsc39
+  SIGNAL auxsc69 : BIT;	-- auxsc69
+  SIGNAL auxsc70 : BIT;	-- auxsc70
+  SIGNAL auxsc8 : BIT;	-- auxsc8
+  SIGNAL auxsc61 : BIT;	-- auxsc61
+  SIGNAL auxsc56 : BIT;	-- auxsc56
+  SIGNAL auxsc62 : BIT;	-- auxsc62
+  SIGNAL auxsc63 : BIT;	-- auxsc63
+  SIGNAL auxsc64 : BIT;	-- auxsc64
+  SIGNAL auxsc71 : BIT;	-- auxsc71
+  SIGNAL auxsc72 : BIT;	-- auxsc72
+  SIGNAL auxsc73 : BIT;	-- auxsc73
+  SIGNAL auxsc59 : BIT;	-- auxsc59
+  SIGNAL auxsc93 : BIT;	-- auxsc93
+  SIGNAL auxsc96 : BIT;	-- auxsc96
+  SIGNAL auxsc97 : BIT;	-- auxsc97
+  SIGNAL auxsc98 : BIT;	-- auxsc98
+  SIGNAL auxsc95 : BIT;	-- auxsc95
+  SIGNAL auxsc79 : BIT;	-- auxsc79
+  SIGNAL auxsc99 : BIT;	-- auxsc99
+  SIGNAL auxsc100 : BIT;	-- auxsc100
+  SIGNAL auxsc90 : BIT;	-- auxsc90
+  SIGNAL auxsc122 : BIT;	-- auxsc122
+  SIGNAL auxsc107 : BIT;	-- auxsc107
+  SIGNAL auxsc127 : BIT;	-- auxsc127
+  SIGNAL auxsc124 : BIT;	-- auxsc124
+  SIGNAL auxsc115 : BIT;	-- auxsc115
+  SIGNAL auxsc126 : BIT;	-- auxsc126
+  SIGNAL auxsc118 : BIT;	-- auxsc118
+  SIGNAL auxsc128 : BIT;	-- auxsc128
+  SIGNAL auxsc120 : BIT;	-- auxsc120
+  SIGNAL auxsc154 : BIT;	-- auxsc154
+  SIGNAL auxsc155 : BIT;	-- auxsc155
+  SIGNAL auxsc135 : BIT;	-- auxsc135
+  SIGNAL auxsc151 : BIT;	-- auxsc151
+  SIGNAL auxsc156 : BIT;	-- auxsc156
+  SIGNAL auxsc158 : BIT;	-- auxsc158
+  SIGNAL auxsc152 : BIT;	-- auxsc152
+  SIGNAL auxsc136 : BIT;	-- auxsc136
+  SIGNAL auxsc137 : BIT;	-- auxsc137
+  SIGNAL auxsc159 : BIT;	-- auxsc159
+  SIGNAL auxsc149 : BIT;	-- auxsc149
+  SIGNAL auxreg5 : BIT;	-- auxreg5
+  SIGNAL auxreg4 : BIT;	-- auxreg4
+  SIGNAL auxreg3 : BIT;	-- auxreg3
+  SIGNAL auxreg2 : BIT;	-- auxreg2
+  SIGNAL auxreg1 : BIT;	-- auxreg1
+
+BEGIN
+
+  q_0 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(0),
+    i1 => auxsc172,
+    i0 => auxsc32);
+  q_1 : a3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(1),
+    i2 => auxsc185,
+    i1 => auxsc193,
+    i0 => auxsc32);
+  q_2 : a3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(2),
+    i2 => auxsc221,
+    i1 => auxsc226,
+    i0 => auxsc32);
+  q_3 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(3),
+    i2 => auxsc244,
+    i1 => auxsc243,
+    i0 => auxsc241);
+  q_4 : oa2a2a23_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(4),
+    i5 => auxsc218,
+    i4 => auxsc32,
+    i3 => auxsc217,
+    i2 => auxsc32,
+    i1 => auxsc202,
+    i0 => auxsc216);
+  auxsc149 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc149,
+    i2 => auxsc32,
+    i1 => auxsc159,
+    i0 => auxsc158);
+  auxsc159 : a3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc159,
+    i2 => auxsc137,
+    i1 => auxsc152,
+    i0 => aux46_a);
+  auxsc137 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc137,
+    i1 => auxsc136,
+    i0 => auxsc8);
+  auxsc136 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc136,
+    i2 => auxsc4,
+    i1 => auxreg4,
+    i0 => auxsc9);
+  auxsc152 : o3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc152,
+    i2 => auxreg4,
+    i1 => auxsc14,
+    i0 => auxreg2);
+  auxsc158 : a3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc158,
+    i2 => auxsc156,
+    i1 => auxsc155,
+    i0 => auxsc154);
+  auxsc156 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc156,
+    i2 => auxreg1,
+    i1 => auxsc151,
+    i0 => auxsc135);
+  auxsc151 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc151,
+    i1 => auxreg4,
+    i0 => auxsc14);
+  auxsc135 : no2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc135,
+    i1 => auxreg4,
+    i0 => auxsc9);
+  auxsc155 : na2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc155,
+    i1 => aux45_a,
+    i0 => auxsc4);
+  auxsc154 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc154,
+    i => auxsc8);
+  auxsc120 : o3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc120,
+    i2 => auxsc128,
+    i1 => auxsc127,
+    i0 => rst);
+  auxsc128 : an12_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc128,
+    i1 => auxsc118,
+    i0 => auxreg1);
+  auxsc118 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc118,
+    i2 => auxsc126,
+    i1 => auxsc125,
+    i0 => auxsc124);
+  auxsc126 : na3_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc126,
+    i2 => auxsc9,
+    i1 => auxsc115,
+    i0 => auxsc8);
+  auxsc115 : na2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc115,
+    i1 => auxsc14,
+    i0 => auxreg4);
+  auxsc124 : na2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc124,
+    i1 => auxreg5,
+    i0 => auxreg4);
+  auxsc127 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc127,
+    i2 => auxreg1,
+    i1 => auxsc29,
+    i0 => auxsc107);
+  auxsc107 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc107,
+    i2 => auxsc122,
+    i1 => auxreg3,
+    i0 => auxreg2);
+  auxsc122 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc122,
+    i => auxsc13);
+  auxsc90 : o4_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc90,
+    i3 => auxsc100,
+    i2 => auxsc99,
+    i1 => auxsc98,
+    i0 => rst);
+  auxsc100 : a4_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc100,
+    i3 => auxsc9,
+    i2 => auxsc13,
+    i1 => auxreg5,
+    i0 => auxreg3);
+  auxsc99 : an12_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc99,
+    i1 => auxsc79,
+    i0 => auxreg5);
+  auxsc79 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc79,
+    i1 => auxreg2,
+    i0 => auxsc95);
+  auxsc95 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc95,
+    i1 => auxsc13,
+    i0 => auxsc14);
+  auxsc98 : noa22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc98,
+    i2 => auxsc4,
+    i1 => auxsc97,
+    i0 => auxsc96);
+  auxsc97 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc97,
+    i2 => auxreg4,
+    i1 => auxreg2,
+    i0 => auxsc14);
+  auxsc96 : na2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc96,
+    i1 => auxsc93,
+    i0 => auxsc13);
+  auxsc93 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc93,
+    i => auxsc14);
+  auxsc59 : o3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc59,
+    i2 => auxsc73,
+    i1 => auxsc70,
+    i0 => rst);
+  auxsc73 : no2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc73,
+    i1 => auxreg1,
+    i0 => auxsc72);
+  auxsc72 : nao2o22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc72,
+    i3 => auxsc71,
+    i2 => auxsc62,
+    i1 => auxsc56,
+    i0 => auxsc8);
+  auxsc71 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc71,
+    i1 => auxsc64,
+    i0 => auxreg5);
+  auxsc64 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc64,
+    i => auxsc63);
+  auxsc63 : on12_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc63,
+    i1 => auxreg4,
+    i0 => auxsc9);
+  auxsc62 : an12_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc62,
+    i1 => auxsc14,
+    i0 => auxsc13);
+  auxsc56 : oa22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc56,
+    i2 => auxsc61,
+    i1 => auxsc13,
+    i0 => auxreg3);
+  auxsc61 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc61,
+    i => auxsc9);
+  auxsc8 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc8,
+    i => auxreg5);
+  auxsc70 : an12_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc70,
+    i1 => auxreg1,
+    i0 => auxsc69);
+  auxsc69 : noa22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc69,
+    i2 => auxsc39,
+    i1 => auxsc30,
+    i0 => auxreg5);
+  auxsc39 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc39,
+    i2 => auxsc9,
+    i1 => auxreg4,
+    i0 => auxreg3);
+  auxsc18 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc18,
+    i1 => auxsc36,
+    i0 => auxsc31);
+  auxsc36 : na4_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc36,
+    i3 => auxsc35,
+    i2 => auxsc34,
+    i1 => auxsc33,
+    i0 => auxsc32);
+  auxsc35 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc35,
+    i1 => auxsc25,
+    i0 => auxsc24);
+  auxsc25 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc25,
+    i2 => auxreg5,
+    i1 => auxreg4,
+    i0 => auxreg3);
+  auxsc24 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc24,
+    i => auxreg2);
+  auxsc34 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc34,
+    i1 => auxsc27,
+    i0 => auxsc10);
+  auxsc27 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc27,
+    i1 => auxreg5,
+    i0 => auxreg2);
+  auxsc10 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc10,
+    i1 => auxreg4,
+    i0 => auxreg3);
+  auxsc33 : o4_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc33,
+    i3 => auxsc22,
+    i2 => auxsc13,
+    i1 => auxsc14,
+    i0 => auxreg2);
+  auxsc22 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc22,
+    i => auxsc21);
+  auxsc31 : no3_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc31,
+    i2 => auxsc30,
+    i1 => auxsc29,
+    i0 => auxsc21);
+  auxsc30 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc30,
+    i1 => auxreg4,
+    i0 => auxreg3);
+  auxsc29 : noa22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc29,
+    i2 => auxreg5,
+    i1 => auxreg3,
+    i0 => auxreg2);
+  auxsc21 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc21,
+    i => auxreg1);
+  auxsc218 : no3_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc218,
+    i2 => auxreg5,
+    i1 => auxsc212,
+    i0 => auxreg1);
+  auxsc212 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc212,
+    i1 => auxreg4,
+    i0 => auxsc215);
+  auxsc215 : nxr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc215,
+    i1 => auxreg3,
+    i0 => auxsc9);
+  auxsc217 : a3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc217,
+    i2 => auxreg5,
+    i1 => auxsc197,
+    i0 => auxsc4);
+  auxsc202 : no2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc202,
+    i1 => auxreg5,
+    i0 => auxsc4);
+  auxsc216 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc216,
+    i1 => auxsc206,
+    i0 => auxsc32);
+  auxsc206 : oa22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc206,
+    i2 => auxsc125,
+    i1 => auxreg4,
+    i0 => auxsc9);
+  auxsc125 : no2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc125,
+    i1 => auxreg3,
+    i0 => auxsc9);
+  auxsc244 : na4_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc244,
+    i3 => auxreg5,
+    i2 => auxreg4,
+    i1 => auxsc229,
+    i0 => auxsc239);
+  auxsc229 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc229,
+    i1 => auxreg3,
+    i0 => auxreg2);
+  auxsc239 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc239,
+    i1 => auxreg1,
+    i0 => auxsc32);
+  auxsc243 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc243,
+    i2 => auxsc32,
+    i1 => auxsc236,
+    i0 => auxsc242);
+  auxsc236 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc236,
+    i1 => auxreg5,
+    i0 => auxreg2);
+  auxsc242 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc242,
+    i1 => auxsc14,
+    i0 => auxreg1);
+  auxsc241 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc241,
+    i2 => auxreg1,
+    i1 => auxreg4,
+    i0 => auxreg3);
+  auxsc221 : o3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc221,
+    i2 => auxreg5,
+    i1 => aux46_a,
+    i0 => auxsc4);
+  auxsc226 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc226,
+    i2 => auxreg4,
+    i1 => auxreg5,
+    i0 => auxsc227);
+  auxsc227 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc227,
+    i1 => auxsc197,
+    i0 => auxreg1);
+  auxsc197 : na2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc197,
+    i1 => auxreg3,
+    i0 => auxreg2);
+  auxsc185 : o4_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc185,
+    i3 => auxreg5,
+    i2 => auxsc13,
+    i1 => auxsc184,
+    i0 => auxsc4);
+  auxsc184 : no2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc184,
+    i1 => auxreg3,
+    i0 => auxreg2);
+  auxsc193 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc193,
+    i2 => auxsc194,
+    i1 => auxreg5,
+    i0 => auxsc11);
+  auxsc194 : na2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc194,
+    i1 => auxsc188,
+    i0 => auxsc9);
+  auxsc188 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc188,
+    i1 => auxreg4,
+    i0 => auxsc14);
+  auxsc11 : nxr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc11,
+    i1 => auxreg4,
+    i0 => auxreg3);
+  auxsc172 : on12_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc172,
+    i1 => auxsc178,
+    i0 => auxsc176);
+  auxsc178 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc178,
+    i2 => auxsc177,
+    i1 => auxreg5,
+    i0 => auxsc174);
+  auxsc177 : na3_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc177,
+    i2 => auxsc13,
+    i1 => auxreg3,
+    i0 => auxsc9);
+  auxsc13 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc13,
+    i => auxreg4);
+  auxsc174 : noa22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc174,
+    i2 => auxsc14,
+    i1 => auxreg4,
+    i0 => auxsc173);
+  auxsc173 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc173,
+    i1 => auxreg2,
+    i0 => auxreg1);
+  auxsc176 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc176,
+    i1 => auxsc175,
+    i0 => auxsc4);
+  auxsc175 : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc175,
+    i2 => auxsc14,
+    i1 => auxreg4,
+    i0 => auxreg2);
+  auxsc14 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc14,
+    i => auxreg3);
+  auxsc4 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc4,
+    i => auxreg1);
+  auxsc32 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc32,
+    i => rst);
+  auxsc9 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc9,
+    i => auxreg2);
+  aux46_a : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => aux46_a,
+    i1 => auxreg3,
+    i0 => auxsc9);
+  aux45_a : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => aux45_a,
+    i1 => auxreg3,
+    i0 => auxreg2);
+  current_state_0 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg1,
+    i => auxsc18,
+    ck => clk);
+  current_state_1 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg2,
+    i => auxsc59,
+    ck => clk);
+  current_state_2 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg3,
+    i => auxsc90,
+    ck => clk);
+  current_state_3 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg4,
+    i => auxsc120,
+    ck => clk);
+  current_state_4 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg5,
+    i => auxsc149,
+    ck => clk);
+
+end VST;

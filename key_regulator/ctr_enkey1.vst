@@ -1,0 +1,85 @@
+-- VHDL structural description generated from `ctr_enkey1`
+--		date : Thu Aug  2 10:12:54 2001
+
+
+-- Entity Declaration
+
+ENTITY ctr_enkey1 IS
+  PORT (
+  clk : in BIT;	-- clk
+  start : in BIT;	-- start
+  rst : in BIT;	-- rst
+  qiu : inout BIT_VECTOR (2 DOWNTO 0);	-- qiu
+  finish : out BIT;	-- finish
+  en_shft : out BIT;	-- en_shft
+  sel1 : out BIT;	-- sel1
+  sel2 : out BIT;	-- sel2
+  en_out : out BIT;	-- en_out
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END ctr_enkey1;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF ctr_enkey1 IS
+  COMPONENT ctr_enkey
+    port (
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    start : in BIT;	-- start
+    count : in BIT_VECTOR(2 DOWNTO 0);	-- count
+    en_shft : out BIT;	-- en_shft
+    en_count : inout BIT;	-- en_count
+    sel1 : out BIT;	-- sel1
+    sel2 : out BIT;	-- sel2
+    c_count : out BIT;	-- c_count
+    finish : out BIT;	-- finish
+    en_out : out BIT;	-- en_out
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT count3_latch
+    port (
+    clk : in BIT;	-- clk
+    en : in BIT;	-- en
+    rst : in BIT;	-- rst
+    q : out BIT_VECTOR(2 DOWNTO 0);	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL count_ck : BIT;	-- count_ck
+  SIGNAL count_clk : BIT;	-- count_clk
+  SIGNAL count_en : BIT;	-- count_en
+
+BEGIN
+
+  ctr_enkey0 : ctr_enkey
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    en_out => en_out,
+    finish => finish,
+    c_count => count_ck,
+    sel2 => sel2,
+    sel1 => sel1,
+    en_count => count_en,
+    en_shft => en_shft,
+    count => qiu(2)& qiu(1)& qiu(0),
+    start => start,
+    rst => rst,
+    clk => clk);
+  count1 : count3_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => qiu(2)& qiu(1)& qiu(0),
+    rst => rst,
+    en => count_en,
+    clk => count_clk);
+
+end VST;

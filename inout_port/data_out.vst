@@ -1,0 +1,79 @@
+-- VHDL structural description generated from `data_out`
+--		date : Mon Aug 27 07:18:14 2001
+
+
+-- Entity Declaration
+
+ENTITY data_out IS
+  PORT (
+  data64out : in BIT_VECTOR (63 DOWNTO 0);	-- data64out
+  cp_ready : in BIT;	-- cp_ready
+  emp_bufout : in BIT;	-- emp_bufout
+  clk : in BIT;	-- clk
+  rst : in BIT;	-- rst
+  req_cp : out BIT;	-- req_cp
+  cp_sended : out BIT;	-- cp_sended
+  dataout : out BIT_VECTOR (31 DOWNTO 0);	-- dataout
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END data_out;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF data_out IS
+  COMPONENT mux2to1
+    port (
+    y : in BIT_VECTOR(63 DOWNTO 0);	-- y
+    sel : in BIT;	-- sel
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    cp : out BIT_VECTOR(31 DOWNTO 0);	-- cp
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT control_dataout
+    port (
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    cp_ready : in BIT;	-- cp_ready
+    emp_bufout : in BIT;	-- emp_bufout
+    en_bufout : inout BIT;	-- en_bufout
+    req_cp : out BIT;	-- req_cp
+    cp_sended : out BIT;	-- cp_sended
+    n_block : inout BIT;	-- n_block
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL en_bufout : BIT;	-- en_bufout
+  SIGNAL n_block : BIT;	-- n_block
+
+BEGIN
+
+  mux : mux2to1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cp => dataout(31)& dataout(30)& dataout(29)& dataout(28)& dataout(27)& dataout(26)& dataout(25)& dataout(24)& dataout(23)& dataout(22)& dataout(21)& dataout(20)& dataout(19)& dataout(18)& dataout(17)& dataout(16)& dataout(15)& dataout(14)& dataout(13)& dataout(12)& dataout(11)& dataout(10)& dataout(9)& dataout(8)& dataout(7)& dataout(6)& dataout(5)& dataout(4)& dataout(3)& dataout(2)& dataout(1)& dataout(0),
+    rst => rst,
+    clk => en_bufout,
+    sel => n_block,
+    y => data64out(63)& data64out(62)& data64out(61)& data64out(60)& data64out(59)& data64out(58)& data64out(57)& data64out(56)& data64out(55)& data64out(54)& data64out(53)& data64out(52)& data64out(51)& data64out(50)& data64out(49)& data64out(48)& data64out(47)& data64out(46)& data64out(45)& data64out(44)& data64out(43)& data64out(42)& data64out(41)& data64out(40)& data64out(39)& data64out(38)& data64out(37)& data64out(36)& data64out(35)& data64out(34)& data64out(33)& data64out(32)& data64out(31)& data64out(30)& data64out(29)& data64out(28)& data64out(27)& data64out(26)& data64out(25)& data64out(24)& data64out(23)& data64out(22)& data64out(21)& data64out(20)& data64out(19)& data64out(18)& data64out(17)& data64out(16)& data64out(15)& data64out(14)& data64out(13)& data64out(12)& data64out(11)& data64out(10)& data64out(9)& data64out(8)& data64out(7)& data64out(6)& data64out(5)& data64out(4)& data64out(3)& data64out(2)& data64out(1)& data64out(0));
+  ctrl_dtout : control_dataout
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    n_block => n_block,
+    cp_sended => cp_sended,
+    req_cp => req_cp,
+    en_bufout => en_bufout,
+    emp_bufout => emp_bufout,
+    cp_ready => cp_ready,
+    rst => rst,
+    clk => clk);
+
+end VST;

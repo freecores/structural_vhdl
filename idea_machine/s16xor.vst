@@ -1,0 +1,78 @@
+-- VHDL structural description generated from `s16xor`
+--		date : Sat Sep  8 04:38:50 2001
+
+
+-- Entity Declaration
+
+ENTITY s16xor IS
+  PORT (
+  a : in BIT_VECTOR (0 TO 15);	-- a
+  b : in BIT_VECTOR (0 TO 15);	-- b
+  en : in BIT;	-- en
+  clr : in BIT;	-- clr
+  q : inout BIT_VECTOR (0 TO 15);	-- q
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END s16xor;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF s16xor IS
+  COMPONENT xor16_glopg
+    port (
+    a : in BIT_VECTOR(0 TO 15);	-- a
+    b : in BIT_VECTOR(0 TO 15);	-- b
+    q : out BIT_VECTOR(0 TO 15);	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT reg16_glopf
+    port (
+    d : in BIT_VECTOR(0 TO 15);	-- d
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    q : inout BIT_VECTOR(0 TO 15);	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL o_xr16_0 : BIT;	-- o_xr16 0
+  SIGNAL o_xr16_1 : BIT;	-- o_xr16 1
+  SIGNAL o_xr16_2 : BIT;	-- o_xr16 2
+  SIGNAL o_xr16_3 : BIT;	-- o_xr16 3
+  SIGNAL o_xr16_4 : BIT;	-- o_xr16 4
+  SIGNAL o_xr16_5 : BIT;	-- o_xr16 5
+  SIGNAL o_xr16_6 : BIT;	-- o_xr16 6
+  SIGNAL o_xr16_7 : BIT;	-- o_xr16 7
+  SIGNAL o_xr16_8 : BIT;	-- o_xr16 8
+  SIGNAL o_xr16_9 : BIT;	-- o_xr16 9
+  SIGNAL o_xr16_10 : BIT;	-- o_xr16 10
+  SIGNAL o_xr16_11 : BIT;	-- o_xr16 11
+  SIGNAL o_xr16_12 : BIT;	-- o_xr16 12
+  SIGNAL o_xr16_13 : BIT;	-- o_xr16 13
+  SIGNAL o_xr16_14 : BIT;	-- o_xr16 14
+  SIGNAL o_xr16_15 : BIT;	-- o_xr16 15
+
+BEGIN
+
+  xr16 : xor16_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => o_xr16_0& o_xr16_1& o_xr16_2& o_xr16_3& o_xr16_4& o_xr16_5& o_xr16_6& o_xr16_7& o_xr16_8& o_xr16_9& o_xr16_10& o_xr16_11& o_xr16_12& o_xr16_13& o_xr16_14& o_xr16_15,
+    b => b(0)& b(1)& b(2)& b(3)& b(4)& b(5)& b(6)& b(7)& b(8)& b(9)& b(10)& b(11)& b(12)& b(13)& b(14)& b(15),
+    a => a(0)& a(1)& a(2)& a(3)& a(4)& a(5)& a(6)& a(7)& a(8)& a(9)& a(10)& a(11)& a(12)& a(13)& a(14)& a(15));
+  rg16 : reg16_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(0)& q(1)& q(2)& q(3)& q(4)& q(5)& q(6)& q(7)& q(8)& q(9)& q(10)& q(11)& q(12)& q(13)& q(14)& q(15),
+    clr => clr,
+    en => en,
+    d => o_xr16_0& o_xr16_1& o_xr16_2& o_xr16_3& o_xr16_4& o_xr16_5& o_xr16_6& o_xr16_7& o_xr16_8& o_xr16_9& o_xr16_10& o_xr16_11& o_xr16_12& o_xr16_13& o_xr16_14& o_xr16_15);
+
+end VST;

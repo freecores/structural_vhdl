@@ -1,0 +1,50 @@
+-- VHDL structural description generated from `fullsubstractorbout`
+--		date : Tue Jul 31 12:52:26 2001
+
+
+-- Entity Declaration
+
+ENTITY fullsubstractorbout IS
+  PORT (
+  a : in BIT;	-- a
+  b : in BIT;	-- b
+  bin : in BIT;	-- bin
+  diff : out BIT;	-- diff
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END fullsubstractorbout;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF fullsubstractorbout IS
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL auxsc1 : BIT;	-- auxsc1
+
+BEGIN
+
+  diff : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => diff,
+    i1 => auxsc1,
+    i0 => bin);
+  auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc1,
+    i1 => a,
+    i0 => b);
+
+end VST;

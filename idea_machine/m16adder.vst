@@ -1,0 +1,221 @@
+-- VHDL structural description generated from `m16adder`
+--		date : Sat Sep  8 00:50:46 2001
+
+
+-- Entity Declaration
+
+ENTITY m16adder IS
+  PORT (
+  a : in BIT_VECTOR (0 TO 15);	-- a
+  b : in BIT_VECTOR (0 TO 15);	-- b
+  s : out BIT_VECTOR (0 TO 15);	-- s
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END m16adder;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF m16adder IS
+  COMPONENT halfadder_glopf
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    cout : out BIT;	-- cout
+    sout : out BIT;	-- sout
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT fulladder_glopg
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    cin : in BIT;	-- cin
+    cout : out BIT;	-- cout
+    sout : out BIT;	-- sout
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL c_0 : BIT;	-- c 0
+  SIGNAL c_1 : BIT;	-- c 1
+  SIGNAL c_2 : BIT;	-- c 2
+  SIGNAL c_3 : BIT;	-- c 3
+  SIGNAL c_4 : BIT;	-- c 4
+  SIGNAL c_5 : BIT;	-- c 5
+  SIGNAL c_6 : BIT;	-- c 6
+  SIGNAL c_7 : BIT;	-- c 7
+  SIGNAL c_8 : BIT;	-- c 8
+  SIGNAL c_9 : BIT;	-- c 9
+  SIGNAL c_10 : BIT;	-- c 10
+  SIGNAL c_11 : BIT;	-- c 11
+  SIGNAL c_12 : BIT;	-- c 12
+  SIGNAL c_13 : BIT;	-- c 13
+  SIGNAL c_14 : BIT;	-- c 14
+  SIGNAL o_xr1 : BIT;	-- o_xr1
+
+BEGIN
+
+  ha : halfadder_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(0),
+    cout => c_0,
+    b => b(0),
+    a => a(0));
+  fa1 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(1),
+    cout => c_1,
+    cin => c_0,
+    b => b(1),
+    a => a(1));
+  fa2 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(2),
+    cout => c_2,
+    cin => c_1,
+    b => b(2),
+    a => a(2));
+  fa3 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(3),
+    cout => c_3,
+    cin => c_2,
+    b => b(3),
+    a => a(3));
+  fa4 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(4),
+    cout => c_4,
+    cin => c_3,
+    b => b(4),
+    a => a(4));
+  fa5 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(5),
+    cout => c_5,
+    cin => c_4,
+    b => b(5),
+    a => a(5));
+  fa6 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(6),
+    cout => c_6,
+    cin => c_5,
+    b => b(6),
+    a => a(6));
+  fa7 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(7),
+    cout => c_7,
+    cin => c_6,
+    b => b(7),
+    a => a(7));
+  fa8 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(8),
+    cout => c_8,
+    cin => c_7,
+    b => b(8),
+    a => a(8));
+  fa9 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(9),
+    cout => c_9,
+    cin => c_8,
+    b => b(9),
+    a => a(9));
+  fa10 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(10),
+    cout => c_10,
+    cin => c_9,
+    b => b(10),
+    a => a(10));
+  fa11 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(11),
+    cout => c_11,
+    cin => c_10,
+    b => b(11),
+    a => a(11));
+  fa12 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(12),
+    cout => c_12,
+    cin => c_11,
+    b => b(12),
+    a => a(12));
+  fa13 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(13),
+    cout => c_13,
+    cin => c_12,
+    b => b(13),
+    a => a(13));
+  fa14 : fulladder_glopg
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sout => s(14),
+    cout => c_14,
+    cin => c_13,
+    b => b(14),
+    a => a(14));
+  xr1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => o_xr1,
+    i1 => b(15),
+    i0 => a(15));
+  xr2 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(15),
+    i1 => c_14,
+    i0 => o_xr1);
+
+end VST;

@@ -1,0 +1,522 @@
+-- VHDL structural description generated from `controlmode`
+--		date : Sat Sep  1 20:27:01 2001
+
+
+-- Entity Declaration
+
+ENTITY controlmode IS
+  PORT (
+  clk : in BIT;	-- clk
+  start : in BIT;	-- start
+  mode : in BIT_VECTOR (0 TO 1);	-- mode
+  cke : in BIT;	-- cke
+  ikey_ready : in BIT;	-- ikey_ready
+  key_ready : in BIT;	-- key_ready
+  dt_ready : in BIT;	-- dt_ready
+  finish : in BIT;	-- finish
+  req_cp : in BIT;	-- req_cp
+  e : in BIT;	-- e
+  first_dt : out BIT;	-- first_dt
+  e_mesin : out BIT;	-- e_mesin
+  s_mesin : out BIT;	-- s_mesin
+  s_gen_key : out BIT;	-- s_gen_key
+  emp_buf : out BIT;	-- emp_buf
+  cp_ready : out BIT;	-- cp_ready
+  cke_b_mode : out BIT;	-- cke_b_mode
+  en_in : out BIT;	-- en_in
+  en_iv : out BIT;	-- en_iv
+  en_rcbc : out BIT;	-- en_rcbc
+  en_out : out BIT;	-- en_out
+  sel1 : out BIT_VECTOR (0 TO 1);	-- sel1
+  sel2 : out BIT_VECTOR (0 TO 1);	-- sel2
+  sel3 : out BIT_VECTOR (0 TO 1);	-- sel3
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END controlmode;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF controlmode IS
+  COMPONENT dec_mode
+    port (
+    start : in BIT;	-- start
+    mode : in BIT_VECTOR(1 DOWNTO 0);	-- mode
+    ecb : out BIT;	-- ecb
+    cbc : out BIT;	-- cbc
+    cfb : out BIT;	-- cfb
+    ofb : out BIT;	-- ofb
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT ecb
+    port (
+    active : in BIT;	-- active
+    clk : in BIT;	-- clk
+    cke : in BIT;	-- cke
+    key_ready : in BIT;	-- key_ready
+    finish : in BIT;	-- finish
+    req_cp : in BIT;	-- req_cp
+    e : in BIT;	-- e
+    e_mesin : out BIT;	-- e_mesin
+    s_mesin : out BIT;	-- s_mesin
+    s_gen_key : out BIT;	-- s_gen_key
+    emp_buf : out BIT;	-- emp_buf
+    cp_ready : out BIT;	-- cp_ready
+    cke_b_mode : out BIT;	-- cke_b_mode
+    en_in : out BIT;	-- en_in
+    en_iv : out BIT;	-- en_iv
+    en_rcbc : out BIT;	-- en_rcbc
+    en_out : out BIT;	-- en_out
+    sel1 : out BIT_VECTOR(1 DOWNTO 0);	-- sel1
+    sel2 : out BIT_VECTOR(1 DOWNTO 0);	-- sel2
+    sel3 : out BIT_VECTOR(1 DOWNTO 0);	-- sel3
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT cbc
+    port (
+    active : in BIT;	-- active
+    clk : in BIT;	-- clk
+    cke : in BIT;	-- cke
+    ikey_ready : in BIT;	-- ikey_ready
+    key_ready : in BIT;	-- key_ready
+    dt_ready : in BIT;	-- dt_ready
+    finish : in BIT;	-- finish
+    e : in BIT;	-- e
+    first_dt : inout BIT;	-- first_dt
+    e_mesin : out BIT;	-- e_mesin
+    s_mesin : out BIT;	-- s_mesin
+    s_gen_key : out BIT;	-- s_gen_key
+    emp_buf : inout BIT;	-- emp_buf
+    cp_ready : out BIT;	-- cp_ready
+    cke_b_mode : out BIT;	-- cke_b_mode
+    en_in : out BIT;	-- en_in
+    en_iv : out BIT;	-- en_iv
+    en_rcbc : out BIT;	-- en_rcbc
+    en_out : out BIT;	-- en_out
+    sel1 : out BIT_VECTOR(1 DOWNTO 0);	-- sel1
+    sel2 : out BIT_VECTOR(1 DOWNTO 0);	-- sel2
+    sel3 : out BIT_VECTOR(1 DOWNTO 0);	-- sel3
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT cfb
+    port (
+    active : in BIT;	-- active
+    clk : in BIT;	-- clk
+    key_ready : in BIT;	-- key_ready
+    dt_ready : in BIT;	-- dt_ready
+    finish : in BIT;	-- finish
+    e : in BIT;	-- e
+    first_dt : inout BIT;	-- first_dt
+    e_mesin : out BIT;	-- e_mesin
+    s_mesin : out BIT;	-- s_mesin
+    s_gen_key : out BIT;	-- s_gen_key
+    emp_buf : out BIT;	-- emp_buf
+    cp_ready : out BIT;	-- cp_ready
+    cke_b_mode : out BIT;	-- cke_b_mode
+    en_in : out BIT;	-- en_in
+    en_iv : out BIT;	-- en_iv
+    en_rcbc : out BIT;	-- en_rcbc
+    en_out : out BIT;	-- en_out
+    sel1 : out BIT_VECTOR(1 DOWNTO 0);	-- sel1
+    sel2 : out BIT_VECTOR(1 DOWNTO 0);	-- sel2
+    sel3 : out BIT_VECTOR(1 DOWNTO 0);	-- sel3
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT ofb
+    port (
+    active : in BIT;	-- active
+    clk : in BIT;	-- clk
+    key_ready : in BIT;	-- key_ready
+    dt_ready : in BIT;	-- dt_ready
+    finish : in BIT;	-- finish
+    first_dt : inout BIT;	-- first_dt
+    e_mesin : out BIT;	-- e_mesin
+    s_mesin : out BIT;	-- s_mesin
+    emp_buf : inout BIT;	-- emp_buf
+    cp_ready : out BIT;	-- cp_ready
+    cke_b_mode : inout BIT;	-- cke_b_mode
+    en_in : out BIT;	-- en_in
+    en_iv : out BIT;	-- en_iv
+    en_rcbc : out BIT;	-- en_rcbc
+    en_out : out BIT;	-- en_out
+    sel1 : out BIT_VECTOR(1 DOWNTO 0);	-- sel1
+    sel2 : out BIT_VECTOR(1 DOWNTO 0);	-- sel2
+    sel3 : out BIT_VECTOR(1 DOWNTO 0);	-- sel3
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT mux01
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    c : in BIT;	-- c
+    d : in BIT;	-- d
+    sel : in BIT_VECTOR(1 DOWNTO 0);	-- sel
+    o : out BIT;	-- o
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT mux02
+    port (
+    a : in BIT_VECTOR(1 DOWNTO 0);	-- a
+    b : in BIT_VECTOR(1 DOWNTO 0);	-- b
+    c : in BIT_VECTOR(1 DOWNTO 0);	-- c
+    d : in BIT_VECTOR(1 DOWNTO 0);	-- d
+    sel : in BIT_VECTOR(1 DOWNTO 0);	-- sel
+    o : out BIT_VECTOR(1 DOWNTO 0);	-- o
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL cke_b_mode_cbc : BIT;	-- cke_b_mode_cbc
+  SIGNAL cke_b_mode_cfb : BIT;	-- cke_b_mode_cfb
+  SIGNAL cke_b_mode_ecb : BIT;	-- cke_b_mode_ecb
+  SIGNAL cke_b_mode_ofb : BIT;	-- cke_b_mode_ofb
+  SIGNAL cp_ready_cbc : BIT;	-- cp_ready_cbc
+  SIGNAL cp_ready_cfb : BIT;	-- cp_ready_cfb
+  SIGNAL cp_ready_ecb : BIT;	-- cp_ready_ecb
+  SIGNAL cp_ready_ofb : BIT;	-- cp_ready_ofb
+  SIGNAL e_mesin_cbc : BIT;	-- e_mesin_cbc
+  SIGNAL e_mesin_cfb : BIT;	-- e_mesin_cfb
+  SIGNAL e_mesin_ecb : BIT;	-- e_mesin_ecb
+  SIGNAL e_mesin_ofb : BIT;	-- e_mesin_ofb
+  SIGNAL emp_buf_cbc : BIT;	-- emp_buf_cbc
+  SIGNAL emp_buf_cfb : BIT;	-- emp_buf_cfb
+  SIGNAL emp_buf_ecb : BIT;	-- emp_buf_ecb
+  SIGNAL emp_buf_ofb : BIT;	-- emp_buf_ofb
+  SIGNAL en_in_cbc : BIT;	-- en_in_cbc
+  SIGNAL en_in_cfb : BIT;	-- en_in_cfb
+  SIGNAL en_in_ecb : BIT;	-- en_in_ecb
+  SIGNAL en_in_ofb : BIT;	-- en_in_ofb
+  SIGNAL en_iv_cbc : BIT;	-- en_iv_cbc
+  SIGNAL en_iv_cfb : BIT;	-- en_iv_cfb
+  SIGNAL en_iv_ecb : BIT;	-- en_iv_ecb
+  SIGNAL en_iv_ofb : BIT;	-- en_iv_ofb
+  SIGNAL en_out_cbc : BIT;	-- en_out_cbc
+  SIGNAL en_out_cfb : BIT;	-- en_out_cfb
+  SIGNAL en_out_ecb : BIT;	-- en_out_ecb
+  SIGNAL en_out_ofb : BIT;	-- en_out_ofb
+  SIGNAL en_rcbc_cbc : BIT;	-- en_rcbc_cbc
+  SIGNAL en_rcbc_cfb : BIT;	-- en_rcbc_cfb
+  SIGNAL en_rcbc_ecb : BIT;	-- en_rcbc_ecb
+  SIGNAL en_rcbc_ofb : BIT;	-- en_rcbc_ofb
+  SIGNAL first_dt_cbc : BIT;	-- first_dt_cbc
+  SIGNAL first_dt_cfb : BIT;	-- first_dt_cfb
+  SIGNAL first_dt_ofb : BIT;	-- first_dt_ofb
+  SIGNAL modecbc : BIT;	-- modecbc
+  SIGNAL modecfb : BIT;	-- modecfb
+  SIGNAL modeecb : BIT;	-- modeecb
+  SIGNAL modeofb : BIT;	-- modeofb
+  SIGNAL nol : BIT;	-- nol
+  SIGNAL s_gen_key_cbc : BIT;	-- s_gen_key_cbc
+  SIGNAL s_gen_key_cfb : BIT;	-- s_gen_key_cfb
+  SIGNAL s_gen_key_ecb : BIT;	-- s_gen_key_ecb
+  SIGNAL s_mesin_cbc : BIT;	-- s_mesin_cbc
+  SIGNAL s_mesin_cfb : BIT;	-- s_mesin_cfb
+  SIGNAL s_mesin_ecb : BIT;	-- s_mesin_ecb
+  SIGNAL s_mesin_ofb : BIT;	-- s_mesin_ofb
+  SIGNAL sel1_cbc_0 : BIT;	-- sel1_cbc 0
+  SIGNAL sel1_cbc_1 : BIT;	-- sel1_cbc 1
+  SIGNAL sel1_cfb_0 : BIT;	-- sel1_cfb 0
+  SIGNAL sel1_cfb_1 : BIT;	-- sel1_cfb 1
+  SIGNAL sel1_ecb_0 : BIT;	-- sel1_ecb 0
+  SIGNAL sel1_ecb_1 : BIT;	-- sel1_ecb 1
+  SIGNAL sel1_ofb_0 : BIT;	-- sel1_ofb 0
+  SIGNAL sel1_ofb_1 : BIT;	-- sel1_ofb 1
+  SIGNAL sel2_cbc_0 : BIT;	-- sel2_cbc 0
+  SIGNAL sel2_cbc_1 : BIT;	-- sel2_cbc 1
+  SIGNAL sel2_cfb_0 : BIT;	-- sel2_cfb 0
+  SIGNAL sel2_cfb_1 : BIT;	-- sel2_cfb 1
+  SIGNAL sel2_ecb_0 : BIT;	-- sel2_ecb 0
+  SIGNAL sel2_ecb_1 : BIT;	-- sel2_ecb 1
+  SIGNAL sel2_ofb_0 : BIT;	-- sel2_ofb 0
+  SIGNAL sel2_ofb_1 : BIT;	-- sel2_ofb 1
+  SIGNAL sel3_cbc_0 : BIT;	-- sel3_cbc 0
+  SIGNAL sel3_cbc_1 : BIT;	-- sel3_cbc 1
+  SIGNAL sel3_cfb_0 : BIT;	-- sel3_cfb 0
+  SIGNAL sel3_cfb_1 : BIT;	-- sel3_cfb 1
+  SIGNAL sel3_ecb_0 : BIT;	-- sel3_ecb 0
+  SIGNAL sel3_ecb_1 : BIT;	-- sel3_ecb 1
+  SIGNAL sel3_ofb_0 : BIT;	-- sel3_ofb 0
+  SIGNAL sel3_ofb_1 : BIT;	-- sel3_ofb 1
+
+BEGIN
+
+  decmode : dec_mode
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    ofb => modeofb,
+    cfb => modecfb,
+    cbc => modecbc,
+    ecb => modeecb,
+    mode => mode(1)& mode(0),
+    start => start);
+  ecb : ecb
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sel3 => sel3_ecb_1& sel3_ecb_0,
+    sel2 => sel2_ecb_1& sel2_ecb_0,
+    sel1 => sel1_ecb_1& sel1_ecb_0,
+    en_out => en_out_ecb,
+    en_rcbc => en_rcbc_ecb,
+    en_iv => en_iv_ecb,
+    en_in => en_in_ecb,
+    cke_b_mode => cke_b_mode_ecb,
+    cp_ready => cp_ready_ecb,
+    emp_buf => emp_buf_ecb,
+    s_gen_key => s_gen_key_ecb,
+    s_mesin => s_mesin_ecb,
+    e_mesin => e_mesin_ecb,
+    e => e,
+    req_cp => req_cp,
+    finish => finish,
+    key_ready => key_ready,
+    cke => cke,
+    clk => clk,
+    active => modeecb);
+  cbc : cbc
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sel3 => sel3_cbc_1& sel3_cbc_0,
+    sel2 => sel2_cbc_1& sel2_cbc_0,
+    sel1 => sel1_cbc_1& sel1_cbc_0,
+    en_out => en_out_cbc,
+    en_rcbc => en_rcbc_cbc,
+    en_iv => en_iv_cbc,
+    en_in => en_in_cbc,
+    cke_b_mode => cke_b_mode_cbc,
+    cp_ready => cp_ready_cbc,
+    emp_buf => emp_buf_cbc,
+    s_gen_key => s_gen_key_cbc,
+    s_mesin => s_mesin_cbc,
+    e_mesin => e_mesin_cbc,
+    first_dt => first_dt_cbc,
+    e => e,
+    finish => finish,
+    dt_ready => dt_ready,
+    key_ready => key_ready,
+    ikey_ready => ikey_ready,
+    cke => cke,
+    clk => clk,
+    active => modecbc);
+  cfb : cfb
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sel3 => sel3_cfb_1& sel3_cfb_0,
+    sel2 => sel2_cfb_1& sel2_cfb_0,
+    sel1 => sel1_cfb_1& sel1_cfb_0,
+    en_out => en_out_cfb,
+    en_rcbc => en_rcbc_cfb,
+    en_iv => en_iv_cfb,
+    en_in => en_in_cfb,
+    cke_b_mode => cke_b_mode_cfb,
+    cp_ready => cp_ready_cfb,
+    emp_buf => emp_buf_cfb,
+    s_gen_key => s_gen_key_cfb,
+    s_mesin => s_mesin_cfb,
+    e_mesin => e_mesin_cfb,
+    first_dt => first_dt_cfb,
+    e => e,
+    finish => finish,
+    dt_ready => dt_ready,
+    key_ready => key_ready,
+    clk => clk,
+    active => modecfb);
+  ofb : ofb
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    sel3 => sel3_ofb_1& sel3_ofb_0,
+    sel2 => sel2_ofb_1& sel2_ofb_0,
+    sel1 => sel1_ofb_1& sel1_ofb_0,
+    en_out => en_out_ofb,
+    en_rcbc => en_rcbc_ofb,
+    en_iv => en_iv_ofb,
+    en_in => en_in_ofb,
+    cke_b_mode => cke_b_mode_ofb,
+    cp_ready => cp_ready_ofb,
+    emp_buf => emp_buf_ofb,
+    s_mesin => s_mesin_ofb,
+    e_mesin => e_mesin_ofb,
+    first_dt => first_dt_ofb,
+    finish => finish,
+    dt_ready => dt_ready,
+    key_ready => key_ready,
+    clk => clk,
+    active => modeofb);
+  zero : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nol);
+  mux_first_dt : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => first_dt,
+    sel => mode(1)& mode(0),
+    d => first_dt_ofb,
+    c => first_dt_cfb,
+    b => first_dt_cbc,
+    a => nol);
+  mux_e_mesin : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => e_mesin,
+    sel => mode(1)& mode(0),
+    d => e_mesin_ofb,
+    c => e_mesin_cfb,
+    b => e_mesin_cbc,
+    a => e_mesin_ecb);
+  mux_s_mesin : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => s_mesin,
+    sel => mode(1)& mode(0),
+    d => s_mesin_ofb,
+    c => s_mesin_cfb,
+    b => s_mesin_cbc,
+    a => s_mesin_ecb);
+  mux_s_gen_key : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => s_gen_key,
+    sel => mode(1)& mode(0),
+    d => cke_b_mode_ofb,
+    c => s_gen_key_cfb,
+    b => s_gen_key_cbc,
+    a => s_gen_key_ecb);
+  mux_emp_buf : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => emp_buf,
+    sel => mode(1)& mode(0),
+    d => emp_buf_ofb,
+    c => emp_buf_cfb,
+    b => emp_buf_cbc,
+    a => emp_buf_ecb);
+  mux_cp_ready : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => cp_ready,
+    sel => mode(1)& mode(0),
+    d => cp_ready_ofb,
+    c => cp_ready_cfb,
+    b => cp_ready_cbc,
+    a => cp_ready_ecb);
+  mux_cke_b_mode : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => cke_b_mode,
+    sel => mode(1)& mode(0),
+    d => cke_b_mode_ofb,
+    c => cke_b_mode_cfb,
+    b => cke_b_mode_cbc,
+    a => cke_b_mode_ecb);
+  mux_en_in : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => en_in,
+    sel => mode(1)& mode(0),
+    d => en_in_ofb,
+    c => en_in_cfb,
+    b => en_in_cbc,
+    a => en_in_ecb);
+  mux_en_iv : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => en_iv,
+    sel => mode(1)& mode(0),
+    d => en_iv_ofb,
+    c => en_iv_cfb,
+    b => en_iv_cbc,
+    a => en_iv_ecb);
+  mux_en_rcbc : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => en_rcbc,
+    sel => mode(1)& mode(0),
+    d => en_rcbc_ofb,
+    c => en_rcbc_cfb,
+    b => en_rcbc_cbc,
+    a => en_rcbc_ecb);
+  mux_en_out : mux01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => en_out,
+    sel => mode(1)& mode(0),
+    d => en_out_ofb,
+    c => en_out_cfb,
+    b => en_out_cbc,
+    a => en_out_ecb);
+  mux_sel1 : mux02
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => sel1(1)& sel1(0),
+    sel => mode(1)& mode(0),
+    d => sel1_ofb_1& sel1_ofb_0,
+    c => sel1_cfb_1& sel1_cfb_0,
+    b => sel1_cbc_1& sel1_cbc_0,
+    a => sel1_ecb_1& sel1_ecb_0);
+  mux_sel2 : mux02
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => sel2(1)& sel2(0),
+    sel => mode(1)& mode(0),
+    d => sel2_ofb_1& sel2_ofb_0,
+    c => sel2_cfb_1& sel2_cfb_0,
+    b => sel2_cbc_1& sel2_cbc_0,
+    a => sel2_ecb_1& sel2_ecb_0);
+  mux_sel3 : mux02
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o => sel3(1)& sel3(0),
+    sel => mode(1)& mode(0),
+    d => sel3_ofb_1& sel3_ofb_0,
+    c => sel3_cfb_1& sel3_cfb_0,
+    b => sel3_cbc_1& sel3_cbc_0,
+    a => sel3_ecb_1& sel3_ecb_0);
+
+end VST;

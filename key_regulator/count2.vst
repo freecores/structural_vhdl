@@ -1,0 +1,134 @@
+-- VHDL structural description generated from `count2`
+--		date : Thu Aug  2 08:33:38 2001
+
+
+-- Entity Declaration
+
+ENTITY count2 IS
+  PORT (
+  clk : in BIT;	-- clk
+  rst : in BIT;	-- rst
+  q : out BIT_VECTOR (1 DOWNTO 0);	-- q
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END count2;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF count2 IS
+  COMPONENT no2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT nxr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT o2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT inv_x1
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT sff1_x4
+    port (
+    ck : in BIT;	-- ck
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL auxsc1 : BIT;	-- auxsc1
+  SIGNAL auxsc2 : BIT;	-- auxsc2
+  SIGNAL auxsc9 : BIT;	-- auxsc9
+  SIGNAL auxsc6 : BIT;	-- auxsc6
+  SIGNAL auxreg2 : BIT;	-- auxreg2
+  SIGNAL auxreg1 : BIT;	-- auxreg1
+
+BEGIN
+
+  q_0 : no2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(0),
+    i1 => auxreg1,
+    i0 => rst);
+  q_1 : no2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(1),
+    i1 => auxreg2,
+    i0 => rst);
+  auxsc6 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc6,
+    i1 => auxsc9,
+    i0 => rst);
+  auxsc9 : nxr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc9,
+    i1 => auxreg1,
+    i0 => auxreg2);
+  auxsc2 : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc2,
+    i1 => rst,
+    i0 => auxsc1);
+  auxsc1 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc1,
+    i => auxreg1);
+  current_state_0 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg1,
+    i => auxsc2,
+    ck => clk);
+  current_state_1 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg2,
+    i => auxsc6,
+    ck => clk);
+
+end VST;

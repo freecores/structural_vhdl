@@ -1,0 +1,161 @@
+-- VHDL structural description generated from `kontrol_invmul`
+--		date : Thu Aug  2 11:11:10 2001
+
+
+-- Entity Declaration
+
+ENTITY kontrol_invmul IS
+  PORT (
+  start : in BIT;	-- start
+  clk : in BIT;	-- clk
+  rst : in BIT;	-- rst
+  finish : out BIT;	-- finish
+  en_in : out BIT;	-- en_in
+  sel_in : out BIT_VECTOR (4 DOWNTO 0);	-- sel_in
+  sel : out BIT;	-- sel
+  en_pipe : out BIT;	-- en_pipe
+  en_out : out BIT;	-- en_out
+  sel_out : out BIT_VECTOR (4 DOWNTO 0);	-- sel_out
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END kontrol_invmul;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF kontrol_invmul IS
+  COMPONENT kontrol_utama_invmul
+    port (
+    start : in BIT;	-- start
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    n_stage : in BIT_VECTOR(1 DOWNTO 0);	-- n_stage
+    n_iterasi : in BIT_VECTOR(3 DOWNTO 0);	-- n_iterasi
+    n_dtin : in BIT_VECTOR(4 DOWNTO 0);	-- n_dtin
+    n_dtout : in BIT_VECTOR(4 DOWNTO 0);	-- n_dtout
+    en_cstage : out BIT;	-- en_cstage
+    c_cstage : out BIT;	-- c_cstage
+    en_cite : out BIT;	-- en_cite
+    c_cite : out BIT;	-- c_cite
+    en_cdtin : out BIT;	-- en_cdtin
+    c_cdtin : out BIT;	-- c_cdtin
+    en_cdtout : out BIT;	-- en_cdtout
+    c_cdtout : out BIT;	-- c_cdtout
+    en_in : out BIT;	-- en_in
+    en_out : out BIT;	-- en_out
+    en_pipe : out BIT;	-- en_pipe
+    sel : out BIT;	-- sel
+    finish : out BIT;	-- finish
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT count2_latch
+    port (
+    clk : in BIT;	-- clk
+    en : in BIT;	-- en
+    rst : in BIT;	-- rst
+    q : out BIT_VECTOR(1 DOWNTO 0);	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT count4_latch
+    port (
+    clk : in BIT;	-- clk
+    en : in BIT;	-- en
+    rst : in BIT;	-- rst
+    q : out BIT_VECTOR(3 DOWNTO 0);	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT count5_latch
+    port (
+    clk : in BIT;	-- clk
+    en : in BIT;	-- en
+    rst : in BIT;	-- rst
+    q : out BIT_VECTOR(4 DOWNTO 0);	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL c_cdtin : BIT;	-- c_cdtin
+  SIGNAL c_cdtout : BIT;	-- c_cdtout
+  SIGNAL c_cite : BIT;	-- c_cite
+  SIGNAL c_cstage : BIT;	-- c_cstage
+  SIGNAL en_cdtin : BIT;	-- en_cdtin
+  SIGNAL en_cdtout : BIT;	-- en_cdtout
+  SIGNAL en_cite : BIT;	-- en_cite
+  SIGNAL en_cstage : BIT;	-- en_cstage
+  SIGNAL n_iterasi_0 : BIT;	-- n_iterasi 0
+  SIGNAL n_iterasi_1 : BIT;	-- n_iterasi 1
+  SIGNAL n_iterasi_2 : BIT;	-- n_iterasi 2
+  SIGNAL n_iterasi_3 : BIT;	-- n_iterasi 3
+  SIGNAL n_stage_0 : BIT;	-- n_stage 0
+  SIGNAL n_stage_1 : BIT;	-- n_stage 1
+
+BEGIN
+
+  kontrol_utama_invmul1 : kontrol_utama_invmul
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    finish => finish,
+    sel => sel,
+    en_pipe => en_pipe,
+    en_out => en_out,
+    en_in => en_in,
+    c_cdtout => c_cdtout,
+    en_cdtout => en_cdtout,
+    c_cdtin => c_cdtin,
+    en_cdtin => en_cdtin,
+    c_cite => c_cite,
+    en_cite => en_cite,
+    c_cstage => c_cstage,
+    en_cstage => en_cstage,
+    n_dtout => sel_out(4)& sel_out(3)& sel_out(2)& sel_out(1)& sel_out(0),
+    n_dtin => sel_in(4)& sel_in(3)& sel_in(2)& sel_in(1)& sel_in(0),
+    n_iterasi => n_iterasi_3& n_iterasi_2& n_iterasi_1& n_iterasi_0,
+    n_stage => n_stage_1& n_stage_0,
+    rst => rst,
+    clk => clk,
+    start => start);
+  count1 : count2_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => n_stage_1& n_stage_0,
+    rst => rst,
+    en => en_cstage,
+    clk => c_cstage);
+  count2 : count4_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => n_iterasi_3& n_iterasi_2& n_iterasi_1& n_iterasi_0,
+    rst => rst,
+    en => en_cite,
+    clk => c_cite);
+  count3 : count5_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sel_in(4)& sel_in(3)& sel_in(2)& sel_in(1)& sel_in(0),
+    rst => rst,
+    en => en_cdtin,
+    clk => c_cdtin);
+  count4 : count5_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sel_out(4)& sel_out(3)& sel_out(2)& sel_out(1)& sel_out(0),
+    rst => rst,
+    en => en_cdtout,
+    clk => c_cdtout);
+
+end VST;

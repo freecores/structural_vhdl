@@ -1,0 +1,219 @@
+-- VHDL structural description generated from `fullsubstractor16`
+--		date : Tue Jul 31 12:52:37 2001
+
+
+-- Entity Declaration
+
+ENTITY fullsubstractor16 IS
+  PORT (
+  a : in BIT_VECTOR (15 DOWNTO 0);	-- a
+  b : in BIT_VECTOR (15 DOWNTO 0);	-- b
+  diff : out BIT_VECTOR (15 DOWNTO 0);	-- diff
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END fullsubstractor16;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF fullsubstractor16 IS
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT fullsubstractor
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    bin : in BIT;	-- bin
+    diff : out BIT;	-- diff
+    bout : out BIT;	-- bout
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT fullsubstractorbout
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    bin : in BIT;	-- bin
+    diff : out BIT;	-- diff
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL bout0 : BIT;	-- bout0
+  SIGNAL bout1 : BIT;	-- bout1
+  SIGNAL bout10 : BIT;	-- bout10
+  SIGNAL bout11 : BIT;	-- bout11
+  SIGNAL bout12 : BIT;	-- bout12
+  SIGNAL bout13 : BIT;	-- bout13
+  SIGNAL bout14 : BIT;	-- bout14
+  SIGNAL bout2 : BIT;	-- bout2
+  SIGNAL bout3 : BIT;	-- bout3
+  SIGNAL bout4 : BIT;	-- bout4
+  SIGNAL bout5 : BIT;	-- bout5
+  SIGNAL bout6 : BIT;	-- bout6
+  SIGNAL bout7 : BIT;	-- bout7
+  SIGNAL bout8 : BIT;	-- bout8
+  SIGNAL bout9 : BIT;	-- bout9
+  SIGNAL nol : BIT;	-- nol
+
+BEGIN
+
+  zero1 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nol);
+  fullsubstractor1 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout0,
+    diff => diff(0),
+    bin => nol,
+    b => b(0),
+    a => a(0));
+  fullsubstractor2 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout1,
+    diff => diff(1),
+    bin => bout0,
+    b => b(1),
+    a => a(1));
+  fullsubstractor3 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout2,
+    diff => diff(2),
+    bin => bout1,
+    b => b(2),
+    a => a(2));
+  fullsubstractor4 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout3,
+    diff => diff(3),
+    bin => bout2,
+    b => b(3),
+    a => a(3));
+  fullsubstractor5 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout4,
+    diff => diff(4),
+    bin => bout3,
+    b => b(4),
+    a => a(4));
+  fullsubstractor6 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout5,
+    diff => diff(5),
+    bin => bout4,
+    b => b(5),
+    a => a(5));
+  fullsubstractor7 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout6,
+    diff => diff(6),
+    bin => bout5,
+    b => b(6),
+    a => a(6));
+  fullsubstractor8 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout7,
+    diff => diff(7),
+    bin => bout6,
+    b => b(7),
+    a => a(7));
+  fullsubstractor9 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout8,
+    diff => diff(8),
+    bin => bout7,
+    b => b(8),
+    a => a(8));
+  fullsubstractor10 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout9,
+    diff => diff(9),
+    bin => bout8,
+    b => b(9),
+    a => a(9));
+  fullsubstractor11 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout10,
+    diff => diff(10),
+    bin => bout9,
+    b => b(10),
+    a => a(10));
+  fullsubstractor12 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout11,
+    diff => diff(11),
+    bin => bout10,
+    b => b(11),
+    a => a(11));
+  fullsubstractor13 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout12,
+    diff => diff(12),
+    bin => bout11,
+    b => b(12),
+    a => a(12));
+  fullsubstractor14 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout13,
+    diff => diff(13),
+    bin => bout12,
+    b => b(13),
+    a => a(13));
+  fullsubstractor15 : fullsubstractor
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    bout => bout14,
+    diff => diff(14),
+    bin => bout13,
+    b => b(14),
+    a => a(14));
+  fullsubstarctor16 : fullsubstractorbout
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    diff => diff(15),
+    bin => bout14,
+    b => b(15),
+    a => a(15));
+
+end VST;

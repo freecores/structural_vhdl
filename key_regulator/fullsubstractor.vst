@@ -1,0 +1,95 @@
+-- VHDL structural description generated from `fullsubstractor`
+--		date : Tue Jul 31 12:52:15 2001
+
+
+-- Entity Declaration
+
+ENTITY fullsubstractor IS
+  PORT (
+  a : in BIT;	-- a
+  b : in BIT;	-- b
+  bin : in BIT;	-- bin
+  diff : out BIT;	-- diff
+  bout : out BIT;	-- bout
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END fullsubstractor;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF fullsubstractor IS
+  COMPONENT nao2o22_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    i3 : in BIT;	-- i3
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT inv_x1
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL auxsc6 : BIT;	-- auxsc6
+  SIGNAL auxsc7 : BIT;	-- auxsc7
+  SIGNAL auxsc3 : BIT;	-- auxsc3
+
+BEGIN
+
+  bout : nao2o22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => bout,
+    i3 => auxsc3,
+    i2 => auxsc7,
+    i1 => auxsc6,
+    i0 => a);
+  diff : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => diff,
+    i1 => auxsc3,
+    i0 => bin);
+  auxsc3 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc3,
+    i1 => a,
+    i0 => b);
+  auxsc7 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc7,
+    i => bin);
+  auxsc6 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc6,
+    i => b);
+
+end VST;

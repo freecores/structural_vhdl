@@ -1,0 +1,301 @@
+-- VHDL structural description generated from `reg16`
+--		date : Tue Jul 31 11:00:38 2001
+
+
+-- Entity Declaration
+
+ENTITY reg16 IS
+  PORT (
+  a : in BIT_VECTOR (15 DOWNTO 0);	-- a
+  en : in BIT;	-- en
+  clr : in BIT;	-- clr
+  b : out BIT_VECTOR (15 DOWNTO 0);	-- b
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END reg16;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF reg16 IS
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT inv_x1
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT sff1_x4
+    port (
+    ck : in BIT;	-- ck
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL auxsc17 : BIT;	-- auxsc17
+  SIGNAL auxreg16 : BIT;	-- auxreg16
+  SIGNAL auxreg15 : BIT;	-- auxreg15
+  SIGNAL auxreg14 : BIT;	-- auxreg14
+  SIGNAL auxreg13 : BIT;	-- auxreg13
+  SIGNAL auxreg12 : BIT;	-- auxreg12
+  SIGNAL auxreg11 : BIT;	-- auxreg11
+  SIGNAL auxreg10 : BIT;	-- auxreg10
+  SIGNAL auxreg9 : BIT;	-- auxreg9
+  SIGNAL auxreg8 : BIT;	-- auxreg8
+  SIGNAL auxreg7 : BIT;	-- auxreg7
+  SIGNAL auxreg6 : BIT;	-- auxreg6
+  SIGNAL auxreg5 : BIT;	-- auxreg5
+  SIGNAL auxreg4 : BIT;	-- auxreg4
+  SIGNAL auxreg3 : BIT;	-- auxreg3
+  SIGNAL auxreg2 : BIT;	-- auxreg2
+  SIGNAL auxreg1 : BIT;	-- auxreg1
+
+BEGIN
+
+  b_0 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(0),
+    i1 => auxreg1,
+    i0 => auxsc17);
+  b_1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(1),
+    i1 => auxreg2,
+    i0 => auxsc17);
+  b_2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(2),
+    i1 => auxreg3,
+    i0 => auxsc17);
+  b_3 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(3),
+    i1 => auxreg4,
+    i0 => auxsc17);
+  b_4 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(4),
+    i1 => auxreg5,
+    i0 => auxsc17);
+  b_5 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(5),
+    i1 => auxreg6,
+    i0 => auxsc17);
+  b_6 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(6),
+    i1 => auxreg7,
+    i0 => auxsc17);
+  b_7 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(7),
+    i1 => auxreg8,
+    i0 => auxsc17);
+  b_8 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(8),
+    i1 => auxreg9,
+    i0 => auxsc17);
+  b_9 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(9),
+    i1 => auxreg10,
+    i0 => auxsc17);
+  b_10 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(10),
+    i1 => auxreg11,
+    i0 => auxsc17);
+  b_11 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(11),
+    i1 => auxreg12,
+    i0 => auxsc17);
+  b_12 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(12),
+    i1 => auxreg13,
+    i0 => auxsc17);
+  b_13 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(13),
+    i1 => auxreg14,
+    i0 => auxsc17);
+  b_14 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(14),
+    i1 => auxreg15,
+    i0 => auxsc17);
+  b_15 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => b(15),
+    i1 => auxreg16,
+    i0 => auxsc17);
+  auxsc17 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc17,
+    i => clr);
+  reg_0 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg1,
+    i => a(0),
+    ck => en);
+  reg_1 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg2,
+    i => a(1),
+    ck => en);
+  reg_2 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg3,
+    i => a(2),
+    ck => en);
+  reg_3 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg4,
+    i => a(3),
+    ck => en);
+  reg_4 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg5,
+    i => a(4),
+    ck => en);
+  reg_5 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg6,
+    i => a(5),
+    ck => en);
+  reg_6 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg7,
+    i => a(6),
+    ck => en);
+  reg_7 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg8,
+    i => a(7),
+    ck => en);
+  reg_8 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg9,
+    i => a(8),
+    ck => en);
+  reg_9 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg10,
+    i => a(9),
+    ck => en);
+  reg_10 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg11,
+    i => a(10),
+    ck => en);
+  reg_11 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg12,
+    i => a(11),
+    ck => en);
+  reg_12 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg13,
+    i => a(12),
+    ck => en);
+  reg_13 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg14,
+    i => a(13),
+    ck => en);
+  reg_14 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg15,
+    i => a(14),
+    ck => en);
+  reg_15 : sff1_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxreg16,
+    i => a(15),
+    ck => en);
+
+end VST;

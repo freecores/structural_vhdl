@@ -1,0 +1,95 @@
+-- VHDL structural description generated from `kontrol_invadd`
+--		date : Thu Aug  2 11:24:52 2001
+
+
+-- Entity Declaration
+
+ENTITY kontrol_invadd IS
+  PORT (
+  start : in BIT;	-- start
+  clk : in BIT;	-- clk
+  rst : in BIT;	-- rst
+  sel_in : out BIT_VECTOR (4 DOWNTO 0);	-- sel_in
+  sel_out : out BIT_VECTOR (4 DOWNTO 0);	-- sel_out
+  en_in : out BIT;	-- en_in
+  en_out : out BIT;	-- en_out
+  finish : out BIT;	-- finish
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END kontrol_invadd;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF kontrol_invadd IS
+  COMPONENT kontrol_utama_invadd
+    port (
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    start : in BIT;	-- start
+    n_dtin : in BIT_VECTOR(4 DOWNTO 0);	-- n_dtin
+    n_dtout : in BIT_VECTOR(4 DOWNTO 0);	-- n_dtout
+    c_cdtin : inout BIT;	-- c_cdtin
+    en_cdtin : inout BIT;	-- en_cdtin
+    c_cdtout : out BIT;	-- c_cdtout
+    en_cdtout : out BIT;	-- en_cdtout
+    en_out : out BIT;	-- en_out
+    en_in : out BIT;	-- en_in
+    finish : out BIT;	-- finish
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT count5_latch
+    port (
+    clk : in BIT;	-- clk
+    en : in BIT;	-- en
+    rst : in BIT;	-- rst
+    q : out BIT_VECTOR(4 DOWNTO 0);	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL c_cdtin : BIT;	-- c_cdtin
+  SIGNAL c_cdtout : BIT;	-- c_cdtout
+  SIGNAL en_cdtin : BIT;	-- en_cdtin
+  SIGNAL en_cdtout : BIT;	-- en_cdtout
+
+BEGIN
+
+  kontrol_utama_invadd1 : kontrol_utama_invadd
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    finish => finish,
+    en_in => en_in,
+    en_out => en_out,
+    en_cdtout => en_cdtout,
+    c_cdtout => c_cdtout,
+    en_cdtin => en_cdtin,
+    c_cdtin => c_cdtin,
+    n_dtout => sel_out(4)& sel_out(3)& sel_out(2)& sel_out(1)& sel_out(0),
+    n_dtin => sel_in(4)& sel_in(3)& sel_in(2)& sel_in(1)& sel_in(0),
+    start => start,
+    rst => rst,
+    clk => clk);
+  count1 : count5_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sel_in(4)& sel_in(3)& sel_in(2)& sel_in(1)& sel_in(0),
+    rst => rst,
+    en => en_cdtin,
+    clk => c_cdtin);
+  count2 : count5_latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sel_out(4)& sel_out(3)& sel_out(2)& sel_out(1)& sel_out(0),
+    rst => rst,
+    en => en_cdtout,
+    clk => c_cdtout);
+
+end VST;

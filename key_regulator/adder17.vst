@@ -1,0 +1,219 @@
+-- VHDL structural description generated from `adder17`
+--		date : Mon Jul 30 23:29:45 2001
+
+
+-- Entity Declaration
+
+ENTITY adder17 IS
+  PORT (
+  a : in BIT_VECTOR (16 DOWNTO 0);	-- a
+  b : in BIT_VECTOR (16 DOWNTO 0);	-- b
+  res : out BIT_VECTOR (17 DOWNTO 0);	-- res
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END adder17;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF adder17 IS
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT adder01
+    port (
+    a : in BIT;	-- a
+    b : in BIT;	-- b
+    cin : in BIT;	-- cin
+    sum : out BIT;	-- sum
+    cout : out BIT;	-- cout
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL cout_0 : BIT;	-- cout 0
+  SIGNAL cout_1 : BIT;	-- cout 1
+  SIGNAL cout_2 : BIT;	-- cout 2
+  SIGNAL cout_3 : BIT;	-- cout 3
+  SIGNAL cout_4 : BIT;	-- cout 4
+  SIGNAL cout_5 : BIT;	-- cout 5
+  SIGNAL cout_6 : BIT;	-- cout 6
+  SIGNAL cout_7 : BIT;	-- cout 7
+  SIGNAL cout_8 : BIT;	-- cout 8
+  SIGNAL cout_9 : BIT;	-- cout 9
+  SIGNAL cout_10 : BIT;	-- cout 10
+  SIGNAL cout_11 : BIT;	-- cout 11
+  SIGNAL cout_12 : BIT;	-- cout 12
+  SIGNAL cout_13 : BIT;	-- cout 13
+  SIGNAL cout_14 : BIT;	-- cout 14
+  SIGNAL cout_15 : BIT;	-- cout 15
+  SIGNAL nol : BIT;	-- nol
+
+BEGIN
+
+  zero1 : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nol);
+  adder0 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_0,
+    sum => res(0),
+    cin => nol,
+    b => b(0),
+    a => a(0));
+  adder1 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_1,
+    sum => res(1),
+    cin => cout_0,
+    b => b(1),
+    a => a(1));
+  adder2 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_2,
+    sum => res(2),
+    cin => cout_1,
+    b => b(2),
+    a => a(2));
+  adder3 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_3,
+    sum => res(3),
+    cin => cout_2,
+    b => b(3),
+    a => a(3));
+  adder4 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_4,
+    sum => res(4),
+    cin => cout_3,
+    b => b(4),
+    a => a(4));
+  adder5 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_5,
+    sum => res(5),
+    cin => cout_4,
+    b => b(5),
+    a => a(5));
+  adder6 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_6,
+    sum => res(6),
+    cin => cout_5,
+    b => b(6),
+    a => a(6));
+  adder7 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_7,
+    sum => res(7),
+    cin => cout_6,
+    b => b(7),
+    a => a(7));
+  adder8 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_8,
+    sum => res(8),
+    cin => cout_7,
+    b => b(8),
+    a => a(8));
+  adder9 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_9,
+    sum => res(9),
+    cin => cout_8,
+    b => b(9),
+    a => a(9));
+  adder10 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_10,
+    sum => res(10),
+    cin => cout_9,
+    b => b(10),
+    a => a(10));
+  adder11 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_11,
+    sum => res(11),
+    cin => cout_10,
+    b => b(11),
+    a => a(11));
+  adder12 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_12,
+    sum => res(12),
+    cin => cout_11,
+    b => b(12),
+    a => a(12));
+  adder13 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_13,
+    sum => res(13),
+    cin => cout_12,
+    b => b(13),
+    a => a(13));
+  adder14 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_14,
+    sum => res(14),
+    cin => cout_13,
+    b => b(14),
+    a => a(14));
+  adder15 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => cout_15,
+    sum => res(15),
+    cin => cout_14,
+    b => b(15),
+    a => a(15));
+  adder16 : adder01
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    cout => res(17),
+    sum => res(16),
+    cin => cout_15,
+    b => b(16),
+    a => a(16));
+
+end VST;

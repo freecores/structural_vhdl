@@ -1,0 +1,127 @@
+-- VHDL structural description generated from `dec_mode`
+--		date : Sat Sep  1 20:26:07 2001
+
+
+-- Entity Declaration
+
+ENTITY dec_mode IS
+  PORT (
+  start : in BIT;	-- start
+  mode : in BIT_VECTOR (1 DOWNTO 0);	-- mode
+  ecb : out BIT;	-- ecb
+  cbc : out BIT;	-- cbc
+  cfb : out BIT;	-- cfb
+  ofb : out BIT;	-- ofb
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END dec_mode;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF dec_mode IS
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a3_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT inv_x1
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT an12_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL auxsc3 : BIT;	-- auxsc3
+  SIGNAL auxsc6 : BIT;	-- auxsc6
+  SIGNAL auxsc7 : BIT;	-- auxsc7
+  SIGNAL auxsc8 : BIT;	-- auxsc8
+
+BEGIN
+
+  ofb : a3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ofb,
+    i2 => start,
+    i1 => mode(1),
+    i0 => mode(0));
+  cfb : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cfb,
+    i1 => auxsc3,
+    i0 => start);
+  cbc : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cbc,
+    i1 => auxsc6,
+    i0 => start);
+  ecb : a3_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ecb,
+    i2 => auxsc8,
+    i1 => auxsc7,
+    i0 => start);
+  auxsc8 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc8,
+    i => mode(1));
+  auxsc7 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc7,
+    i => mode(0));
+  auxsc6 : an12_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc6,
+    i1 => mode(0),
+    i0 => mode(1));
+  auxsc3 : an12_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc3,
+    i1 => mode(1),
+    i0 => mode(0));
+
+end VST;

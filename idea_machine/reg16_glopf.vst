@@ -1,0 +1,712 @@
+-- VHDL structural description generated from `reg16_glopf`
+--		date : Sat Sep  8 03:16:51 2001
+
+
+-- Entity Declaration
+
+ENTITY reg16_glopf IS
+  PORT (
+  d : in BIT_VECTOR (0 TO 15);	-- d
+  en : in BIT;	-- en
+  clr : in BIT;	-- clr
+  q : inout BIT_VECTOR (0 TO 15);	-- q
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END reg16_glopf;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF reg16_glopf IS
+  COMPONENT inv_x2
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT no3_x4
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT no2_x4
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT buf_x2
+    port (
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL netops256 : BIT;	-- netops256
+  SIGNAL netops255 : BIT;	-- netops255
+  SIGNAL latch0_o_nor2 : BIT;	-- latch0.o_nor2
+  SIGNAL latch0_o_inv : BIT;	-- latch0.o_inv
+  SIGNAL latch0_o_an2 : BIT;	-- latch0.o_an2
+  SIGNAL latch0_o_an1 : BIT;	-- latch0.o_an1
+  SIGNAL latch1_o_nor2 : BIT;	-- latch1.o_nor2
+  SIGNAL latch1_o_inv : BIT;	-- latch1.o_inv
+  SIGNAL latch1_o_an2 : BIT;	-- latch1.o_an2
+  SIGNAL latch1_o_an1 : BIT;	-- latch1.o_an1
+  SIGNAL latch2_o_nor2 : BIT;	-- latch2.o_nor2
+  SIGNAL latch2_o_inv : BIT;	-- latch2.o_inv
+  SIGNAL latch2_o_an2 : BIT;	-- latch2.o_an2
+  SIGNAL latch2_o_an1 : BIT;	-- latch2.o_an1
+  SIGNAL latch3_o_nor2 : BIT;	-- latch3.o_nor2
+  SIGNAL latch3_o_inv : BIT;	-- latch3.o_inv
+  SIGNAL latch3_o_an2 : BIT;	-- latch3.o_an2
+  SIGNAL latch3_o_an1 : BIT;	-- latch3.o_an1
+  SIGNAL latch4_o_nor2 : BIT;	-- latch4.o_nor2
+  SIGNAL latch4_o_inv : BIT;	-- latch4.o_inv
+  SIGNAL latch4_o_an2 : BIT;	-- latch4.o_an2
+  SIGNAL latch4_o_an1 : BIT;	-- latch4.o_an1
+  SIGNAL latch5_o_nor2 : BIT;	-- latch5.o_nor2
+  SIGNAL latch5_o_inv : BIT;	-- latch5.o_inv
+  SIGNAL latch5_o_an2 : BIT;	-- latch5.o_an2
+  SIGNAL latch5_o_an1 : BIT;	-- latch5.o_an1
+  SIGNAL latch6_o_nor2 : BIT;	-- latch6.o_nor2
+  SIGNAL latch6_o_inv : BIT;	-- latch6.o_inv
+  SIGNAL latch6_o_an2 : BIT;	-- latch6.o_an2
+  SIGNAL latch6_o_an1 : BIT;	-- latch6.o_an1
+  SIGNAL latch7_o_nor2 : BIT;	-- latch7.o_nor2
+  SIGNAL latch7_o_inv : BIT;	-- latch7.o_inv
+  SIGNAL latch7_o_an2 : BIT;	-- latch7.o_an2
+  SIGNAL latch7_o_an1 : BIT;	-- latch7.o_an1
+  SIGNAL latch8_o_nor2 : BIT;	-- latch8.o_nor2
+  SIGNAL latch8_o_inv : BIT;	-- latch8.o_inv
+  SIGNAL latch8_o_an2 : BIT;	-- latch8.o_an2
+  SIGNAL latch8_o_an1 : BIT;	-- latch8.o_an1
+  SIGNAL latch9_o_nor2 : BIT;	-- latch9.o_nor2
+  SIGNAL latch9_o_inv : BIT;	-- latch9.o_inv
+  SIGNAL latch9_o_an2 : BIT;	-- latch9.o_an2
+  SIGNAL latch9_o_an1 : BIT;	-- latch9.o_an1
+  SIGNAL latch10_o_nor2 : BIT;	-- latch10.o_nor2
+  SIGNAL latch10_o_inv : BIT;	-- latch10.o_inv
+  SIGNAL latch10_o_an2 : BIT;	-- latch10.o_an2
+  SIGNAL latch10_o_an1 : BIT;	-- latch10.o_an1
+  SIGNAL latch11_o_nor2 : BIT;	-- latch11.o_nor2
+  SIGNAL latch11_o_inv : BIT;	-- latch11.o_inv
+  SIGNAL latch11_o_an2 : BIT;	-- latch11.o_an2
+  SIGNAL latch11_o_an1 : BIT;	-- latch11.o_an1
+  SIGNAL latch12_o_nor2 : BIT;	-- latch12.o_nor2
+  SIGNAL latch12_o_inv : BIT;	-- latch12.o_inv
+  SIGNAL latch12_o_an2 : BIT;	-- latch12.o_an2
+  SIGNAL latch12_o_an1 : BIT;	-- latch12.o_an1
+  SIGNAL latch13_o_nor2 : BIT;	-- latch13.o_nor2
+  SIGNAL latch13_o_inv : BIT;	-- latch13.o_inv
+  SIGNAL latch13_o_an2 : BIT;	-- latch13.o_an2
+  SIGNAL latch13_o_an1 : BIT;	-- latch13.o_an1
+  SIGNAL latch14_o_nor2 : BIT;	-- latch14.o_nor2
+  SIGNAL latch14_o_inv : BIT;	-- latch14.o_inv
+  SIGNAL latch14_o_an2 : BIT;	-- latch14.o_an2
+  SIGNAL latch14_o_an1 : BIT;	-- latch14.o_an1
+  SIGNAL latch15_o_nor2 : BIT;	-- latch15.o_nor2
+  SIGNAL latch15_o_inv : BIT;	-- latch15.o_inv
+  SIGNAL latch15_o_an2 : BIT;	-- latch15.o_an2
+  SIGNAL latch15_o_an1 : BIT;	-- latch15.o_an1
+
+BEGIN
+
+  latch0_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch0_o_inv,
+    i => d(0));
+  latch0_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch0_o_an1,
+    i1 => netops256,
+    i0 => latch0_o_inv);
+  latch0_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch0_o_an2,
+    i1 => netops256,
+    i0 => d(0));
+  latch0_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(0),
+    i2 => latch0_o_nor2,
+    i1 => netops255,
+    i0 => latch0_o_an1);
+  latch0_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch0_o_nor2,
+    i1 => latch0_o_an2,
+    i0 => q(0));
+  latch1_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch1_o_inv,
+    i => d(1));
+  latch1_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch1_o_an1,
+    i1 => netops256,
+    i0 => latch1_o_inv);
+  latch1_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch1_o_an2,
+    i1 => netops256,
+    i0 => d(1));
+  latch1_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(1),
+    i2 => latch1_o_nor2,
+    i1 => netops255,
+    i0 => latch1_o_an1);
+  latch1_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch1_o_nor2,
+    i1 => latch1_o_an2,
+    i0 => q(1));
+  latch2_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch2_o_inv,
+    i => d(2));
+  latch2_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch2_o_an1,
+    i1 => netops256,
+    i0 => latch2_o_inv);
+  latch2_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch2_o_an2,
+    i1 => netops256,
+    i0 => d(2));
+  latch2_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(2),
+    i2 => latch2_o_nor2,
+    i1 => netops255,
+    i0 => latch2_o_an1);
+  latch2_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch2_o_nor2,
+    i1 => latch2_o_an2,
+    i0 => q(2));
+  latch3_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch3_o_inv,
+    i => d(3));
+  latch3_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch3_o_an1,
+    i1 => netops256,
+    i0 => latch3_o_inv);
+  latch3_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch3_o_an2,
+    i1 => netops256,
+    i0 => d(3));
+  latch3_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(3),
+    i2 => latch3_o_nor2,
+    i1 => netops255,
+    i0 => latch3_o_an1);
+  latch3_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch3_o_nor2,
+    i1 => latch3_o_an2,
+    i0 => q(3));
+  latch4_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch4_o_inv,
+    i => d(4));
+  latch4_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch4_o_an1,
+    i1 => netops256,
+    i0 => latch4_o_inv);
+  latch4_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch4_o_an2,
+    i1 => netops256,
+    i0 => d(4));
+  latch4_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(4),
+    i2 => latch4_o_nor2,
+    i1 => netops255,
+    i0 => latch4_o_an1);
+  latch4_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch4_o_nor2,
+    i1 => latch4_o_an2,
+    i0 => q(4));
+  latch5_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch5_o_inv,
+    i => d(5));
+  latch5_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch5_o_an1,
+    i1 => netops256,
+    i0 => latch5_o_inv);
+  latch5_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch5_o_an2,
+    i1 => netops256,
+    i0 => d(5));
+  latch5_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(5),
+    i2 => latch5_o_nor2,
+    i1 => netops255,
+    i0 => latch5_o_an1);
+  latch5_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch5_o_nor2,
+    i1 => latch5_o_an2,
+    i0 => q(5));
+  latch6_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch6_o_inv,
+    i => d(6));
+  latch6_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch6_o_an1,
+    i1 => netops256,
+    i0 => latch6_o_inv);
+  latch6_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch6_o_an2,
+    i1 => netops256,
+    i0 => d(6));
+  latch6_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(6),
+    i2 => latch6_o_nor2,
+    i1 => netops255,
+    i0 => latch6_o_an1);
+  latch6_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch6_o_nor2,
+    i1 => latch6_o_an2,
+    i0 => q(6));
+  latch7_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch7_o_inv,
+    i => d(7));
+  latch7_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch7_o_an1,
+    i1 => netops256,
+    i0 => latch7_o_inv);
+  latch7_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch7_o_an2,
+    i1 => netops256,
+    i0 => d(7));
+  latch7_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(7),
+    i2 => latch7_o_nor2,
+    i1 => netops255,
+    i0 => latch7_o_an1);
+  latch7_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch7_o_nor2,
+    i1 => latch7_o_an2,
+    i0 => q(7));
+  latch8_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch8_o_inv,
+    i => d(8));
+  latch8_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch8_o_an1,
+    i1 => netops256,
+    i0 => latch8_o_inv);
+  latch8_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch8_o_an2,
+    i1 => netops256,
+    i0 => d(8));
+  latch8_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(8),
+    i2 => latch8_o_nor2,
+    i1 => netops255,
+    i0 => latch8_o_an1);
+  latch8_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch8_o_nor2,
+    i1 => latch8_o_an2,
+    i0 => q(8));
+  latch9_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch9_o_inv,
+    i => d(9));
+  latch9_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch9_o_an1,
+    i1 => netops256,
+    i0 => latch9_o_inv);
+  latch9_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch9_o_an2,
+    i1 => netops256,
+    i0 => d(9));
+  latch9_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(9),
+    i2 => latch9_o_nor2,
+    i1 => netops255,
+    i0 => latch9_o_an1);
+  latch9_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch9_o_nor2,
+    i1 => latch9_o_an2,
+    i0 => q(9));
+  latch10_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch10_o_inv,
+    i => d(10));
+  latch10_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch10_o_an1,
+    i1 => netops256,
+    i0 => latch10_o_inv);
+  latch10_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch10_o_an2,
+    i1 => netops256,
+    i0 => d(10));
+  latch10_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(10),
+    i2 => latch10_o_nor2,
+    i1 => netops255,
+    i0 => latch10_o_an1);
+  latch10_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch10_o_nor2,
+    i1 => latch10_o_an2,
+    i0 => q(10));
+  latch11_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch11_o_inv,
+    i => d(11));
+  latch11_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch11_o_an1,
+    i1 => netops256,
+    i0 => latch11_o_inv);
+  latch11_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch11_o_an2,
+    i1 => netops256,
+    i0 => d(11));
+  latch11_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(11),
+    i2 => latch11_o_nor2,
+    i1 => netops255,
+    i0 => latch11_o_an1);
+  latch11_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch11_o_nor2,
+    i1 => latch11_o_an2,
+    i0 => q(11));
+  latch12_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch12_o_inv,
+    i => d(12));
+  latch12_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch12_o_an1,
+    i1 => netops256,
+    i0 => latch12_o_inv);
+  latch12_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch12_o_an2,
+    i1 => netops256,
+    i0 => d(12));
+  latch12_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(12),
+    i2 => latch12_o_nor2,
+    i1 => netops255,
+    i0 => latch12_o_an1);
+  latch12_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch12_o_nor2,
+    i1 => latch12_o_an2,
+    i0 => q(12));
+  latch13_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch13_o_inv,
+    i => d(13));
+  latch13_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch13_o_an1,
+    i1 => netops256,
+    i0 => latch13_o_inv);
+  latch13_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch13_o_an2,
+    i1 => netops256,
+    i0 => d(13));
+  latch13_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(13),
+    i2 => latch13_o_nor2,
+    i1 => netops255,
+    i0 => latch13_o_an1);
+  latch13_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch13_o_nor2,
+    i1 => latch13_o_an2,
+    i0 => q(13));
+  latch14_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch14_o_inv,
+    i => d(14));
+  latch14_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch14_o_an1,
+    i1 => netops256,
+    i0 => latch14_o_inv);
+  latch14_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch14_o_an2,
+    i1 => netops256,
+    i0 => d(14));
+  latch14_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(14),
+    i2 => latch14_o_nor2,
+    i1 => netops255,
+    i0 => latch14_o_an1);
+  latch14_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch14_o_nor2,
+    i1 => latch14_o_an2,
+    i0 => q(14));
+  latch15_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch15_o_inv,
+    i => d(15));
+  latch15_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch15_o_an1,
+    i1 => netops256,
+    i0 => latch15_o_inv);
+  latch15_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => latch15_o_an2,
+    i1 => netops256,
+    i0 => d(15));
+  latch15_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q(15),
+    i2 => latch15_o_nor2,
+    i1 => netops255,
+    i0 => latch15_o_an1);
+  latch15_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => latch15_o_nor2,
+    i1 => latch15_o_an2,
+    i0 => q(15));
+  netopi255 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops255,
+    i => clr);
+  netopi256 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops256,
+    i => en);
+
+end VST;

@@ -1,0 +1,164 @@
+-- VHDL structural description generated from `reg16`
+--		date : Sat Sep  8 03:14:30 2001
+
+
+-- Entity Declaration
+
+ENTITY reg16 IS
+  PORT (
+  d : in BIT_VECTOR (0 TO 15);	-- d
+  en : in BIT;	-- en
+  clr : in BIT;	-- clr
+  q : inout BIT_VECTOR (0 TO 15);	-- q
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END reg16;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF reg16 IS
+  COMPONENT d_latch_glopf
+    port (
+    d : in BIT;	-- d
+    ck : in BIT;	-- ck
+    clr : in BIT;	-- clr
+    q : inout BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+
+BEGIN
+
+  latch0 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(0),
+    clr => clr,
+    ck => en,
+    d => d(0));
+  latch1 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(1),
+    clr => clr,
+    ck => en,
+    d => d(1));
+  latch2 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(2),
+    clr => clr,
+    ck => en,
+    d => d(2));
+  latch3 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(3),
+    clr => clr,
+    ck => en,
+    d => d(3));
+  latch4 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(4),
+    clr => clr,
+    ck => en,
+    d => d(4));
+  latch5 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(5),
+    clr => clr,
+    ck => en,
+    d => d(5));
+  latch6 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(6),
+    clr => clr,
+    ck => en,
+    d => d(6));
+  latch7 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(7),
+    clr => clr,
+    ck => en,
+    d => d(7));
+  latch8 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(8),
+    clr => clr,
+    ck => en,
+    d => d(8));
+  latch9 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(9),
+    clr => clr,
+    ck => en,
+    d => d(9));
+  latch10 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(10),
+    clr => clr,
+    ck => en,
+    d => d(10));
+  latch11 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(11),
+    clr => clr,
+    ck => en,
+    d => d(11));
+  latch12 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(12),
+    clr => clr,
+    ck => en,
+    d => d(12));
+  latch13 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(13),
+    clr => clr,
+    ck => en,
+    d => d(13));
+  latch14 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(14),
+    clr => clr,
+    ck => en,
+    d => d(14));
+  latch15 : d_latch_glopf
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => q(15),
+    clr => clr,
+    ck => en,
+    d => d(15));
+
+end VST;

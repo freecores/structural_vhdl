@@ -1,0 +1,122 @@
+-- VHDL structural description generated from `fulladder`
+--		date : Tue Jul 31 10:38:59 2001
+
+
+-- Entity Declaration
+
+ENTITY fulladder IS
+  PORT (
+  a : in BIT;	-- a
+  b : in BIT;	-- b
+  cin : in BIT;	-- cin
+  sum : out BIT;	-- sum
+  cout : out BIT;	-- cout
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END fulladder;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF fulladder IS
+  COMPONENT nao22_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT na2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT nxr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT inv_x1
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL auxsc4 : BIT;	-- auxsc4
+  SIGNAL auxsc5 : BIT;	-- auxsc5
+  SIGNAL auxsc6 : BIT;	-- auxsc6
+  SIGNAL auxsc7 : BIT;	-- auxsc7
+
+BEGIN
+
+  cout : nao22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => cout,
+    i2 => auxsc6,
+    i1 => auxsc5,
+    i0 => auxsc4);
+  sum : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum,
+    i1 => auxsc7,
+    i0 => cin);
+  auxsc7 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc7,
+    i1 => a,
+    i0 => b);
+  auxsc6 : na2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc6,
+    i1 => a,
+    i0 => b);
+  auxsc5 : nxr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc5,
+    i1 => a,
+    i0 => b);
+  auxsc4 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => auxsc4,
+    i => cin);
+
+end VST;

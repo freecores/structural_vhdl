@@ -1,0 +1,671 @@
+-- VHDL structural description generated from `m16adder_glopg`
+--		date : Mon Sep 10 09:16:26 2001
+
+
+-- Entity Declaration
+
+ENTITY m16adder_glopg IS
+  PORT (
+  a : in BIT_VECTOR (0 TO 15);	-- a
+  b : in BIT_VECTOR (0 TO 15);	-- b
+  s : out BIT_VECTOR (0 TO 15);	-- s
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END m16adder_glopg;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF m16adder_glopg IS
+  COMPONENT buf_x2
+    port (
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT o2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT ao22_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL c_0 : BIT;	-- c_0
+  SIGNAL ha_netops8 : BIT;	-- ha.netops8
+  SIGNAL c_1 : BIT;	-- c_1
+  SIGNAL fa1_auxsc2 : BIT;	-- fa1.auxsc2
+  SIGNAL fa1_auxsc4 : BIT;	-- fa1.auxsc4
+  SIGNAL fa1_auxsc1 : BIT;	-- fa1.auxsc1
+  SIGNAL c_2 : BIT;	-- c_2
+  SIGNAL fa2_auxsc2 : BIT;	-- fa2.auxsc2
+  SIGNAL fa2_auxsc4 : BIT;	-- fa2.auxsc4
+  SIGNAL fa2_auxsc1 : BIT;	-- fa2.auxsc1
+  SIGNAL c_3 : BIT;	-- c_3
+  SIGNAL fa3_auxsc2 : BIT;	-- fa3.auxsc2
+  SIGNAL fa3_auxsc4 : BIT;	-- fa3.auxsc4
+  SIGNAL fa3_auxsc1 : BIT;	-- fa3.auxsc1
+  SIGNAL c_4 : BIT;	-- c_4
+  SIGNAL fa4_auxsc2 : BIT;	-- fa4.auxsc2
+  SIGNAL fa4_auxsc4 : BIT;	-- fa4.auxsc4
+  SIGNAL fa4_auxsc1 : BIT;	-- fa4.auxsc1
+  SIGNAL c_5 : BIT;	-- c_5
+  SIGNAL fa5_auxsc2 : BIT;	-- fa5.auxsc2
+  SIGNAL fa5_auxsc4 : BIT;	-- fa5.auxsc4
+  SIGNAL fa5_auxsc1 : BIT;	-- fa5.auxsc1
+  SIGNAL c_6 : BIT;	-- c_6
+  SIGNAL fa6_auxsc2 : BIT;	-- fa6.auxsc2
+  SIGNAL fa6_auxsc4 : BIT;	-- fa6.auxsc4
+  SIGNAL fa6_auxsc1 : BIT;	-- fa6.auxsc1
+  SIGNAL c_7 : BIT;	-- c_7
+  SIGNAL fa7_auxsc2 : BIT;	-- fa7.auxsc2
+  SIGNAL fa7_auxsc4 : BIT;	-- fa7.auxsc4
+  SIGNAL fa7_auxsc1 : BIT;	-- fa7.auxsc1
+  SIGNAL c_8 : BIT;	-- c_8
+  SIGNAL fa8_auxsc2 : BIT;	-- fa8.auxsc2
+  SIGNAL fa8_auxsc4 : BIT;	-- fa8.auxsc4
+  SIGNAL fa8_auxsc1 : BIT;	-- fa8.auxsc1
+  SIGNAL c_9 : BIT;	-- c_9
+  SIGNAL fa9_auxsc2 : BIT;	-- fa9.auxsc2
+  SIGNAL fa9_auxsc4 : BIT;	-- fa9.auxsc4
+  SIGNAL fa9_auxsc1 : BIT;	-- fa9.auxsc1
+  SIGNAL c_10 : BIT;	-- c_10
+  SIGNAL fa10_auxsc2 : BIT;	-- fa10.auxsc2
+  SIGNAL fa10_auxsc4 : BIT;	-- fa10.auxsc4
+  SIGNAL fa10_auxsc1 : BIT;	-- fa10.auxsc1
+  SIGNAL c_11 : BIT;	-- c_11
+  SIGNAL fa11_auxsc2 : BIT;	-- fa11.auxsc2
+  SIGNAL fa11_auxsc4 : BIT;	-- fa11.auxsc4
+  SIGNAL fa11_auxsc1 : BIT;	-- fa11.auxsc1
+  SIGNAL c_12 : BIT;	-- c_12
+  SIGNAL fa12_auxsc2 : BIT;	-- fa12.auxsc2
+  SIGNAL fa12_auxsc4 : BIT;	-- fa12.auxsc4
+  SIGNAL fa12_auxsc1 : BIT;	-- fa12.auxsc1
+  SIGNAL c_13 : BIT;	-- c_13
+  SIGNAL fa13_auxsc2 : BIT;	-- fa13.auxsc2
+  SIGNAL fa13_auxsc4 : BIT;	-- fa13.auxsc4
+  SIGNAL fa13_auxsc1 : BIT;	-- fa13.auxsc1
+  SIGNAL c_14 : BIT;	-- c_14
+  SIGNAL fa14_auxsc2 : BIT;	-- fa14.auxsc2
+  SIGNAL fa14_auxsc4 : BIT;	-- fa14.auxsc4
+  SIGNAL fa14_auxsc1 : BIT;	-- fa14.auxsc1
+  SIGNAL o_xr1 : BIT;	-- o_xr1
+
+BEGIN
+
+  ha_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(0),
+    i1 => ha_netops8,
+    i0 => b(0));
+  ha_cout : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_0,
+    i1 => ha_netops8,
+    i0 => b(0));
+  ha_netopi8 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ha_netops8,
+    i => a(0));
+  fa1_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(1),
+    i1 => fa1_auxsc1,
+    i0 => c_0);
+  fa1_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_1,
+    i1 => fa1_auxsc2,
+    i0 => fa1_auxsc4);
+  fa1_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa1_auxsc2,
+    i1 => a(1),
+    i0 => b(1));
+  fa1_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa1_auxsc4,
+    i2 => c_0,
+    i1 => a(1),
+    i0 => b(1));
+  fa1_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa1_auxsc1,
+    i1 => a(1),
+    i0 => b(1));
+  fa2_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(2),
+    i1 => fa2_auxsc1,
+    i0 => c_1);
+  fa2_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_2,
+    i1 => fa2_auxsc2,
+    i0 => fa2_auxsc4);
+  fa2_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa2_auxsc2,
+    i1 => a(2),
+    i0 => b(2));
+  fa2_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa2_auxsc4,
+    i2 => c_1,
+    i1 => a(2),
+    i0 => b(2));
+  fa2_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa2_auxsc1,
+    i1 => a(2),
+    i0 => b(2));
+  fa3_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(3),
+    i1 => fa3_auxsc1,
+    i0 => c_2);
+  fa3_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_3,
+    i1 => fa3_auxsc2,
+    i0 => fa3_auxsc4);
+  fa3_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa3_auxsc2,
+    i1 => a(3),
+    i0 => b(3));
+  fa3_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa3_auxsc4,
+    i2 => c_2,
+    i1 => a(3),
+    i0 => b(3));
+  fa3_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa3_auxsc1,
+    i1 => a(3),
+    i0 => b(3));
+  fa4_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(4),
+    i1 => fa4_auxsc1,
+    i0 => c_3);
+  fa4_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_4,
+    i1 => fa4_auxsc2,
+    i0 => fa4_auxsc4);
+  fa4_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa4_auxsc2,
+    i1 => a(4),
+    i0 => b(4));
+  fa4_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa4_auxsc4,
+    i2 => c_3,
+    i1 => a(4),
+    i0 => b(4));
+  fa4_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa4_auxsc1,
+    i1 => a(4),
+    i0 => b(4));
+  fa5_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(5),
+    i1 => fa5_auxsc1,
+    i0 => c_4);
+  fa5_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_5,
+    i1 => fa5_auxsc2,
+    i0 => fa5_auxsc4);
+  fa5_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa5_auxsc2,
+    i1 => a(5),
+    i0 => b(5));
+  fa5_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa5_auxsc4,
+    i2 => c_4,
+    i1 => a(5),
+    i0 => b(5));
+  fa5_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa5_auxsc1,
+    i1 => a(5),
+    i0 => b(5));
+  fa6_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(6),
+    i1 => fa6_auxsc1,
+    i0 => c_5);
+  fa6_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_6,
+    i1 => fa6_auxsc2,
+    i0 => fa6_auxsc4);
+  fa6_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa6_auxsc2,
+    i1 => a(6),
+    i0 => b(6));
+  fa6_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa6_auxsc4,
+    i2 => c_5,
+    i1 => a(6),
+    i0 => b(6));
+  fa6_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa6_auxsc1,
+    i1 => a(6),
+    i0 => b(6));
+  fa7_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(7),
+    i1 => fa7_auxsc1,
+    i0 => c_6);
+  fa7_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_7,
+    i1 => fa7_auxsc2,
+    i0 => fa7_auxsc4);
+  fa7_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa7_auxsc2,
+    i1 => a(7),
+    i0 => b(7));
+  fa7_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa7_auxsc4,
+    i2 => c_6,
+    i1 => a(7),
+    i0 => b(7));
+  fa7_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa7_auxsc1,
+    i1 => a(7),
+    i0 => b(7));
+  fa8_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(8),
+    i1 => fa8_auxsc1,
+    i0 => c_7);
+  fa8_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_8,
+    i1 => fa8_auxsc2,
+    i0 => fa8_auxsc4);
+  fa8_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa8_auxsc2,
+    i1 => a(8),
+    i0 => b(8));
+  fa8_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa8_auxsc4,
+    i2 => c_7,
+    i1 => a(8),
+    i0 => b(8));
+  fa8_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa8_auxsc1,
+    i1 => a(8),
+    i0 => b(8));
+  fa9_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(9),
+    i1 => fa9_auxsc1,
+    i0 => c_8);
+  fa9_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_9,
+    i1 => fa9_auxsc2,
+    i0 => fa9_auxsc4);
+  fa9_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa9_auxsc2,
+    i1 => a(9),
+    i0 => b(9));
+  fa9_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa9_auxsc4,
+    i2 => c_8,
+    i1 => a(9),
+    i0 => b(9));
+  fa9_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa9_auxsc1,
+    i1 => a(9),
+    i0 => b(9));
+  fa10_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(10),
+    i1 => fa10_auxsc1,
+    i0 => c_9);
+  fa10_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_10,
+    i1 => fa10_auxsc2,
+    i0 => fa10_auxsc4);
+  fa10_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa10_auxsc2,
+    i1 => a(10),
+    i0 => b(10));
+  fa10_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa10_auxsc4,
+    i2 => c_9,
+    i1 => a(10),
+    i0 => b(10));
+  fa10_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa10_auxsc1,
+    i1 => a(10),
+    i0 => b(10));
+  fa11_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(11),
+    i1 => fa11_auxsc1,
+    i0 => c_10);
+  fa11_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_11,
+    i1 => fa11_auxsc2,
+    i0 => fa11_auxsc4);
+  fa11_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa11_auxsc2,
+    i1 => a(11),
+    i0 => b(11));
+  fa11_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa11_auxsc4,
+    i2 => c_10,
+    i1 => a(11),
+    i0 => b(11));
+  fa11_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa11_auxsc1,
+    i1 => a(11),
+    i0 => b(11));
+  fa12_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(12),
+    i1 => fa12_auxsc1,
+    i0 => c_11);
+  fa12_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_12,
+    i1 => fa12_auxsc2,
+    i0 => fa12_auxsc4);
+  fa12_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa12_auxsc2,
+    i1 => a(12),
+    i0 => b(12));
+  fa12_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa12_auxsc4,
+    i2 => c_11,
+    i1 => a(12),
+    i0 => b(12));
+  fa12_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa12_auxsc1,
+    i1 => a(12),
+    i0 => b(12));
+  fa13_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(13),
+    i1 => fa13_auxsc1,
+    i0 => c_12);
+  fa13_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_13,
+    i1 => fa13_auxsc2,
+    i0 => fa13_auxsc4);
+  fa13_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa13_auxsc2,
+    i1 => a(13),
+    i0 => b(13));
+  fa13_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa13_auxsc4,
+    i2 => c_12,
+    i1 => a(13),
+    i0 => b(13));
+  fa13_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa13_auxsc1,
+    i1 => a(13),
+    i0 => b(13));
+  fa14_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(14),
+    i1 => fa14_auxsc1,
+    i0 => c_13);
+  fa14_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => c_14,
+    i1 => fa14_auxsc2,
+    i0 => fa14_auxsc4);
+  fa14_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa14_auxsc2,
+    i1 => a(14),
+    i0 => b(14));
+  fa14_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa14_auxsc4,
+    i2 => c_13,
+    i1 => a(14),
+    i0 => b(14));
+  fa14_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => fa14_auxsc1,
+    i1 => a(14),
+    i0 => b(14));
+  xr1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => o_xr1,
+    i1 => b(15),
+    i0 => a(15));
+  xr2 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => s(15),
+    i1 => c_14,
+    i0 => o_xr1);
+
+end VST;

@@ -1,0 +1,538 @@
+-- VHDL structural description generated from `data_in`
+--		date : Mon Aug 27 06:36:23 2001
+
+
+-- Entity Declaration
+
+ENTITY data_in IS
+  PORT (
+  datain : in BIT_VECTOR (31 DOWNTO 0);	-- datain
+  dt_sended : in BIT;	-- dt_sended
+  emp_buf : in BIT;	-- emp_buf
+  clk : in BIT;	-- clk
+  rst : in BIT;	-- rst
+  req_dt : out BIT;	-- req_dt
+  dt_ready : inout BIT;	-- dt_ready
+  data64in : out BIT_VECTOR (63 DOWNTO 0);	-- data64in
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END data_in;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF data_in IS
+  COMPONENT dec1to2
+    port (
+    a : in BIT_VECTOR(31 DOWNTO 0);	-- a
+    sel : in BIT;	-- sel
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    o1 : out BIT_VECTOR(31 DOWNTO 0);	-- o1
+    o2 : out BIT_VECTOR(31 DOWNTO 0);	-- o2
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT control_datain
+    port (
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    dt_sended : in BIT;	-- dt_sended
+    emp_buf : in BIT;	-- emp_buf
+    en_bufin : inout BIT;	-- en_bufin
+    req_dt : out BIT;	-- req_dt
+    dt_ready : inout BIT;	-- dt_ready
+    n_block : inout BIT;	-- n_block
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT buf_x2
+    port (
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL data64in_t_0 : BIT;	-- data64in_t 0
+  SIGNAL data64in_t_1 : BIT;	-- data64in_t 1
+  SIGNAL data64in_t_2 : BIT;	-- data64in_t 2
+  SIGNAL data64in_t_3 : BIT;	-- data64in_t 3
+  SIGNAL data64in_t_4 : BIT;	-- data64in_t 4
+  SIGNAL data64in_t_5 : BIT;	-- data64in_t 5
+  SIGNAL data64in_t_6 : BIT;	-- data64in_t 6
+  SIGNAL data64in_t_7 : BIT;	-- data64in_t 7
+  SIGNAL data64in_t_8 : BIT;	-- data64in_t 8
+  SIGNAL data64in_t_9 : BIT;	-- data64in_t 9
+  SIGNAL data64in_t_10 : BIT;	-- data64in_t 10
+  SIGNAL data64in_t_11 : BIT;	-- data64in_t 11
+  SIGNAL data64in_t_12 : BIT;	-- data64in_t 12
+  SIGNAL data64in_t_13 : BIT;	-- data64in_t 13
+  SIGNAL data64in_t_14 : BIT;	-- data64in_t 14
+  SIGNAL data64in_t_15 : BIT;	-- data64in_t 15
+  SIGNAL data64in_t_16 : BIT;	-- data64in_t 16
+  SIGNAL data64in_t_17 : BIT;	-- data64in_t 17
+  SIGNAL data64in_t_18 : BIT;	-- data64in_t 18
+  SIGNAL data64in_t_19 : BIT;	-- data64in_t 19
+  SIGNAL data64in_t_20 : BIT;	-- data64in_t 20
+  SIGNAL data64in_t_21 : BIT;	-- data64in_t 21
+  SIGNAL data64in_t_22 : BIT;	-- data64in_t 22
+  SIGNAL data64in_t_23 : BIT;	-- data64in_t 23
+  SIGNAL data64in_t_24 : BIT;	-- data64in_t 24
+  SIGNAL data64in_t_25 : BIT;	-- data64in_t 25
+  SIGNAL data64in_t_26 : BIT;	-- data64in_t 26
+  SIGNAL data64in_t_27 : BIT;	-- data64in_t 27
+  SIGNAL data64in_t_28 : BIT;	-- data64in_t 28
+  SIGNAL data64in_t_29 : BIT;	-- data64in_t 29
+  SIGNAL data64in_t_30 : BIT;	-- data64in_t 30
+  SIGNAL data64in_t_31 : BIT;	-- data64in_t 31
+  SIGNAL data64in_t_32 : BIT;	-- data64in_t 32
+  SIGNAL data64in_t_33 : BIT;	-- data64in_t 33
+  SIGNAL data64in_t_34 : BIT;	-- data64in_t 34
+  SIGNAL data64in_t_35 : BIT;	-- data64in_t 35
+  SIGNAL data64in_t_36 : BIT;	-- data64in_t 36
+  SIGNAL data64in_t_37 : BIT;	-- data64in_t 37
+  SIGNAL data64in_t_38 : BIT;	-- data64in_t 38
+  SIGNAL data64in_t_39 : BIT;	-- data64in_t 39
+  SIGNAL data64in_t_40 : BIT;	-- data64in_t 40
+  SIGNAL data64in_t_41 : BIT;	-- data64in_t 41
+  SIGNAL data64in_t_42 : BIT;	-- data64in_t 42
+  SIGNAL data64in_t_43 : BIT;	-- data64in_t 43
+  SIGNAL data64in_t_44 : BIT;	-- data64in_t 44
+  SIGNAL data64in_t_45 : BIT;	-- data64in_t 45
+  SIGNAL data64in_t_46 : BIT;	-- data64in_t 46
+  SIGNAL data64in_t_47 : BIT;	-- data64in_t 47
+  SIGNAL data64in_t_48 : BIT;	-- data64in_t 48
+  SIGNAL data64in_t_49 : BIT;	-- data64in_t 49
+  SIGNAL data64in_t_50 : BIT;	-- data64in_t 50
+  SIGNAL data64in_t_51 : BIT;	-- data64in_t 51
+  SIGNAL data64in_t_52 : BIT;	-- data64in_t 52
+  SIGNAL data64in_t_53 : BIT;	-- data64in_t 53
+  SIGNAL data64in_t_54 : BIT;	-- data64in_t 54
+  SIGNAL data64in_t_55 : BIT;	-- data64in_t 55
+  SIGNAL data64in_t_56 : BIT;	-- data64in_t 56
+  SIGNAL data64in_t_57 : BIT;	-- data64in_t 57
+  SIGNAL data64in_t_58 : BIT;	-- data64in_t 58
+  SIGNAL data64in_t_59 : BIT;	-- data64in_t 59
+  SIGNAL data64in_t_60 : BIT;	-- data64in_t 60
+  SIGNAL data64in_t_61 : BIT;	-- data64in_t 61
+  SIGNAL data64in_t_62 : BIT;	-- data64in_t 62
+  SIGNAL data64in_t_63 : BIT;	-- data64in_t 63
+  SIGNAL en_bufin : BIT;	-- en_bufin
+  SIGNAL n_block : BIT;	-- n_block
+
+BEGIN
+
+  dec12 : dec1to2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o2 => data64in_t_31& data64in_t_30& data64in_t_29& data64in_t_28& data64in_t_27& data64in_t_26& data64in_t_25& data64in_t_24& data64in_t_23& data64in_t_22& data64in_t_21& data64in_t_20& data64in_t_19& data64in_t_18& data64in_t_17& data64in_t_16& data64in_t_15& data64in_t_14& data64in_t_13& data64in_t_12& data64in_t_11& data64in_t_10& data64in_t_9& data64in_t_8& data64in_t_7& data64in_t_6& data64in_t_5& data64in_t_4& data64in_t_3& data64in_t_2& data64in_t_1& data64in_t_0,
+    o1 => data64in_t_63& data64in_t_62& data64in_t_61& data64in_t_60& data64in_t_59& data64in_t_58& data64in_t_57& data64in_t_56& data64in_t_55& data64in_t_54& data64in_t_53& data64in_t_52& data64in_t_51& data64in_t_50& data64in_t_49& data64in_t_48& data64in_t_47& data64in_t_46& data64in_t_45& data64in_t_44& data64in_t_43& data64in_t_42& data64in_t_41& data64in_t_40& data64in_t_39& data64in_t_38& data64in_t_37& data64in_t_36& data64in_t_35& data64in_t_34& data64in_t_33& data64in_t_32,
+    rst => rst,
+    clk => en_bufin,
+    sel => n_block,
+    a => datain(31)& datain(30)& datain(29)& datain(28)& datain(27)& datain(26)& datain(25)& datain(24)& datain(23)& datain(22)& datain(21)& datain(20)& datain(19)& datain(18)& datain(17)& datain(16)& datain(15)& datain(14)& datain(13)& datain(12)& datain(11)& datain(10)& datain(9)& datain(8)& datain(7)& datain(6)& datain(5)& datain(4)& datain(3)& datain(2)& datain(1)& datain(0));
+  ctrl_dtin : control_datain
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    n_block => n_block,
+    dt_ready => dt_ready,
+    req_dt => req_dt,
+    en_bufin => en_bufin,
+    emp_buf => emp_buf,
+    dt_sended => dt_sended,
+    rst => rst,
+    clk => clk);
+  buf0 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(0),
+    i => data64in_t_0);
+  buf1 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(1),
+    i => data64in_t_1);
+  buf2 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(2),
+    i => data64in_t_2);
+  buf3 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(3),
+    i => data64in_t_3);
+  buf4 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(4),
+    i => data64in_t_4);
+  buf5 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(5),
+    i => data64in_t_5);
+  buf6 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(6),
+    i => data64in_t_6);
+  buf7 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(7),
+    i => data64in_t_7);
+  buf8 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(8),
+    i => data64in_t_8);
+  buf9 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(9),
+    i => data64in_t_9);
+  buf10 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(10),
+    i => data64in_t_10);
+  buf11 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(11),
+    i => data64in_t_11);
+  buf12 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(12),
+    i => data64in_t_12);
+  buf13 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(13),
+    i => data64in_t_13);
+  buf14 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(14),
+    i => data64in_t_14);
+  buf15 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(15),
+    i => data64in_t_15);
+  buf16 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(16),
+    i => data64in_t_16);
+  buf17 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(17),
+    i => data64in_t_17);
+  buf18 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(18),
+    i => data64in_t_18);
+  buf19 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(19),
+    i => data64in_t_19);
+  buf20 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(20),
+    i => data64in_t_20);
+  buf21 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(21),
+    i => data64in_t_21);
+  buf22 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(22),
+    i => data64in_t_22);
+  buf23 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(23),
+    i => data64in_t_23);
+  buf24 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(24),
+    i => data64in_t_24);
+  buf25 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(25),
+    i => data64in_t_25);
+  buf26 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(26),
+    i => data64in_t_26);
+  buf27 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(27),
+    i => data64in_t_27);
+  buf28 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(28),
+    i => data64in_t_28);
+  buf29 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(29),
+    i => data64in_t_29);
+  buf30 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(30),
+    i => data64in_t_30);
+  buf31 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(31),
+    i => data64in_t_31);
+  buf32 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(32),
+    i => data64in_t_32);
+  buf33 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(33),
+    i => data64in_t_33);
+  buf34 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(34),
+    i => data64in_t_34);
+  buf35 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(35),
+    i => data64in_t_35);
+  buf36 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(36),
+    i => data64in_t_36);
+  buf37 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(37),
+    i => data64in_t_37);
+  buf38 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(38),
+    i => data64in_t_38);
+  buf39 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(39),
+    i => data64in_t_39);
+  buf40 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(40),
+    i => data64in_t_40);
+  buf41 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(41),
+    i => data64in_t_41);
+  buf42 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(42),
+    i => data64in_t_42);
+  buf43 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(43),
+    i => data64in_t_43);
+  buf44 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(44),
+    i => data64in_t_44);
+  buf45 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(45),
+    i => data64in_t_45);
+  buf46 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(46),
+    i => data64in_t_46);
+  buf47 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(47),
+    i => data64in_t_47);
+  buf48 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(48),
+    i => data64in_t_48);
+  buf49 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(49),
+    i => data64in_t_49);
+  buf50 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(50),
+    i => data64in_t_50);
+  buf51 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(51),
+    i => data64in_t_51);
+  buf52 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(52),
+    i => data64in_t_52);
+  buf53 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(53),
+    i => data64in_t_53);
+  buf54 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(54),
+    i => data64in_t_54);
+  buf55 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(55),
+    i => data64in_t_55);
+  buf56 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(56),
+    i => data64in_t_56);
+  buf57 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(57),
+    i => data64in_t_57);
+  buf58 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(58),
+    i => data64in_t_58);
+  buf59 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(59),
+    i => data64in_t_59);
+  buf60 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(60),
+    i => data64in_t_60);
+  buf61 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(61),
+    i => data64in_t_61);
+  buf62 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(62),
+    i => data64in_t_62);
+  buf63 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => data64in(63),
+    i => data64in_t_63);
+
+end VST;

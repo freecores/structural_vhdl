@@ -1,0 +1,183 @@
+-- VHDL structural description generated from `reg16_latch`
+--		date : Tue Jul 31 11:00:53 2001
+
+
+-- Entity Declaration
+
+ENTITY reg16_latch IS
+  PORT (
+  a : in BIT_VECTOR (15 DOWNTO 0);	-- a
+  en : in BIT;	-- en
+  clr : in BIT;	-- clr
+  cke : in BIT;	-- cke
+  b : inout BIT_VECTOR (15 DOWNTO 0);	-- b
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END reg16_latch;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF reg16_latch IS
+  COMPONENT reg16
+    port (
+    a : in BIT_VECTOR(15 DOWNTO 0);	-- a
+    en : in BIT;	-- en
+    clr : in BIT;	-- clr
+    b : out BIT_VECTOR(15 DOWNTO 0);	-- b
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT latch
+    port (
+    a : in BIT;	-- a
+    en : in BIT;	-- en
+    b : inout BIT;	-- b
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL x_0 : BIT;	-- x 0
+  SIGNAL x_1 : BIT;	-- x 1
+  SIGNAL x_2 : BIT;	-- x 2
+  SIGNAL x_3 : BIT;	-- x 3
+  SIGNAL x_4 : BIT;	-- x 4
+  SIGNAL x_5 : BIT;	-- x 5
+  SIGNAL x_6 : BIT;	-- x 6
+  SIGNAL x_7 : BIT;	-- x 7
+  SIGNAL x_8 : BIT;	-- x 8
+  SIGNAL x_9 : BIT;	-- x 9
+  SIGNAL x_10 : BIT;	-- x 10
+  SIGNAL x_11 : BIT;	-- x 11
+  SIGNAL x_12 : BIT;	-- x 12
+  SIGNAL x_13 : BIT;	-- x 13
+  SIGNAL x_14 : BIT;	-- x 14
+  SIGNAL x_15 : BIT;	-- x 15
+
+BEGIN
+
+  reg1 : reg16
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => x_15& x_14& x_13& x_12& x_11& x_10& x_9& x_8& x_7& x_6& x_5& x_4& x_3& x_2& x_1& x_0,
+    clr => clr,
+    en => en,
+    a => a(15)& a(14)& a(13)& a(12)& a(11)& a(10)& a(9)& a(8)& a(7)& a(6)& a(5)& a(4)& a(3)& a(2)& a(1)& a(0));
+  latch0 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(0),
+    en => cke,
+    a => x_0);
+  latch1 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(1),
+    en => cke,
+    a => x_1);
+  latch2 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(2),
+    en => cke,
+    a => x_2);
+  latch3 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(3),
+    en => cke,
+    a => x_3);
+  latch4 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(4),
+    en => cke,
+    a => x_4);
+  latch5 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(5),
+    en => cke,
+    a => x_5);
+  latch6 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(6),
+    en => cke,
+    a => x_6);
+  latch7 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(7),
+    en => cke,
+    a => x_7);
+  latch8 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(8),
+    en => cke,
+    a => x_8);
+  latch9 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(9),
+    en => cke,
+    a => x_9);
+  latch10 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(10),
+    en => cke,
+    a => x_10);
+  latch11 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(11),
+    en => cke,
+    a => x_11);
+  latch12 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(12),
+    en => cke,
+    a => x_12);
+  latch13 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(13),
+    en => cke,
+    a => x_13);
+  latch14 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(14),
+    en => cke,
+    a => x_14);
+  latch15 : latch
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    b => b(15),
+    en => cke,
+    a => x_15);
+
+end VST;

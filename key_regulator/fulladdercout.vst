@@ -1,0 +1,50 @@
+-- VHDL structural description generated from `fulladdercout`
+--		date : Tue Jul 31 10:39:24 2001
+
+
+-- Entity Declaration
+
+ENTITY fulladdercout IS
+  PORT (
+  a : in BIT;	-- a
+  b : in BIT;	-- b
+  cin : in BIT;	-- cin
+  sum : out BIT;	-- sum
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END fulladdercout;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF fulladdercout IS
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL auxsc1 : BIT;	-- auxsc1
+
+BEGIN
+
+  sum : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sum,
+    i1 => auxsc1,
+    i0 => cin);
+  auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc1,
+    i1 => a,
+    i0 => b);
+
+end VST;

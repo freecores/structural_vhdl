@@ -1,0 +1,1553 @@
+-- VHDL structural description generated from `sm16adder_glopf`
+--		date : Sat Sep  8 03:56:51 2001
+
+
+-- Entity Declaration
+
+ENTITY sm16adder_glopf IS
+  PORT (
+  a : in BIT_VECTOR (0 TO 15);	-- a
+  b : in BIT_VECTOR (0 TO 15);	-- b
+  en : in BIT;	-- en
+  clr : in BIT;	-- clr
+  s : inout BIT_VECTOR (0 TO 15);	-- s
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END sm16adder_glopf;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF sm16adder_glopf IS
+  COMPONENT o2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT ao22_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT inv_x2
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT no3_x4
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT no2_x4
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT buf_x2
+    port (
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL netops390 : BIT;	-- netops390
+  SIGNAL netops389 : BIT;	-- netops389
+  SIGNAL netops388 : BIT;	-- netops388
+  SIGNAL netops387 : BIT;	-- netops387
+  SIGNAL netops386 : BIT;	-- netops386
+  SIGNAL netops385 : BIT;	-- netops385
+  SIGNAL netops384 : BIT;	-- netops384
+  SIGNAL netops383 : BIT;	-- netops383
+  SIGNAL netops382 : BIT;	-- netops382
+  SIGNAL netops381 : BIT;	-- netops381
+  SIGNAL netops380 : BIT;	-- netops380
+  SIGNAL netops379 : BIT;	-- netops379
+  SIGNAL netops378 : BIT;	-- netops378
+  SIGNAL netops377 : BIT;	-- netops377
+  SIGNAL netops376 : BIT;	-- netops376
+  SIGNAL netops375 : BIT;	-- netops375
+  SIGNAL netops374 : BIT;	-- netops374
+  SIGNAL netops373 : BIT;	-- netops373
+  SIGNAL netops372 : BIT;	-- netops372
+  SIGNAL netops371 : BIT;	-- netops371
+  SIGNAL netops370 : BIT;	-- netops370
+  SIGNAL netops369 : BIT;	-- netops369
+  SIGNAL netops368 : BIT;	-- netops368
+  SIGNAL netops367 : BIT;	-- netops367
+  SIGNAL netops366 : BIT;	-- netops366
+  SIGNAL netops365 : BIT;	-- netops365
+  SIGNAL netops364 : BIT;	-- netops364
+  SIGNAL netops363 : BIT;	-- netops363
+  SIGNAL ss_0 : BIT;	-- ss_0
+  SIGNAL ss_1 : BIT;	-- ss_1
+  SIGNAL ss_2 : BIT;	-- ss_2
+  SIGNAL ss_3 : BIT;	-- ss_3
+  SIGNAL ss_4 : BIT;	-- ss_4
+  SIGNAL ss_5 : BIT;	-- ss_5
+  SIGNAL ss_6 : BIT;	-- ss_6
+  SIGNAL ss_7 : BIT;	-- ss_7
+  SIGNAL ss_8 : BIT;	-- ss_8
+  SIGNAL ss_9 : BIT;	-- ss_9
+  SIGNAL ss_10 : BIT;	-- ss_10
+  SIGNAL ss_11 : BIT;	-- ss_11
+  SIGNAL ss_12 : BIT;	-- ss_12
+  SIGNAL ss_13 : BIT;	-- ss_13
+  SIGNAL ss_14 : BIT;	-- ss_14
+  SIGNAL ss_15 : BIT;	-- ss_15
+  SIGNAL sm16a_c_0 : BIT;	-- sm16a.c_0
+  SIGNAL sm16a_ha_netops8 : BIT;	-- sm16a.ha_netops8
+  SIGNAL sm16a_c_1 : BIT;	-- sm16a.c_1
+  SIGNAL sm16a_fa1_auxsc2 : BIT;	-- sm16a.fa1_auxsc2
+  SIGNAL sm16a_fa1_auxsc4 : BIT;	-- sm16a.fa1_auxsc4
+  SIGNAL sm16a_fa1_auxsc1 : BIT;	-- sm16a.fa1_auxsc1
+  SIGNAL sm16a_c_2 : BIT;	-- sm16a.c_2
+  SIGNAL sm16a_fa2_auxsc2 : BIT;	-- sm16a.fa2_auxsc2
+  SIGNAL sm16a_fa2_auxsc4 : BIT;	-- sm16a.fa2_auxsc4
+  SIGNAL sm16a_fa2_auxsc1 : BIT;	-- sm16a.fa2_auxsc1
+  SIGNAL sm16a_c_3 : BIT;	-- sm16a.c_3
+  SIGNAL sm16a_fa3_auxsc2 : BIT;	-- sm16a.fa3_auxsc2
+  SIGNAL sm16a_fa3_auxsc4 : BIT;	-- sm16a.fa3_auxsc4
+  SIGNAL sm16a_fa3_auxsc1 : BIT;	-- sm16a.fa3_auxsc1
+  SIGNAL sm16a_c_4 : BIT;	-- sm16a.c_4
+  SIGNAL sm16a_fa4_auxsc2 : BIT;	-- sm16a.fa4_auxsc2
+  SIGNAL sm16a_fa4_auxsc4 : BIT;	-- sm16a.fa4_auxsc4
+  SIGNAL sm16a_fa4_auxsc1 : BIT;	-- sm16a.fa4_auxsc1
+  SIGNAL sm16a_c_5 : BIT;	-- sm16a.c_5
+  SIGNAL sm16a_fa5_auxsc2 : BIT;	-- sm16a.fa5_auxsc2
+  SIGNAL sm16a_fa5_auxsc4 : BIT;	-- sm16a.fa5_auxsc4
+  SIGNAL sm16a_fa5_auxsc1 : BIT;	-- sm16a.fa5_auxsc1
+  SIGNAL sm16a_c_6 : BIT;	-- sm16a.c_6
+  SIGNAL sm16a_fa6_auxsc2 : BIT;	-- sm16a.fa6_auxsc2
+  SIGNAL sm16a_fa6_auxsc4 : BIT;	-- sm16a.fa6_auxsc4
+  SIGNAL sm16a_fa6_auxsc1 : BIT;	-- sm16a.fa6_auxsc1
+  SIGNAL sm16a_c_7 : BIT;	-- sm16a.c_7
+  SIGNAL sm16a_fa7_auxsc2 : BIT;	-- sm16a.fa7_auxsc2
+  SIGNAL sm16a_fa7_auxsc4 : BIT;	-- sm16a.fa7_auxsc4
+  SIGNAL sm16a_fa7_auxsc1 : BIT;	-- sm16a.fa7_auxsc1
+  SIGNAL sm16a_c_8 : BIT;	-- sm16a.c_8
+  SIGNAL sm16a_fa8_auxsc2 : BIT;	-- sm16a.fa8_auxsc2
+  SIGNAL sm16a_fa8_auxsc4 : BIT;	-- sm16a.fa8_auxsc4
+  SIGNAL sm16a_fa8_auxsc1 : BIT;	-- sm16a.fa8_auxsc1
+  SIGNAL sm16a_c_9 : BIT;	-- sm16a.c_9
+  SIGNAL sm16a_fa9_auxsc2 : BIT;	-- sm16a.fa9_auxsc2
+  SIGNAL sm16a_fa9_auxsc4 : BIT;	-- sm16a.fa9_auxsc4
+  SIGNAL sm16a_fa9_auxsc1 : BIT;	-- sm16a.fa9_auxsc1
+  SIGNAL sm16a_c_10 : BIT;	-- sm16a.c_10
+  SIGNAL sm16a_fa10_auxsc2 : BIT;	-- sm16a.fa10_auxsc2
+  SIGNAL sm16a_fa10_auxsc4 : BIT;	-- sm16a.fa10_auxsc4
+  SIGNAL sm16a_fa10_auxsc1 : BIT;	-- sm16a.fa10_auxsc1
+  SIGNAL sm16a_c_11 : BIT;	-- sm16a.c_11
+  SIGNAL sm16a_fa11_auxsc2 : BIT;	-- sm16a.fa11_auxsc2
+  SIGNAL sm16a_fa11_auxsc4 : BIT;	-- sm16a.fa11_auxsc4
+  SIGNAL sm16a_fa11_auxsc1 : BIT;	-- sm16a.fa11_auxsc1
+  SIGNAL sm16a_c_12 : BIT;	-- sm16a.c_12
+  SIGNAL sm16a_fa12_auxsc2 : BIT;	-- sm16a.fa12_auxsc2
+  SIGNAL sm16a_fa12_auxsc4 : BIT;	-- sm16a.fa12_auxsc4
+  SIGNAL sm16a_fa12_auxsc1 : BIT;	-- sm16a.fa12_auxsc1
+  SIGNAL sm16a_c_13 : BIT;	-- sm16a.c_13
+  SIGNAL sm16a_fa13_auxsc2 : BIT;	-- sm16a.fa13_auxsc2
+  SIGNAL sm16a_fa13_auxsc4 : BIT;	-- sm16a.fa13_auxsc4
+  SIGNAL sm16a_fa13_auxsc1 : BIT;	-- sm16a.fa13_auxsc1
+  SIGNAL sm16a_c_14 : BIT;	-- sm16a.c_14
+  SIGNAL sm16a_fa14_auxsc2 : BIT;	-- sm16a.fa14_auxsc2
+  SIGNAL sm16a_fa14_auxsc4 : BIT;	-- sm16a.fa14_auxsc4
+  SIGNAL sm16a_fa14_auxsc1 : BIT;	-- sm16a.fa14_auxsc1
+  SIGNAL sm16a_o_xr1 : BIT;	-- sm16a.o_xr1
+  SIGNAL rg16_netops256 : BIT;	-- rg16.netops256
+  SIGNAL rg16_netops255 : BIT;	-- rg16.netops255
+  SIGNAL rg16_latch0_o_nor2 : BIT;	-- rg16.latch0_o_nor2
+  SIGNAL rg16_latch0_o_inv : BIT;	-- rg16.latch0_o_inv
+  SIGNAL rg16_latch0_o_an2 : BIT;	-- rg16.latch0_o_an2
+  SIGNAL rg16_latch0_o_an1 : BIT;	-- rg16.latch0_o_an1
+  SIGNAL rg16_latch1_o_nor2 : BIT;	-- rg16.latch1_o_nor2
+  SIGNAL rg16_latch1_o_inv : BIT;	-- rg16.latch1_o_inv
+  SIGNAL rg16_latch1_o_an2 : BIT;	-- rg16.latch1_o_an2
+  SIGNAL rg16_latch1_o_an1 : BIT;	-- rg16.latch1_o_an1
+  SIGNAL rg16_latch2_o_nor2 : BIT;	-- rg16.latch2_o_nor2
+  SIGNAL rg16_latch2_o_inv : BIT;	-- rg16.latch2_o_inv
+  SIGNAL rg16_latch2_o_an2 : BIT;	-- rg16.latch2_o_an2
+  SIGNAL rg16_latch2_o_an1 : BIT;	-- rg16.latch2_o_an1
+  SIGNAL rg16_latch3_o_nor2 : BIT;	-- rg16.latch3_o_nor2
+  SIGNAL rg16_latch3_o_inv : BIT;	-- rg16.latch3_o_inv
+  SIGNAL rg16_latch3_o_an2 : BIT;	-- rg16.latch3_o_an2
+  SIGNAL rg16_latch3_o_an1 : BIT;	-- rg16.latch3_o_an1
+  SIGNAL rg16_latch4_o_nor2 : BIT;	-- rg16.latch4_o_nor2
+  SIGNAL rg16_latch4_o_inv : BIT;	-- rg16.latch4_o_inv
+  SIGNAL rg16_latch4_o_an2 : BIT;	-- rg16.latch4_o_an2
+  SIGNAL rg16_latch4_o_an1 : BIT;	-- rg16.latch4_o_an1
+  SIGNAL rg16_latch5_o_nor2 : BIT;	-- rg16.latch5_o_nor2
+  SIGNAL rg16_latch5_o_inv : BIT;	-- rg16.latch5_o_inv
+  SIGNAL rg16_latch5_o_an2 : BIT;	-- rg16.latch5_o_an2
+  SIGNAL rg16_latch5_o_an1 : BIT;	-- rg16.latch5_o_an1
+  SIGNAL rg16_latch6_o_nor2 : BIT;	-- rg16.latch6_o_nor2
+  SIGNAL rg16_latch6_o_inv : BIT;	-- rg16.latch6_o_inv
+  SIGNAL rg16_latch6_o_an2 : BIT;	-- rg16.latch6_o_an2
+  SIGNAL rg16_latch6_o_an1 : BIT;	-- rg16.latch6_o_an1
+  SIGNAL rg16_latch7_o_nor2 : BIT;	-- rg16.latch7_o_nor2
+  SIGNAL rg16_latch7_o_inv : BIT;	-- rg16.latch7_o_inv
+  SIGNAL rg16_latch7_o_an2 : BIT;	-- rg16.latch7_o_an2
+  SIGNAL rg16_latch7_o_an1 : BIT;	-- rg16.latch7_o_an1
+  SIGNAL rg16_latch8_o_nor2 : BIT;	-- rg16.latch8_o_nor2
+  SIGNAL rg16_latch8_o_inv : BIT;	-- rg16.latch8_o_inv
+  SIGNAL rg16_latch8_o_an2 : BIT;	-- rg16.latch8_o_an2
+  SIGNAL rg16_latch8_o_an1 : BIT;	-- rg16.latch8_o_an1
+  SIGNAL rg16_latch9_o_nor2 : BIT;	-- rg16.latch9_o_nor2
+  SIGNAL rg16_latch9_o_inv : BIT;	-- rg16.latch9_o_inv
+  SIGNAL rg16_latch9_o_an2 : BIT;	-- rg16.latch9_o_an2
+  SIGNAL rg16_latch9_o_an1 : BIT;	-- rg16.latch9_o_an1
+  SIGNAL rg16_latch10_o_nor2 : BIT;	-- rg16.latch10_o_nor2
+  SIGNAL rg16_latch10_o_inv : BIT;	-- rg16.latch10_o_inv
+  SIGNAL rg16_latch10_o_an2 : BIT;	-- rg16.latch10_o_an2
+  SIGNAL rg16_latch10_o_an1 : BIT;	-- rg16.latch10_o_an1
+  SIGNAL rg16_latch11_o_nor2 : BIT;	-- rg16.latch11_o_nor2
+  SIGNAL rg16_latch11_o_inv : BIT;	-- rg16.latch11_o_inv
+  SIGNAL rg16_latch11_o_an2 : BIT;	-- rg16.latch11_o_an2
+  SIGNAL rg16_latch11_o_an1 : BIT;	-- rg16.latch11_o_an1
+  SIGNAL rg16_latch12_o_nor2 : BIT;	-- rg16.latch12_o_nor2
+  SIGNAL rg16_latch12_o_inv : BIT;	-- rg16.latch12_o_inv
+  SIGNAL rg16_latch12_o_an2 : BIT;	-- rg16.latch12_o_an2
+  SIGNAL rg16_latch12_o_an1 : BIT;	-- rg16.latch12_o_an1
+  SIGNAL rg16_latch13_o_nor2 : BIT;	-- rg16.latch13_o_nor2
+  SIGNAL rg16_latch13_o_inv : BIT;	-- rg16.latch13_o_inv
+  SIGNAL rg16_latch13_o_an2 : BIT;	-- rg16.latch13_o_an2
+  SIGNAL rg16_latch13_o_an1 : BIT;	-- rg16.latch13_o_an1
+  SIGNAL rg16_latch14_o_nor2 : BIT;	-- rg16.latch14_o_nor2
+  SIGNAL rg16_latch14_o_inv : BIT;	-- rg16.latch14_o_inv
+  SIGNAL rg16_latch14_o_an2 : BIT;	-- rg16.latch14_o_an2
+  SIGNAL rg16_latch14_o_an1 : BIT;	-- rg16.latch14_o_an1
+  SIGNAL rg16_latch15_o_nor2 : BIT;	-- rg16.latch15_o_nor2
+  SIGNAL rg16_latch15_o_inv : BIT;	-- rg16.latch15_o_inv
+  SIGNAL rg16_latch15_o_an2 : BIT;	-- rg16.latch15_o_an2
+  SIGNAL rg16_latch15_o_an1 : BIT;	-- rg16.latch15_o_an1
+
+BEGIN
+
+  sm16a_ha_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_0,
+    i1 => sm16a_ha_netops8,
+    i0 => b(0));
+  sm16a_ha_cout : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_0,
+    i1 => sm16a_ha_netops8,
+    i0 => b(0));
+  sm16a_ha_netopi8 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_ha_netops8,
+    i => a(0));
+  sm16a_fa1_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_1,
+    i1 => sm16a_fa1_auxsc1,
+    i0 => sm16a_c_0);
+  sm16a_fa1_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_1,
+    i1 => sm16a_fa1_auxsc2,
+    i0 => sm16a_fa1_auxsc4);
+  sm16a_fa1_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa1_auxsc2,
+    i1 => netops390,
+    i0 => netops376);
+  sm16a_fa1_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa1_auxsc4,
+    i2 => sm16a_c_0,
+    i1 => netops390,
+    i0 => netops376);
+  sm16a_fa1_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa1_auxsc1,
+    i1 => netops390,
+    i0 => netops376);
+  sm16a_fa2_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_2,
+    i1 => sm16a_fa2_auxsc1,
+    i0 => sm16a_c_1);
+  sm16a_fa2_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_2,
+    i1 => sm16a_fa2_auxsc2,
+    i0 => sm16a_fa2_auxsc4);
+  sm16a_fa2_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa2_auxsc2,
+    i1 => netops389,
+    i0 => netops375);
+  sm16a_fa2_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa2_auxsc4,
+    i2 => sm16a_c_1,
+    i1 => netops389,
+    i0 => netops375);
+  sm16a_fa2_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa2_auxsc1,
+    i1 => netops389,
+    i0 => netops375);
+  sm16a_fa3_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_3,
+    i1 => sm16a_fa3_auxsc1,
+    i0 => sm16a_c_2);
+  sm16a_fa3_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_3,
+    i1 => sm16a_fa3_auxsc2,
+    i0 => sm16a_fa3_auxsc4);
+  sm16a_fa3_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa3_auxsc2,
+    i1 => netops388,
+    i0 => netops374);
+  sm16a_fa3_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa3_auxsc4,
+    i2 => sm16a_c_2,
+    i1 => netops388,
+    i0 => netops374);
+  sm16a_fa3_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa3_auxsc1,
+    i1 => netops388,
+    i0 => netops374);
+  sm16a_fa4_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_4,
+    i1 => sm16a_fa4_auxsc1,
+    i0 => sm16a_c_3);
+  sm16a_fa4_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_4,
+    i1 => sm16a_fa4_auxsc2,
+    i0 => sm16a_fa4_auxsc4);
+  sm16a_fa4_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa4_auxsc2,
+    i1 => netops387,
+    i0 => netops373);
+  sm16a_fa4_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa4_auxsc4,
+    i2 => sm16a_c_3,
+    i1 => netops387,
+    i0 => netops373);
+  sm16a_fa4_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa4_auxsc1,
+    i1 => netops387,
+    i0 => netops373);
+  sm16a_fa5_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_5,
+    i1 => sm16a_fa5_auxsc1,
+    i0 => sm16a_c_4);
+  sm16a_fa5_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_5,
+    i1 => sm16a_fa5_auxsc2,
+    i0 => sm16a_fa5_auxsc4);
+  sm16a_fa5_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa5_auxsc2,
+    i1 => netops386,
+    i0 => netops372);
+  sm16a_fa5_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa5_auxsc4,
+    i2 => sm16a_c_4,
+    i1 => netops386,
+    i0 => netops372);
+  sm16a_fa5_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa5_auxsc1,
+    i1 => netops386,
+    i0 => netops372);
+  sm16a_fa6_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_6,
+    i1 => sm16a_fa6_auxsc1,
+    i0 => sm16a_c_5);
+  sm16a_fa6_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_6,
+    i1 => sm16a_fa6_auxsc2,
+    i0 => sm16a_fa6_auxsc4);
+  sm16a_fa6_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa6_auxsc2,
+    i1 => netops385,
+    i0 => netops371);
+  sm16a_fa6_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa6_auxsc4,
+    i2 => sm16a_c_5,
+    i1 => netops385,
+    i0 => netops371);
+  sm16a_fa6_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa6_auxsc1,
+    i1 => netops385,
+    i0 => netops371);
+  sm16a_fa7_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_7,
+    i1 => sm16a_fa7_auxsc1,
+    i0 => sm16a_c_6);
+  sm16a_fa7_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_7,
+    i1 => sm16a_fa7_auxsc2,
+    i0 => sm16a_fa7_auxsc4);
+  sm16a_fa7_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa7_auxsc2,
+    i1 => netops384,
+    i0 => netops370);
+  sm16a_fa7_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa7_auxsc4,
+    i2 => sm16a_c_6,
+    i1 => netops384,
+    i0 => netops370);
+  sm16a_fa7_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa7_auxsc1,
+    i1 => netops384,
+    i0 => netops370);
+  sm16a_fa8_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_8,
+    i1 => sm16a_fa8_auxsc1,
+    i0 => sm16a_c_7);
+  sm16a_fa8_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_8,
+    i1 => sm16a_fa8_auxsc2,
+    i0 => sm16a_fa8_auxsc4);
+  sm16a_fa8_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa8_auxsc2,
+    i1 => netops383,
+    i0 => netops369);
+  sm16a_fa8_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa8_auxsc4,
+    i2 => sm16a_c_7,
+    i1 => netops383,
+    i0 => netops369);
+  sm16a_fa8_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa8_auxsc1,
+    i1 => netops383,
+    i0 => netops369);
+  sm16a_fa9_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_9,
+    i1 => sm16a_fa9_auxsc1,
+    i0 => sm16a_c_8);
+  sm16a_fa9_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_9,
+    i1 => sm16a_fa9_auxsc2,
+    i0 => sm16a_fa9_auxsc4);
+  sm16a_fa9_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa9_auxsc2,
+    i1 => netops382,
+    i0 => netops368);
+  sm16a_fa9_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa9_auxsc4,
+    i2 => sm16a_c_8,
+    i1 => netops382,
+    i0 => netops368);
+  sm16a_fa9_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa9_auxsc1,
+    i1 => netops382,
+    i0 => netops368);
+  sm16a_fa10_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_10,
+    i1 => sm16a_fa10_auxsc1,
+    i0 => sm16a_c_9);
+  sm16a_fa10_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_10,
+    i1 => sm16a_fa10_auxsc2,
+    i0 => sm16a_fa10_auxsc4);
+  sm16a_fa10_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa10_auxsc2,
+    i1 => netops381,
+    i0 => netops367);
+  sm16a_fa10_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa10_auxsc4,
+    i2 => sm16a_c_9,
+    i1 => netops381,
+    i0 => netops367);
+  sm16a_fa10_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa10_auxsc1,
+    i1 => netops381,
+    i0 => netops367);
+  sm16a_fa11_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_11,
+    i1 => sm16a_fa11_auxsc1,
+    i0 => sm16a_c_10);
+  sm16a_fa11_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_11,
+    i1 => sm16a_fa11_auxsc2,
+    i0 => sm16a_fa11_auxsc4);
+  sm16a_fa11_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa11_auxsc2,
+    i1 => netops380,
+    i0 => netops366);
+  sm16a_fa11_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa11_auxsc4,
+    i2 => sm16a_c_10,
+    i1 => netops380,
+    i0 => netops366);
+  sm16a_fa11_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa11_auxsc1,
+    i1 => netops380,
+    i0 => netops366);
+  sm16a_fa12_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_12,
+    i1 => sm16a_fa12_auxsc1,
+    i0 => sm16a_c_11);
+  sm16a_fa12_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_12,
+    i1 => sm16a_fa12_auxsc2,
+    i0 => sm16a_fa12_auxsc4);
+  sm16a_fa12_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa12_auxsc2,
+    i1 => netops379,
+    i0 => netops365);
+  sm16a_fa12_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa12_auxsc4,
+    i2 => sm16a_c_11,
+    i1 => netops379,
+    i0 => netops365);
+  sm16a_fa12_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa12_auxsc1,
+    i1 => netops379,
+    i0 => netops365);
+  sm16a_fa13_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_13,
+    i1 => sm16a_fa13_auxsc1,
+    i0 => sm16a_c_12);
+  sm16a_fa13_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_13,
+    i1 => sm16a_fa13_auxsc2,
+    i0 => sm16a_fa13_auxsc4);
+  sm16a_fa13_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa13_auxsc2,
+    i1 => netops378,
+    i0 => netops364);
+  sm16a_fa13_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa13_auxsc4,
+    i2 => sm16a_c_12,
+    i1 => netops378,
+    i0 => netops364);
+  sm16a_fa13_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa13_auxsc1,
+    i1 => netops378,
+    i0 => netops364);
+  sm16a_fa14_sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_14,
+    i1 => sm16a_fa14_auxsc1,
+    i0 => sm16a_c_13);
+  sm16a_fa14_cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_c_14,
+    i1 => sm16a_fa14_auxsc2,
+    i0 => sm16a_fa14_auxsc4);
+  sm16a_fa14_auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa14_auxsc2,
+    i1 => netops377,
+    i0 => netops363);
+  sm16a_fa14_auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa14_auxsc4,
+    i2 => sm16a_c_13,
+    i1 => netops377,
+    i0 => netops363);
+  sm16a_fa14_auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_fa14_auxsc1,
+    i1 => netops377,
+    i0 => netops363);
+  sm16a_xr1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sm16a_o_xr1,
+    i1 => b(15),
+    i0 => a(15));
+  sm16a_xr2 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => ss_15,
+    i1 => sm16a_c_14,
+    i0 => sm16a_o_xr1);
+  rg16_latch0_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch0_o_inv,
+    i => ss_0);
+  rg16_latch0_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch0_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch0_o_inv);
+  rg16_latch0_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch0_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_0);
+  rg16_latch0_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(0),
+    i2 => rg16_latch0_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch0_o_an1);
+  rg16_latch0_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch0_o_nor2,
+    i1 => rg16_latch0_o_an2,
+    i0 => s(0));
+  rg16_latch1_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch1_o_inv,
+    i => ss_1);
+  rg16_latch1_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch1_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch1_o_inv);
+  rg16_latch1_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch1_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_1);
+  rg16_latch1_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(1),
+    i2 => rg16_latch1_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch1_o_an1);
+  rg16_latch1_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch1_o_nor2,
+    i1 => rg16_latch1_o_an2,
+    i0 => s(1));
+  rg16_latch2_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch2_o_inv,
+    i => ss_2);
+  rg16_latch2_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch2_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch2_o_inv);
+  rg16_latch2_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch2_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_2);
+  rg16_latch2_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(2),
+    i2 => rg16_latch2_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch2_o_an1);
+  rg16_latch2_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch2_o_nor2,
+    i1 => rg16_latch2_o_an2,
+    i0 => s(2));
+  rg16_latch3_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch3_o_inv,
+    i => ss_3);
+  rg16_latch3_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch3_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch3_o_inv);
+  rg16_latch3_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch3_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_3);
+  rg16_latch3_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(3),
+    i2 => rg16_latch3_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch3_o_an1);
+  rg16_latch3_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch3_o_nor2,
+    i1 => rg16_latch3_o_an2,
+    i0 => s(3));
+  rg16_latch4_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch4_o_inv,
+    i => ss_4);
+  rg16_latch4_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch4_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch4_o_inv);
+  rg16_latch4_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch4_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_4);
+  rg16_latch4_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(4),
+    i2 => rg16_latch4_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch4_o_an1);
+  rg16_latch4_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch4_o_nor2,
+    i1 => rg16_latch4_o_an2,
+    i0 => s(4));
+  rg16_latch5_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch5_o_inv,
+    i => ss_5);
+  rg16_latch5_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch5_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch5_o_inv);
+  rg16_latch5_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch5_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_5);
+  rg16_latch5_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(5),
+    i2 => rg16_latch5_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch5_o_an1);
+  rg16_latch5_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch5_o_nor2,
+    i1 => rg16_latch5_o_an2,
+    i0 => s(5));
+  rg16_latch6_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch6_o_inv,
+    i => ss_6);
+  rg16_latch6_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch6_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch6_o_inv);
+  rg16_latch6_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch6_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_6);
+  rg16_latch6_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(6),
+    i2 => rg16_latch6_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch6_o_an1);
+  rg16_latch6_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch6_o_nor2,
+    i1 => rg16_latch6_o_an2,
+    i0 => s(6));
+  rg16_latch7_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch7_o_inv,
+    i => ss_7);
+  rg16_latch7_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch7_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch7_o_inv);
+  rg16_latch7_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch7_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_7);
+  rg16_latch7_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(7),
+    i2 => rg16_latch7_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch7_o_an1);
+  rg16_latch7_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch7_o_nor2,
+    i1 => rg16_latch7_o_an2,
+    i0 => s(7));
+  rg16_latch8_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch8_o_inv,
+    i => ss_8);
+  rg16_latch8_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch8_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch8_o_inv);
+  rg16_latch8_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch8_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_8);
+  rg16_latch8_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(8),
+    i2 => rg16_latch8_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch8_o_an1);
+  rg16_latch8_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch8_o_nor2,
+    i1 => rg16_latch8_o_an2,
+    i0 => s(8));
+  rg16_latch9_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch9_o_inv,
+    i => ss_9);
+  rg16_latch9_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch9_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch9_o_inv);
+  rg16_latch9_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch9_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_9);
+  rg16_latch9_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(9),
+    i2 => rg16_latch9_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch9_o_an1);
+  rg16_latch9_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch9_o_nor2,
+    i1 => rg16_latch9_o_an2,
+    i0 => s(9));
+  rg16_latch10_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch10_o_inv,
+    i => ss_10);
+  rg16_latch10_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch10_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch10_o_inv);
+  rg16_latch10_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch10_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_10);
+  rg16_latch10_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(10),
+    i2 => rg16_latch10_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch10_o_an1);
+  rg16_latch10_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch10_o_nor2,
+    i1 => rg16_latch10_o_an2,
+    i0 => s(10));
+  rg16_latch11_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch11_o_inv,
+    i => ss_11);
+  rg16_latch11_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch11_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch11_o_inv);
+  rg16_latch11_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch11_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_11);
+  rg16_latch11_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(11),
+    i2 => rg16_latch11_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch11_o_an1);
+  rg16_latch11_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch11_o_nor2,
+    i1 => rg16_latch11_o_an2,
+    i0 => s(11));
+  rg16_latch12_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch12_o_inv,
+    i => ss_12);
+  rg16_latch12_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch12_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch12_o_inv);
+  rg16_latch12_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch12_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_12);
+  rg16_latch12_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(12),
+    i2 => rg16_latch12_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch12_o_an1);
+  rg16_latch12_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch12_o_nor2,
+    i1 => rg16_latch12_o_an2,
+    i0 => s(12));
+  rg16_latch13_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch13_o_inv,
+    i => ss_13);
+  rg16_latch13_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch13_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch13_o_inv);
+  rg16_latch13_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch13_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_13);
+  rg16_latch13_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(13),
+    i2 => rg16_latch13_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch13_o_an1);
+  rg16_latch13_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch13_o_nor2,
+    i1 => rg16_latch13_o_an2,
+    i0 => s(13));
+  rg16_latch14_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch14_o_inv,
+    i => ss_14);
+  rg16_latch14_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch14_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch14_o_inv);
+  rg16_latch14_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch14_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_14);
+  rg16_latch14_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(14),
+    i2 => rg16_latch14_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch14_o_an1);
+  rg16_latch14_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch14_o_nor2,
+    i1 => rg16_latch14_o_an2,
+    i0 => s(14));
+  rg16_latch15_inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch15_o_inv,
+    i => ss_15);
+  rg16_latch15_an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch15_o_an1,
+    i1 => rg16_netops256,
+    i0 => rg16_latch15_o_inv);
+  rg16_latch15_an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_latch15_o_an2,
+    i1 => rg16_netops256,
+    i0 => ss_15);
+  rg16_latch15_nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => s(15),
+    i2 => rg16_latch15_o_nor2,
+    i1 => rg16_netops255,
+    i0 => rg16_latch15_o_an1);
+  rg16_latch15_nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => rg16_latch15_o_nor2,
+    i1 => rg16_latch15_o_an2,
+    i0 => s(15));
+  rg16_netopi255 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_netops255,
+    i => clr);
+  rg16_netopi256 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => rg16_netops256,
+    i => en);
+  netopi363 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops363,
+    i => b(14));
+  netopi364 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops364,
+    i => b(13));
+  netopi365 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops365,
+    i => b(12));
+  netopi366 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops366,
+    i => b(11));
+  netopi367 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops367,
+    i => b(10));
+  netopi368 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops368,
+    i => b(9));
+  netopi369 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops369,
+    i => b(8));
+  netopi370 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops370,
+    i => b(7));
+  netopi371 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops371,
+    i => b(6));
+  netopi372 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops372,
+    i => b(5));
+  netopi373 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops373,
+    i => b(4));
+  netopi374 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops374,
+    i => b(3));
+  netopi375 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops375,
+    i => b(2));
+  netopi376 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops376,
+    i => b(1));
+  netopi377 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops377,
+    i => a(14));
+  netopi378 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops378,
+    i => a(13));
+  netopi379 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops379,
+    i => a(12));
+  netopi380 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops380,
+    i => a(11));
+  netopi381 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops381,
+    i => a(10));
+  netopi382 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops382,
+    i => a(9));
+  netopi383 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops383,
+    i => a(8));
+  netopi384 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops384,
+    i => a(7));
+  netopi385 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops385,
+    i => a(6));
+  netopi386 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops386,
+    i => a(5));
+  netopi387 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops387,
+    i => a(4));
+  netopi388 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops388,
+    i => a(3));
+  netopi389 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops389,
+    i => a(2));
+  netopi390 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops390,
+    i => a(1));
+
+end VST;

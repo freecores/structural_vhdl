@@ -1,0 +1,106 @@
+-- VHDL structural description generated from `fulladder_glopg`
+--		date : Sat Sep  8 00:43:29 2001
+
+
+-- Entity Declaration
+
+ENTITY fulladder_glopg IS
+  PORT (
+  a : in BIT;	-- a
+  b : in BIT;	-- b
+  cin : in BIT;	-- cin
+  cout : out BIT;	-- cout
+  sout : out BIT;	-- sout
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END fulladder_glopg;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF fulladder_glopg IS
+  COMPONENT o2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT ao22_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL auxsc2 : BIT;	-- auxsc2
+  SIGNAL auxsc4 : BIT;	-- auxsc4
+  SIGNAL auxsc1 : BIT;	-- auxsc1
+
+BEGIN
+
+  sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sout,
+    i1 => auxsc1,
+    i0 => cin);
+  cout : o2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout,
+    i1 => auxsc2,
+    i0 => auxsc4);
+  auxsc2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc2,
+    i1 => a,
+    i0 => b);
+  auxsc4 : ao22_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc4,
+    i2 => cin,
+    i1 => a,
+    i0 => b);
+  auxsc1 : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => auxsc1,
+    i1 => a,
+    i0 => b);
+
+end VST;

@@ -1,0 +1,68 @@
+-- VHDL structural description generated from `latch`
+--		date : Sat Jul 28 16:10:31 2001
+
+
+-- Entity Declaration
+
+ENTITY latch IS
+  PORT (
+  a : in BIT;	-- a
+  en : in BIT;	-- en
+  b : inout BIT;	-- b
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END latch;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF latch IS
+  COMPONENT inv_x1
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT noa22_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL nota : BIT;	-- nota
+  SIGNAL q : BIT;	-- q
+
+BEGIN
+
+  notorand1 : noa22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q,
+    i2 => b,
+    i1 => a,
+    i0 => en);
+  inv1 : inv_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => nota,
+    i => a);
+  notorand2 : noa22_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => b,
+    i2 => q,
+    i1 => nota,
+    i0 => en);
+
+end VST;

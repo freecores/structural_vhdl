@@ -1,0 +1,987 @@
+-- VHDL structural description generated from `key_in`
+--		date : Sat Sep  1 21:07:14 2001
+
+
+-- Entity Declaration
+
+ENTITY key_in IS
+  PORT (
+  inkey : in BIT_VECTOR (31 DOWNTO 0);	-- inkey
+  key_sended : in BIT;	-- key_sended
+  clk : in BIT;	-- clk
+  rst : in BIT;	-- rst
+  req_key : out BIT;	-- req_key
+  ikey_ready : inout BIT;	-- ikey_ready
+  inkey64 : out BIT_VECTOR (127 DOWNTO 0);	-- inkey64
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END key_in;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF key_in IS
+  COMPONENT dec1to4
+    port (
+    a : in BIT_VECTOR(31 DOWNTO 0);	-- a
+    sel : in BIT_VECTOR(1 DOWNTO 0);	-- sel
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    o1 : out BIT_VECTOR(31 DOWNTO 0);	-- o1
+    o2 : out BIT_VECTOR(31 DOWNTO 0);	-- o2
+    o3 : out BIT_VECTOR(31 DOWNTO 0);	-- o3
+    o4 : out BIT_VECTOR(31 DOWNTO 0);	-- o4
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT in_key
+    port (
+    clk : in BIT;	-- clk
+    rst : in BIT;	-- rst
+    key_sended : in BIT;	-- key_sended
+    en_bufin : inout BIT;	-- en_bufin
+    req_key : out BIT;	-- req_key
+    ikey_ready : out BIT;	-- ikey_ready
+    n_block : out BIT;	-- n_block
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT buf_x2
+    port (
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL en_bufin : BIT;	-- en_bufin
+  SIGNAL inkey64_total_0 : BIT;	-- inkey64_total 0
+  SIGNAL inkey64_total_1 : BIT;	-- inkey64_total 1
+  SIGNAL inkey64_total_2 : BIT;	-- inkey64_total 2
+  SIGNAL inkey64_total_3 : BIT;	-- inkey64_total 3
+  SIGNAL inkey64_total_4 : BIT;	-- inkey64_total 4
+  SIGNAL inkey64_total_5 : BIT;	-- inkey64_total 5
+  SIGNAL inkey64_total_6 : BIT;	-- inkey64_total 6
+  SIGNAL inkey64_total_7 : BIT;	-- inkey64_total 7
+  SIGNAL inkey64_total_8 : BIT;	-- inkey64_total 8
+  SIGNAL inkey64_total_9 : BIT;	-- inkey64_total 9
+  SIGNAL inkey64_total_10 : BIT;	-- inkey64_total 10
+  SIGNAL inkey64_total_11 : BIT;	-- inkey64_total 11
+  SIGNAL inkey64_total_12 : BIT;	-- inkey64_total 12
+  SIGNAL inkey64_total_13 : BIT;	-- inkey64_total 13
+  SIGNAL inkey64_total_14 : BIT;	-- inkey64_total 14
+  SIGNAL inkey64_total_15 : BIT;	-- inkey64_total 15
+  SIGNAL inkey64_total_16 : BIT;	-- inkey64_total 16
+  SIGNAL inkey64_total_17 : BIT;	-- inkey64_total 17
+  SIGNAL inkey64_total_18 : BIT;	-- inkey64_total 18
+  SIGNAL inkey64_total_19 : BIT;	-- inkey64_total 19
+  SIGNAL inkey64_total_20 : BIT;	-- inkey64_total 20
+  SIGNAL inkey64_total_21 : BIT;	-- inkey64_total 21
+  SIGNAL inkey64_total_22 : BIT;	-- inkey64_total 22
+  SIGNAL inkey64_total_23 : BIT;	-- inkey64_total 23
+  SIGNAL inkey64_total_24 : BIT;	-- inkey64_total 24
+  SIGNAL inkey64_total_25 : BIT;	-- inkey64_total 25
+  SIGNAL inkey64_total_26 : BIT;	-- inkey64_total 26
+  SIGNAL inkey64_total_27 : BIT;	-- inkey64_total 27
+  SIGNAL inkey64_total_28 : BIT;	-- inkey64_total 28
+  SIGNAL inkey64_total_29 : BIT;	-- inkey64_total 29
+  SIGNAL inkey64_total_30 : BIT;	-- inkey64_total 30
+  SIGNAL inkey64_total_31 : BIT;	-- inkey64_total 31
+  SIGNAL inkey64_total_32 : BIT;	-- inkey64_total 32
+  SIGNAL inkey64_total_33 : BIT;	-- inkey64_total 33
+  SIGNAL inkey64_total_34 : BIT;	-- inkey64_total 34
+  SIGNAL inkey64_total_35 : BIT;	-- inkey64_total 35
+  SIGNAL inkey64_total_36 : BIT;	-- inkey64_total 36
+  SIGNAL inkey64_total_37 : BIT;	-- inkey64_total 37
+  SIGNAL inkey64_total_38 : BIT;	-- inkey64_total 38
+  SIGNAL inkey64_total_39 : BIT;	-- inkey64_total 39
+  SIGNAL inkey64_total_40 : BIT;	-- inkey64_total 40
+  SIGNAL inkey64_total_41 : BIT;	-- inkey64_total 41
+  SIGNAL inkey64_total_42 : BIT;	-- inkey64_total 42
+  SIGNAL inkey64_total_43 : BIT;	-- inkey64_total 43
+  SIGNAL inkey64_total_44 : BIT;	-- inkey64_total 44
+  SIGNAL inkey64_total_45 : BIT;	-- inkey64_total 45
+  SIGNAL inkey64_total_46 : BIT;	-- inkey64_total 46
+  SIGNAL inkey64_total_47 : BIT;	-- inkey64_total 47
+  SIGNAL inkey64_total_48 : BIT;	-- inkey64_total 48
+  SIGNAL inkey64_total_49 : BIT;	-- inkey64_total 49
+  SIGNAL inkey64_total_50 : BIT;	-- inkey64_total 50
+  SIGNAL inkey64_total_51 : BIT;	-- inkey64_total 51
+  SIGNAL inkey64_total_52 : BIT;	-- inkey64_total 52
+  SIGNAL inkey64_total_53 : BIT;	-- inkey64_total 53
+  SIGNAL inkey64_total_54 : BIT;	-- inkey64_total 54
+  SIGNAL inkey64_total_55 : BIT;	-- inkey64_total 55
+  SIGNAL inkey64_total_56 : BIT;	-- inkey64_total 56
+  SIGNAL inkey64_total_57 : BIT;	-- inkey64_total 57
+  SIGNAL inkey64_total_58 : BIT;	-- inkey64_total 58
+  SIGNAL inkey64_total_59 : BIT;	-- inkey64_total 59
+  SIGNAL inkey64_total_60 : BIT;	-- inkey64_total 60
+  SIGNAL inkey64_total_61 : BIT;	-- inkey64_total 61
+  SIGNAL inkey64_total_62 : BIT;	-- inkey64_total 62
+  SIGNAL inkey64_total_63 : BIT;	-- inkey64_total 63
+  SIGNAL inkey64_total_64 : BIT;	-- inkey64_total 64
+  SIGNAL inkey64_total_65 : BIT;	-- inkey64_total 65
+  SIGNAL inkey64_total_66 : BIT;	-- inkey64_total 66
+  SIGNAL inkey64_total_67 : BIT;	-- inkey64_total 67
+  SIGNAL inkey64_total_68 : BIT;	-- inkey64_total 68
+  SIGNAL inkey64_total_69 : BIT;	-- inkey64_total 69
+  SIGNAL inkey64_total_70 : BIT;	-- inkey64_total 70
+  SIGNAL inkey64_total_71 : BIT;	-- inkey64_total 71
+  SIGNAL inkey64_total_72 : BIT;	-- inkey64_total 72
+  SIGNAL inkey64_total_73 : BIT;	-- inkey64_total 73
+  SIGNAL inkey64_total_74 : BIT;	-- inkey64_total 74
+  SIGNAL inkey64_total_75 : BIT;	-- inkey64_total 75
+  SIGNAL inkey64_total_76 : BIT;	-- inkey64_total 76
+  SIGNAL inkey64_total_77 : BIT;	-- inkey64_total 77
+  SIGNAL inkey64_total_78 : BIT;	-- inkey64_total 78
+  SIGNAL inkey64_total_79 : BIT;	-- inkey64_total 79
+  SIGNAL inkey64_total_80 : BIT;	-- inkey64_total 80
+  SIGNAL inkey64_total_81 : BIT;	-- inkey64_total 81
+  SIGNAL inkey64_total_82 : BIT;	-- inkey64_total 82
+  SIGNAL inkey64_total_83 : BIT;	-- inkey64_total 83
+  SIGNAL inkey64_total_84 : BIT;	-- inkey64_total 84
+  SIGNAL inkey64_total_85 : BIT;	-- inkey64_total 85
+  SIGNAL inkey64_total_86 : BIT;	-- inkey64_total 86
+  SIGNAL inkey64_total_87 : BIT;	-- inkey64_total 87
+  SIGNAL inkey64_total_88 : BIT;	-- inkey64_total 88
+  SIGNAL inkey64_total_89 : BIT;	-- inkey64_total 89
+  SIGNAL inkey64_total_90 : BIT;	-- inkey64_total 90
+  SIGNAL inkey64_total_91 : BIT;	-- inkey64_total 91
+  SIGNAL inkey64_total_92 : BIT;	-- inkey64_total 92
+  SIGNAL inkey64_total_93 : BIT;	-- inkey64_total 93
+  SIGNAL inkey64_total_94 : BIT;	-- inkey64_total 94
+  SIGNAL inkey64_total_95 : BIT;	-- inkey64_total 95
+  SIGNAL inkey64_total_96 : BIT;	-- inkey64_total 96
+  SIGNAL inkey64_total_97 : BIT;	-- inkey64_total 97
+  SIGNAL inkey64_total_98 : BIT;	-- inkey64_total 98
+  SIGNAL inkey64_total_99 : BIT;	-- inkey64_total 99
+  SIGNAL inkey64_total_100 : BIT;	-- inkey64_total 100
+  SIGNAL inkey64_total_101 : BIT;	-- inkey64_total 101
+  SIGNAL inkey64_total_102 : BIT;	-- inkey64_total 102
+  SIGNAL inkey64_total_103 : BIT;	-- inkey64_total 103
+  SIGNAL inkey64_total_104 : BIT;	-- inkey64_total 104
+  SIGNAL inkey64_total_105 : BIT;	-- inkey64_total 105
+  SIGNAL inkey64_total_106 : BIT;	-- inkey64_total 106
+  SIGNAL inkey64_total_107 : BIT;	-- inkey64_total 107
+  SIGNAL inkey64_total_108 : BIT;	-- inkey64_total 108
+  SIGNAL inkey64_total_109 : BIT;	-- inkey64_total 109
+  SIGNAL inkey64_total_110 : BIT;	-- inkey64_total 110
+  SIGNAL inkey64_total_111 : BIT;	-- inkey64_total 111
+  SIGNAL inkey64_total_112 : BIT;	-- inkey64_total 112
+  SIGNAL inkey64_total_113 : BIT;	-- inkey64_total 113
+  SIGNAL inkey64_total_114 : BIT;	-- inkey64_total 114
+  SIGNAL inkey64_total_115 : BIT;	-- inkey64_total 115
+  SIGNAL inkey64_total_116 : BIT;	-- inkey64_total 116
+  SIGNAL inkey64_total_117 : BIT;	-- inkey64_total 117
+  SIGNAL inkey64_total_118 : BIT;	-- inkey64_total 118
+  SIGNAL inkey64_total_119 : BIT;	-- inkey64_total 119
+  SIGNAL inkey64_total_120 : BIT;	-- inkey64_total 120
+  SIGNAL inkey64_total_121 : BIT;	-- inkey64_total 121
+  SIGNAL inkey64_total_122 : BIT;	-- inkey64_total 122
+  SIGNAL inkey64_total_123 : BIT;	-- inkey64_total 123
+  SIGNAL inkey64_total_124 : BIT;	-- inkey64_total 124
+  SIGNAL inkey64_total_125 : BIT;	-- inkey64_total 125
+  SIGNAL inkey64_total_126 : BIT;	-- inkey64_total 126
+  SIGNAL inkey64_total_127 : BIT;	-- inkey64_total 127
+  SIGNAL n_block : BIT;	-- n_block
+
+BEGIN
+
+  dec12 : dec1to4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    o4 => inkey64_total_31& inkey64_total_30& inkey64_total_29& inkey64_total_28& inkey64_total_27& inkey64_total_26& inkey64_total_25& inkey64_total_24& inkey64_total_23& inkey64_total_22& inkey64_total_21& inkey64_total_20& inkey64_total_19& inkey64_total_18& inkey64_total_17& inkey64_total_16& inkey64_total_15& inkey64_total_14& inkey64_total_13& inkey64_total_12& inkey64_total_11& inkey64_total_10& inkey64_total_9& inkey64_total_8& inkey64_total_7& inkey64_total_6& inkey64_total_5& inkey64_total_4& inkey64_total_3& inkey64_total_2& inkey64_total_1& inkey64_total_0,
+    o3 => inkey64_total_63& inkey64_total_62& inkey64_total_61& inkey64_total_60& inkey64_total_59& inkey64_total_58& inkey64_total_57& inkey64_total_56& inkey64_total_55& inkey64_total_54& inkey64_total_53& inkey64_total_52& inkey64_total_51& inkey64_total_50& inkey64_total_49& inkey64_total_48& inkey64_total_47& inkey64_total_46& inkey64_total_45& inkey64_total_44& inkey64_total_43& inkey64_total_42& inkey64_total_41& inkey64_total_40& inkey64_total_39& inkey64_total_38& inkey64_total_37& inkey64_total_36& inkey64_total_35& inkey64_total_34& inkey64_total_33& inkey64_total_32,
+    o2 => inkey64_total_95& inkey64_total_94& inkey64_total_93& inkey64_total_92& inkey64_total_91& inkey64_total_90& inkey64_total_89& inkey64_total_88& inkey64_total_87& inkey64_total_86& inkey64_total_85& inkey64_total_84& inkey64_total_83& inkey64_total_82& inkey64_total_81& inkey64_total_80& inkey64_total_79& inkey64_total_78& inkey64_total_77& inkey64_total_76& inkey64_total_75& inkey64_total_74& inkey64_total_73& inkey64_total_72& inkey64_total_71& inkey64_total_70& inkey64_total_69& inkey64_total_68& inkey64_total_67& inkey64_total_66& inkey64_total_65& inkey64_total_64,
+    o1 => inkey64_total_126& inkey64_total_125& inkey64_total_124& inkey64_total_123& inkey64_total_122& inkey64_total_121& inkey64_total_120& inkey64_total_119& inkey64_total_118& inkey64_total_117& inkey64_total_116& inkey64_total_115& inkey64_total_114& inkey64_total_113& inkey64_total_112& inkey64_total_111& inkey64_total_110& inkey64_total_109& inkey64_total_108& inkey64_total_107& inkey64_total_106& inkey64_total_105& inkey64_total_104& inkey64_total_103& inkey64_total_102& inkey64_total_101& inkey64_total_100& inkey64_total_99& inkey64_total_98& inkey64_total_97& inkey64_total_96& inkey64_total_95,
+    rst => inkey64_total_127,
+    clk => rst,
+    sel => n_block& en_bufin,
+    a => inkey(31)& inkey(30)& inkey(29)& inkey(28)& inkey(27)& inkey(26)& inkey(25)& inkey(24)& inkey(23)& inkey(22)& inkey(21)& inkey(20)& inkey(19)& inkey(18)& inkey(17)& inkey(16)& inkey(15)& inkey(14)& inkey(13)& inkey(12)& inkey(11)& inkey(10)& inkey(9)& inkey(8)& inkey(7)& inkey(6)& inkey(5)& inkey(4)& inkey(3)& inkey(2)& inkey(1)& inkey(0));
+  ctrl_inkey : in_key
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    n_block => n_block,
+    ikey_ready => ikey_ready,
+    req_key => req_key,
+    en_bufin => en_bufin,
+    key_sended => key_sended,
+    rst => rst,
+    clk => clk);
+  buf0 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(0),
+    i => inkey64_total_0);
+  buf1 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(1),
+    i => inkey64_total_1);
+  buf2 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(2),
+    i => inkey64_total_2);
+  buf3 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(3),
+    i => inkey64_total_3);
+  buf4 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(4),
+    i => inkey64_total_4);
+  buf5 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(5),
+    i => inkey64_total_5);
+  buf6 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(6),
+    i => inkey64_total_6);
+  buf7 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(7),
+    i => inkey64_total_7);
+  buf8 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(8),
+    i => inkey64_total_8);
+  buf9 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(9),
+    i => inkey64_total_9);
+  buf10 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(10),
+    i => inkey64_total_10);
+  buf11 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(11),
+    i => inkey64_total_11);
+  buf12 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(12),
+    i => inkey64_total_12);
+  buf13 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(13),
+    i => inkey64_total_13);
+  buf14 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(14),
+    i => inkey64_total_14);
+  buf15 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(15),
+    i => inkey64_total_15);
+  buf16 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(16),
+    i => inkey64_total_16);
+  buf17 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(17),
+    i => inkey64_total_17);
+  buf18 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(18),
+    i => inkey64_total_18);
+  buf19 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(19),
+    i => inkey64_total_19);
+  buf20 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(20),
+    i => inkey64_total_20);
+  buf21 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(21),
+    i => inkey64_total_21);
+  buf22 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(22),
+    i => inkey64_total_22);
+  buf23 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(23),
+    i => inkey64_total_23);
+  buf24 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(24),
+    i => inkey64_total_24);
+  buf25 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(25),
+    i => inkey64_total_25);
+  buf26 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(26),
+    i => inkey64_total_26);
+  buf27 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(27),
+    i => inkey64_total_27);
+  buf28 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(28),
+    i => inkey64_total_28);
+  buf29 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(29),
+    i => inkey64_total_29);
+  buf30 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(30),
+    i => inkey64_total_30);
+  buf31 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(31),
+    i => inkey64_total_31);
+  buf32 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(32),
+    i => inkey64_total_32);
+  buf33 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(33),
+    i => inkey64_total_33);
+  buf34 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(34),
+    i => inkey64_total_34);
+  buf35 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(35),
+    i => inkey64_total_35);
+  buf36 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(36),
+    i => inkey64_total_36);
+  buf37 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(37),
+    i => inkey64_total_37);
+  buf38 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(38),
+    i => inkey64_total_38);
+  buf39 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(39),
+    i => inkey64_total_39);
+  buf40 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(40),
+    i => inkey64_total_40);
+  buf41 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(41),
+    i => inkey64_total_41);
+  buf42 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(42),
+    i => inkey64_total_42);
+  buf43 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(43),
+    i => inkey64_total_43);
+  buf44 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(44),
+    i => inkey64_total_44);
+  buf45 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(45),
+    i => inkey64_total_45);
+  buf46 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(46),
+    i => inkey64_total_46);
+  buf47 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(47),
+    i => inkey64_total_47);
+  buf48 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(48),
+    i => inkey64_total_48);
+  buf49 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(49),
+    i => inkey64_total_49);
+  buf50 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(50),
+    i => inkey64_total_50);
+  buf51 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(51),
+    i => inkey64_total_51);
+  buf52 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(52),
+    i => inkey64_total_52);
+  buf53 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(53),
+    i => inkey64_total_53);
+  buf54 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(54),
+    i => inkey64_total_54);
+  buf55 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(55),
+    i => inkey64_total_55);
+  buf56 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(56),
+    i => inkey64_total_56);
+  buf57 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(57),
+    i => inkey64_total_57);
+  buf58 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(58),
+    i => inkey64_total_58);
+  buf59 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(59),
+    i => inkey64_total_59);
+  buf60 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(60),
+    i => inkey64_total_60);
+  buf61 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(61),
+    i => inkey64_total_61);
+  buf62 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(62),
+    i => inkey64_total_62);
+  buf63 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(63),
+    i => inkey64_total_63);
+  buf64 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(64),
+    i => inkey64_total_64);
+  buf65 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(65),
+    i => inkey64_total_65);
+  buf66 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(66),
+    i => inkey64_total_66);
+  buf67 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(67),
+    i => inkey64_total_67);
+  buf68 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(68),
+    i => inkey64_total_68);
+  buf69 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(69),
+    i => inkey64_total_69);
+  buf70 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(70),
+    i => inkey64_total_70);
+  buf71 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(71),
+    i => inkey64_total_71);
+  buf72 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(72),
+    i => inkey64_total_72);
+  buf73 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(73),
+    i => inkey64_total_73);
+  buf74 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(74),
+    i => inkey64_total_74);
+  buf75 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(75),
+    i => inkey64_total_75);
+  buf76 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(76),
+    i => inkey64_total_76);
+  buf77 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(77),
+    i => inkey64_total_77);
+  buf78 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(78),
+    i => inkey64_total_78);
+  buf79 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(79),
+    i => inkey64_total_79);
+  buf80 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(80),
+    i => inkey64_total_80);
+  buf81 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(81),
+    i => inkey64_total_81);
+  buf82 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(82),
+    i => inkey64_total_82);
+  buf83 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(83),
+    i => inkey64_total_83);
+  buf84 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(84),
+    i => inkey64_total_84);
+  buf85 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(85),
+    i => inkey64_total_85);
+  buf86 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(86),
+    i => inkey64_total_86);
+  buf87 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(87),
+    i => inkey64_total_87);
+  buf88 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(88),
+    i => inkey64_total_88);
+  buf89 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(89),
+    i => inkey64_total_89);
+  buf90 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(90),
+    i => inkey64_total_90);
+  buf91 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(91),
+    i => inkey64_total_91);
+  buf92 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(92),
+    i => inkey64_total_92);
+  buf93 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(93),
+    i => inkey64_total_93);
+  buf94 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(94),
+    i => inkey64_total_94);
+  buf95 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(95),
+    i => inkey64_total_95);
+  buf96 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(96),
+    i => inkey64_total_96);
+  buf97 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(97),
+    i => inkey64_total_97);
+  buf98 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(98),
+    i => inkey64_total_98);
+  buf99 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(99),
+    i => inkey64_total_99);
+  buf100 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(100),
+    i => inkey64_total_100);
+  buf101 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(101),
+    i => inkey64_total_101);
+  buf102 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(102),
+    i => inkey64_total_102);
+  buf103 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(103),
+    i => inkey64_total_103);
+  buf104 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(104),
+    i => inkey64_total_104);
+  buf105 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(105),
+    i => inkey64_total_105);
+  buf106 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(106),
+    i => inkey64_total_106);
+  buf107 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(107),
+    i => inkey64_total_107);
+  buf108 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(108),
+    i => inkey64_total_108);
+  buf109 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(109),
+    i => inkey64_total_109);
+  buf110 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(110),
+    i => inkey64_total_110);
+  buf111 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(111),
+    i => inkey64_total_111);
+  buf112 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(112),
+    i => inkey64_total_112);
+  buf113 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(113),
+    i => inkey64_total_113);
+  buf114 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(114),
+    i => inkey64_total_114);
+  buf115 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(115),
+    i => inkey64_total_115);
+  buf116 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(116),
+    i => inkey64_total_116);
+  buf117 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(117),
+    i => inkey64_total_117);
+  buf118 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(118),
+    i => inkey64_total_118);
+  buf119 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(119),
+    i => inkey64_total_119);
+  buf120 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(120),
+    i => inkey64_total_120);
+  buf121 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(121),
+    i => inkey64_total_121);
+  buf122 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(122),
+    i => inkey64_total_122);
+  buf123 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(123),
+    i => inkey64_total_123);
+  buf124 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(124),
+    i => inkey64_total_124);
+  buf125 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(125),
+    i => inkey64_total_125);
+  buf126 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(126),
+    i => inkey64_total_126);
+  buf127 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => inkey64(127),
+    i => inkey64_total_127);
+
+end VST;

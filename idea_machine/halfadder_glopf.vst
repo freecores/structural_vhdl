@@ -1,0 +1,75 @@
+-- VHDL structural description generated from `halfadder_glopf`
+--		date : Sat Sep  8 00:43:04 2001
+
+
+-- Entity Declaration
+
+ENTITY halfadder_glopf IS
+  PORT (
+  a : in BIT;	-- a
+  b : in BIT;	-- b
+  cout : out BIT;	-- cout
+  sout : out BIT;	-- sout
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END halfadder_glopf;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF halfadder_glopf IS
+  COMPONENT xr2_x1
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT buf_x2
+    port (
+    i : in BIT;	-- i
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL netops8 : BIT;	-- netops8
+
+BEGIN
+
+  sout : xr2_x1
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => sout,
+    i1 => netops8,
+    i0 => b);
+  cout : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => cout,
+    i1 => netops8,
+    i0 => b);
+  netopi8 : buf_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => netops8,
+    i => a);
+
+end VST;

@@ -1,0 +1,35 @@
+-- VHDL structural description generated from `zero1`
+--		date : Mon Jul 30 17:44:30 2001
+
+
+-- Entity Declaration
+
+ENTITY zero1 IS
+  PORT (
+  a : out BIT;	-- a
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END zero1;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF zero1 IS
+  COMPONENT zero_x0
+    port (
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+
+BEGIN
+
+  a : zero_x0
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => a);
+
+end VST;

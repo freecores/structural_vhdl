@@ -1,0 +1,104 @@
+-- VHDL structural description generated from `d_latch`
+--		date : Sat Sep  8 01:08:53 2001
+
+
+-- Entity Declaration
+
+ENTITY d_latch IS
+  PORT (
+  d : in BIT;	-- d
+  ck : in BIT;	-- ck
+  clr : in BIT;	-- clr
+  q : inout BIT;	-- q
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END d_latch;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF d_latch IS
+  COMPONENT inv_x2
+    port (
+    i : in BIT;	-- i
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT a2_x2
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    q : out BIT;	-- q
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT no3_x4
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    i2 : in BIT;	-- i2
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  COMPONENT no2_x4
+    port (
+    i0 : in BIT;	-- i0
+    i1 : in BIT;	-- i1
+    nq : out BIT;	-- nq
+    vdd : in BIT;	-- vdd
+    vss : in BIT	-- vss
+    );
+  END COMPONENT;
+
+  SIGNAL o_an1 : BIT;	-- o_an1
+  SIGNAL o_an2 : BIT;	-- o_an2
+  SIGNAL o_inv : BIT;	-- o_inv
+  SIGNAL o_nor2 : BIT;	-- o_nor2
+
+BEGIN
+
+  inv : inv_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_inv,
+    i => d);
+  an1 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => o_an1,
+    i1 => ck,
+    i0 => o_inv);
+  an2 : a2_x2
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    q => o_an2,
+    i1 => ck,
+    i0 => d);
+  nor1 : no3_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => q,
+    i2 => o_nor2,
+    i1 => clr,
+    i0 => o_an1);
+  nor2 : no2_x4
+    PORT MAP (
+    vss => vss,
+    vdd => vdd,
+    nq => o_nor2,
+    i1 => o_an2,
+    i0 => q);
+
+end VST;
